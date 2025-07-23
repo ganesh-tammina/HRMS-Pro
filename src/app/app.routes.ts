@@ -1,14 +1,23 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
+import { MePage } from './me/me.page';
+import { MyTeamPage } from './my-team/my-team.page';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/inbox',
-    pathMatch: 'full',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
+  { path: 'Home', component: HomePage },
+  { path: 'Me', component: MePage },
+  { path: 'MyTeam', component: MyTeamPage },
+
   {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then(m => m.LoginPage)
   },
+
+
+
 ];

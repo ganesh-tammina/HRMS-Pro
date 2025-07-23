@@ -1,0 +1,117 @@
+.login-container {
+  --background: #ffffff;
+
+  .login-grid {
+    display: flex;
+    height: 100vh;
+  }
+
+  .image-section {
+    flex: 1;
+    background-image: url('https://cdn.keka.com/login/v/2025/images/login-image.jpg'); // Replace with your actual path
+    background-size: cover;
+    background-position: center;
+  }
+
+  .form-section {
+    padding: 60px 80px;
+    background-color: #ffffff;
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .input-box {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .continue-btn {
+      width: 100%;
+      margin-bottom: 1rem;
+      --background: #0052cc;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 1rem 0;
+
+      hr {
+        flex: 1;
+        height: 1px;
+        background: #ccc;
+        border: none;
+      }
+
+      span {
+        margin: 0 10px;
+        font-size: 14px;
+        color: #888;
+      }
+    }
+
+    .social-btn {
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+
+    .store-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+
+      img {
+        height: 40px;
+        margin: 0 10px;
+      }
+    }
+
+    .footer-text {
+      font-size: 12px;
+      text-align: center;
+      color: #888;
+      margin-top: 1rem;
+
+      a {
+        color: #0052cc;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  margin: auto;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  cursor: pointer;
+  justify-content: center;
+  transition: background 0.2s ease;
+  font-weight: 500;
+
+  img {
+    width: 20px;
+    margin-right: 12px;
+  }
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}

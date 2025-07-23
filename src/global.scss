@@ -35,3 +35,31 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-split-pane{
+    --side-min-width: 70px !important;
+    --side-max-width: 10% !important;
+}
+
+ion-list{
+    padding: 0 !important;
+}
+ion-list-header, ion-item{
+      --background: #0a1d2c !important;
+      color: #fff;
+      border: none;
+      border-radius: 0 !important;
+      min-height: 0;
+        --padding:0px !important;
+}
+
+  ion-item a {
+      display: grid !important;
+    place-content: center;
+}
+
+@media (min-width: 1200px) {
+    .grid-fixed {
+        width: 100vw;
+    }
+}

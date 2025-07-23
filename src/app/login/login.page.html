@@ -1,0 +1,57 @@
+<ion-content class="login-container">
+  <div class="login-grid">
+    <!-- Left: Background Image -->
+    <div class="image-section"></div>
+
+    <!-- Right: Login Form -->
+    <div class="form-section">
+      <h2>Login to Keka</h2>
+
+      <ion-input
+        placeholder="Email or Username"
+        type="text"
+        fill="outline"
+        class="input-box"
+      ></ion-input>
+
+      <ion-button expand="block" class="continue-btn" (click)="goToDashboard()">Continue</ion-button>
+
+      <div class="divider">
+        <hr />
+        <span>Or</span>
+        <hr />
+      </div>
+
+ <div class="social-buttons">
+  <button class="social-btn mobile">
+    <img src="https://cdn.keka.com/login/v/2025/images/logos/smartphone.svg" alt="Mobile" />
+    Continue with Mobile
+  </button>
+
+  <button class="social-btn microsoft">
+    <img src="https://cdn.keka.com/login/v/2025/images/logos/microsoft.svg" alt="Microsoft" />
+    Continue with Microsoft
+  </button>
+
+  <button class="social-btn google">
+    <img src="https://cdn.keka.com/login/v/2025/images/logos/google.svg" alt="Google" />
+    Continue with Google
+  </button>
+
+  <button class="social-btn username">
+    <img src="https://cdn.keka.com/login/v/2025/images/logos/keka.svg" alt="Username" />
+    Continue with Username
+  </button>
+</div>
+
+      <div class="store-links">
+        <img src="https://cdn.keka.com/login/v/2025/images/app-store.svg" alt="App Store" />
+        <img src="https://cdn.keka.com/login/v/2025/images/google-play.svg" alt="Google Play" />
+      </div>
+
+      <p class="footer-text">
+        By logging in, you agree to Keka <a>Terms of Use</a> and <a>Privacy Policy</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

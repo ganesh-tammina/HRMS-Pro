@@ -3,10 +3,10 @@ ion-menu ion-content {
 }
 
 ion-menu.md ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
+    --padding-start: 18px;
+    --padding-end: 8px;
+    --padding-top: 12px;
+    --padding-bottom: 20px;
 }
 
 ion-menu.md ion-list {
@@ -117,3 +117,13 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+
+.sidenav-content{
+      --background: #0a1d2c !important;
+      .side-menu-list{
+      --background: #0a1d2c !important;
+      }
+}
+
+
