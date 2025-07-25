@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './header.page.html',
   styleUrls: ['./header.page.scss'],
   standalone: true,
-  imports: [IonContent,IonicModule, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonicModule, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class HeaderPage implements OnInit {
 

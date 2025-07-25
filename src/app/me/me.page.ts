@@ -1,14 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { HeaderPage } from '../header/header.page';
+import {
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonSearchbar,
+  IonIcon
+} from '@ionic/angular/standalone';
 @Component({
   selector: 'app-me',
   templateUrl: './me.page.html',
   styleUrls: ['./me.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, HeaderPage, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonContent,
+    IonHeader,
+    IonToolbar,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonSearchbar,
+    IonIcon
+  ]
 })
 export class MePage implements OnInit {
 

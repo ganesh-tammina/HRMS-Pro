@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { MePage } from './me/me.page';
 import { MyTeamPage } from './my-team/my-team.page';
+import { logIn } from 'ionicons/icons';
+import { LoginPage } from './login/login.page';
 
 export const routes: Routes = [
   {
@@ -12,12 +14,6 @@ export const routes: Routes = [
   { path: 'Home', component: HomePage },
   { path: 'Me', component: MePage },
   { path: 'MyTeam', component: MyTeamPage },
-
-  {
-    path: 'login',
-    loadComponent: () => import('./login/login.page').then(m => m.LoginPage)
-  },
-
-
+  { path: 'login', component: LoginPage },
 
 ];

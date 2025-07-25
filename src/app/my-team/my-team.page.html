@@ -1,7 +1,33 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">My Team</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header [translucent]="true" class="keka-navbar">
+  <ion-toolbar  class="navbar-toolbar">
+    <ion-grid [fixed]="true">
+  <ion-row class="ion-align-items-center ion-justify-content-between">
+    <ion-col size="3">
+          <div class="navbar-left">
+      <!-- <img src="https://cdn.keka.com/shared/branding/logo/keka-logo-light.svg" class="logo" alt="keka" /> -->
+      <span class="company-name">Sree Tammina Software Solutions Pvt. Ltd.</span>
+    </div>
+    </ion-col>
+    <ion-col size="6">
+      
+    <div class="navbar-center">
+      <ion-searchbar
+        placeholder="Search employees or actions (Ex: Apply Leave)"
+        class="search-box"
+        showCancelButton="never"
+      ></ion-searchbar>
+    </div>
+
+    </ion-col>
+    <ion-col size="1">
+    <div class="navbar-right">
+      <ion-icon name="notifications-outline" class="nav-icon"></ion-icon>
+      <img src="https://sreetammina.keka.com/files/65c0fd91-f718-4f90-9b4a-cb071eba4720/50x50/profileimage/f51ec8f5966d42bf91f8005bc1e193c2.jpg" class="avatar" alt="User Avatar" />
+    </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  </ion-toolbar>
+</ion-header>
 </ion-content>

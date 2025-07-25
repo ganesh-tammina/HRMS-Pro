@@ -1,13 +1,11 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-
-
 <ion-menu *ngIf="showMenu" contentId="main-content" type="overlay">
   <ion-content class="menu-content sidenav-content">
     <ion-list class="side-menu-list">
             <ion-list-header>
               <div class="navbar-left">
-              <img  style="margin-bottom: 20px;" src="https://cdn.keka.com/shared/branding/logo/keka-logo-light.svg" width="75px" class="logo" alt="keka" />
+              <img  style="margin-bottom: 20px;" src="https://www.techtammina.com/wp-content/uploads/2022/04/techlogo.png" width="150px" class="logo" alt="keka" />
     </div>
             </ion-list-header>
   <ion-menu-toggle auto-hide="false">
@@ -30,6 +28,13 @@
   <ion-item routerDirection="root" [routerLink]="['/MyTeam']" lines="none" detail="false" routerLinkActive="selected">
     <div>
       <ion-label>My Team</ion-label>
+    </div>
+  </ion-item>
+</ion-menu-toggle>
+<ion-menu-toggle auto-hide="false">
+  <ion-item routerDirection="root" [routerLink]="['/login']" lines="none" detail="false" routerLinkActive="selected">
+    <div>
+      <ion-label>Log out</ion-label>
     </div>
   </ion-item>
 </ion-menu-toggle>
