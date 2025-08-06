@@ -64,3 +64,145 @@
   padding-inline-start: 2.375rem;
 }
 
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9fbfc;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Individual cards */
+.card-pannel {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+/* Attendance Stats */
+.attendance-stats .header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.attendance-stats .entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.attendance-stats .entry .icon {
+  background-color: #fcd462;
+  border-radius: 50%;
+  padding: 8px;
+  color: #fff;
+}
+
+.attendance-stats .entry .icon.team {
+  background-color: #5daee0;
+}
+
+/* Timings */
+.timings .days {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.timings .days div {
+  background: #f0f1f4;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+.timings .days .active {
+  background-color: #87d1d8;
+  color: #fff;
+}
+
+.timings .duration-bar {
+  height: 8px;
+  background: #a0dde6;
+  border-radius: 4px;
+  margin-top: 10px;
+  width: 100%;
+  position: relative;
+}
+
+.timings .break {
+  position: absolute;
+  height: 8px;
+  background: #d0ebf1;
+  width: 20%;
+  left: 40%;
+}
+
+/* Actions */
+.actions {
+  text-align: center;
+  .actions-card{
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.actions .clock {
+  font-size: 18px;
+  font-weight: 400;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 10px 20px;  
+  margin-top: 0;
+}
+
+.actions .btn-clockout {
+  background-color: #f26c6c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  // margin: 10px 0;
+}
+
+.actions .info {
+  font-size: 14px;
+  // margin-top: 10px;
+  color: #555;
+  text-align: left;
+}
+
+.actions .links {
+  color: #d35c6b;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+
+
+.searchbar-input.sc-ion-searchbar-md {
+    padding-top: 0.175rem;
+    padding-bottom: 0.175rem;
+}
+
+.profile-tab{
+  position: static;
+  .button-native{
+    height: 45px;
+  }
+  ion-tab-bar{
+    height: 45px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
+}

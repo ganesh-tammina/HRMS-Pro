@@ -19,7 +19,7 @@ ion-menu.md ion-note {
 
 ion-menu.md ion-list-header,
 ion-menu.md ion-note {
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
 ion-menu.md ion-list#inbox-list {
@@ -128,4 +128,50 @@ ion-item.selected {
 
 .header-collapse-condense{
  display: block !important;
+}
+ion-item:hover{
+  --color: #fff !important;
+}
+
+
+
+
+.dropdown-wrapper {
+  position: relative;
+
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; // below the parent
+    left: -20px;
+    min-width: 200px;
+    background: #fff !important;
+    border: 1px solid #1e3a5f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  &:hover .dropdown-menu,
+  .dropdown-menu:hover {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dropdown-menu ion-item {
+    color: white;
+    --background: transparent;
+    --padding-start: 20px;
+  }
+
+  .dropdown-menu ion-item:hover {
+    background-color: #1a3c5f;
+  }
 }

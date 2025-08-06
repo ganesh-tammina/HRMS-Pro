@@ -24,6 +24,35 @@
   </ion-item>
 </ion-menu-toggle>
 
+<div class="dropdown-wrapper">
+  <!-- Org Parent Item -->
+  <ion-menu-toggle auto-hide="false">
+    <ion-item class="dropdown-toggle" lines="none" detail="false">
+      <ion-label>Org</ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+
+  <!-- Submenu Dropdown -->
+  <div class="dropdown-menu">
+    <ion-menu-toggle auto-hide="false">
+      <ion-item routerLink="/org/structure" lines="none" detail="false">
+        <ion-label>Pre Onboarding</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle auto-hide="false">
+      <ion-item routerLink="/post" lines="none" detail="false">
+        <ion-label>Post Onboarding</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-menu-toggle auto-hide="false">
+      <ion-item routerLink="/org/settings" lines="none" detail="false">
+        <ion-label>Settings</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+  </div>
+</div>
+
+
 <ion-menu-toggle auto-hide="false">
   <ion-item routerDirection="root" [routerLink]="['/MyTeam']" lines="none" detail="false" routerLinkActive="selected">
     <div>

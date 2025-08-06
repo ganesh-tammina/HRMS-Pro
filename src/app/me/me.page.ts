@@ -9,8 +9,16 @@ import {
   IonRow,
   IonCol,
   IonSearchbar,
-  IonIcon
+  IonIcon,
+  IonLabel,
+  IonButtons,
+  IonToggle,
+  IonTitle,
+  IonTabs,
+  IonTabButton,
+  IonTabBar
 } from '@ionic/angular/standalone';
+import { HeaderComponent } from '../shared/header/header.component';
 @Component({
   selector: 'app-me',
   templateUrl: './me.page.html',
@@ -26,7 +34,16 @@ import {
     IonRow,
     IonCol,
     IonSearchbar,
-    IonIcon
+    IonTitle,
+    IonIcon,
+    IonLabel,
+    IonButtons,
+    IonToggle,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    HeaderComponent
+
   ]
 })
 export class MePage implements OnInit {

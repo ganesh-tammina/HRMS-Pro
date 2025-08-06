@@ -1,33 +1,94 @@
+<ion-header [translucent]="true">
+   <app-header></app-header>
+</ion-header>
 <ion-content [fullscreen]="true">
-<ion-header [translucent]="true" class="keka-navbar">
-  <ion-toolbar  class="navbar-toolbar">
-    <ion-grid [fixed]="true">
-  <ion-row class="ion-align-items-center ion-justify-content-between">
-    <ion-col size="3">
-          <div class="navbar-left">
-      <!-- <img src="https://cdn.keka.com/shared/branding/logo/keka-logo-light.svg" class="logo" alt="keka" /> -->
-      <span class="company-name">Sree Tammina Software Solutions Pvt. Ltd.</span>
+<ion-grid>
+  <div class="dashboard">
+  <div class="card-pannel attendance-stats">
+    <div class="header">Attendance Stats</div>
+    <div class="entry">
+      <div><span class="icon">👤</span> Me</div>
+      <div>5h 33m<br><small>60%</small></div>
     </div>
-    </ion-col>
-    <ion-col size="6">
-      
-    <div class="navbar-center">
-      <ion-searchbar
-        placeholder="Search employees or actions (Ex: Apply Leave)"
-        class="search-box"
-        showCancelButton="never"
-      ></ion-searchbar>
+    <div class="entry">
+      <div><span class="icon team">👥</span> My Team</div>
+      <div>6h 38m<br><small>54%</small></div>
+    </div>
+  </div>
+
+  <div class="card-pannel timings">
+    <div class="days">
+      <div>M</div><div class="active">T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
+    </div>
+    <div>Today (10:00 AM - 7:00 PM)</div>
+    <div class="duration-bar">
+      <div class="break"></div>
+    </div>
+    <div>Duration: 9h 0m 🍵 60 min</div>
+  </div>
+
+  <div class="card-pannel actions">
+    <div class="actions-card">
+      <div>
+    <h5 class="clock">12:51:02<span>PM</span></h5>
+    <div class="info">Tue, 05 Aug 2025<br>Effective: 2h 46m<br>Gross: 2h 46m</div>
+      </div>
+      <div>
+    <button class="btn-clockout">Web Clock-out</button>
+    <div class="info m-5 ion-text-center ion-margin-top">2h:46m Since Last Login</div>
+    <div class="links">
+      <div>Work From Home</div>
+      <div>Partial Day Request</div>
+      <div><span>📄</span>Attendance Policy</div>
+    </div>
+      </div>
+
     </div>
 
+
+  </div>
+</div>
+
+</ion-grid>
+
+<ion-grid class="ion-padding"> 
+  <ion-row>
+    <ion-col size="6">
+    <ion-title class="ion-no-padding">Logs & Requests</ion-title>
     </ion-col>
-    <ion-col size="1">
-    <div class="navbar-right">
-      <ion-icon name="notifications-outline" class="nav-icon"></ion-icon>
-      <img src="https://sreetammina.keka.com/files/65c0fd91-f718-4f90-9b4a-cb071eba4720/50x50/profileimage/f51ec8f5966d42bf91f8005bc1e193c2.jpg" class="avatar" alt="User Avatar" />
-    </div>
+        <ion-col size="6">
+          <div class="display-flex ion-justify-content-end">
+    <ion-buttons>
+      <ion-toggle  color="tertiary"></ion-toggle>
+      <ion-label class="toggle-label ion-margin-start">24 hour format</ion-label>
+    </ion-buttons>
+          </div>
+
     </ion-col>
   </ion-row>
 </ion-grid>
-  </ion-toolbar>
-</ion-header>
+<ion-row>
+  <ion-tabs class="profile-tab">
+  <!-- Tab bar -->
+  <ion-tab-bar slot="bottom" class="ion-justify-content-start">
+    <ion-tab-button tab="schedule">
+      <ion-label>Attendance Log</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="speakers">
+      <ion-label>Calender</ion-label>
+    </ion-tab-button>
+
+
+
+    <ion-tab-button tab="about">
+      <ion-label>Attendance Requests</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-row>
 </ion-content>
+
+
+
+

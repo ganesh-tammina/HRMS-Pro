@@ -11,6 +11,7 @@ import {
   IonSearchbar,
   IonIcon
 } from '@ionic/angular/standalone';
+import { HeaderComponent } from '../shared/header/header.component';
 @Component({
   selector: 'app-my-team',
   templateUrl: './my-team.page.html',
@@ -26,7 +27,9 @@ import {
     IonRow,
     IonCol,
     IonSearchbar,
-    IonIcon
+    IonIcon,
+    HeaderComponent
+
   ]
 })
 export class MyTeamPage implements OnInit {

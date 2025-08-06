@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from '../shared/header/header.component';
-
-// ✅ Import all Ionic components you are using
 import {
   IonContent,
   IonHeader,
@@ -17,14 +14,13 @@ import {
   IonCardContent,
   IonAvatar,
   IonLabel,
-  IonItem,
+  IonItem
 } from '@ionic/angular/standalone';
-
 @Component({
   standalone: true,
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   imports: [
     CommonModule,
     FormsModule,
@@ -41,11 +37,13 @@ import {
     IonAvatar,
     IonItem,
     IonLabel,
-    HeaderComponent
-
   ]
+
 })
-export class HomePage implements OnInit {
+export class HeaderComponent implements OnInit {
+
   constructor() { }
+
   ngOnInit() { }
+
 }

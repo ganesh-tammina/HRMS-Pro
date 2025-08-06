@@ -14,6 +14,14 @@ export const routes: Routes = [
   { path: 'Home', component: HomePage },
   { path: 'Me', component: MePage },
   { path: 'MyTeam', component: MyTeamPage },
-  { path: 'login', component: LoginPage },
+  { path: 'login', component: LoginPage },  {
+    path: 'post',
+    loadComponent: () => import('./post/post.page').then( m => m.PostPage)
+  },
+  {
+    path: 'post',
+    loadComponent: () => import('./post/post.page').then( m => m.PostPage)
+  },
+
 
 ];
