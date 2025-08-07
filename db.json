@@ -1,29 +1,176 @@
 {
   "employees": [
     {
-      "id": 1,
+      "personalDetails": {
+        "fullName": "ganesh",
+        "dob": "2025-08-16",
+        "gender": "male",
+        "email": "ganesh@gmail.com",
+        "phone": "9876543210"
+      },
+      "documents": {
+        "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+        "PANCard": null,
+        "photo": null,
+        "resume": null
+      },
+      "id": 1
+    },
+    {
+      "personalDetails": {
+        "fullName": "ravi",
+        "dob": "2025-08-23",
+        "gender": "male",
+        "email": "ganesh@t.com",
+        "phone": "9876543210"
+      },
+      "documents": {
+        "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+        "PANCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+        "photo": "",
+        "resume": ""
+      },
+      "id": 2
+    },
+    {
       "fullName": "ganesh",
-      "dob": "2025-08-06",
+      "dob": "2025-08-15",
+      "gender": "male",
+      "email": "ganesh@t",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "photo": "C:\\fakepath\\20945368-removebg-preview.png",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "Tammina",
+      "Role": "Tester",
+      "Reason": "Resignation",
+      "id": 3
+    },
+    {
+      "fullName": "Ganesh",
+      "dob": "2025-08-16",
+      "gender": "male",
+      "email": "ganesh@t.com",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "photo": "C:\\fakepath\\20945368.svg",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "Google",
+      "Role": "Software Engineer",
+      "Reason": "Termination",
+      "id": 4
+    },
+    {
+      "fullName": "ganesh",
+      "dob": "2025-08-31",
+      "gender": "male",
+      "email": "ganesh@t",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "photo": "C:\\fakepath\\0_Business_Meeting_Presentation_3840x2160.gif",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "google",
+      "Role": "Beanch",
+      "Reason": "Resignation",
+      "id": 5
+    },
+    {
+      "fullName": "Ganesh",
+      "dob": "2025-08-08",
+      "gender": "female",
+      "email": "ganesh@tami.com",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "photo": "C:\\fakepath\\20945368-org.png",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "tammina",
+      "Role": "dsh",
+      "Reason": "sdsfd",
+      "id": 6
+    },
+    {
+      "candidateId": "CAND202508072153",
+      "fullName": "Kiran",
+      "dob": "2025-08-15",
+      "gender": "male",
+      "email": "ganesh@h",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\13916290_Relieving Letter(Automatic).pdf",
+      "PANCard": "C:\\fakepath\\Regs.jpg",
+      "photo": "C:\\fakepath\\Screenshot 2025-03-04 114140.jpg",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "Google",
+      "Role": "Engineer",
+      "Reason": "fun",
+      "id": 7
+    },
+    {
+      "candidateId": "CAND202508077406",
+      "fullName": "Siva Devi Ganesh",
+      "dob": "2025-08-15",
+      "gender": "male",
+      "email": "ganesh@g.com",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\image (5).png",
+      "photo": "C:\\fakepath\\20945368-org.png",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "Google",
+      "Role": "Tester",
+      "Reason": "Fun",
+      "id": 8
+    },
+    {
+      "candidateId": "CAND202508079407",
+      "fullName": "Moulika",
+      "dob": "2025-09-05",
+      "gender": "male",
+      "email": "ganesh@t.com",
+      "phone": "9876543210",
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\image (5).png",
+      "photo": "C:\\fakepath\\image.png",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "Tammina",
+      "Role": "Tan",
+      "Reason": "jhsdfjd",
+      "id": 9
+    },
+    {
+      "candidateId": "CAND202508078562",
+      "fullName": "mohan",
+      "dob": "2025-08-07",
       "gender": "male",
       "email": "ganesh@gmail.com",
       "phone": "9876543210",
-      "documents": [
-        {}
-      ],
-      "previousCompanyDetails": [
-        {}
-      ],
-      "policyAcknowledgment": [
-        {}
-      ]
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\image (5).png",
+      "photo": "C:\\fakepath\\image (5).png",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "dfdsf",
+      "Role": "sdfds",
+      "Reason": "sfdsfds",
+      "id": 10
     },
     {
-      "fullName": "Moulika",
-      "dob": "2025-08-07",
-      "gender": "female",
-      "email": "moulika@t",
+      "candidateId": "CAND202508077363",
+      "fullName": "sfsef",
+      "dob": "2025-08-23",
+      "gender": "male",
+      "email": "ganesh@g",
       "phone": "9876543210",
-      "id": 2
+      "AadharCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "PANCard": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "photo": "C:\\fakepath\\image (2).png",
+      "resume": "C:\\fakepath\\3-Ganesh_Mendix_UI_Resume.pdf",
+      "CompanyName": "vfgfd",
+      "Role": "dfgdf",
+      "Reason": "sdfdsf",
+      "id": 11
     }
   ]
 }

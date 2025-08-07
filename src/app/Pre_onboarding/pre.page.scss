@@ -32,3 +32,8 @@
 ion-input, ion-select, ion-item, ion-button, ion-checkbox {
   margin-top: 10px;
 }
+
+input[type="file"] {
+  display: block;
+  padding: 8px;
+}
