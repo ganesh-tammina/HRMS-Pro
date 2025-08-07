@@ -13,10 +13,10 @@ import {
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../shared/header/header.component';
 @Component({
+  standalone: true,
   selector: 'app-my-team',
   templateUrl: './my-team.page.html',
   styleUrls: ['./my-team.page.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,

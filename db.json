@@ -1,0 +1,29 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "fullName": "ganesh",
+      "dob": "2025-08-06",
+      "gender": "male",
+      "email": "ganesh@gmail.com",
+      "phone": "9876543210",
+      "documents": [
+        {}
+      ],
+      "previousCompanyDetails": [
+        {}
+      ],
+      "policyAcknowledgment": [
+        {}
+      ]
+    },
+    {
+      "fullName": "Moulika",
+      "dob": "2025-08-07",
+      "gender": "female",
+      "email": "moulika@t",
+      "phone": "9876543210",
+      "id": 2
+    }
+  ]
+}
