@@ -636,6 +636,156 @@
       "id": 40,
       "offerStatus": "release",
       "candidateId": "202508086297"
+    },
+    {
+      "name": "Ganesh",
+      "dob": "2025-08-27",
+      "gender": "male",
+      "email": "esfer@g",
+      "phone": "9876543210",
+      "salary": {
+        "gross": 8555,
+        "basic": 5265,
+        "hra": 6256552,
+        "health": 55,
+        "epfEmployee": 6596,
+        "epfEmployer": 6596
+      },
+      "id": 41,
+      "offerStatus": "hold",
+      "candidateId": "202508088944"
+    },
+    {
+      "name": "Siva Devi Ganesh",
+      "dob": "2025-08-20",
+      "gender": "male",
+      "email": "sdfdsf@gmail.com",
+      "phone": "9876543210",
+      "salary": {
+        "gross": 659656,
+        "basic": 564564,
+        "hra": 625656,
+        "health": 65498,
+        "epfEmployee": 66556,
+        "epfEmployer": 66556
+      },
+      "id": 42,
+      "offerStatus": "release",
+      "candidateId": "202508086207"
+    },
+    {
+      "name": "Rama Krishna",
+      "dob": "2025-08-15",
+      "gender": "male",
+      "email": "ramakrishna@gmail.com",
+      "phone": "9876543210",
+      "salary": {
+        "gross": 897654,
+        "basic": 54545,
+        "hra": 6565456,
+        "health": 326,
+        "epfEmployee": 6656,
+        "epfEmployer": 6656
+      },
+      "id": 43,
+      "offerStatus": "release",
+      "candidateId": "202508087273"
+    },
+    {
+      "name": "Mohit",
+      "dob": "2025-08-20",
+      "gender": "male",
+      "email": "mohit@t",
+      "phone": "55565656",
+      "salary": {
+        "gross": 5521525,
+        "basic": 2565654,
+        "hra": 6565,
+        "health": 554,
+        "epfEmployee": 5656,
+        "epfEmployer": 5656
+      },
+      "id": 44,
+      "offerStatus": "release",
+      "candidateId": "202508088591"
+    },
+    {
+      "name": "asdwad",
+      "dob": "2025-08-18",
+      "gender": "male",
+      "email": "dgdfj@g.com",
+      "phone": "95466526",
+      "salary": {
+        "gross": 52415,
+        "basic": 626,
+        "hra": 3263,
+        "health": 525,
+        "epfEmployee": 2515,
+        "epfEmployer": 2515
+      },
+      "id": 45
+    },
+    {
+      "name": "Ravi krishna",
+      "dob": "2025-08-15",
+      "gender": "female",
+      "email": "ganesh@gmail.com",
+      "phone": "9876543210",
+      "salary": {
+        "gross": 98752,
+        "basic": 5245,
+        "hra": 554,
+        "health": 6265,
+        "epfEmployee": 659669,
+        "epfEmployer": 659669
+      },
+      "id": 46,
+      "offerStatus": "release",
+      "candidateId": "202508084349",
+      "confirmation": {
+        "offerValidity": "7",
+        "dateOfJoining": "2025-08-30",
+        "template": "template2"
+      }
+    },
+    {
+      "name": "Ravi krishna",
+      "dob": "2025-08-15",
+      "gender": "female",
+      "email": "ganesh@gmail.com",
+      "phone": "9876543210",
+      "salary": {
+        "gross": 98752,
+        "basic": 5245,
+        "hra": 554,
+        "health": 6265,
+        "epfEmployee": 659669,
+        "epfEmployer": 659669
+      },
+      "id": 47
+    },
+    {
+      "name": "Ram",
+      "dob": "2025-08-22",
+      "gender": "female",
+      "email": "gnj@g",
+      "phone": "987654210",
+      "salary": {
+        "gross": 545456,
+        "basic": 545,
+        "hra": 6526,
+        "health": 3265,
+        "epfEmployee": 545,
+        "epfEmployer": 545
+      },
+      "id": 48,
+      "offerStatus": "release",
+      "candidateId": "202508085069",
+      "confirmation": {
+        "offerValidity": "7",
+        "dateOfJoining": "2025-08-23",
+        "template": "template2"
+      }
     }
   ]
 }

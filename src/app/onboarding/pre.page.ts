@@ -26,8 +26,9 @@ export class PostPage implements OnInit {
   salaryForm!: FormGroup;
   offerForm!: FormGroup;
   policyForm!: FormGroup;
+  confirmDetails!: FormGroup;
 
-  selectedCard = 'personal';
+  selectedCard = '';
   isSalaryModalOpen = false;
   isOfferPreviewOpen = false;
 
@@ -76,6 +77,11 @@ export class PostPage implements OnInit {
       offerStatus: ['', Validators.required],
       policyAccepted: [false, Validators.requiredTrue]
     });
+
+    this.confirmDetails = this.fb.group({
+      offerValidity: ['', Validators.required],
+      dateOfJoining: ['', Validators.required],
+    })
   }
 
   openCard(card: string) {
@@ -201,13 +207,19 @@ export class PostPage implements OnInit {
 
     const updateData = {
       offerStatus: this.policyForm.value.offerStatus,
-      candidateId: this.offerLetter.id
+      candidateId: this.offerLetter.id,
+      confirmation: {
+        offerValidity: this.offerLetter.offerValidity,
+        dateOfJoining: this.offerLetter.dateOfJoining,
+        template: this.offerLetter.template
+      }
     };
 
     this.http.patch(`http://localhost:3000/employees/${this.offerLetter.originalId}`, updateData)
       .subscribe({
         next: () => {
           alert('Offer status updated successfully!');
+          this.selectedCard = '';
         },
         error: (err) => {
           console.error('Error updating offer status:', err);
