@@ -48,13 +48,13 @@ export class OnboardingPage implements OnInit {
   ngOnInit() {
     this.onboardingForm = this.fb.group({
       bankDetails: this.fb.group({
-        accountNumber: ['', Validators.required],
+        accountNumber: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
         ifsc: ['', Validators.required],
         bankName: ['', Validators.required]
       }),
       taxInfo: this.fb.group({
         pan: ['', Validators.required],
-        aadhar: ['', Validators.required]
+        aadhar: ['', [Validators.required, Validators.pattern(/^[6-9]\d{11}$/)]]
       })
     });
     this.fetchLatestCandidates()

@@ -2,139 +2,136 @@
   <app-header></app-header>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-content class="ion-padding">
-    <!-- Step Navigation Tiles -->
-    <div class="card-grid">
-      <div class="card-tile" (click)="openCard('personal')">
-        <h3>Personal Information</h3>
-      </div>
-      <div class="card-tile" (click)="openCard('documents')">
-        <h3>Document Upload</h3>
-      </div>
-      <div class="card-tile" (click)="openCard('Previous_Company')">
-        <h3>Previous Company Details</h3>
-      </div>
-      <div class="card-tile" (click)="openCard('Policy')">
-        <h3>Policy Acknowledgment</h3>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="card-grid">
+    <div class="card-tile" (click)="openCard('personal')">
+      <h3>Personal Information</h3>
+    </div>
+    <div class="card-tile" (click)="openSalaryModal()">
+      <h3>Salary Information</h3>
+    </div>
+    <div class="card-tile" (click)="openCard('Previous_Company')">
+      <h3>Previous Company Details</h3>
+    </div>
+    <div class="card-tile" (click)="openCard('Policy')">
+      <h3>Policy Acknowledgment</h3>
+    </div>
+  </div>
+
+  <form [formGroup]="personalForm">
+    <!-- Personal Details -->
+    <div formGroupName="personalDetails" class="card" *ngIf="selectedCard === 'personal'">
+      <h2>Personal Information</h2>
+
+      <ion-item>
+        <ion-input placeholder="Full Name" formControlName="fullName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="date" formControlName="dob"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select formControlName="gender" placeholder="Gender">
+          <ion-select-option value="male">Male</ion-select-option>
+          <ion-select-option value="female">Female</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Phone Number" formControlName="phone" type="tel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Email Address" formControlName="email" type="email"></ion-input>
+      </ion-item>
+
+      <div class="btn-group">
+        <ion-button type="button" (click)="nextFromPersonal()">Next</ion-button>
+        <ion-button color="medium" type="button" (click)="onCancel()">Cancel</ion-button>
       </div>
     </div>
 
-    <div class="card-container">
-      <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+    <!-- Previous Company Details -->
+    <div formGroupName="previousCompany" class="card" *ngIf="selectedCard === 'Previous_Company'">
+      <h2>Previous Company Details</h2>
 
-        <!-- Personal Information Card -->
-        <div formGroupName="personalDetails" class="card" *ngIf="selectedCard === 'personal'">
-          <h2>Personal Information</h2>
+      <ion-item>
+        <ion-input formControlName="CompanyName" placeholder="Company Name"></ion-input>
+      </ion-item>
 
-          <ion-item>
-            <ion-input placeholder="Full Name" formControlName="fullName"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input type="date" formControlName="dob"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-select formControlName="gender" placeholder="Gender">
-              <ion-select-option value="male">Male</ion-select-option>
-              <ion-select-option value="female">Female</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-input placeholder="Phone Number" formControlName="phone" type="tel"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input placeholder="Email Address" formControlName="email" type="email"></ion-input>
-          </ion-item>
+      <ion-item>
+        <ion-input formControlName="Role" placeholder="Role"></ion-input>
+      </ion-item>
 
-          <div class="btn-group">
-            <ion-button type="button" [disabled]="personalForm.get('personalDetails')?.invalid" (click)="onNext('documents')">Next</ion-button>
-            <ion-button color="medium" type="button" (click)="onCancel()">Cancel</ion-button>
-          </div>
-        </div>
+      <ion-item>
+        <ion-input formControlName="Reason" placeholder="Reason for Leaving"></ion-input>
+      </ion-item>
 
-        <!-- Document Upload Card -->
-        <div formGroupName="documents" class="card" *ngIf="selectedCard === 'documents'">
-          <h2>Document Upload</h2>
-
-          <ion-item>
-            <ion-label>Aadhar Card</ion-label>
-            <input type="file" formControlName="AadharCard" (change)="onFileSelected($event, 'aadhar')" />
-          </ion-item>
-
-          <ion-item>
-            <ion-label>PAN Card</ion-label>
-            <input type="file" formControlName="PANCard" (change)="onFileSelected($event, 'pan')" />
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Photo</ion-label>
-            <input type="file" formControlName="photo" accept="image/*" (change)="onFileSelected($event, 'photo')" />
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Resume</ion-label>
-            <input type="file" formControlName="resume" accept=".pdf,.doc,.docx" (change)="onFileSelected($event, 'resume')" />
-          </ion-item>
-
-          <div class="btn-group">
-            <ion-button type="button" [disabled]="personalForm.get('documents')?.invalid" (click)="onNext('Previous_Company')">Next</ion-button>
-            <ion-button color="medium" type="button" (click)="onNext('personal')">Back</ion-button>
-          </div>
-        </div>
-
-        <!-- Preview Modal -->
-        <ion-modal [isOpen]="showPreviewModal" (didDismiss)="closePreview()">
-          <ng-template>
-            <ion-header>
-              <ion-toolbar>
-                <ion-title>Document Preview</ion-title>
-                <ion-buttons slot="end">
-                  <ion-button (click)="closePreview()">Close</ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-              <img *ngIf="previewType === 'image'" [src]="previewUrl" style="width: 100%; max-height: 500px;" />
-              <iframe *ngIf="previewType === 'pdf'" [src]="previewUrls" style="width: 100%; height: 500px;" frameborder="0"></iframe>
-              <p *ngIf="previewType === 'unsupported'">Preview not supported for this file type.</p>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
-
-        <!-- Previous Company Details Card -->
-        <div formGroupName="previousCompany" class="card" *ngIf="selectedCard === 'Previous_Company'">
-          <h2>Previous Company Details</h2>
-
-          <ion-item>
-            <ion-input formControlName="CompanyName" placeholder="Company Name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input formControlName="Role" placeholder="Role"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input formControlName="Reason" placeholder="Reason for Leaving"></ion-input>
-          </ion-item>
-
-          <div class="btn-group">
-            <ion-button type="button" [disabled]="personalForm.get('previousCompany')?.invalid" (click)="onNext('Policy')">Next</ion-button>
-            <ion-button color="medium" type="button" (click)="onNext('documents')">Back</ion-button>
-          </div>
-        </div>
-
-        <!-- Policy Acknowledgment Card -->
-        <div class="card" *ngIf="selectedCard === 'Policy'">
-          <h2>Policy Acknowledgment</h2>
-          <p>Please read and accept the policy documents.</p>
-          <ion-checkbox label-placement="end">I accept the policies</ion-checkbox>
-
-          <h2>Confirmation</h2>
-          <p>Thank you for completing your pre-onboarding!</p>
-
-          <ion-button color="success" type="submit" [disabled]="personalForm.invalid">Submit</ion-button>
-          <ion-button color="medium" type="button" (click)="onNext('Previous_Company')">Back</ion-button>
-        </div>
-
-      </form>
+      <div class="btn-group">
+        <ion-button type="button" (click)="onNext('Policy')">Next</ion-button>
+        <ion-button color="medium" type="button" (click)="onNext('personal')">Back</ion-button>
+      </div>
     </div>
-  </ion-content>
+
+    <!-- Policy Acknowledgment -->
+    <div class="card" *ngIf="selectedCard === 'Policy'">
+      <h2>Policy Acknowledgment</h2>
+      <p>Please read and accept the policy documents.</p>
+      <ion-checkbox label-placement="end">I accept the policies</ion-checkbox>
+
+      <ion-button color="success" type="button" (click)="onSubmit()">Submit</ion-button>
+      <ion-button color="medium" type="button" (click)="onNext('Previous_Company')">Back</ion-button>
+    </div>
+  </form>
+
+  <!-- Salary Modal -->
+  <ion-modal [isOpen]="isSalaryModalOpen" (didDismiss)="closeSalaryModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Salary Information</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeSalaryModal()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <form [formGroup]="salaryForm" (ngSubmit)="saveSalary()">
+             <ion-item>
+            <ion-label position="floating">Gross Salary</ion-label>
+            <ion-input type="number" formControlName="grossSalary"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Basic Salary</ion-label>
+            <ion-input type="number" formControlName="basicSalary"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">HRA</ion-label>
+            <ion-input type="number" formControlName="hra"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Health</ion-label>
+            <ion-input type="number" formControlName="health"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">EPF Contribution (Employee)</ion-label>
+            <ion-input type="number" formControlName="epfEmployee"></ion-input>
+          </ion-item>
+
+          <!-- epfEmployer is readonly and auto-filled from epfEmployee -->
+          <ion-item>
+            <ion-label position="floating">EPF Contribution (Employer)</ion-label>
+            <ion-input type="number" formControlName="epfEmployer" readonly></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" type="submit">Save</ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
