@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IonContent, IonHeader, IonTitle, IonModal,
   IonInput, IonCheckbox, IonButton, IonButtons,
   IonToolbar, IonLabel, IonItem, IonSelectOption, IonSelect
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../shared/header/header.component';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
@@ -25,8 +24,15 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 export class PostPage implements OnInit {
   personalForm!: FormGroup;
   salaryForm!: FormGroup;
-  selectedCard = '';
+  offerForm!: FormGroup;
+  policyForm!: FormGroup;
+
+  selectedCard = 'personal';
   isSalaryModalOpen = false;
+  isOfferPreviewOpen = false;
+
+  offerLetter: any = null;
+  private salarySaved = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
@@ -46,7 +52,6 @@ export class PostPage implements OnInit {
       })
     });
 
-    // epfEmployer is disabled (readonly) and will be set automatically below
     this.salaryForm = this.fb.group({
       grossSalary: ['', Validators.required],
       basicSalary: ['', Validators.required],
@@ -56,12 +61,20 @@ export class PostPage implements OnInit {
       epfEmployer: [{ value: '', disabled: true }]
     });
 
-    // Auto-fill employer EPF when employee EPF changes.
-    // Change formula here if you want (e.g., 0.12 * basicSalary).
     this.salaryForm.get('epfEmployee')!.valueChanges.subscribe(val => {
       const emp = Number(val) || 0;
-      // keep employer same as employee by default
       this.salaryForm.get('epfEmployer')!.setValue(emp, { emitEvent: false });
+    });
+
+    this.offerForm = this.fb.group({
+      offerValidity: ['', Validators.required],
+      dateOfJoining: ['', Validators.required],
+      template: ['', Validators.required]
+    });
+
+    this.policyForm = this.fb.group({
+      offerStatus: ['', Validators.required],
+      policyAccepted: [false, Validators.requiredTrue]
     });
   }
 
@@ -71,15 +84,16 @@ export class PostPage implements OnInit {
 
   nextFromPersonal() {
     if (this.personalForm.get('personalDetails')?.valid) {
+      this.selectedCard = 'salary';
       this.openSalaryModal();
     } else {
       this.personalForm.get('personalDetails')?.markAllAsTouched();
-      console.log('Personal details invalid:', this.personalForm.get('personalDetails')?.errors);
     }
   }
 
   openSalaryModal() {
     this.isSalaryModalOpen = true;
+    this.selectedCard = '';
   }
 
   closeSalaryModal() {
@@ -87,15 +101,12 @@ export class PostPage implements OnInit {
   }
 
   saveSalary() {
-    // salaryForm.valid will exclude disabled controls — fine because epfEmployer is disabled and not required.
     if (!this.salaryForm.valid) {
       this.salaryForm.markAllAsTouched();
-      console.warn('Salary form invalid:', this.salaryForm);
       return;
     }
 
     const personalDetails = this.personalForm.get('personalDetails')!.value;
-    // use getRawValue() to include disabled controls (epfEmployer)
     const salaryDetails = this.salaryForm.getRawValue();
 
     const employeeData = {
@@ -114,32 +125,94 @@ export class PostPage implements OnInit {
       }
     };
 
-    console.log('Posting to /employees:', employeeData);
-
     this.http.post('http://localhost:3000/employees', employeeData).subscribe({
-      next: (res) => {
-        console.log('Saved:', res);
+      next: () => {
         this.closeSalaryModal();
-        this.selectedCard = 'Previous_Company';
-        // optionally reset forms, show a toast, etc.
+        this.selectedCard = 'offer';
+        this.salarySaved = true;
       },
       error: (err) => {
         console.error('Error saving to server:', err);
-        // helpful hint: CORS or server not running are the usual causes
       }
     });
   }
 
-  onNext(card: string) {
-    this.selectedCard = card;
+  canPreviewOffer(): boolean {
+    return this.offerForm.valid && this.salarySaved;
+  }
+
+  previewOfferLetter() {
+    if (!this.canPreviewOffer()) return;
+
+    this.http.get<any[]>('http://localhost:3000/employees?_sort=id&_order=desc&_limit=1')
+      .subscribe(latest => {
+        if (latest.length > 0) {
+          const candidate = latest[0];
+          const formValues = this.offerForm.value;
+
+          const now = new Date();
+          const y = now.getFullYear().toString();
+          const m = (now.getMonth() + 1).toString().padStart(2, '0');
+          const d = now.getDate().toString().padStart(2, '0');
+          const random4 = Math.floor(1000 + Math.random() * 9000).toString();
+          const candidateId = y + m + d + random4;
+
+          this.offerLetter = {
+            ...candidate,
+            id: candidateId,
+            originalId: candidate.id,
+            offerValidity: formValues.offerValidity,
+            dateOfJoining: formValues.dateOfJoining,
+            template: formValues.template
+          };
+
+          this.isOfferPreviewOpen = true;
+        }
+      });
+  }
+
+  goToPolicy() {
+    if (!this.offerLetter) {
+      alert('Please preview the offer before proceeding to policy step.');
+      return;
+    }
+    this.selectedCard = 'Policy';
   }
 
   onCancel() {
     this.personalForm.reset();
     this.salaryForm.reset();
+    this.offerForm.reset();
+    this.policyForm.reset();
+    this.offerLetter = null;
+    this.salarySaved = false;
   }
 
-  onSubmit() {
-    console.log('Form submitted', this.personalForm.value);
+  sendOfferStatus() {
+    if (!this.offerLetter) {
+      alert('Please preview the offer before sending.');
+      return;
+    }
+
+    if (this.policyForm.invalid) {
+      alert('Please select an offer status and accept the policy.');
+      return;
+    }
+
+    const updateData = {
+      offerStatus: this.policyForm.value.offerStatus,
+      candidateId: this.offerLetter.id
+    };
+
+    this.http.patch(`http://localhost:3000/employees/${this.offerLetter.originalId}`, updateData)
+      .subscribe({
+        next: () => {
+          alert('Offer status updated successfully!');
+        },
+        error: (err) => {
+          console.error('Error updating offer status:', err);
+          alert('Failed to update offer status.');
+        }
+      });
   }
 }

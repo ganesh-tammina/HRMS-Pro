@@ -10,8 +10,8 @@
     <div class="card-tile" (click)="openSalaryModal()">
       <h3>Salary Information</h3>
     </div>
-    <div class="card-tile" (click)="openCard('Previous_Company')">
-      <h3>Previous Company Details</h3>
+    <div class="card-tile" (click)="openCard('offer')">
+      <h3>Offer Confirmation</h3>
     </div>
     <div class="card-tile" (click)="openCard('Policy')">
       <h3>Policy Acknowledgment</h3>
@@ -52,25 +52,53 @@
       </div>
     </div>
 
-    <!-- Previous Company Details -->
-    <div formGroupName="previousCompany" class="card" *ngIf="selectedCard === 'Previous_Company'">
-      <h2>Previous Company Details</h2>
+    <!-- Offer Confirmation Card -->
+    <div class="card" *ngIf="selectedCard === 'offer'">
+      <h2>Offer Confirmation</h2>
+      <form [formGroup]="offerForm">
+        <ion-item>
+          <ion-label>Offer Validity (days)</ion-label>
+          <ion-select formControlName="offerValidity" placeholder="Select Validity">
+            <ion-select-option value="2">2 Days</ion-select-option>
+            <ion-select-option value="7">7 Days</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-input formControlName="CompanyName" placeholder="Company Name"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Date of Joining</ion-label>
+          <ion-input type="date" formControlName="dateOfJoining"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-input formControlName="Role" placeholder="Role"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label>Template</ion-label>
+          <ion-select formControlName="template" placeholder="Select Template">
+            <ion-select-option value="template1">Template 1</ion-select-option>
+            <ion-select-option value="template2">Template 2</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-input formControlName="Reason" placeholder="Reason for Leaving"></ion-input>
-      </ion-item>
+        <ion-button
+          expand="block"
+          color="primary"
+          type="button"
+          (click)="previewOfferLetter()"
+          [disabled]="!canPreviewOffer()"
+        >
+          Preview Offer Letter
+        </ion-button>
+      </form>
 
       <div class="btn-group">
-        <ion-button type="button" (click)="onNext('Policy')">Next</ion-button>
-        <ion-button color="medium" type="button" (click)="onNext('personal')">Back</ion-button>
+        <ion-button
+          color="secondary"
+          type="button"
+          (click)="goToPolicy()"
+          [disabled]="!canPreviewOffer()"
+          style="margin-top: 10px;"
+        >
+          Next
+        </ion-button>
+        <ion-button color="medium" type="button" (click)="onCancel()">Cancel</ion-button>
       </div>
     </div>
 
@@ -78,10 +106,25 @@
     <div class="card" *ngIf="selectedCard === 'Policy'">
       <h2>Policy Acknowledgment</h2>
       <p>Please read and accept the policy documents.</p>
-      <ion-checkbox label-placement="end">I accept the policies</ion-checkbox>
 
-      <ion-button color="success" type="button" (click)="onSubmit()">Submit</ion-button>
-      <ion-button color="medium" type="button" (click)="onNext('Previous_Company')">Back</ion-button>
+      <form [formGroup]="policyForm">
+        <ion-item>
+          <ion-label>Offer Status</ion-label>
+          <ion-select formControlName="offerStatus" placeholder="Select Status">
+            <ion-select-option value="hold">Hold</ion-select-option>
+            <ion-select-option value="release">Release</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-checkbox formControlName="policyAccepted" label-placement="end"></ion-checkbox>
+          <ion-label>I accept the policies</ion-label>
+        </ion-item>
+      </form>
+
+      <ion-button color="success" (click)="sendOfferStatus()">
+        Send Offer
+      </ion-button>
     </div>
   </form>
 
@@ -99,7 +142,7 @@
 
       <ion-content class="ion-padding">
         <form [formGroup]="salaryForm" (ngSubmit)="saveSalary()">
-             <ion-item>
+          <ion-item>
             <ion-label position="floating">Gross Salary</ion-label>
             <ion-input type="number" formControlName="grossSalary"></ion-input>
           </ion-item>
@@ -123,7 +166,6 @@
             <ion-input type="number" formControlName="epfEmployee"></ion-input>
           </ion-item>
 
-          <!-- epfEmployer is readonly and auto-filled from epfEmployee -->
           <ion-item>
             <ion-label position="floating">EPF Contribution (Employer)</ion-label>
             <ion-input type="number" formControlName="epfEmployer" readonly></ion-input>
@@ -131,6 +173,25 @@
 
           <ion-button expand="block" type="submit">Save</ion-button>
         </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Offer Letter Preview Modal -->
+  <ion-modal [isOpen]="isOfferPreviewOpen" (didDismiss)="isOfferPreviewOpen = false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Offer Letter Preview</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="isOfferPreviewOpen = false">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div *ngIf="offerLetter">
+          <!-- Your existing template switch logic for offerLetter -->
+        </div>
       </ion-content>
     </ng-template>
   </ion-modal>
