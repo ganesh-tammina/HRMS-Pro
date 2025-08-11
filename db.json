@@ -22,6 +22,29 @@
         "dateOfJoining": "2025-08-30",
         "template": "template1"
       }
+    },
+    {
+      "name": "Siva ",
+      "dob": "2025-08-06",
+      "gender": "female",
+      "email": "ganesh@t.cpm",
+      "phone": "9876543210",
+      "salary": {
+        "gross": 5000,
+        "basic": 522,
+        "hra": 5151,
+        "health": 5541,
+        "epfEmployee": 545545,
+        "epfEmployer": 545545
+      },
+      "id": 2,
+      "offerStatus": "release",
+      "candidateId": "202508116544",
+      "confirmation": {
+        "offerValidity": "7",
+        "dateOfJoining": "2025-08-17",
+        "template": "template1"
+      }
     }
   ]
 }
