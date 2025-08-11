@@ -9,8 +9,9 @@ import {
 import { HeaderComponent } from '../shared/header/header.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+
 @Component({
-  selector: 'app-post',
+  selector: 'app-pre',
   templateUrl: './pre.page.html',
   styleUrls: ['./pre.page.scss'],
   standalone: true,
