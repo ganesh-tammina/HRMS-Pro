@@ -1,0 +1,30 @@
+  <ion-toolbar color="light" class="top-nav">
+    <ion-buttons slot="start" class="nav-links">
+      <ion-button fill="clear">Dashboard</ion-button>
+      <ion-button fill="clear">Employees</ion-button>
+      <ion-button fill="clear">Org Structure</ion-button>
+      <ion-button fill="clear" class="active">Onboarding</ion-button>
+      <ion-button fill="clear">Exits</ion-button>
+      <ion-button fill="clear">Expenses & Travel</ion-button>
+      <ion-button fill="clear">Documents</ion-button>
+      <ion-button fill="clear">Engage</ion-button>
+      <ion-button fill="clear">Assets</ion-button>
+      <ion-button fill="clear">Helpdesk</ion-button>
+      <ion-button fill="clear">Settings</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Sub Navbar -->
+  <ion-toolbar color="light" class="sub-nav">
+    <ion-buttons slot="start" class="nav-links">
+      <ion-button fill="clear" (click)="goSetup()">Setup</ion-button>
+      <ion-button fill="clear">Preboarding</ion-button>
+      <ion-button fill="clear">New Joiners</ion-button>
+      <ion-button fill="clear">Past Offers</ion-button>
+      <ion-button fill="clear" class="active">Onboarding Tasks</ion-button>
+      <ion-button fill="clear" (click)="gopreboarding()">Task Templates</ion-button>
+      <ion-button fill="clear">Background Verification</ion-button>
+      <ion-button fill="clear">Archived</ion-button>
+      <ion-button fill="clear" (click)="goSettings()"  [ngClass]="{ 'active-btn': isActive }">Settings</ion-button>
+    </ion-buttons>
+  </ion-toolbar>

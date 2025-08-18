@@ -1,26 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
-  IonContent, IonHeader, IonTitle, IonModal,
-  IonInput, IonCheckbox, IonButton, IonButtons,
-  IonToolbar, IonLabel, IonItem, IonSelectOption, IonSelect
+  IonContent, IonHeader, IonTitle, IonModal, IonCardTitle, IonCardHeader, IonCard, IonCardContent,
+  IonInput, IonCheckbox, IonButton, IonButtons, IonList, IonIcon, IonToggle,
+  IonToolbar, IonLabel, IonItem, IonSelectOption, IonSelect,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../shared/header/header.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
-
+import { OfferTemplateComponent } from './offer-template/offer-template.component';
+import { CandiatePortalComponent } from './candiate-portal/candiate-portal.component';
+import { DeclineResonsComponent } from './decline-resons/decline-resons.component';
+import { Router } from '@angular/router';
+import { OnboardingMainheaderComponent } from './onboarding-mainheader/onboarding-mainheader.component';
 @Component({
   selector: 'app-pre',
   templateUrl: './pre.page.html',
   styleUrls: ['./pre.page.scss'],
   standalone: true,
   imports: [
-    IonContent, HeaderComponent,
+    CandiatePortalComponent, OnboardingMainheaderComponent,
+    IonContent, HeaderComponent, IonIcon, IonLabel, IonToggle, DeclineResonsComponent,
     IonInput, IonCheckbox, IonButton, IonSelectOption, IonModal, IonSelect, IonLabel, IonItem,
     IonHeader, IonTitle, IonToolbar, HttpClientModule, IonButtons,
-    CommonModule, FormsModule, ReactiveFormsModule
+    CommonModule, FormsModule, ReactiveFormsModule, OfferTemplateComponent,
+    IonCardTitle, IonCardHeader, IonCard, IonCardContent, IonList
   ],
+
+
 })
 export class PostPage implements OnInit {
   personalForm!: FormGroup;
@@ -29,15 +36,25 @@ export class PostPage implements OnInit {
   policyForm!: FormGroup;
   confirmDetails!: FormGroup;
 
-  selectedCard = '';
+  selectedCard = 'personal';
   isSalaryModalOpen = false;
   isOfferPreviewOpen = false;
 
   offerLetter: any = null;
   private salarySaved = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
+  /*************  ✨ Windsurf Command ⭐  *************/
+  /**
+   * Initializes the forms for the component. Sets up the `personalForm` to capture personal
+   * and previous company details, `salaryForm` to capture salary-related information including
+   * EPF contributions, `offerForm` for offer validity and joining details, `policyForm` for
+   * policy acceptance status, and `confirmDetails` for confirmation details. It also subscribes
+   * to changes in the `epfEmployee` field to update the `epfEmployer` field correspondingly.
+   */
+
+  /*******  81410cac-4b47-4a20-a15f-49ef343f1425  *******/
   ngOnInit(): void {
     this.personalForm = this.fb.group({
       personalDetails: this.fb.group({
@@ -227,5 +244,8 @@ export class PostPage implements OnInit {
           alert('Failed to update offer status.');
         }
       });
+  }
+  gopreboarding() {
+    this.router.navigate(['/Task_Template']);
   }
 }

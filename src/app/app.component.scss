@@ -120,10 +120,17 @@ ion-item.selected {
 
 
 .sidenav-content{
-      --background: #0a1d2c !important;
-      .side-menu-list{
+      ion-item {
       --background: #0a1d2c !important;
       }
+      --background: #0a1d2c !important;
+
+      .side-menu-list{
+      --background: #0a1d2c !important;
+          background: #0a1d2c;
+
+      }
+  
 }
 
 .header-collapse-condense{

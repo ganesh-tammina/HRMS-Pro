@@ -45,8 +45,12 @@ ion-split-pane{
 ion-list{
     padding: 0 !important;
 }
-ion-list-header, ion-item{
+.main-content{
+    ion-list-header, ion-item{
       --background: #0a1d2c !important;
+    }
+}
+ion-list-header, ion-item{
       color: #fff;
       border: none;
       border-radius: 0 !important;
@@ -79,4 +83,15 @@ ion-list-header, ion-item{
 ;
     flex-shrink: 0;
     min-width: 150px;
+}
+
+
+.searchbar-input.sc-ion-searchbar-md {
+    -webkit-padding-end: 1.4375rem  !important;
+    padding-inline-end: 1.4375rem !important;
+        padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+}
+.page-containerOn{
+        --background: #f9fafc;
 }
