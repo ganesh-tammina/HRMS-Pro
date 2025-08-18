@@ -6,6 +6,10 @@ import { logIn } from 'ionicons/icons';
 import { LoginPage } from './login/login.page';
 import { OnboardingPage } from './post-onboarding/post-onboarding.page';
 import { PostPage } from './onboarding/pre.page';
+import { PreonboardingComponent } from './onboarding/preonboarding/preonboarding.component';
+import { NewJoinerComponent } from './onboarding/new-joiner/new-joiner.component';
+import { PastOffersComponent } from './onboarding/past-offers/past-offers.component';
+import { OnboardingTasksComponent } from './onboarding/onboarding-tasks/onboarding-tasks.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +22,11 @@ export const routes: Routes = [
   { path: 'MyTeam', component: MyTeamPage },
   { path: 'login', component: LoginPage },
   { path: 'settings', component: PostPage },
+  { path: 'preOnboarding', component: PreonboardingComponent },
+  { path: 'NewJoiner', component: NewJoinerComponent },
+  { path: 'pastOffers', component: PastOffersComponent },
+  { path: 'onboarding_Tasks', component: OnboardingTasksComponent },
+
   {
     path: 'pre_onboarding',
     loadComponent: () => import('./onboarding/pre.page').then(m => m.PostPage)

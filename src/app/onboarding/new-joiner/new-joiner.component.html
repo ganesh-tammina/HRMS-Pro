@@ -1,0 +1,71 @@
+<ion-header>
+    <app-header></app-header>
+  <app-onboarding-mainheader></app-onboarding-mainheader>
+</ion-header>
+  <ion-toolbar>
+    <ion-title>New Joiners</ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="subheader">
+    <ion-text color="medium" class="subtitle">
+      Candidates who are marked as hired and not yet added as employees.
+    </ion-text>
+  </ion-toolbar>
+
+<ion-content fullscreen>
+  <!-- Filters -->
+  <div class="filters">
+    <ion-grid class="filters-grid">
+      <ion-row class="ion-align-items-center">
+        <ion-col size="12" size-md="3">
+          <div class="filter-chip">
+            <span>Department</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="3">
+          <div class="filter-chip">
+            <span>Location</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="3">
+          <div class="filter-chip">
+            <span>Job Title</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="3">
+          <div class="search-wrap">
+            <ion-icon name="search-outline"></ion-icon>
+            <input placeholder="Search" />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active">Pending <span class="count">0</span></div>
+    <div class="tab">Today <span class="count">1</span></div>
+    <div class="tab">Tomorrow <span class="count">0</span></div>
+    <div class="tab">Day after <span class="count">1</span></div>
+    <div class="tab">Later <span class="count">0</span></div>
+  </div>
+
+  <!-- Table -->
+  <div class="table">
+    <div class="table-row table-head">
+      <div class="cell">NAME &amp; JOB TITLE</div>
+      <div class="cell">DEPT. &amp; LOCATION</div>
+      <div class="cell">JOINING DATE</div>
+      <div class="cell">TASKS</div>
+      <div class="cell">Contact info</div>
+      <div class="cell">ACTIONS</div>
+    </div>
+
+    <div class="empty">
+      <p>No records found</p>
+    </div>
+  </div>
+</ion-content>
