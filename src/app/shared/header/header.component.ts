@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidateService, Candidate } from 'src/app/services/pre-onboarding.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
-  IonContent,
   IonHeader,
   IonToolbar,
   IonGrid,
@@ -12,12 +11,12 @@ import {
   IonCol,
   IonSearchbar,
   IonIcon,
-  IonCard,
-  IonCardContent,
   IonAvatar,
   IonLabel,
-  IonItem
+  IonItem,
+  IonButton
 } from '@ionic/angular/standalone';
+
 @Component({
   standalone: true,
   selector: 'app-header',
@@ -27,7 +26,6 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonContent,
     IonHeader,
     IonToolbar,
     IonGrid,
@@ -35,18 +33,36 @@ import {
     IonCol,
     IonSearchbar,
     IonIcon,
-    IonCard,
-    IonCardContent,
     IonAvatar,
     IonItem,
     IonLabel,
+    IonButton
   ]
-
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  currentCandidate: Candidate | null = null;
 
-  ngOnInit() { }
+  constructor(private candidateService: CandidateService) { }
 
+  ngOnInit() {
+    // Subscribe to the current logged-in candidate
+    this.candidateService.currentCandidate$.subscribe(user => {
+      this.currentCandidate = user;
+    });
+
+    // Fallback: if page refresh, load from localStorage
+    if (!this.currentCandidate) {
+      const stored = localStorage.getItem('loggedInCandidate');
+      if (stored) {
+        this.currentCandidate = JSON.parse(stored);
+      }
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('loggedInCandidate');
+    this.currentCandidate = null;
+    window.location.href = '/login';
+  }
 }

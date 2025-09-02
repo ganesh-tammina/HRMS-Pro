@@ -41,6 +41,9 @@ export class CandidateService {
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
 
+  private currentCandidateSubject = new BehaviorSubject<Candidate | null>(null);
+  currentCandidate$ = this.currentCandidateSubject.asObservable();
+
   constructor(private http: HttpClient) {
     this.loadCandidates();
   }
@@ -73,9 +76,21 @@ export class CandidateService {
   }
 
   findEmployee(email: string, password: string): Candidate | undefined {
-    return this.candidatesSubject.value.find(c =>
+    const found = this.candidatesSubject.value.find(c =>
       c.employeeCredentials?.companyEmail === email &&
       c.employeeCredentials?.password === password
     );
+
+    if (found) {
+      this.currentCandidateSubject.next(found); // ✅ store the logged-in candidate
+      localStorage.setItem('loggedInCandidate', JSON.stringify(found)); // optional: persist
+    }
+
+    return found;
+  }
+
+  getCurrentCandidate(): Candidate | null {
+    return this.currentCandidateSubject.value;
   }
 }
+
