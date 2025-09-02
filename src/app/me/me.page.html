@@ -1,94 +1,104 @@
 <ion-header [translucent]="true">
-   <app-header></app-header>
+  <app-header></app-header>
 </ion-header>
 <ion-content [fullscreen]="true">
-<ion-grid>
-  <div class="dashboard">
-  <div class="card-pannel attendance-stats">
-    <div class="header">Attendance Stats</div>
-    <div class="entry">
-      <div><span class="icon">👤</span> Me</div>
-      <div>5h 33m<br><small>60%</small></div>
-    </div>
-    <div class="entry">
-      <div><span class="icon team">👥</span> My Team</div>
-      <div>6h 38m<br><small>54%</small></div>
-    </div>
-  </div>
-
-  <div class="card-pannel timings">
-    <div class="days">
-      <div>M</div><div class="active">T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
-    </div>
-    <div>Today (10:00 AM - 7:00 PM)</div>
-    <div class="duration-bar">
-      <div class="break"></div>
-    </div>
-    <div>Duration: 9h 0m 🍵 60 min</div>
-  </div>
-
-  <div class="card-pannel actions">
-    <div class="actions-card">
-      <div>
-    <h5 class="clock">12:51:02<span>PM</span></h5>
-    <div class="info">Tue, 05 Aug 2025<br>Effective: 2h 46m<br>Gross: 2h 46m</div>
-      </div>
-      <div>
-    <button class="btn-clockout">Web Clock-out</button>
-    <div class="info m-5 ion-text-center ion-margin-top">2h:46m Since Last Login</div>
-    <div class="links">
-      <div>Work From Home</div>
-      <div>Partial Day Request</div>
-      <div><span>📄</span>Attendance Policy</div>
-    </div>
+  <ion-grid>
+    <div class="dashboard">
+      <div class="card-pannel attendance-stats">
+        <div class="header">Attendance Stats</div>
+        <div class="entry">
+          <div><span class="icon">👤</span> Me</div>
+          <div>5h 33m<br><small>60%</small></div>
+        </div>
+        <div class="entry">
+          <div><span class="icon team">👥</span> My Team</div>
+          <div>6h 38m<br><small>54%</small></div>
+        </div>
       </div>
 
-    </div>
+      <div class="card-pannel timings">
+        <div class="days">
+          <div>M</div>
+          <div class="active">T</div>
+          <div>W</div>
+          <div>T</div>
+          <div>F</div>
+          <div>S</div>
+          <div>S</div>
+        </div>
+        <div>Today (10:00 AM - 7:00 PM)</div>
+        <div class="duration-bar">
+          <div class="break"></div>
+        </div>
+        <div>Duration: 9h 0m 🍵 60 min</div>
+      </div>
 
+      <ion-content [fullscreen]="true">
+        <ion-grid>
+          <div class="dashboarsd">
+            <div class="card-pannel actions">
+              <div class="actions-card">
+                <div>
+                  <h5 class="clock">{{ currentTime }}</h5>
+                  <div class="info">{{ currentDate }}</div>
+                </div>
 
-  </div>
-</div>
+                <div>
+                  <button class="btn-clockin" (click)="clockIn()" [disabled]="isClockedIn">Clock In</button>
+                  <button class="btn-clockout" (click)="clockOut()" [disabled]="!isClockedIn">Clock Out</button>
 
-</ion-grid>
+                  <div class="info m-5 ion-text-center ion-margin-top">
+                    Since Last Login: {{ timeSinceLastLogin }}
+                  </div>
 
-<ion-grid class="ion-padding"> 
-  <ion-row>
-    <ion-col size="6">
-    <ion-title class="ion-no-padding">Logs & Requests</ion-title>
-    </ion-col>
-        <ion-col size="6">
-          <div class="display-flex ion-justify-content-end">
-    <ion-buttons>
-      <ion-toggle  color="tertiary"></ion-toggle>
-      <ion-label class="toggle-label ion-margin-start">24 hour format</ion-label>
-    </ion-buttons>
+                  <div class="info">
+                    Effective Hours: {{ effectiveHours }}<br>
+                    Gross Hours: {{ grossHours }}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </ion-grid>
+      </ion-content>
+    </div>
 
-    </ion-col>
+  </ion-grid>
+
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="6">
+        <ion-title class="ion-no-padding">Logs & Requests</ion-title>
+      </ion-col>
+      <ion-col size="6">
+        <div class="display-flex ion-justify-content-end">
+          <ion-buttons>
+            <ion-toggle color="tertiary"></ion-toggle>
+            <ion-label class="toggle-label ion-margin-start">24 hour format</ion-label>
+          </ion-buttons>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row>
+    <ion-tabs class="profile-tab">
+      <!-- Tab bar -->
+      <ion-tab-bar slot="bottom" class="ion-justify-content-start">
+        <ion-tab-button tab="schedule">
+          <ion-label>Attendance Log</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="speakers">
+          <ion-label>Calender</ion-label>
+        </ion-tab-button>
+
+
+
+        <ion-tab-button tab="about">
+          <ion-label>Attendance Requests</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
   </ion-row>
-</ion-grid>
-<ion-row>
-  <ion-tabs class="profile-tab">
-  <!-- Tab bar -->
-  <ion-tab-bar slot="bottom" class="ion-justify-content-start">
-    <ion-tab-button tab="schedule">
-      <ion-label>Attendance Log</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="speakers">
-      <ion-label>Calender</ion-label>
-    </ion-tab-button>
-
-
-
-    <ion-tab-button tab="about">
-      <ion-label>Attendance Requests</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
-</ion-row>
 </ion-content>
-
-
-
-
