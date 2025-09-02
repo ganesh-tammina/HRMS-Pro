@@ -6,6 +6,8 @@ import { CreateOfferHeaderComponent } from '../create-offer-header/create-offer-
 import { CandidateService } from 'src/app/services/pre-onboarding.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { IonPopover } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-offer',
@@ -16,6 +18,8 @@ import { Router } from '@angular/router';
 })
 export class CreateOfferComponent implements OnInit {
   candidate: any;
+  offerForm!: FormGroup;
+  selectedDate: string = '';
   constructor(private router: Router,
     private http: HttpClient,
     private candidateService: CandidateService) { }
@@ -24,6 +28,16 @@ export class CreateOfferComponent implements OnInit {
     const nav = this.router.getCurrentNavigation();
     this.candidate = nav?.extras.state?.['candidate'];
     console.log('Candidate received in CreateOffer:', this.candidate);
+  }
+
+  onDateChange(event: any, popover: IonPopover) {
+    const value = event.detail.value;
+    if (value) {
+      const date = new Date(value);
+      const formatted = date.toLocaleDateString('en-GB'); // dd/MM/yyyy
+      this.selectedDate = formatted;
+    }
+    popover.dismiss();
   }
 
 }

@@ -102,12 +102,17 @@
 
         <ion-row>
           <ion-col size="6">
-
             <ion-item>
-              <ion-label position="stacked">Select Date</ion-label>
-              <ion-input id="date-input" formControlName="DOJ" readonly>
-              </ion-input>
+              <ion-label position="stacked">Date of Joining</ion-label>
+              <ion-input id="date-input" formControlName="DOJ" [value]="selectedDate" readonly></ion-input>
             </ion-item>
+
+            <ion-popover #datePopover trigger="date-input" show-backdrop="true">
+              <ng-template>
+                <ion-datetime presentation="date" (ionChange)="onDateChange($event, datePopover)">
+                </ion-datetime>
+              </ng-template>
+            </ion-popover>
           </ion-col>
           <ion-col size="6">
 
