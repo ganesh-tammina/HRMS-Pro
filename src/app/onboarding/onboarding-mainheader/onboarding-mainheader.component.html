@@ -17,14 +17,14 @@
   <!-- Sub Navbar -->
   <ion-toolbar color="light" class="sub-nav">
     <ion-buttons slot="start" class="nav-links">
-      <ion-button fill="clear" (click)="goSetup()">Setup</ion-button>
-      <ion-button fill="clear" (click)="gopreboarding()">Preboarding</ion-button>
-      <ion-button fill="clear" (click)="goNewJoiners()">New Joiners</ion-button>
-      <ion-button fill="clear" (click)="goPastOffers()">Past Offers</ion-button>
-      <ion-button fill="clear" (click)="goOnboardingTasks()" [ngClass]="isActive ? 'active' : ''">Onboarding Tasks</ion-button>
-      <ion-button fill="clear" (click)="gotemplates()">Task Templates</ion-button>
+      <ion-button fill="clear" (click)="navigate('setup')" [class.active-btn]="activeTab === 'setup'">Setup</ion-button>
+      <ion-button fill="clear" (click)="navigate('preOnboarding')" [class.active-btn]="activeTab === 'preOnboarding'">Preboarding</ion-button>
+      <ion-button fill="clear" (click)="navigate('NewJoiner')" [class.active-btn]="activeTab === 'NewJoiner'">New Joiners</ion-button>
+      <ion-button fill="clear" (click)="navigate('pastOffers')" [class.active-btn]="activeTab === 'pastOffers'">Past Offers</ion-button>
+      <ion-button fill="clear"  (click)="navigate('onboarding_Tasks')" [class.active-btn]="activeTab === 'onboarding_Tasks'">Onboarding Tasks</ion-button>
+      <ion-button fill="clear" (click)="navigate('Task_Template')" [class.active-btn]="activeTab === 'Task_Template'">Task Templates</ion-button>
       <ion-button fill="clear">Background Verification</ion-button>
       <ion-button fill="clear">Archived</ion-button>
-      <ion-button fill="clear" (click)="goSettings()">Settings</ion-button>
+      <ion-button fill="clear" (click)="navigate('settings')" [class.active-btn]="activeTab === 'settings'">Settings</ion-button>
     </ion-buttons>
   </ion-toolbar>

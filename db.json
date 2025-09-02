@@ -1,50 +1,182 @@
 {
-  "employees": [
+  "candidates": [
     {
-      "name": "Siva Devi Ganesh",
-      "dob": "2025-08-10",
-      "gender": "female",
-      "email": "ganesh@gmail.com",
-      "phone": "9876543210",
-      "salary": {
-        "gross": 85000,
-        "basic": 568000,
-        "hra": 5555,
-        "health": 5255,
-        "epfEmployee": 5255,
-        "epfEmployer": 5255
+      "personalDetails": {
+        "FirstName": "Siva",
+        "MiddleName": "Devi",
+        "LastName": "Ganesh",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "male"
       },
-      "id": 1,
-      "offerStatus": "release",
-      "candidateId": "202508111402",
-      "confirmation": {
-        "offerValidity": "7",
-        "dateOfJoining": "2025-08-30",
-        "template": "template1"
-      }
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Visakhapatnam",
+        "WorkType": "Perminate",
+        "BussinessUnit": "Tech Tammina"
+      },
+      "id": 1
     },
     {
-      "name": "Siva ",
-      "dob": "2025-08-06",
-      "gender": "female",
-      "email": "ganesh@t.cpm",
-      "phone": "9876543210",
-      "salary": {
-        "gross": 5000,
-        "basic": 522,
-        "hra": 5151,
-        "health": 5541,
-        "epfEmployee": 545545,
-        "epfEmployer": 545545
+      "personalDetails": {
+        "FirstName": "Ganesh",
+        "MiddleName": "Siva",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "siva@gmail.com",
+        "gender": "female"
       },
-      "id": 2,
-      "offerStatus": "release",
-      "candidateId": "202508116544",
-      "confirmation": {
-        "offerValidity": "7",
-        "dateOfJoining": "2025-08-17",
-        "template": "template1"
-      }
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Finance",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam",
+        "DOJ": "09/08/2025"
+      },
+      "id": 2
+    },
+    {
+      "personalDetails": {
+        "FirstName": "ganesh",
+        "MiddleName": "meesala",
+        "LastName": "siva",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "female"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "IT Development",
+        "WorkType": "IT Development",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "15/08/2025"
+      },
+      "id": 3
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Ravi",
+        "MiddleName": "Ganesh",
+        "LastName": "meesala",
+        "PhoneNumber": "9876543210",
+        "email": "meesala@gmail.com",
+        "gender": "male"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "IT Development",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "14/08/2025"
+      },
+      "id": 4
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Ravi",
+        "MiddleName": "Sastry",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "Ganesh@gmail.com",
+        "gender": "female"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "21/08/2025",
+        "Package": "500000"
+      },
+      "id": 5
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Lakshmi",
+        "MiddleName": "Vara",
+        "LastName": "Meesala",
+        "PhoneNumber": "98765432410",
+        "email": "vara@gmail.com",
+        "gender": "male"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "14/08/2025",
+        "Package": "15000"
+      },
+      "id": 6
+    },
+    {
+      "personalDetails": {
+        "FirstName": "SIva",
+        "MiddleName": "Ganesh",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "siva@gmail.com",
+        "gender": "male",
+        "initials": "SM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI/UX Designer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "IT Development",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "21/08/2025",
+        "Package": "150000"
+      },
+      "id": 7
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Siva",
+        "MiddleName": "Ganesh",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "male",
+        "initials": "SM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "HR",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "IT Development",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "24/09/2025",
+        "Package": "9000000"
+      },
+      "id": 8
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Rama",
+        "MiddleName": "Krishna",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "Ram@gmail.com",
+        "gender": "male",
+        "initials": "RM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "IT Development",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
+        "DOJ": "24/09/2025",
+        "Package": "5000000"
+      },
+      "id": 9
     }
   ]
 }

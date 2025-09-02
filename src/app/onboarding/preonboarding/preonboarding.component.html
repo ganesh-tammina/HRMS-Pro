@@ -15,7 +15,7 @@
         <ion-icon name="funnel-outline"></ion-icon>
       </ion-button>
 
-      <ion-button id="add-candidate-trigger" color="primary" class="add-btn">
+      <ion-button id="add-candidate-trigger" color="primary"  class="add-btn">
         <ion-icon name="add-outline" slot="start"></ion-icon>
         Add a candidate
         <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
@@ -24,7 +24,7 @@
         <ng-template>
           <ion-content class="ion-padding">
             <ion-list lines="none">
-              <ion-item button>
+              <ion-item button  (click)="openCandidateForm()">
                 <ion-icon name="person-add-outline" slot="start"></ion-icon>
                 <ion-label>Add candidate</ion-label>
               </ion-item>
@@ -51,10 +51,15 @@
     <ion-grid class="filters-grid">
       <ion-row class="ion-align-items-center">
         <ion-col size="12" size-lg="2.2" size-md="4">
-          <div class="filter-chip">
-            <span>Business Unit</span>
-            <ion-icon name="chevron-down-outline"></ion-icon>
-          </div>
+        <ion-item class="filter-chip" lines="none">
+    <ion-label>Business Unit</ion-label>
+  <ion-select interface="popover">
+    <ion-select-option >Finance</ion-select-option>
+    <ion-select-option >Human Resources</ion-select-option>
+    <ion-select-option >IT</ion-select-option>
+    <ion-select-option >Marketing</ion-select-option>
+  </ion-select>
+</ion-item>
         </ion-col>
         <ion-col size="12" size-lg="2.2" size-md="4">
           <div class="filter-chip">
@@ -116,16 +121,16 @@
     </div>
 
     <!-- Row 1 -->
-    <div class="table-row">
+    <div class="table-row" *ngFor="let candidate of candidates">
       <div class="cell cell-check">
         <ion-checkbox aria-label="Select row"></ion-checkbox>
       </div>
 
       <div class="cell cell-name">
-        <div class="avatar">SC</div>
+        <div class="avatar">{{candidate.personalDetails.initials}}</div>
         <div class="name-stack">
-          <a class="name-link">Sai Chandu Boddula</a>
-          <div class="sub">Software Trainee</div>
+          <a class="name-link">{{candidate.personalDetails.FirstName}}</a>
+          <div class="sub">{{candidate.jobDetailsForm.JobTitle}}</div>
         </div>
       </div>
 
@@ -142,17 +147,19 @@
       </div>
 
       <div class="cell cell-dept">
-        <div class="dept-title">IT Services Technology</div>
-        <div class="dept-sub">Site 4 - Hyderabad - Day Shift</div>
+        <div class="dept-title">{{candidate.jobDetailsForm.Department}}</div>
+        <div class="dept-sub">{{candidate.jobDetailsForm.JobLocation}}</div>
       </div>
 
       <div class="cell cell-date">
-        <div class="date-title">11 Aug 2025</div>
+        <div class="date-title">{{candidate.jobDetailsForm.DOJ}}</div>
         <div class="date-sub">Due today</div>
       </div>
 
       <div class="cell cell-actions">
         <ion-button size="small" fill="outline" color="primary">Revise</ion-button>
+        <ion-button size="small" fill="outline" color="primary" (click)="startpreonboarding(candidate)">Start Pre-Onboarding</ion-button>
+
         <ion-button fill="clear" class="dots">
           <ion-icon name="ellipsis-vertical"></ion-icon>
         </ion-button>
@@ -160,48 +167,7 @@
     </div>
 
     <!-- Row 2 -->
-    <div class="table-row">
-      <div class="cell cell-check">
-        <ion-checkbox aria-label="Select row"></ion-checkbox>
-      </div>
-
-      <div class="cell cell-name">
-        <div class="avatar blue">MK</div>
-        <div class="name-stack">
-          <a class="name-link">Mani Kumar</a>
-          <div class="sub">Assistant Vice President - InsureTech</div>
-        </div>
-      </div>
-
-      <div class="cell cell-offer">
-        <div class="stage-bars">
-          <span class="bar done"></span>
-          <span class="bar done"></span>
-          <span class="bar done"></span>
-        </div>
-        <div class="status">
-          <div class="status-title">Offer Accepted</div>
-          <div class="status-sub">Last touch 6d ago</div>
-        </div>
-      </div>
-
-      <div class="cell cell-dept">
-        <div class="dept-title">IT Services Technology</div>
-        <div class="dept-sub">Site 2 - SVS</div>
-      </div>
-
-      <div class="cell cell-date">
-        <div class="date-title">13 Aug 2025</div>
-        <div class="date-sub">1 days</div>
-      </div>
-
-      <div class="cell cell-actions">
-        <ion-button size="small" fill="outline" color="primary">Revise</ion-button>
-        <ion-button fill="clear" class="dots">
-          <ion-icon name="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </div>
-    </div>
+  
   </div>
 </ion-content>
 

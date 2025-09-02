@@ -10,6 +10,9 @@ import { PreonboardingComponent } from './onboarding/preonboarding/preonboarding
 import { NewJoinerComponent } from './onboarding/new-joiner/new-joiner.component';
 import { PastOffersComponent } from './onboarding/past-offers/past-offers.component';
 import { OnboardingTasksComponent } from './onboarding/onboarding-tasks/onboarding-tasks.component';
+import { CandiateCreateComponent } from './onboarding/candiate-create/candiate-create.component';
+import { StartOnboardingComponent } from './onboarding/start-onboarding/start-onboarding.component';
+import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +29,9 @@ export const routes: Routes = [
   { path: 'NewJoiner', component: NewJoinerComponent },
   { path: 'pastOffers', component: PastOffersComponent },
   { path: 'onboarding_Tasks', component: OnboardingTasksComponent },
+  { path: 'CandiateCreate', component: CandiateCreateComponent },
+  { path: 'Startonboardingitem', component: StartOnboardingComponent },
+  { path: 'CreateOffer/:id/:FirstName', component: CreateOfferComponent },
 
   {
     path: 'pre_onboarding',

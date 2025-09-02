@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-onboarding-mainheader',
@@ -12,7 +14,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OnboardingMainheaderComponent implements OnInit {
   isActive: boolean = false;
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  isTasksTemplate: boolean = false;
+  activeTab = '';
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        const url = event.urlAfterRedirects.split('/').pop();
+        this.activeTab = url; // match last part of the URL
+      });
+  }
 
   ngOnInit() { }
   gotemplates() {
@@ -45,4 +56,10 @@ export class OnboardingMainheaderComponent implements OnInit {
     this.isActive = !this.isActive;
     this.router.navigate(['/onboarding_Tasks']);
   }
+
+  navigate(tab: string) {
+    this.activeTab = tab;
+    this.router.navigate(['/' + tab]); // navigates to /settings or /profile
+  }
+
 }

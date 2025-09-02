@@ -13,6 +13,9 @@ import { CandiatePortalComponent } from './candiate-portal/candiate-portal.compo
 import { DeclineResonsComponent } from './decline-resons/decline-resons.component';
 import { Router } from '@angular/router';
 import { OnboardingMainheaderComponent } from './onboarding-mainheader/onboarding-mainheader.component';
+import { CandidateService } from '../services/pre-onboarding.service';
+import { CandiateCreateComponent } from './candiate-create/candiate-create.component';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-pre',
   templateUrl: './pre.page.html',
@@ -42,8 +45,9 @@ export class PostPage implements OnInit {
 
   offerLetter: any = null;
   private salarySaved = false;
+  candidates: any[] = [];
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private fb: FormBuilder, private modalCtrl: ModalController, private http: HttpClient, private router: Router, private candidateService: CandidateService) { }
 
   /*************  ✨ Windsurf Command ⭐  *************/
   /**
@@ -100,6 +104,8 @@ export class PostPage implements OnInit {
       offerValidity: ['', Validators.required],
       dateOfJoining: ['', Validators.required],
     })
+
+
   }
 
   openCard(card: string) {
@@ -247,5 +253,12 @@ export class PostPage implements OnInit {
   }
   gopreboarding() {
     this.router.navigate(['/Task_Template']);
+  }
+
+  async openCandidateForm() {
+    const modal = await this.modalCtrl.create({
+      component: CandiateCreateComponent
+    });
+    await modal.present();
   }
 }
