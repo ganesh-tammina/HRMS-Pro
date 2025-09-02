@@ -1,35 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { CandidateService, Candidate } from 'src/app/services/pre-onboarding.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonInput, IonButton, CommonModule, FormsModule]
+  imports: [CommonModule, IonicModule, ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
-  email: string = '';
-  password: string = '';
-  rememberMe: boolean = false;
-  showPassword: boolean = false;
-  currentYear: number = new Date().getFullYear();
-  constructor(private router: Router) { }
+  loginForm!: FormGroup;
+  loginError: string = '';
+
+  constructor(private fb: FormBuilder, private router: Router, private candidateService: CandidateService) { }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
-  goToDashboard() {
-    this.router.navigate(['/Home']);
-  }
+
   onLogin() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Remember Me:', this.rememberMe);
-    // TODO: Implement authentication logic here
-  }
-  togglePassword() {
-    this.showPassword = !this.showPassword;
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+
+      // Find candidate by company email and password
+      const employee: Candidate | undefined = this.candidateService.findEmployee(email, password);
+
+      if (employee) {
+        // Navigate to Home/Dashboard and pass candidate object
+        this.router.navigate(['/Home'], { state: { candidate: employee } });
+      } else {
+        this.loginError = 'Invalid email or password';
+      }
+    } else {
+      this.loginError = 'Please fill all fields correctly';
+    }
   }
 }
