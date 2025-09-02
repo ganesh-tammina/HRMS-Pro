@@ -23,7 +23,7 @@ import { CreateOfferHeaderComponent } from '../create-offer-header/create-offer-
   ]
 })
 export class CreateOfferComponent implements OnInit {
-  candidate: any = {}; // initialize to avoid undefined
+  candidate: any = {};
   offerForm!: FormGroup;
   selectedDate: string = '';
 
@@ -34,59 +34,44 @@ export class CreateOfferComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Get candidate from router state
     const nav = this.router.getCurrentNavigation();
     this.candidate = nav?.extras.state?.['candidate'] || {};
 
-    // Ensure offerDetails exists
     if (!this.candidate.offerDetails) {
-      this.candidate.offerDetails = {
-        DOJ: '',
-        offerValidity: ''
-      };
+      this.candidate.offerDetails = { DOJ: '', offerValidity: '' };
     }
 
-    // Initialize reactive form
     this.offerForm = this.fb.group({
       DOJ: [this.candidate.offerDetails.DOJ || '', Validators.required],
       offerValidity: [this.candidate.offerDetails.offerValidity || '', Validators.required]
-
     });
 
-    this.selectedDate = this.candidate.offerDetails.JoiningDate || '';
+    this.selectedDate = this.candidate.offerDetails.DOJ || '';
   }
 
   onDateChange(event: any, popover: IonPopover) {
     const value = event.detail.value;
     if (value) {
       const date = new Date(value);
-      const formatted = date.toLocaleDateString('en-GB'); // dd/MM/yyyy
+      const formatted = date.toLocaleDateString('en-GB');
       this.selectedDate = formatted;
-
-      // Update candidate offerDetails
-      this.candidate.offerDetails.JoiningDate = formatted;
-
-      // Update form control
-      this.offerForm.patchValue({
-        DOJ: formatted
-      });
+      this.candidate.offerDetails.DOJ = formatted;
+      this.offerForm.patchValue({ DOJ: formatted });
     }
     popover.dismiss();
   }
 
   submitOfferForm() {
     if (this.offerForm.valid) {
-      // Update candidate.offerDetails from form
-      this.candidate.offerDetails.JoiningDate = this.offerForm.value.DOJ;
+      this.candidate.offerDetails.DOJ = this.offerForm.value.DOJ;
       this.candidate.offerDetails.offerValidity = this.offerForm.value.offerValidity;
 
-
-      // Call service to update JSON-server
       this.candidateService.updateCandidate(this.candidate).subscribe({
         next: (res) => {
-          this.router.navigate(['/Compensation']);
           console.log('Candidate updated on server:', res);
           alert('DOJ saved successfully in DB!');
+          // Pass candidate to Compensation component
+          this.router.navigate(['/Compensation', this.candidate.id, encodeURIComponent(this.candidate.personalDetails.FirstName)], { state: { candidate: this.candidate } });
         },
         error: (err) => {
           console.error('Error updating candidate:', err);

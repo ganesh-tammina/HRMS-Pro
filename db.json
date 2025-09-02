@@ -37,9 +37,13 @@
       },
       "id": 2,
       "offerDetails": {
-        "DOJ": "",
+        "DOJ": "06/09/2025",
         "offerValidity": "2",
         "JoiningDate": "07/11/2025"
+      },
+      "employeeCredentials": {
+        "companyEmail": "Devi@tammina.com",
+        "password": "123456"
       }
     },
     {
@@ -61,9 +65,13 @@
       },
       "id": 3,
       "offerDetails": {
-        "DOJ": "",
+        "DOJ": "20/09/2025",
         "offerValidity": "2",
-        "JoiningDate": "27/09/2025"
+        "JoiningDate": "30/09/2025"
+      },
+      "employeeCredentials": {
+        "companyEmail": "sadfse@gmail.com",
+        "password": "sdfdsfdsf"
       }
     },
     {
@@ -85,7 +93,7 @@
       },
       "id": 4,
       "offerDetails": {
-        "DOJ": "",
+        "DOJ": "25/09/2025",
         "offerValidity": "7",
         "JoiningDate": "30/09/2025"
       }
