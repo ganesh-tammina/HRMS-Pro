@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -10,8 +10,14 @@ import { IonicModule } from '@ionic/angular';
 })
 export class CreateOfferHeaderComponent implements OnInit {
 
+  @Output() continueClick = new EventEmitter<void>(); // Event to notify parent
+
   constructor() { }
 
   ngOnInit() { }
+
+  onContinue() {
+    this.continueClick.emit(); // Emit event to parent
+  }
 
 }

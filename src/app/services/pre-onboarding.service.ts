@@ -34,4 +34,8 @@ export class CandidateService {
       })
     );
   }
+
+  updateCandidate(candidate: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${candidate.id}`, candidate);
+  }
 }

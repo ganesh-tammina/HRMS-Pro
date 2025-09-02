@@ -20,163 +20,75 @@
     },
     {
       "personalDetails": {
-        "FirstName": "Ganesh",
-        "MiddleName": "Siva",
+        "FirstName": "Devi ",
+        "MiddleName": "Ganesh",
         "LastName": "Meesala",
-        "PhoneNumber": "9876543210",
-        "email": "siva@gmail.com",
-        "gender": "female"
-      },
-      "jobDetailsForm": {
-        "JobTitle": "Software Engineer",
-        "Department": "IT Development",
-        "JobLocation": "Finance",
-        "WorkType": "Perminent",
-        "BussinessUnit": "Tech Tammina Visakhapatnam",
-        "DOJ": "09/08/2025"
-      },
-      "id": 2
-    },
-    {
-      "personalDetails": {
-        "FirstName": "ganesh",
-        "MiddleName": "meesala",
-        "LastName": "siva",
         "PhoneNumber": "9876543210",
         "email": "ganesh@gmail.com",
-        "gender": "female"
+        "gender": "male",
+        "initials": "DM"
       },
       "jobDetailsForm": {
         "JobTitle": "Software Engineer",
-        "Department": "IT Development",
-        "JobLocation": "IT Development",
-        "WorkType": "IT Development",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "15/08/2025"
-      },
-      "id": 3
-    },
-    {
-      "personalDetails": {
-        "FirstName": "Ravi",
-        "MiddleName": "Ganesh",
-        "LastName": "meesala",
-        "PhoneNumber": "9876543210",
-        "email": "meesala@gmail.com",
-        "gender": "male"
-      },
-      "jobDetailsForm": {
-        "JobTitle": "UI Developer",
-        "Department": "Finance",
-        "JobLocation": "Site 1 - Hyderabad - Night Shift",
-        "WorkType": "IT Development",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "14/08/2025"
-      },
-      "id": 4
-    },
-    {
-      "personalDetails": {
-        "FirstName": "Ravi",
-        "MiddleName": "Sastry",
-        "LastName": "Meesala",
-        "PhoneNumber": "9876543210",
-        "email": "Ganesh@gmail.com",
-        "gender": "female"
-      },
-      "jobDetailsForm": {
-        "JobTitle": "Software Engineer",
-        "Department": "Finance",
-        "JobLocation": "Site 1 - Hyderabad - Night Shift",
-        "WorkType": "Perminent",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "21/08/2025",
-        "Package": "500000"
-      },
-      "id": 5
-    },
-    {
-      "personalDetails": {
-        "FirstName": "Lakshmi",
-        "MiddleName": "Vara",
-        "LastName": "Meesala",
-        "PhoneNumber": "98765432410",
-        "email": "vara@gmail.com",
-        "gender": "male"
-      },
-      "jobDetailsForm": {
-        "JobTitle": "UI Developer",
         "Department": "IT Development",
         "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
         "WorkType": "Perminent",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "14/08/2025",
-        "Package": "15000"
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
       },
-      "id": 6
+      "id": 2,
+      "offerDetails": {
+        "DOJ": "",
+        "offerValidity": "2",
+        "JoiningDate": "07/11/2025"
+      }
     },
     {
       "personalDetails": {
-        "FirstName": "SIva",
-        "MiddleName": "Ganesh",
-        "LastName": "Meesala",
-        "PhoneNumber": "9876543210",
-        "email": "siva@gmail.com",
-        "gender": "male",
-        "initials": "SM"
-      },
-      "jobDetailsForm": {
-        "JobTitle": "UI/UX Designer",
-        "Department": "Finance",
-        "JobLocation": "Site 1 - Hyderabad - Night Shift",
-        "WorkType": "IT Development",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "21/08/2025",
-        "Package": "150000"
-      },
-      "id": 7
-    },
-    {
-      "personalDetails": {
-        "FirstName": "Siva",
-        "MiddleName": "Ganesh",
-        "LastName": "Meesala",
-        "PhoneNumber": "9876543210",
-        "email": "ganesh@gmail.com",
-        "gender": "male",
-        "initials": "SM"
-      },
-      "jobDetailsForm": {
-        "JobTitle": "UI Developer",
-        "Department": "HR",
-        "JobLocation": "Site 1 - Hyderabad - Night Shift",
-        "WorkType": "IT Development",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "24/09/2025",
-        "Package": "9000000"
-      },
-      "id": 8
-    },
-    {
-      "personalDetails": {
-        "FirstName": "Rama",
-        "MiddleName": "Krishna",
-        "LastName": "Meesala",
+        "FirstName": "Ram",
+        "MiddleName": "Rahim",
+        "LastName": "Rabot",
         "PhoneNumber": "9876543210",
         "email": "Ram@gmail.com",
         "gender": "male",
-        "initials": "RM"
+        "initials": "RR"
       },
       "jobDetailsForm": {
-        "JobTitle": "UI Developer",
-        "Department": "IT Development",
-        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "JobTitle": "Software Engineer",
+        "Department": "Finance",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
         "WorkType": "Perminent",
-        "BussinessUnit": "Sri Tech Tammina Visakhapatnam",
-        "DOJ": "24/09/2025",
-        "Package": "5000000"
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
       },
-      "id": 9
+      "id": 3,
+      "offerDetails": {
+        "DOJ": "",
+        "offerValidity": "2",
+        "JoiningDate": "27/09/2025"
+      }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Rajesh",
+        "MiddleName": "Varam",
+        "LastName": "Tammina",
+        "PhoneNumber": "9876543210",
+        "email": "rajesh@gmail.com",
+        "gender": "male",
+        "initials": "RT"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": 4,
+      "offerDetails": {
+        "DOJ": "",
+        "offerValidity": "7",
+        "JoiningDate": "30/09/2025"
+      }
     }
   ]
 }

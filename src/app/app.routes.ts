@@ -47,6 +47,9 @@ export const routes: Routes = [
   },
   {
     path: 'setup', loadComponent: () => import('./onboarding/setup/setup.component').then(m => m.SetupComponent)
+  },
+  {
+    path: 'Compensation', loadComponent: () => import('./onboarding/compensation/compensation.component').then(m => m.CompensationComponent)
   }
 
 

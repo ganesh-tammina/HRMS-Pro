@@ -39,8 +39,6 @@ export class CandiateCreateComponent implements OnInit {
         JobLocation: ['', Validators.required],
         WorkType: ['', Validators.required],
         BussinessUnit: ['', Validators.required],
-        DOJ: ['', Validators.required],
-        Package: ['', Validators.required],
       })
     });
 
