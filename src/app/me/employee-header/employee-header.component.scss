@@ -1,0 +1,35 @@
+.custom-toolbar {
+  --background: #fff;
+  border-top: 3px solid #c74d72; // pink top border
+}
+
+.menu-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 0 16px;
+}
+
+.menu-item {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  position: relative;
+  cursor: pointer;
+  padding: 10px 0;
+
+  &.active {
+    color: #c74d72;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #c74d72;
+    }
+  }
+}

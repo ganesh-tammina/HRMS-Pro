@@ -13,6 +13,7 @@ import { OnboardingTasksComponent } from './onboarding/onboarding-tasks/onboardi
 import { CandiateCreateComponent } from './onboarding/candiate-create/candiate-create.component';
 import { StartOnboardingComponent } from './onboarding/start-onboarding/start-onboarding.component';
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
+import { LeavesComponent } from './me/leaves/leaves.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'CandiateCreate', component: CandiateCreateComponent },
   { path: 'Startonboardingitem', component: StartOnboardingComponent },
   { path: 'CreateOffer/:id/:FirstName', component: CreateOfferComponent },
+  { path: 'leaves', component: LeavesComponent },
 
   {
     path: 'pre_onboarding',

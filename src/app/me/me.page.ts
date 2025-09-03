@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../shared/header/header.component';
 import { CandidateService, Candidate } from '../services/pre-onboarding.service';
 import { AttendanceService, AttendanceRecord } from '../services/attendance.service';
+import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
+
 
 @Component({
   selector: 'app-me',
   templateUrl: './me.page.html',
   styleUrls: ['./me.page.scss'],
   standalone: true,
-  imports: [IonicModule, HeaderComponent, CommonModule]
+  imports: [IonicModule, HeaderComponent, EmployeeHeaderComponent, CommonModule]
 })
 export class MePage implements OnInit {
   employee?: Candidate;

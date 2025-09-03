@@ -1,0 +1,255 @@
+<ion-header [translucent]="true">
+  <app-header></app-header>
+  <app-employee-header></app-employee-header>
+</ion-header>
+<ion-header class="app-header" mode="md">
+  <ion-toolbar>
+    <div class="header-left" *ngIf="currentCandidate">
+      <h1 class="greeting">Hi, {{currentCandidate.personalDetails.FirstName}} No pending leave requests</h1>
+      <p class="subtle">Plan your leaves for the year ✨</p>
+    </div>
+
+    <ion-buttons slot="end">
+      <ion-button class="btn-outline tiny" fill="outline">Leave Policy / Pay Structure</ion-button>
+      <ion-button class="btn-primary tiny">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Request Leave
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="dash">
+  <ion-grid fixed>
+
+    <!-- Row: Quick stats -->
+    <ion-row class="g-16">
+      <ion-col size="12" size-xl="4">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Weekly Pattern</span>
+            <ion-icon name="ellipsis-horizontal"></ion-icon>
+          </div>
+          <div class="mini-bars">
+            <div class="bar" style="--h: 42%"></div>
+            <div class="bar" style="--h: 12%"></div>
+            <div class="bar" style="--h: 18%"></div>
+            <div class="bar" style="--h: 10%"></div>
+            <div class="bar" style="--h: 8%"></div>
+            <div class="bar" style="--h: 36%"></div>
+            <div class="bar" style="--h: 24%"></div>
+          </div>
+          <div class="axis tiny">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-xl="4">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Consumed Leave Type</span>
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </div>
+
+          <div class="donut-wrap">
+            <div class="donut -multi">
+              <div class="donut-center">
+                <div class="donut-num">12</div>
+                <div class="donut-cap tiny">days</div>
+              </div>
+            </div>
+            <div class="legend tiny">
+              <span><i class="dot c-purple"></i> Casual</span>
+              <span><i class="dot c-aqua"></i> Sick</span>
+              <span><i class="dot c-green"></i> Marriage</span>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-xl="4">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Monthly Rate</span>
+            <ion-icon name="trending-up-outline"></ion-icon>
+          </div>
+
+          <div class="spark">
+            <div class="spark-bar" style="--w: 8%"></div>
+            <div class="spark-bar hi" style="--w: 18%"></div>
+            <div class="spark-bar" style="--w: 10%"></div>
+            <div class="spark-bar" style="--w: 9%"></div>
+            <div class="spark-bar" style="--w: 12%"></div>
+            <div class="spark-bar" style="--w: 7%"></div>
+            <div class="spark-bar" style="--w: 6%"></div>
+            <div class="spark-bar" style="--w: 5%"></div>
+            <div class="spark-bar" style="--w: 8%"></div>
+            <div class="spark-bar" style="--w: 9%"></div>
+            <div class="spark-bar" style="--w: 7%"></div>
+            <div class="spark-bar" style="--w: 6%"></div>
+          </div>
+          <div class="axis tiny months">
+            <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+            <span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row: Leave entitlements (donuts) -->
+    <ion-row class="g-16">
+      <ion-col size="12" size-xl="6">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Casual Leave</span>
+            <a class="link tiny">View details</a>
+          </div>
+          <div class="split">
+            <div class="donut -purple">
+              <div class="donut-center">
+                <div class="donut-num">14</div>
+                <div class="donut-cap tiny">available</div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="krow"><span class="label">Balance</span><span class="val">4 days</span></div>
+              <div class="krow"><span class="label">Carry Forward</span><span class="val">5 days</span></div>
+              <div class="krow"><span class="label">Consumed</span><span class="val">5 days</span></div>
+              <div class="krow"><span class="label">Encash</span><span class="val">0 day</span></div>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-xl="6">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Comp Off</span>
+            <a class="link tiny">View details</a>
+          </div>
+          <div class="split">
+            <div class="donut -empty">
+              <div class="donut-center">
+                <div class="donut-num">0</div>
+                <div class="donut-cap tiny">available</div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="krow"><span class="label">Balance</span><span class="val">0 day</span></div>
+              <div class="krow"><span class="label">Consumed</span><span class="val">0 day</span></div>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-xl="6">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Marriage Leave</span>
+            <a class="link tiny">View details</a>
+          </div>
+          <div class="split">
+            <div class="donut -green">
+              <div class="donut-center">
+                <div class="donut-num">3</div>
+                <div class="donut-cap tiny">available</div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="krow"><span class="label">Balance</span><span class="val">3 days</span></div>
+              <div class="krow"><span class="label">Consumed</span><span class="val">0 day</span></div>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-xl="6">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Sick Leave</span>
+            <a class="link tiny">View details</a>
+          </div>
+          <div class="split">
+            <div class="donut -aqua">
+              <div class="donut-center">
+                <div class="donut-num">7</div>
+                <div class="donut-cap tiny">available</div>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="krow"><span class="label">Balance</span><span class="val">7 days</span></div>
+              <div class="krow"><span class="label">Consumed</span><span class="val">0 day</span></div>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-card class="card">
+          <div class="card-h">
+            <span class="card-title">Unpaid Leave</span>
+            <a class="link tiny">View details</a>
+          </div>
+          <div class="empty-state tiny">No data to display</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row: Leave history -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="card table">
+          <div class="table-h">
+            <div class="filters">
+              <ion-select interface="popover" placeholder="Leave Type" class="tiny"></ion-select>
+              <ion-select interface="popover" placeholder="Status" class="tiny"></ion-select>
+            </div>
+            <ion-searchbar class="tiny" placeholder="Search"></ion-searchbar>
+          </div>
+
+          <div class="tbl">
+            <div class="tr th">
+              <div class="td">Leave Dates</div>
+              <div class="td">Leave Type</div>
+              <div class="td">Notes</div>
+              <div class="td">Requested By</div>
+              <div class="td">Action Taken On</div>
+              <div class="td">Team Note</div>
+              <div class="td">Manager / Calculation Inputs</div>
+              <div class="td">Actions</div>
+            </div>
+
+            <!-- Sample rows -->
+            <div class="tr">
+              <div class="td">01 Aug 2025 – 03 Aug 2025</div>
+              <div class="td">Casual Leave (CL)</div>
+              <div class="td">Approved – Family Event</div>
+              <div class="td">Manasvitha Devi Deviendra</div>
+              <div class="td">04 Aug 2025</div>
+              <div class="td">—</div>
+              <div class="td">—</div>
+              <div class="td"><a class="link tiny">View</a></div>
+            </div>
+
+            <div class="tr">
+              <div class="td">12 Apr 2025 – 13 Apr 2025</div>
+              <div class="td">Unpaid Leave (LOP)</div>
+              <div class="td">Cancelled</div>
+              <div class="td">—</div>
+              <div class="td">—</div>
+              <div class="td">—</div>
+              <div class="td">—</div>
+              <div class="td"><a class="link tiny">View</a></div>
+            </div>
+          </div>
+
+          <div class="pager tiny">
+            <span>Total: 8</span>
+            <span>Page 1 of 2</span>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
