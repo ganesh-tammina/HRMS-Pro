@@ -22,8 +22,17 @@
           </div>
 
           <div>
-            <button class="btn-clockin" (click)="clockIn()" [disabled]="record?.isClockedIn">Clock In</button>
-            <button class="btn-clockout" (click)="clockOut()" [disabled]="!record?.isClockedIn">Clock Out</button>
+            <button class="btn-clockin" (click)="clockIn()"
+              [disabled]="record?.isClockedIn && record?.lastClockDate === currentDate">
+              Clock In
+            </button>
+            <button class="btn-clockout" (click)="clockOut()" [disabled]="!record?.isClockedIn">
+              Clock Out
+            </button>
+
+            <div class="info ion-text-center ion-margin-top">
+              Status: <strong>{{ status }}</strong>
+            </div>
 
             <div class="info m-5 ion-text-center ion-margin-top">
               Since Last Login: {{ timeSinceLastLogin }}
