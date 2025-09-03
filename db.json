@@ -70,8 +70,8 @@
         "JoiningDate": "30/09/2025"
       },
       "employeeCredentials": {
-        "companyEmail": "sadfse@gmail.com",
-        "password": "sdfdsfdsf"
+        "companyEmail": "ram@tammina.com",
+        "password": "123456"
       }
     },
     {
@@ -96,7 +96,12 @@
         "DOJ": "25/09/2025",
         "offerValidity": "7",
         "JoiningDate": "30/09/2025"
+      },
+      "employeeCredentials": {
+        "companyEmail": "Rajesh@tammina.com",
+        "password": "123456"
       }
     }
-  ]
+  ],
+  "attendanceLogs": []
 }

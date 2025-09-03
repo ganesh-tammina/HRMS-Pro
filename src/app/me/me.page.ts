@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../shared/header/header.component';
+import { CandidateService, Candidate } from '../services/pre-onboarding.service';
+import { AttendanceService, AttendanceRecord } from '../services/attendance.service';
 
 @Component({
   selector: 'app-me',
@@ -11,10 +13,8 @@ import { HeaderComponent } from '../shared/header/header.component';
   imports: [IonicModule, HeaderComponent, CommonModule]
 })
 export class MePage implements OnInit {
-
-  clockInTime?: Date; // timestamp of last clock in
-  accumulatedMs: number = 0; // total time accumulated across sessions
-  isClockedIn: boolean = false;
+  employee?: Candidate;
+  record?: AttendanceRecord;
 
   breakMinutes: number = 60;
   effectiveHours: string = '0h 0m';
@@ -24,67 +24,49 @@ export class MePage implements OnInit {
   currentTime: string = '';
   currentDate: string = '';
 
-  constructor() { }
+  constructor(
+    private candidateService: CandidateService,
+    private attendanceService: AttendanceService
+  ) { }
 
   ngOnInit() {
-    // Load persisted state from localStorage
-    const clockIn = localStorage.getItem('clockInTime');
-    const accumulated = localStorage.getItem('accumulatedMs');
-    const isRunning = localStorage.getItem('isClockedIn');
+    this.employee = this.candidateService.getCurrentCandidate() || undefined;
+    if (!this.employee) return;
 
-    if (clockIn) this.clockInTime = new Date(clockIn);
-    if (accumulated) this.accumulatedMs = parseInt(accumulated, 10);
-    this.isClockedIn = isRunning === 'true';
+    this.record = this.attendanceService.getRecord(this.employee.id);
 
-    // Start interval for live clock and timer
     this.updateTimes();
     setInterval(() => this.updateTimes(), 1000);
   }
 
   clockIn() {
-    if (!this.isClockedIn) {
-      this.clockInTime = new Date();
-      this.isClockedIn = true;
-
-      // Persist state
-      localStorage.setItem('clockInTime', this.clockInTime.toISOString());
-      localStorage.setItem('isClockedIn', 'true');
-
-      alert(`Clocked in at ${this.clockInTime.toLocaleTimeString()}`);
-    }
+    if (!this.employee) return;
+    this.record = this.attendanceService.clockIn(this.employee.id);
   }
 
   clockOut() {
-    if (this.isClockedIn && this.clockInTime) {
-      const now = new Date();
-      this.accumulatedMs += now.getTime() - this.clockInTime.getTime();
-      this.isClockedIn = false;
-
-      // Persist state
-      localStorage.setItem('accumulatedMs', this.accumulatedMs.toString());
-      localStorage.setItem('isClockedIn', 'false');
-
-      alert(`Clocked out at ${now.toLocaleTimeString()}`);
-    }
+    if (!this.employee) return;
+    this.record = this.attendanceService.clockOut(this.employee.id);
   }
 
   updateTimes() {
+    if (!this.record) return;
     const now = new Date();
 
-    // Live clock
     this.currentTime = now.toLocaleTimeString('en-US', { hour12: true });
     this.currentDate = now.toDateString();
 
-    // Calculate total gross time
-    const totalMs = this.accumulatedMs + (this.isClockedIn && this.clockInTime ? now.getTime() - this.clockInTime.getTime() : 0);
+    let totalMs = this.record.accumulatedMs;
+    if (this.record.isClockedIn && this.record.clockInTime) {
+      totalMs += now.getTime() - new Date(this.record.clockInTime).getTime();
+    }
+
     const grossMinutes = Math.floor(totalMs / 60000);
     this.grossHours = this.formatHoursMinutes(grossMinutes);
 
-    // Effective hours
     const effectiveMinutes = grossMinutes - this.breakMinutes;
     this.effectiveHours = this.formatHoursMinutes(effectiveMinutes);
 
-    // Time Since Last Login / Clock In (pause/resume)
     this.timeSinceLastLogin = this.formatHMS(totalMs);
   }
 

@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AttendanceService } from './attendance.service';
 
 export interface Candidate {
   id: number;
   personalDetails: {
     FirstName: string;
-    MiddleName?: string;
     LastName: string;
     PhoneNumber: string;
     email: string;
     gender: string;
-    initials?: string;
   };
   jobDetailsForm: {
     JobTitle: string;
@@ -20,11 +19,6 @@ export interface Candidate {
     JobLocation: string;
     WorkType: string;
     BussinessUnit: string;
-  };
-  offerDetails?: {
-    DOJ?: string;
-    offerValidity?: string;
-    JoiningDate?: string;
   };
   employeeCredentials?: {
     companyEmail: string;
@@ -44,7 +38,7 @@ export class CandidateService {
   private currentCandidateSubject = new BehaviorSubject<Candidate | null>(null);
   currentCandidate$ = this.currentCandidateSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private attendanceService: AttendanceService) {
     this.loadCandidates();
   }
 
@@ -82,15 +76,29 @@ export class CandidateService {
     );
 
     if (found) {
-      this.currentCandidateSubject.next(found); // ✅ store the logged-in candidate
-      localStorage.setItem('loggedInCandidate', JSON.stringify(found)); // optional: persist
+      this.currentCandidateSubject.next(found);
+
+      // 🟢 store separately per user id
+      localStorage.setItem(`loggedInCandidate_${found.id}`, JSON.stringify(found));
+      localStorage.setItem('activeUserId', found.id.toString());
+
+      // Initialize attendance record
+      this.attendanceService.getRecord(found.id);
     }
 
     return found;
   }
 
   getCurrentCandidate(): Candidate | null {
-    return this.currentCandidateSubject.value;
+    const activeId = localStorage.getItem('activeUserId');
+    if (!activeId) return null;
+
+    const stored = localStorage.getItem(`loggedInCandidate_${activeId}`);
+    return stored ? JSON.parse(stored) : null;
+  }
+
+  logout() {
+    localStorage.removeItem('activeUserId');
+    this.currentCandidateSubject.next(null);
   }
 }
-
