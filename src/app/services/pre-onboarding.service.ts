@@ -101,4 +101,5 @@ export class CandidateService {
     localStorage.removeItem('activeUserId');
     this.currentCandidateSubject.next(null);
   }
+
 }
