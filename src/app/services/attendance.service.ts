@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 
+export interface AttendanceEvent {
+  type: 'CLOCK_IN' | 'CLOCK_OUT';
+  time: string;             // ISO string
+  displayTime?: string;     // optional, for template display
+}
+
 export interface AttendanceRecord {
   employeeId: number;
-  lastClockInTime?: string;   // most recent clock-in
-  lastClockOutTime?: string;  // most recent clock-out
-  accumulatedMsToday: number; // milliseconds worked today
+  clockInTime?: string;
+  accumulatedMs: number;
   isClockedIn: boolean;
-  lastClockDate?: string;     // date of last clock-in
+  history: AttendanceEvent[];
+  dailyAccumulatedMs?: { [date: string]: number }; // daily totals
 }
 
 @Injectable({
@@ -21,14 +27,23 @@ export class AttendanceService {
 
   getRecord(employeeId: number): AttendanceRecord {
     const stored = localStorage.getItem(this.getKey(employeeId));
-    if (stored) return JSON.parse(stored);
+    if (stored) {
+      const parsed: AttendanceRecord = JSON.parse(stored);
+      parsed.history ||= [];
+      parsed.accumulatedMs ||= 0;
+      parsed.isClockedIn ??= false;
+      parsed.dailyAccumulatedMs ||= {};
+      return parsed;
+    }
 
     const initial: AttendanceRecord = {
       employeeId,
-      accumulatedMsToday: 0,
-      isClockedIn: false
+      accumulatedMs: 0,
+      isClockedIn: false,
+      history: [],
+      dailyAccumulatedMs: {}
     };
-    localStorage.setItem(this.getKey(employeeId), JSON.stringify(initial));
+    this.saveRecord(initial);
     return initial;
   }
 
@@ -37,43 +52,69 @@ export class AttendanceService {
   }
 
   clockIn(employeeId: number): AttendanceRecord {
-    const record = this.getRecord(employeeId);
-    const today = new Date().toISOString().split('T')[0];
-
-    if (record.lastClockDate !== today) {
-      // New day: reset today's time
-      record.accumulatedMsToday = 0;
-      record.isClockedIn = false;
-      record.lastClockInTime = undefined;
-      record.lastClockOutTime = undefined;
-    }
-
+    let record = this.getRecord(employeeId);
     if (!record.isClockedIn) {
-      const now = new Date().toISOString();
-      record.lastClockInTime = now;
+      record.clockInTime = new Date().toISOString();
       record.isClockedIn = true;
-      record.lastClockDate = today;
+      record.history.push({ type: 'CLOCK_IN', time: record.clockInTime });
+
+      const today = new Date().toDateString();
+      record.dailyAccumulatedMs ||= {};
+      record.dailyAccumulatedMs[today] ||= 0;
+
       this.saveRecord(record);
     }
-
     return record;
   }
 
   clockOut(employeeId: number): AttendanceRecord {
-    const record = this.getRecord(employeeId);
-    const today = new Date().toISOString().split('T')[0];
-
-    if (record.isClockedIn && record.lastClockInTime) {
+    let record = this.getRecord(employeeId);
+    if (record.isClockedIn && record.clockInTime) {
       const now = new Date();
-      const clockInTime = new Date(record.lastClockInTime).getTime();
-      record.accumulatedMsToday += now.getTime() - clockInTime;
+      const duration = now.getTime() - new Date(record.clockInTime).getTime();
+
+      record.accumulatedMs += duration;
+
+      const today = now.toDateString();
+      record.dailyAccumulatedMs ||= {};
+      record.dailyAccumulatedMs[today] ||= 0;
+      record.dailyAccumulatedMs[today] += duration;
+
       record.isClockedIn = false;
-      record.lastClockOutTime = now.toISOString();
-      record.lastClockDate = today;
-      record.lastClockInTime = undefined;
+      record.clockInTime = undefined;
+
+      record.history.push({ type: 'CLOCK_OUT', time: now.toISOString() });
+
       this.saveRecord(record);
     }
-
     return record;
+  }
+
+  getHistoryByRange(
+    record: AttendanceRecord,
+    range: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL'
+  ): AttendanceEvent[] {
+    const history = record.history || [];
+    const now = new Date();
+
+    return history.filter(event => {
+      const eventDate = new Date(event.time);
+      switch (range) {
+        case 'TODAY':
+          return eventDate.toDateString() === now.toDateString();
+        case 'WEEK': {
+          const weekStart = new Date(now);
+          weekStart.setDate(now.getDate() - now.getDay());
+          return eventDate >= weekStart && eventDate <= now;
+        }
+        case 'MONTH':
+          return (
+            eventDate.getMonth() === now.getMonth() &&
+            eventDate.getFullYear() === now.getFullYear()
+          );
+        default:
+          return true;
+      }
+    });
   }
 }

@@ -78,7 +78,7 @@ export class CandidateService {
     if (found) {
       this.currentCandidateSubject.next(found);
 
-      // 🟢 store separately per user id
+      // store per user id
       localStorage.setItem(`loggedInCandidate_${found.id}`, JSON.stringify(found));
       localStorage.setItem('activeUserId', found.id.toString());
 

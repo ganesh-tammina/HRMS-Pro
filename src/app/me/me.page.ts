@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../shared/header/header.component';
 import { CandidateService, Candidate } from '../services/pre-onboarding.service';
-import { AttendanceService, AttendanceRecord } from '../services/attendance.service';
+import { AttendanceService, AttendanceRecord, AttendanceEvent } from '../services/attendance.service';
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
 
 @Component({
@@ -21,13 +21,12 @@ export class MePage implements OnInit {
   effectiveHours: string = '0h 0m';
   grossHours: string = '0h 0m';
   timeSinceLastLogin: string = '0h 0m 0s';
+  status: string = 'Absent';
 
   currentTime: string = '';
   currentDate: string = '';
-  status: string = 'Not Present';
-
-  lastClockInTime: string = '-';
-  lastClockOutTime: string = '-';
+  history: AttendanceEvent[] = [];
+  selectedRange: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL' = 'TODAY';
 
   constructor(
     private candidateService: CandidateService,
@@ -39,52 +38,68 @@ export class MePage implements OnInit {
     if (!this.employee) return;
 
     this.record = this.attendanceService.getRecord(this.employee.id);
+
     this.updateTimes();
-    setInterval(() => this.updateTimes(), 1000);
+    this.loadHistory();
+
+    setInterval(() => {
+      this.updateTimes();
+      this.loadHistory();
+    }, 1000);
+  }
+
+  get employeeName(): string {
+    return this.employee?.personalDetails?.FirstName || '';
   }
 
   clockIn() {
     if (!this.employee) return;
     this.record = this.attendanceService.clockIn(this.employee.id);
     this.updateTimes();
+    this.loadHistory();
   }
 
   clockOut() {
     if (!this.employee) return;
     this.record = this.attendanceService.clockOut(this.employee.id);
     this.updateTimes();
+    this.loadHistory();
   }
 
   updateTimes() {
     if (!this.record) return;
-
     const now = new Date();
     this.currentTime = now.toLocaleTimeString('en-US', { hour12: true });
     this.currentDate = now.toDateString();
 
-    const today = new Date().toISOString().split('T')[0];
-
-    let totalMs = this.record.accumulatedMsToday;
-    if (this.record.isClockedIn && this.record.lastClockInTime) {
-      totalMs += now.getTime() - new Date(this.record.lastClockInTime).getTime();
+    const dailyMs = this.record.dailyAccumulatedMs?.[this.currentDate] || 0;
+    let totalMs = dailyMs;
+    if (this.record.isClockedIn && this.record.clockInTime) {
+      totalMs += now.getTime() - new Date(this.record.clockInTime).getTime();
     }
 
     const grossMinutes = Math.floor(totalMs / 60000);
     this.grossHours = this.formatHoursMinutes(grossMinutes);
 
-    const effectiveMinutes = Math.max(grossMinutes - this.breakMinutes, 0);
+    const effectiveMinutes = grossMinutes - this.breakMinutes;
     this.effectiveHours = this.formatHoursMinutes(effectiveMinutes);
 
     this.timeSinceLastLogin = this.formatHMS(totalMs);
+    this.status = this.record.isClockedIn || grossMinutes > 0 ? 'Present' : 'Absent';
+  }
 
-    this.status = this.record.lastClockDate === today ? 'Present' : 'Not Present';
+  loadHistory() {
+    if (!this.record) return;
+    const rawHistory = this.attendanceService.getHistoryByRange(this.record, this.selectedRange);
+    this.history = rawHistory.map(event => ({
+      ...event,
+      displayTime: new Date(event.time).toLocaleTimeString('en-US', { hour12: true })
+    }));
+  }
 
-    this.lastClockInTime = this.record.lastClockInTime
-      ? new Date(this.record.lastClockInTime).toLocaleTimeString('en-US', { hour12: true })
-      : '-';
-    this.lastClockOutTime = this.record.lastClockOutTime
-      ? new Date(this.record.lastClockOutTime).toLocaleTimeString('en-US', { hour12: true })
-      : '-';
+  changeRange(range: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL') {
+    this.selectedRange = range;
+    this.loadHistory();
   }
 
   formatHoursMinutes(totalMinutes: number): string {
