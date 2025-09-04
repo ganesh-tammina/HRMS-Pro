@@ -54,9 +54,10 @@ export class AttendanceService {
   clockIn(employeeId: number): AttendanceRecord {
     let record = this.getRecord(employeeId);
     if (!record.isClockedIn) {
-      record.clockInTime = new Date().toISOString();
+      const now = new Date().toISOString();
+      record.clockInTime = now;
       record.isClockedIn = true;
-      record.history.push({ type: 'CLOCK_IN', time: record.clockInTime });
+      record.history.push({ type: 'CLOCK_IN', time: now });
 
       const today = new Date().toDateString();
       record.dailyAccumulatedMs ||= {};

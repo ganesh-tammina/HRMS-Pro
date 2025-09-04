@@ -72,20 +72,29 @@ export class MePage implements OnInit {
     this.currentTime = now.toLocaleTimeString('en-US', { hour12: true });
     this.currentDate = now.toDateString();
 
-    const dailyMs = this.record.dailyAccumulatedMs?.[this.currentDate] || 0;
+    const today = this.currentDate;
+    const dailyMs = this.record.dailyAccumulatedMs?.[today] || 0;
+
+    // Total gross = all accumulated today + ongoing session
     let totalMs = dailyMs;
+    let sessionMs = 0;
     if (this.record.isClockedIn && this.record.clockInTime) {
-      totalMs += now.getTime() - new Date(this.record.clockInTime).getTime();
+      sessionMs = now.getTime() - new Date(this.record.clockInTime).getTime();
+      totalMs += sessionMs;
     }
 
+    // Session timer since last login
+    this.timeSinceLastLogin = this.formatHMS(sessionMs);
+
+    // Gross hours today
     const grossMinutes = Math.floor(totalMs / 60000);
     this.grossHours = this.formatHoursMinutes(grossMinutes);
 
-    const effectiveMinutes = grossMinutes - this.breakMinutes;
+    const effectiveMinutes = Math.max(grossMinutes - this.breakMinutes, 0);
     this.effectiveHours = this.formatHoursMinutes(effectiveMinutes);
 
-    this.timeSinceLastLogin = this.formatHMS(totalMs);
-    this.status = this.record.isClockedIn || grossMinutes > 0 ? 'Present' : 'Absent';
+    // Status: Present if any accumulated hours today
+    this.status = totalMs > 0 ? 'Present' : 'Absent';
   }
 
   loadHistory() {

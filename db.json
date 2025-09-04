@@ -101,6 +101,33 @@
         "companyEmail": "Rajesh@tammina.com",
         "password": "123456"
       }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Ravi",
+        "MiddleName": "Kumar",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "ravi@gmail.com",
+        "gender": "male",
+        "initials": "RM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": 5,
+      "offerDetails": {
+        "DOJ": "30/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "ravi@tammina.com",
+        "password": "123456"
+      }
     }
   ],
   "attendanceLogs": []
