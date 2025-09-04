@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CandidateService, Candidate } from 'src/app/services/pre-onboarding.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import {
   IonHeader,
   IonToolbar,
@@ -13,7 +12,6 @@ import {
   IonIcon,
   IonAvatar,
   IonLabel,
-  IonItem,
   IonButton
 } from '@ionic/angular/standalone';
 
@@ -34,7 +32,6 @@ import {
     IonSearchbar,
     IonIcon,
     IonAvatar,
-    IonItem,
     IonLabel,
     IonButton
   ]
@@ -46,23 +43,19 @@ export class HeaderComponent implements OnInit {
   constructor(private candidateService: CandidateService) { }
 
   ngOnInit() {
-    // Subscribe to the current logged-in candidate
+    // Subscribe to current candidate observable
     this.candidateService.currentCandidate$.subscribe(user => {
       this.currentCandidate = user;
     });
 
-    // Fallback: if page refresh, load from localStorage
+    // Fallback: if page refreshed
     if (!this.currentCandidate) {
-      const stored = localStorage.getItem('loggedInCandidate');
-      if (stored) {
-        this.currentCandidate = JSON.parse(stored);
-      }
+      this.currentCandidate = this.candidateService.getCurrentCandidate();
     }
   }
 
   logout() {
-    localStorage.removeItem('loggedInCandidate');
-    this.currentCandidate = null;
+    this.candidateService.logout();
     window.location.href = '/login';
   }
 }

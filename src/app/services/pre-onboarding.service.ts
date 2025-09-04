@@ -12,6 +12,7 @@ export interface Candidate {
     PhoneNumber: string;
     email: string;
     gender: string;
+    profileImage?: string;
   };
   jobDetailsForm: {
     JobTitle: string;
@@ -98,8 +99,11 @@ export class CandidateService {
   }
 
   logout() {
-    localStorage.removeItem('activeUserId');
+    const activeId = localStorage.getItem('activeUserId');
+    if (activeId) {
+      localStorage.removeItem(`loggedInCandidate_${activeId}`);
+      localStorage.removeItem('activeUserId');
+    }
     this.currentCandidateSubject.next(null);
   }
-
 }

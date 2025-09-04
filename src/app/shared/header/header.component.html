@@ -26,17 +26,13 @@
             <ion-icon name="notifications-outline" class="nav-icon"></ion-icon>
 
             <ion-label class="candidate-name">
-              {{ currentCandidate.personalDetails.FirstName }}
-              {{ currentCandidate.personalDetails.LastName }}
+              {{ currentCandidate?.personalDetails?.FirstName }}
+              {{ currentCandidate?.personalDetails?.LastName }}
             </ion-label>
 
-            <!-- <ion-avatar>
-              <img
-                [src]="currentCandidate.personalDetails?.profileImage || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
-                alt="User Avatar" />
-            </ion-avatar> -->
 
 
+            <ion-button fill="clear" (click)="logout()">Logout</ion-button>
 
           </div>
         </ion-col>
