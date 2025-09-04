@@ -4,9 +4,9 @@ export interface AttendanceRecord {
   employeeId: number;
   lastClockInTime?: string;   // most recent clock-in
   lastClockOutTime?: string;  // most recent clock-out
-  accumulatedMsToday: number; // accumulated milliseconds for today
+  accumulatedMsToday: number; // milliseconds worked today
   isClockedIn: boolean;
-  lastClockDate?: string;     // date of the last clock-in
+  lastClockDate?: string;     // date of last clock-in
 }
 
 @Injectable({
@@ -41,7 +41,7 @@ export class AttendanceService {
     const today = new Date().toISOString().split('T')[0];
 
     if (record.lastClockDate !== today) {
-      // New day: reset today's accumulated time
+      // New day: reset today's time
       record.accumulatedMsToday = 0;
       record.isClockedIn = false;
       record.lastClockInTime = undefined;

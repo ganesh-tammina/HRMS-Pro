@@ -26,6 +26,9 @@ export class MePage implements OnInit {
   currentDate: string = '';
   status: string = 'Not Present';
 
+  lastClockInTime: string = '-';
+  lastClockOutTime: string = '-';
+
   constructor(
     private candidateService: CandidateService,
     private attendanceService: AttendanceService
@@ -61,7 +64,6 @@ export class MePage implements OnInit {
 
     const today = new Date().toISOString().split('T')[0];
 
-    // Total milliseconds worked today
     let totalMs = this.record.accumulatedMsToday;
     if (this.record.isClockedIn && this.record.lastClockInTime) {
       totalMs += now.getTime() - new Date(this.record.lastClockInTime).getTime();
@@ -75,8 +77,14 @@ export class MePage implements OnInit {
 
     this.timeSinceLastLogin = this.formatHMS(totalMs);
 
-    // Status for today
     this.status = this.record.lastClockDate === today ? 'Present' : 'Not Present';
+
+    this.lastClockInTime = this.record.lastClockInTime
+      ? new Date(this.record.lastClockInTime).toLocaleTimeString('en-US', { hour12: true })
+      : '-';
+    this.lastClockOutTime = this.record.lastClockOutTime
+      ? new Date(this.record.lastClockOutTime).toLocaleTimeString('en-US', { hour12: true })
+      : '-';
   }
 
   formatHoursMinutes(totalMinutes: number): string {
