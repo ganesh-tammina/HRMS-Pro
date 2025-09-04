@@ -27,11 +27,25 @@ export class MePage implements OnInit {
   currentDate: string = '';
   history: AttendanceEvent[] = [];
   selectedRange: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL' = 'TODAY';
+   progressValue: number = 0.85; // 85% completed for the day
 
   constructor(
     private candidateService: CandidateService,
     private attendanceService: AttendanceService
   ) { }
+
+ 
+  attendanceLogs = [
+    { date: 'Thu, 04 Sept', progress: 0.0, effective: '0h 0m+', gross: '0h 0m+', arrival: 'On Time' },
+    { date: 'Wed, 03 Sept', progress: 0.75, effective: '6h 38m+', gross: '8h 46m+', arrival: 'On Time' },
+    { date: 'Tue, 02 Sept', progress: 0.45, effective: '3h 56m+', gross: '4h 9m+', arrival: 'On Time' },
+    { date: 'Mon, 01 Sept', progress: 0.70, effective: '6h 44m+', gross: '8h 42m+', arrival: 'On Time' },
+  ];
+
+  segmentChanged(event: any) {
+    console.log('Segment changed:', event.detail.value);
+  }
+
 
   ngOnInit() {
     this.employee = this.candidateService.getCurrentCandidate() || undefined;
