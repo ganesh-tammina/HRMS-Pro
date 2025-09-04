@@ -29,12 +29,58 @@ export class MePage implements OnInit {
   selectedRange: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL' = 'TODAY';
    progressValue: number = 0.85; // 85% completed for the day
 
+   activeTab: string = 'log'; // default tab
+  currentMonth: Date = new Date();
+  weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  calendarDays: any[] = [];
+
   constructor(
     private candidateService: CandidateService,
     private attendanceService: AttendanceService
-  ) { }
+  ) {    this.generateCalendar(this.currentMonth); }
 
- 
+   setTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  prevMonth() {
+    this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() - 1));
+    this.generateCalendar(this.currentMonth);
+  }
+
+  nextMonth() {
+    this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() + 1));
+    this.generateCalendar(this.currentMonth);
+  }
+
+  generateCalendar(date: Date) {
+    this.calendarDays = [];
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    // Fill blank days before first day
+    for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+      this.calendarDays.push({ day: '', timing: '', isOff: false });
+    }
+
+    // Fill actual days
+    for (let day = 1; day <= lastDate; day++) {
+      let timing = '9:30 AM - 6:30 PM';
+      let isOff = false;
+
+      // Example: Sat & Sun off
+      const d = new Date(year, month, day).getDay();
+      if (d === 0 || d === 6) {
+        timing = '';
+        isOff = true;
+      }
+
+      this.calendarDays.push({ day, timing, isOff });
+    }
+  }
   attendanceLogs = [
     { date: 'Thu, 04 Sept', progress: 0.0, effective: '0h 0m+', gross: '0h 0m+', arrival: 'On Time' },
     { date: 'Wed, 03 Sept', progress: 0.75, effective: '6h 38m+', gross: '8h 46m+', arrival: 'On Time' },
@@ -42,9 +88,9 @@ export class MePage implements OnInit {
     { date: 'Mon, 01 Sept', progress: 0.70, effective: '6h 44m+', gross: '8h 42m+', arrival: 'On Time' },
   ];
 
-  segmentChanged(event: any) {
-    console.log('Segment changed:', event.detail.value);
-  }
+  // segmentChanged(event: any) {
+  //   console.log('Segment changed:', event.detail.value);
+  // }
 
 
   ngOnInit() {

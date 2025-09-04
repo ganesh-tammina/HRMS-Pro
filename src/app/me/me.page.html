@@ -83,18 +83,14 @@
 
   <ion-card-content>
     <!-- Tabs -->
-    <ion-segment value="log" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="log">
-        <ion-label>Attendance Log</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="calendar">
-        <ion-label>Calendar</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="requests">
-        <ion-label>Attendance Requests</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-
+     <div class="tabs-container">
+    <button [class.active]="activeTab === 'log'" (click)="setTab('log')">Attendance Log</button>
+    <button [class.active]="activeTab === 'calendar'" (click)="setTab('calendar')">Calendar</button>
+    <button [class.active]="activeTab === 'requests'" (click)="setTab('requests')">Attendance Requests</button>
+  </div>
+   
+<div *ngIf="activeTab === 'log'">
+    <h2>Attendance Log</h2>
     <!-- Filters -->
     <div class="filters">
       <ion-button size="small" fill="solid" color="primary">30 DAYS</ion-button>
@@ -150,6 +146,29 @@
         <ion-col size="12">Sat, 30 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
       </ion-row>
     </ion-grid>
+  </div>
+    <div *ngIf="activeTab === 'calendar'">
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button (click)="prevMonth()">&lt;</button>
+        <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
+        <button (click)="nextMonth()">&gt;</button>
+      </div>
+
+      <div class="calendar-grid">
+        <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
+        <div class="day-cell" *ngFor="let date of calendarDays">
+          <div class="date">{{ date.day }}</div>
+          <div class="timing" *ngIf="date.timing">{{ date.timing }}</div>
+          <div class="woff" *ngIf="date.isOff">W-OFF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div *ngIf="activeTab === 'requests'">
+    <h2>Attendance Requests</h2>
+    <!-- Your request content here -->
+  </div>
   </ion-card-content>
 </ion-card>
 
