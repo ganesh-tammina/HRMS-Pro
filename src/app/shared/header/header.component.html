@@ -13,9 +13,13 @@
         <!-- Center: Search Bar -->
         <ion-col size="6">
           <div class="navbar-center">
-            <ion-searchbar placeholder="Search employees or actions (Ex: Apply Leave)" class="search-box"
+            <ion-searchbar placeholder="Search employee by name" [(ngModel)]="searchQuery" (ionInput)="onSearch()"
               showCancelButton="never">
             </ion-searchbar>
+
+            <ion-button *ngIf="searchResults.length > 0" (click)="openEmployeeListModal()">
+              Show {{ searchResults.length }} Employee(s)
+            </ion-button>
           </div>
         </ion-col>
 
@@ -26,11 +30,9 @@
             <ion-icon name="notifications-outline" class="nav-icon"></ion-icon>
 
             <ion-label class="candidate-name">
-              {{ currentCandidate?.personalDetails?.FirstName }}
-              {{ currentCandidate?.personalDetails?.LastName }}
+              {{ currentCandidate.personalDetails.FirstName }}
+              {{ currentCandidate.personalDetails.LastName }}
             </ion-label>
-
-
 
             <ion-button fill="clear" (click)="logout()">Logout</ion-button>
 
