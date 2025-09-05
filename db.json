@@ -16,7 +16,7 @@
         "WorkType": "Perminate",
         "BussinessUnit": "Tech Tammina"
       },
-      "id": 1
+      "id": "1"
     },
     {
       "personalDetails": {
@@ -35,7 +35,7 @@
         "WorkType": "Perminent",
         "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
       },
-      "id": 2,
+      "id": "2",
       "offerDetails": {
         "DOJ": "06/09/2025",
         "offerValidity": "2",
@@ -63,7 +63,7 @@
         "WorkType": "Perminent",
         "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
       },
-      "id": 3,
+      "id": "3",
       "offerDetails": {
         "DOJ": "20/09/2025",
         "offerValidity": "2",
@@ -91,7 +91,7 @@
         "WorkType": "Perminent",
         "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
       },
-      "id": 4,
+      "id": "4",
       "offerDetails": {
         "DOJ": "25/09/2025",
         "offerValidity": "7",
@@ -119,7 +119,7 @@
         "WorkType": "Perminent",
         "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
       },
-      "id": 5,
+      "id": "5",
       "offerDetails": {
         "DOJ": "30/09/2025",
         "offerValidity": "7"

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CreateOfferHeaderComponent } from '../create-offer-header/create-offer-header.component';
 import { OnboardingMainheaderComponent } from '../onboarding-mainheader/onboarding-mainheader.component';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-compensation',
@@ -26,7 +27,8 @@ export class CompensationComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private candidateService: CandidateService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private email: EmailService
   ) { }
 
   ngOnInit() {
@@ -61,6 +63,12 @@ export class CompensationComponent implements OnInit {
       this.candidateService.updateCandidate(this.candidate).subscribe({
         next: (res) => {
           console.log('Candidate updated with credentials:', res);
+
+          this.email.sendEmail(this.candidate).subscribe({
+            next: (res) => {
+              console.log(res);
+            }
+          });
           alert('Employee credentials saved successfully!');
         },
         error: (err) => {
