@@ -2,20 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CandidateService, Candidate } from 'src/app/services/pre-onboarding.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  IonHeader,
-  IonToolbar,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonSearchbar,
-  IonIcon,
-  IonAvatar,
-  IonLabel,
-  IonButton,
-  ModalController
-} from '@ionic/angular/standalone';
 import { EmployeeListModalComponent } from '../employee-list-modal/employee-list-modal.component';
+import { IonicModule, ModalController } from '@ionic/angular';
+
 
 @Component({
   standalone: true,
@@ -26,16 +15,7 @@ import { EmployeeListModalComponent } from '../employee-list-modal/employee-list
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonHeader,
-    IonToolbar,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonSearchbar,
-    IonIcon,
-    IonAvatar,
-    IonLabel,
-    IonButton
+    IonicModule
   ]
 })
 export class HeaderComponent implements OnInit {
