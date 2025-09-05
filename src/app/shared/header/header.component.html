@@ -4,18 +4,15 @@
       <ion-row class="ion-align-items-center ion-justify-content-between">
 
         <!-- Left: Company Name -->
-        <ion-col size="7" class="row-left">          
+        <ion-col size="7" class="row-left">
           <div class="navbar-left">
-            <img
-            src="./../assets/techlogo.png"
-            alt="Tech Tammina"
-          />         
+            <img src="./../assets/techlogo.png" alt="Tech Tammina" />
           </div>
           <div class="navbar-center">
-            <ion-searchbar placeholder="Search employees or actions (Ex: Apply Leave)" class="search-box"
+            <ion-searchbar placeholder="Search employee by name" [(ngModel)]="searchQuery" (ionInput)="onSearch()"
               showCancelButton="never">
             </ion-searchbar>
-          </div>         
+          </div>
         </ion-col>
 
         <!-- Right: Notifications + Candidate Info -->
@@ -25,11 +22,9 @@
             <ion-icon name="notifications-outline" class="nav-icon"></ion-icon>
 
             <ion-label class="candidate-name">
-              {{ currentCandidate?.personalDetails?.FirstName }}
-              {{ currentCandidate?.personalDetails?.LastName }}
+              {{ currentCandidate.personalDetails.FirstName }}
+              {{ currentCandidate.personalDetails.LastName }}
             </ion-label>
-
-
 
             <ion-button fill="clear" (click)="logout()">Logout</ion-button>
 
