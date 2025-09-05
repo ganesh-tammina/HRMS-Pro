@@ -47,7 +47,7 @@ export class PostPage implements OnInit {
   private salarySaved = false;
   candidates: any[] = [];
 
-  constructor(private fb: FormBuilder, private modalCtrl: ModalController, private http: HttpClient, private router: Router, private candidateService: CandidateService) { }
+  constructor(private fb: FormBuilder, private modalCtrl: ModalController, private http: HttpClient, private router: Router,) { }
 
   /*************  ✨ Windsurf Command ⭐  *************/
   /**

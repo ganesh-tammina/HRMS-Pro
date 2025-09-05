@@ -12,8 +12,10 @@ import {
   IonIcon,
   IonAvatar,
   IonLabel,
-  IonButton
+  IonButton,
+  ModalController
 } from '@ionic/angular/standalone';
+import { EmployeeListModalComponent } from '../employee-list-modal/employee-list-modal.component';
 
 @Component({
   standalone: true,
@@ -40,7 +42,14 @@ export class HeaderComponent implements OnInit {
 
   currentCandidate: Candidate | null = null;
 
-  constructor(private candidateService: CandidateService) { }
+  // Search functionality
+  searchQuery: string = '';
+  searchResults: Candidate[] = [];
+
+  constructor(
+    private candidateService: CandidateService,
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
     // Subscribe to current candidate observable
@@ -54,8 +63,29 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // Logout method
   logout() {
     this.candidateService.logout();
     window.location.href = '/login';
   }
+
+  // Search employees by name
+  onSearch() {
+    if (!this.searchQuery || this.searchQuery.trim() === '') {
+      this.searchResults = [];
+      return;
+    }
+
+    this.searchResults = this.candidateService.searchCandidates(this.searchQuery);
+  }
+
+  // Open modal to show employee list
+  async openEmployeeListModal() {
+    const modal = await this.modalCtrl.create({
+      component: EmployeeListModalComponent,
+      componentProps: { employees: this.searchResults }
+    });
+    await modal.present();
+  }
+
 }

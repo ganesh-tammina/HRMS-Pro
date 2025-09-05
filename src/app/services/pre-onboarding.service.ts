@@ -106,4 +106,15 @@ export class CandidateService {
     }
     this.currentCandidateSubject.next(null);
   }
+
+  // -----------------------------
+  // Search method for header
+  // -----------------------------
+  searchCandidates(query: string): Candidate[] {
+    const lowerQuery = query.toLowerCase().trim();
+    return this.candidatesSubject.value.filter(c =>
+      c.personalDetails.FirstName.toLowerCase().includes(lowerQuery) ||
+      c.personalDetails.LastName.toLowerCase().includes(lowerQuery)
+    );
+  }
 }
