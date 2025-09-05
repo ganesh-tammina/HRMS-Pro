@@ -128,6 +128,33 @@
         "companyEmail": "ravi@tammina.com",
         "password": "123456"
       }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Siva Ganesh",
+        "MiddleName": "Meesala",
+        "LastName": "Tammina",
+        "PhoneNumber": "9876543210",
+        "email": "meesalag85@gmail.com",
+        "gender": "male",
+        "initials": "ST"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "IT Development",
+        "JobLocation": "Site 2 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam"
+      },
+      "id": "ZDS8seV",
+      "offerDetails": {
+        "DOJ": "30/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "SivaGanesh@tammina.com",
+        "password": "123456"
+      }
     }
   ],
   "attendanceLogs": []

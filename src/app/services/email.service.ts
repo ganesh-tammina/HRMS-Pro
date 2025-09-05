@@ -38,7 +38,7 @@ export class EmailService {
     const data = {
 
       // change this mail as it is hard coded. ⬇️
-      to: "vamsigontu2022@gmail.com",
+      to: `${candidate.personalDetails.email}`,
       // this mail ⬆️
       subject: 'Welcome to our company!',
       text: `Hi ${candidate.personalDetails.FirstName},\n\nWelcome to our company! We are excited to have you join our team. Please find your Login Crefentials Down below: \n\n Email: ${candidate.personalDetails.email}\n Password: ${candidate.employeeCredentials?.password} \n\nBest regards,\nYour Company Team`
