@@ -1,2 +1,45 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+$primary-color: #07488D;
+$secondry-color: #3498DB;
+$black-color: #000000;
+$text-color: #2d2d2d;
+$border-color: #ABABAB;
+
+$bg-color: #D9D9D9;
+
+
+
+@mixin font-bold {
+    font-weight: 600;
+    letter-spacing: 2%;
+}  
+
+@mixin page-header {
+    font-size: 32px;
+    line-height: 26px;
+    @include font-bold();
+}
+
+@mixin card-header {
+    font-size: 24px;
+    line-height: 22px;
+    @include font-bold();
+}
+
+@mixin card-sub-title {
+    font-size: 18px;
+    line-height: 20px;
+    @include font-bold();
+}
+
+@mixin body-text {
+    font-size: 12px;
+    line-height: 16px;
+    @include font-bold();
+}
+
+@mixin text-bold {
+    @include body-text();
+    font-weight: 400;
+}
