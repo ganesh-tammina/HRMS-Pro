@@ -155,6 +155,141 @@
         "companyEmail": "SivaGanesh@tammina.com",
         "password": "123456"
       }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Manikanta",
+        "MiddleName": "Tammina",
+        "LastName": "Tammina",
+        "PhoneNumber": "9876543210",
+        "email": "tharak37@gmail.com",
+        "gender": "male",
+        "initials": "MT"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": "uMbmVbq",
+      "offerDetails": {
+        "DOJ": "24/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "manikanta@tammina.com",
+        "password": "123456"
+      }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Siva meesala",
+        "MiddleName": "meesala",
+        "LastName": "tammina",
+        "PhoneNumber": "9876543210",
+        "email": "meesalag85@gmail.com",
+        "gender": "male",
+        "initials": "ST"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam"
+      },
+      "id": "0AGRTrj",
+      "offerDetails": {
+        "DOJ": "24/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "Devi@tammina.com",
+        "password": "123456"
+      }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Bipul",
+        "MiddleName": "Sardhar",
+        "LastName": "Tammina",
+        "PhoneNumber": "9876543210",
+        "email": "bipulsardar091@gmail.com",
+        "gender": "male",
+        "initials": "BT"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam"
+      },
+      "id": "LvzJ0RL",
+      "offerDetails": {
+        "DOJ": "12/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "Devi@tammina.com",
+        "password": "123456"
+      }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "moulika",
+        "MiddleName": "cheekati",
+        "LastName": "shya,",
+        "PhoneNumber": "9876543210",
+        "email": "moulika.cheekati@gamil.com",
+        "gender": "female",
+        "initials": "MS"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": "udygno4",
+      "offerDetails": {
+        "DOJ": "30/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "Moulika@tammina.com",
+        "password": "123456"
+      }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Moulika",
+        "MiddleName": "Cheekati",
+        "LastName": "Tammina",
+        "PhoneNumber": "99876543210",
+        "email": "moulika.cheekati@gmail.com",
+        "gender": "female",
+        "initials": "MT"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": "3s1_ulU",
+      "offerDetails": {
+        "DOJ": "24/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "moulika@tammina.com",
+        "password": "123456"
+      }
     }
   ],
   "attendanceLogs": []
