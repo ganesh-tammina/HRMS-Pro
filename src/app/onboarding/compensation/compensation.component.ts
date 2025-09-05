@@ -60,22 +60,24 @@ export class CompensationComponent implements OnInit {
       this.candidate.employeeCredentials = this.credentialsForm.value;
 
       // Call service to update candidate
-      this.candidateService.updateCandidate(this.candidate).subscribe({
+      this.email.sendEmail(this.candidate).subscribe({
         next: (res) => {
-          console.log('Candidate updated with credentials:', res);
-
-          this.email.sendEmail(this.candidate).subscribe({
-            next: (res) => {
-              console.log(res);
-            }
-          });
-          alert('Employee credentials saved successfully!');
-        },
-        error: (err) => {
-          console.error('Error saving credentials:', err);
-          alert('Failed to save employee credentials.');
+          if (res.success) {
+            this.candidateService.updateCandidate(this.candidate).subscribe({
+              next: (res) => {
+                console.log('Candidate updated with credentials:', res);
+                alert('Employee credentials saved and mail sent successfully!');
+              },
+              error: (err) => {
+                console.error('Error saving credentials:', err);
+                alert('Failed to save employee credentials.');
+              }
+            });
+          } else {
+          }
         }
       });
+
     } else {
       alert('Please fill all required fields correctly!');
     }
