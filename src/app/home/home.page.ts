@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../shared/header/header.component';
-
+import { IonItemDivider, IonImg, IonList  } from '@ionic/angular/standalone';
 // ✅ Import all Ionic components you are using
 import {
   IonContent,
@@ -41,7 +41,10 @@ import {
     IonAvatar,
     IonItem,
     IonLabel,
-    HeaderComponent
+    HeaderComponent,
+    IonItemDivider,
+    IonImg,
+    IonList   
 
   ]
 })

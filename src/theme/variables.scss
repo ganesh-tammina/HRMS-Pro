@@ -35,11 +35,12 @@ $bg-color: #D9D9D9;
 
 @mixin body-text {
     font-size: 12px;
-    line-height: 16px;
+    line-height: 16px;    
     @include font-bold();
+    font-weight: 400;
 }
 
 @mixin text-bold {
     @include body-text();
-    font-weight: 400;
+    @include font-bold();
 }

@@ -85,10 +85,7 @@ ion-content {
 }
 
 .section-title {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #333;
+  @include card-sub-title();
 }
 
 .on-leave-user {
@@ -105,10 +102,17 @@ ion-avatar {
 }
 
 ion-label {
-  font-size: 14px;
-  color: #333;
+  @include body-text();
 }
 .card-main-header {
   @include card-header();
   color: $text-color;
+}
+.on-leave-section {
+  ion-row {
+    width: 100%;
+    ion-col {
+      width: 50%;
+    }
+  }
 }

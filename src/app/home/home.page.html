@@ -7,23 +7,64 @@
   <ion-row>
     <ion-col class="col-4">
       <div>
-    <h6 class="card-title">Quick Access</h6>
-        <ion-card class="quick-access-card">
+        <ion-card>
   <ion-card-content>
-    <p class="card-main-header">Overview</p>
-    <div class="on-leave-section quick-access-card">
-      <p class="section-title">On Leave Today</p>
-      <ion-item lines="none" class="on-leave-user">
-        <ion-avatar slot="start">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" width="75px" height="75px" alt="User Avatar">
-        </ion-avatar>
-        <ion-label>
-          Vamsi...
-        </ion-label>
-      </ion-item>
-    </div>
+    <p class="card-main-header ion-padding-bottom">Overview</p>
+    <div class="quick-access-card ">
+        <ion-item-divider>
+        <div class="on-leave-section">            
+            <p class="section-title">On Leave Today</p>
+            <ion-row>
+            <ion-col lines="none" class="on-leave-user">
+              <ion-avatar slot="start">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" width="75px" height="75px" alt="User Avatar">
+              </ion-avatar>
+              <ion-label>
+                Vamsi...
+              </ion-label>
+            </ion-col>  
+            <ion-col lines="none" class="on-leave-user">                
+                <ion-img
+                    src="../../assets/onleave-img.svg"
+                    alt="On Leave"
+                  ></ion-img>
+              </ion-col>
+          </ion-row>         
+          </div>
+        </ion-item-divider>
+          <div class="on-leave-section ion-padding">
+              <p class="section-title">Work From Home</p>
+              <ion-row>
+              <ion-col lines="none" class="on-leave-user ">
+                <ion-avatar slot="start">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" width="75px" height="75px" alt="User Avatar">
+                </ion-avatar>
+                <ion-label>
+                  Vamsi...
+                </ion-label>
+              </ion-col>
+              <ion-col lines="none" class="on-leave-user ">
+                 
+                  <ion-img
+                  src="../../assets/WFH-img.svg"
+                  alt="WFH"
+                ></ion-img>
+                 
+                </ion-col>
+              </ion-row>
+            </div>
+           </div>
+    
   </ion-card-content>
 </ion-card>
+
+<ion-card class=" ">
+    <ion-card-content>
+      <p class="card-main-header ion-padding-bottom">Upcoming Holidays</p>
+      
+      
+    </ion-card-content>
+  </ion-card>
       </div>
     </ion-col>
     <ion-col class="col-8"></ion-col>

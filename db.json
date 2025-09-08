@@ -290,6 +290,29 @@
         "companyEmail": "moulika@tammina.com",
         "password": "123456"
       }
+    },
+    {
+      "id": "2205",
+      "personalDetails": {
+        "FirstName": "praveena",
+        "MiddleName": "raja",
+        "LastName": "G",
+        "PhoneNumber": "9874563210",
+        "email": "praveenag6161@gamil.com",
+        "gender": "female",
+        "initials": "PG"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam"
+      },
+      "offerDetails": {
+        "DOJ": "19/09/2025",
+        "offerValidity": "7"
+      }
     }
   ],
   "attendanceLogs": []
