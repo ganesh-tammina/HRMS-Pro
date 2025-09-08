@@ -78,8 +78,11 @@ ion-content {
   box-shadow: -2px -2px 11.6px 0px #00000033;
   padding: 16px 8px;
   border-radius: 10px;
+  margin-bottom: 16px;
 }
-
+.page-title {
+  @include page-header();
+}
 .card-title {
   @include body-text();
 }
@@ -96,23 +99,178 @@ ion-content {
 }
 
 ion-avatar {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   margin-right: 8px;
 }
 
-ion-label {
-  @include body-text();
-}
 .card-main-header {
   @include card-header();
   color: $text-color;
 }
-.on-leave-section {
+.avatar-section {
+  width: 100%;
   ion-row {
     width: 100%;
     ion-col {
       width: 50%;
     }
+  }
+  .on-leave-user {
+    ion-img {
+      width: 100px;
+    }
+  }
+  }
+  .label-block {
+    img {
+      border-radius: 50%;
+      height: auto;
+      width: 38px;
+    }
+    ion-label {
+      display: block;
+      text-align: center;
+      text-align: center;
+      text-overflow: ellipsis;
+      width: 85%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  // Holidays section style
+  .holidays-section {
+    @extend .quick-access-card;
+      height: 365px;
+      background-size: cover;
+      background-position: center center; 
+      .section-title, .card-main-header, p {
+        color: #B01712;        
+      }
+      a {
+        color: #B01712; 
+        text-decoration:none;   
+      }
+      p{
+        @include text-style-normal();
+      }
+  }
+.week-card {
+  // .text-ellipsis {
+  //   width: 35px;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  //   @include text-bold();   
+  //   white-space: nowrap;
+
+  // }
+  .complete {
+    .progress {
+      background: $primary-color;
+      height: 10px;
+      width: 35px;      
+      border-radius: 12px;
+    }
+//  @extend .text-ellipsis ;
+ width: 100%;
+ padding-right: 16px;
+ text-align: center;
+  }
+  
+  .remaining {
+    .progress {
+      background: gray;
+      height: 10px;
+      width: 35px;
+      border-radius: 12px;      
+    }
+    color: gray;
+    // @extend .text-ellipsis ;
+    width: 100%;
+    padding-right: 16px;
+    text-align: center;
+  }
+  ion-item {
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+  }
+  .text-color {
+    color: #1F90CF;
+  }
+}
+ 
+
+.time-actions {
+  --background: #122E44;
+    color: #fff;
+    .clock {
+      @include card-header();
+    }
+    .info {
+      @include text-style-bold();
+    }
+    .time {
+      @include page-header();
+      margin-block-start: 10px;
+    }
+    ion-button.btn-clockin {
+      --background: #B01712;
+    }
+    ion-button.btn-clockout {
+      --border: 1px solid#fff;
+      --background: #fff;
+      --color: #B01712;
+    }
+    ion-button.popover-button {
+      --border: 1px solid#fff;
+      --background: #fff;
+      --color: #2d2d2d;
+    }
+}
+
+.welcome-block {
+  background: #00568F;
+  color: #DADEE4;
+  @include page-header();
+  font-weight: 700; 
+  img {
+    height: 100px;
+    padding-top: 5px;
+  }
+}
+
+.reporting-block {
+  .left-block {
+    border-right: 1px solid #9E9E9E;
+    img {
+      border-radius: 50%;
+    }
+    .name {
+      @include card-sub-title();
+      color: #3498DB;
+    }
+    .designation {
+      @include text-style-bold();
+      color: #696969;
+    }
+  }
+  .right-block {
+   padding-left: 12px;
+   .name {
+    @include card-sub-title();
+    color: #3498DB;
+  }
+  }
+}
+
+.announce-card {
+  p {
+    margin-block-end: 0px;
+  }
+  img {
+    margin: auto;
+    display: flex;
+    margin-bottom: 30px;
   }
 }

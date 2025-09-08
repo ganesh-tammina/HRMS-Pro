@@ -12,8 +12,12 @@ $bg-color: #D9D9D9;
 
 @mixin font-bold {
     font-weight: 600;
-    letter-spacing: 2%;
+    letter-spacing: 0.2px;
 }  
+@mixin font-normal {
+    font-weight: 400;
+    letter-spacing: 0.2px;
+} 
 
 @mixin page-header {
     font-size: 32px;
@@ -32,7 +36,16 @@ $bg-color: #D9D9D9;
     line-height: 20px;
     @include font-bold();
 }
-
+@mixin text-style-normal {
+    font-size: 16px;
+    line-height: 20px;
+    @include font-normal();
+}
+@mixin text-style-bold {
+    font-size: 16px;
+    line-height: 20px;
+    @include font-bold();
+}
 @mixin body-text {
     font-size: 12px;
     line-height: 16px;    

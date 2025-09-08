@@ -5,25 +5,38 @@
 
 <ion-grid class="ion-margin ion-margin-horizontal">
   <ion-row>
-    <ion-col class="col-4">
-      <div>
-        <ion-card>
-  <ion-card-content>
+    <ion-col size="12" class="welcome-block ion-no-padding row-space-between">
+     <div class="row-left"><img src="../../assets/bg-welcome.svg" /><p>Welcome Gopi  Neeraj Kumar</p></div> 
+     <img src="../../assets/bg-welcome1.svg" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+    <ion-card> 
+        <ion-card-content>
     <p class="card-main-header ion-padding-bottom">Overview</p>
-    <div class="quick-access-card ">
+    
+    <div class="quick-access-card">
         <ion-item-divider>
-        <div class="on-leave-section">            
+        <div class="avatar-section">            
             <p class="section-title">On Leave Today</p>
-            <ion-row>
-            <ion-col lines="none" class="on-leave-user">
-              <ion-avatar slot="start">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" width="75px" height="75px" alt="User Avatar">
-              </ion-avatar>
-              <ion-label>
-                Vamsi...
-              </ion-label>
+            <ion-row class="row-space-between">
+            <ion-col lines="none" size="8" class="d-flex">
+                
+                <div class="pr-5 label-block">                 
+                        <img alt="Silhouette of a person's head" src="https://randomuser.me/api/portraits/men/32.jpg" />
+                    
+                    <ion-label>vamsi kumar</ion-label>
+                </div>
+
+                <div class="pr-5 label-block">                 
+                    <img alt="Silhouette of a person's head" src="https://randomuser.me/api/portraits/men/32.jpg" />
+                
+                <ion-label>vamsi kumar</ion-label>
+            </div>
+           
             </ion-col>  
-            <ion-col lines="none" class="on-leave-user">                
+            <ion-col lines="none"  size="4" class="on-leave-user">                
                 <ion-img
                     src="../../assets/onleave-img.svg"
                     alt="On Leave"
@@ -32,42 +45,148 @@
           </ion-row>         
           </div>
         </ion-item-divider>
-          <div class="on-leave-section ion-padding">
+          <div class="avatar-section ion-padding">
               <p class="section-title">Work From Home</p>
-              <ion-row>
-              <ion-col lines="none" class="on-leave-user ">
-                <ion-avatar slot="start">
-                  <img src="https://randomuser.me/api/portraits/men/32.jpg" width="75px" height="75px" alt="User Avatar">
-                </ion-avatar>
-                <ion-label>
-                  Vamsi...
-                </ion-label>
-              </ion-col>
-              <ion-col lines="none" class="on-leave-user ">
+              <ion-row  class="row-space-between">
+                  <ion-col lines="none"  size="8" class="d-flex">
+                
+                      <div class="pr-5 label-block">                 
+                              <img alt="Silhouette of a person's head" src="https://randomuser.me/api/portraits/men/32.jpg" />
+                          
+                          <ion-label>vamsi kumar</ion-label>
+                      </div>
+      
+                      <div class="pr-5 label-block">                 
+                          <img alt="Silhouette of a person's head" src="https://randomuser.me/api/portraits/men/32.jpg" />
+                      
+                      <ion-label>vamsi kumar</ion-label>
+                  </div>
+                 
+                  </ion-col>  
+              <ion-col lines="none"  size="4" class="on-leave-user">
                  
                   <ion-img
                   src="../../assets/WFH-img.svg"
-                  alt="WFH"
+                  alt="WFH" width="110"
                 ></ion-img>
                  
                 </ion-col>
               </ion-row>
             </div>
-           </div>
+          </div>
+<!-- Holiday Section -->
+<div class="holidays-section" [style.backgroundImage]="'url(' + backgroundImageUrl + ')'">
     
-  </ion-card-content>
-</ion-card>
+      <div class="row-space-between mb-30"><p class="section-title">Upcoming Holidays</p>
+           <a href="">View All</a></div>
+        
+      <h2 class="card-main-header mb-30">Christmas</h2>
+      <p>Thu, 25 December, 2025</p>
 
-<ion-card class=" ">
-    <ion-card-content>
-      <p class="card-main-header ion-padding-bottom">Upcoming Holidays</p>
-      
-      
-    </ion-card-content>
-  </ion-card>
-      </div>
+</div>
+<!-- Attendance side block -->
+<div class="quick-access-card week-card ">    
+    <p class="section-title pb-8">Attendance</p>
+    <div class="row-left"><h2 class="page-title">95%</h2><p class="pl-5 text-color">+2% vs Last Month</p> </div>
+    
+      <div class="p-8">
+          <ion-list lines="none" class="row-left">
+            <ion-item *ngFor="let day of days">
+              <ion-label>               
+                <div [ngClass]="day.status === 'Complete' ? 'complete' : 'remaining'">
+                 <p class="progress"></p>
+                 <p class="text-ellipsis">{{ day.date }}</p> 
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+</div>
+</ion-card-content>
+</ion-card>
+</ion-col>
+<!-- Right side block -->
+    <ion-col size="8">
+          <ion-card class="time-actions ion-padding">
+          <div class="card-pannel">
+          <div class="actions-card row-space-between">
+            <div>
+              <p class="clock mb-30">Time Today </p>
+              <p class="info">CURRENT TIME</p>
+              <p class="time">14:25</p>
+            </div>
+  
+            <div class="row-right">
+                <ion-button class="btn-clockin">
+                Clock In
+                </ion-button>
+            
+              <ion-button class="btn-clockout">
+                Clock Out
+              </ion-button>
+
+              <ion-button id="popover-button">Others</ion-button>
+                <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item [button]="true" [detail]="false">Option 1</ion-item>
+                        <ion-item [button]="true" [detail]="false">Option 2</ion-item>                      
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+  
+  
+            </div>
+          </div>
+        </div>
+      </ion-card>
+      <!-- reporting section -->
+       <ion-card class="reporting-block ion-padding">
+            <ion-row>
+                  <ion-col size="6" class="left-block">
+                    <p class="card-main-header mb-30">Reporting manager </p>
+                    <div class="row-left">                 
+                        <img alt="Silhouette of a person's head" src="../../assets/user.svg" width="46"/>
+                    
+                    <ion-label class="pl-5 ">
+                      <p class="name pb-8">Viswanatha Sastry Kvsj</p>
+                      <p class="designation">Vice President Delivery Technology </p>
+                    </ion-label>
+                </div>
+                  </ion-col>
+                  <ion-col size="6"  class="right-block">
+                      <p class="card-main-header mb-30">Client Overview </p>
+                      <div>
+                      <img alt="Silhouette of a person's head" src="../../assets/user.svg" width="46"/>
+                      <p class="name">Client</p>
+                    </div>
+                    </ion-col>
+                    </ion-row>  
+             </ion-card>
+<!-- Performance section -->
+             <ion-card class="week-card ion-padding">
+                <ion-row>
+                      <ion-col size="5" class="left-block">
+                          <p class="card-main-header pb-8">Performance</p>
+                          <div class="row-left"><h2 class="page-title">88%</h2><p class="pl-5 text-color">+3% vs Last Quarter</p> </div>
+                        </ion-col>
+                        <ion-col size="7" class="left-block">
+                            <img src="../../assets/chart-graphic.svg">
+                          </ion-col>
+                </ion-row>
+    
+                 </ion-card>
+
+                 <!-- Performance section -->
+             <ion-card class="announce-card ion-padding">
+                <p class="card-main-header pb-8">Announcements</p>
+                
+                            <img  src="../../assets/undraw_letter_ombg 1.svg">
+                          
+                 </ion-card>
     </ion-col>
-    <ion-col class="col-8"></ion-col>
   </ion-row>
 </ion-grid>
 </ion-content>
