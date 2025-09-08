@@ -15,6 +15,7 @@ import { StartOnboardingComponent } from './onboarding/start-onboarding/start-on
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
 import { LeavesComponent } from './me/leaves/leaves.component';
 import { salaryStaructureComponent } from './salary-staructure/salary-staructure.component';
+import { authGuard } from './auth-gurd.guard';
 
 export const routes: Routes = [
   {
@@ -39,7 +40,8 @@ export const routes: Routes = [
 
   {
     path: 'pre_onboarding',
-    loadComponent: () => import('./onboarding/pre.page').then(m => m.PostPage)
+    loadComponent: () => import('./onboarding/pre.page').then(m => m.PostPage),
+    canActivate: [authGuard]
   },
   {
     path: 'post-onboarding',

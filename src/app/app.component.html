@@ -39,7 +39,7 @@
             <!-- Submenu Dropdown -->
             <div class="dropdown-menu">
               <ion-menu-toggle auto-hide="false">
-                <ion-item *ngIf="currentUser.jobDetailsForm.Department === 'HR'" routerLink="/pre_onboarding"
+                <ion-item *ngIf="this.currentUser.jobDetailsForm.Department == 'HR'" routerLink="/pre_onboarding"
                   lines="none" detail="false">
                   <ion-label>Pre Onboarding</ion-label>
                 </ion-item>
