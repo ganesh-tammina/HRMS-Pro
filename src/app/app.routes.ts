@@ -35,7 +35,6 @@ export const routes: Routes = [
   { path: 'Startonboardingitem', component: StartOnboardingComponent },
   { path: 'CreateOffer/:id/:FirstName', component: CreateOfferComponent },
   { path: 'leaves', component: LeavesComponent },
-  { path: 'salaryStaructure', component: salaryStaructureComponent },
 
 
   {
@@ -55,7 +54,15 @@ export const routes: Routes = [
   },
   {
     path: 'Compensation/:id/:', loadComponent: () => import('./onboarding/compensation/compensation.component').then(m => m.CompensationComponent)
+  },
+  {
+    path: 'salaryStaructure',
+    loadComponent: () =>
+      import('./salary-staructure/salary-staructure.component').then(
+        m => m.salaryStaructureComponent
+      ),
   }
+
 
 
 
