@@ -14,6 +14,7 @@ import { CandiateCreateComponent } from './onboarding/candiate-create/candiate-c
 import { StartOnboardingComponent } from './onboarding/start-onboarding/start-onboarding.component';
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
 import { LeavesComponent } from './me/leaves/leaves.component';
+import { salaryStaructureComponent } from './salary-staructure/salary-staructure.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,8 @@ export const routes: Routes = [
   { path: 'Startonboardingitem', component: StartOnboardingComponent },
   { path: 'CreateOffer/:id/:FirstName', component: CreateOfferComponent },
   { path: 'leaves', component: LeavesComponent },
+  { path: 'salaryStaructure', component: salaryStaructureComponent },
+
 
   {
     path: 'pre_onboarding',
