@@ -100,6 +100,23 @@
       "employeeCredentials": {
         "companyEmail": "Rajesh@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -154,6 +171,23 @@
       "employeeCredentials": {
         "companyEmail": "SivaGanesh@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -208,6 +242,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 600000
+      },
+      "salaryForm": {
+        "annualSalary": 600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
       }
     },
     {
@@ -235,6 +286,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 60000
+      },
+      "salaryForm": {
+        "annualSalary": 60000,
+        "salaryStructure": {
+          "basic": 24000,
+          "hra": 9600,
+          "medical": 15000,
+          "transport": 19200,
+          "special": -7800,
+          "subtotal": 60000,
+          "pfEmployer": 2880,
+          "pfEmployee": 2880,
+          "total": 62880
+        }
       }
     },
     {
@@ -262,6 +330,23 @@
       "employeeCredentials": {
         "companyEmail": "Moulika@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -303,6 +388,23 @@
           "pfEmployee": 28800,
           "total": 628800
         }
+      },
+      "packageDetails": {
+        "salary": ""
+      },
+      "salaryForm": {
+        "annualSalary": 600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
       }
     },
     {
@@ -326,6 +428,23 @@
       "offerDetails": {
         "DOJ": "19/09/2025",
         "offerValidity": "7"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -376,6 +495,23 @@
       "offerDetails": {
         "DOJ": "20/09/2025",
         "offerValidity": "7"
+      },
+      "packageDetails": {
+        "salary": ""
+      },
+      "salaryForm": {
+        "annualSalary": 9600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
       }
     }
   ],
