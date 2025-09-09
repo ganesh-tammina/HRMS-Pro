@@ -313,7 +313,34 @@
         "DOJ": "19/09/2025",
         "offerValidity": "7"
       }
+    },
+    {
+    "personalDetails": {
+      "FirstName": "leepakshi",
+      "MiddleName": "leepakshi",
+      "LastName": "Tammina",
+      "PhoneNumber": "9876543210",
+      "email": "leepakshi@gmail.com",
+      "gender": "male",
+      "initials": "LT"
+    },
+    "jobDetailsForm": {
+      "JobTitle": "UI Developer",
+      "Department": "HR",
+      "JobLocation": "Site 1 - Hyderabad - Night Shift",
+      "WorkType": "Perminent",
+      "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+    },
+    "id": "vQXP-hj",
+    "offerDetails": {
+      "DOJ": "26/09/2025",
+      "offerValidity": "7"
+    },
+    "employeeCredentials": {
+      "companyEmail": "leepakshi@tammina.com",
+      "password": "123456"
     }
+  }
   ],
   "attendanceLogs": []
 }
