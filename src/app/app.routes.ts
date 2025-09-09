@@ -14,6 +14,8 @@ import { CandiateCreateComponent } from './onboarding/candiate-create/candiate-c
 import { StartOnboardingComponent } from './onboarding/start-onboarding/start-onboarding.component';
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
 import { LeavesComponent } from './me/leaves/leaves.component';
+import { salaryStaructureComponent } from './salary-staructure/salary-staructure.component';
+import { authGuard } from './auth-gurd.guard';
 
 export const routes: Routes = [
   {
@@ -35,9 +37,11 @@ export const routes: Routes = [
   { path: 'CreateOffer/:id/:FirstName', component: CreateOfferComponent },
   { path: 'leaves', component: LeavesComponent },
 
+
   {
     path: 'pre_onboarding',
-    loadComponent: () => import('./onboarding/pre.page').then(m => m.PostPage)
+    loadComponent: () => import('./onboarding/pre.page').then(m => m.PostPage),
+    canActivate: [authGuard]
   },
   {
     path: 'post-onboarding',
@@ -52,7 +56,15 @@ export const routes: Routes = [
   },
   {
     path: 'Compensation/:id/:', loadComponent: () => import('./onboarding/compensation/compensation.component').then(m => m.CompensationComponent)
+  },
+  {
+    path: 'salaryStaructure',
+    loadComponent: () =>
+      import('./salary-staructure/salary-staructure.component').then(
+        m => m.salaryStaructureComponent
+      ),
   }
+
 
 
 

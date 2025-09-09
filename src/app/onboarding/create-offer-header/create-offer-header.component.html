@@ -6,29 +6,17 @@
       </ion-toolbar>
     </ion-col>
     <ion-col size="8">
-      <div class="stepper-container">
-        <div class="stepper">
-          <div class="step active">
-            <div class="circle">1</div>
-            <span class="label">JOB DETAILS</span>
-          </div>
+      <ion-button fill="clear" (click)="navigate('salaryStaructure')" [class.active-btn]="activeTab === 'setup'">JOB
+        DETAILS</ion-button>
+      <ion-button fill="clear" (click)="navigate('salaryStaructure')"
+        [class.active-btn]="activeTab === 'setup'">COMPENSATION</ion-button>
 
-          <div class="step">
-            <div class="circle">2</div>
-            <span class="label">COMPENSATION</span>
-          </div>
 
-          <div class="step">
-            <div class="circle">3</div>
-            <span class="label">OFFER DETAILS</span>
-          </div>
+      <ion-button fill="clear" (click)="navigate('salaryStaructure')" [class.active-btn]="activeTab === 'setup'">OFFER
+        DETAILS</ion-button>
 
-          <div class="step">
-            <div class="circle">4</div>
-            <span class="label">PREVIEW & SEND</span>
-          </div>
-        </div>
-      </div>
+      <ion-button fill="clear" (click)="navigate('salaryStaructure')" [class.active-btn]="activeTab === 'setup'">PREVIEW
+        & SEND</ion-button>
     </ion-col>
 
 
