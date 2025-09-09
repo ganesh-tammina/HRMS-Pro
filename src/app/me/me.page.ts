@@ -5,6 +5,26 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { CandidateService, Candidate } from '../services/pre-onboarding.service';
 import { AttendanceService, AttendanceRecord, AttendanceEvent } from '../services/attendance.service';
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
+interface AttendanceRequest {
+  type: string;
+  dateRange: string;
+  items: string[];
+}
+
+interface AttendanceLog {
+  date: string;
+  progress: number;
+  effective: string;
+  gross: string;
+  arrival: string;
+  details: {
+    shift: string;
+    shiftTime: string;
+    location: string;
+    logs: { in: string; out: string }[];
+    webClockIn?: { in: string; out: string };
+  };
+}
 
 @Component({
   selector: 'app-me',
@@ -27,19 +47,31 @@ export class MePage implements OnInit {
   currentDate: string = '';
   history: AttendanceEvent[] = [];
   selectedRange: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL' = 'TODAY';
-   progressValue: number = 0.85; // 85% completed for the day
+  progressValue: number = 0.85; // 85% completed for the day
 
-   activeTab: string = 'log'; // default tab
+  activeTab: string = 'log'; // default tab
   currentMonth: Date = new Date();
   weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   calendarDays: any[] = [];
+  // activeTab: string = 'log';
+
+  attendanceRequests: AttendanceRequest[] = [];
+  //  activeTab: string = 'log';
+
+  // attendanceLogss: AttendanceLog[] = [];
+  selectedLog: AttendanceLog | null = null;
+  showPopover = false;
+  attendanceLogs: AttendanceLog[] = [];
+
+
+
 
   constructor(
     private candidateService: CandidateService,
     private attendanceService: AttendanceService
-  ) {    this.generateCalendar(this.currentMonth); }
+  ) { this.generateCalendar(this.currentMonth); }
 
-   setTab(tab: string) {
+  setTab(tab: string) {
     this.activeTab = tab;
   }
 
@@ -81,16 +113,12 @@ export class MePage implements OnInit {
       this.calendarDays.push({ day, timing, isOff });
     }
   }
-  attendanceLogs = [
-    { date: 'Thu, 04 Sept', progress: 0.0, effective: '0h 0m+', gross: '0h 0m+', arrival: 'On Time' },
-    { date: 'Wed, 03 Sept', progress: 0.75, effective: '6h 38m+', gross: '8h 46m+', arrival: 'On Time' },
-    { date: 'Tue, 02 Sept', progress: 0.45, effective: '3h 56m+', gross: '4h 9m+', arrival: 'On Time' },
-    { date: 'Mon, 01 Sept', progress: 0.70, effective: '6h 44m+', gross: '8h 42m+', arrival: 'On Time' },
-  ];
+
 
   // segmentChanged(event: any) {
   //   console.log('Segment changed:', event.detail.value);
   // }
+
 
 
   ngOnInit() {
@@ -106,11 +134,100 @@ export class MePage implements OnInit {
       this.updateTimes();
       this.loadHistory();
     }, 1000);
+
+    // Requests Data
+    this.attendanceRequests = [
+      {
+        type: 'Work From Home / On Duty Requests',
+        dateRange: '09 Aug 2025 - 22 Sep 2025',
+        items: []
+      },
+      {
+        type: 'Regularization Requests',
+        dateRange: '09 Aug 2025 - 22 Sep 2025',
+        items: ['Request #101 | Pending Approval']
+      },
+      {
+        type: 'Remote Clock In Requests',
+        dateRange: '09 Aug 2025 - 22 Sep 2025',
+        items: []
+      },
+      {
+        type: 'Partial Day Requests',
+        dateRange: '09 Aug 2025 - 22 Sep 2025',
+        items: []
+      }
+    ];
+
+    // Logs Data (with details included)
+    this.attendanceLogs = [
+      {
+        date: 'Mon, 01 Sept',
+        progress: 0.7,
+        effective: '6h 44m',
+        gross: '8h 42m',
+        arrival: 'On Time',
+        details: {
+          shift: 'Day shift 1 (01 Sept)',
+          shiftTime: '9:30 - 18:30',
+          location: '4th Floor SVS Towers',
+          logs: [
+            { in: '09:16:48', out: '12:01:14' },
+            { in: '12:13:29', out: '13:25:47' },
+          ],
+          webClockIn: { in: '09:19:14', out: 'MISSING' },
+        },
+      },
+      {
+        date: 'Tue, 02 Sept',
+        progress: 0.5,
+        effective: '3h 56m',
+        gross: '4h 9m',
+        arrival: 'On Time',
+        details: {
+          shift: 'Day shift 1 (02 Sept)',
+          shiftTime: '9:30 - 18:30',
+          location: '4th Floor SVS Towers',
+          logs: [{ in: '09:10:00', out: '14:30:00' }],
+        },
+      },
+      {
+        date: 'Wed, 03 Sept',
+        progress: 0.75,
+        effective: '6h 38m',
+        gross: '8h 46m',
+        arrival: 'On Time',
+        details: {
+          shift: 'Day shift 1 (03 Sept)',
+          shiftTime: '9:30 - 18:30',
+          location: 'HQ',
+          logs: [{ in: '09:20:00', out: '18:15:00' }],
+        },
+      },
+    ];
   }
 
+  //  attendanceLogs = [
+  //   { date: 'Thu, 04 Sept', progress: 0.0, effective: '0h 0m+', gross: '0h 0m+', arrival: 'On Time' },
+  //   { date: 'Wed, 03 Sept', progress: 0.75, effective: '6h 38m+', gross: '8h 46m+', arrival: 'On Time' },
+  //   { date: 'Tue, 02 Sept', progress: 0.45, effective: '3h 56m+', gross: '4h 9m+', arrival: 'On Time' },
+  //   { date: 'Mon, 01 Sept', progress: 0.70, effective: '6h 44m+', gross: '8h 42m+', arrival: 'On Time' },
+  // ];
   get employeeName(): string {
     return this.employee?.personalDetails?.FirstName || '';
   }
+
+  openLogDetails(log: AttendanceLog) {
+    this.selectedLog = log;
+    this.showPopover = true;
+  }
+
+  closePopover() {
+    this.showPopover = false;
+    this.selectedLog = null;
+  }
+
+
 
   clockIn() {
     if (!this.employee) return;
@@ -184,4 +301,6 @@ export class MePage implements OnInit {
     const seconds = totalSeconds % 60;
     return `${hours}h ${minutes}m ${seconds}s`;
   }
+
+
 }
