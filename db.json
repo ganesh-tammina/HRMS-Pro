@@ -173,20 +173,20 @@
         "password": "123456"
       },
       "packageDetails": {
-        "salary": 900000
+        "salary": 690000
       },
       "salaryForm": {
-        "annualSalary": 900000,
+        "annualSalary": 690000,
         "salaryStructure": {
-          "basic": 360000,
-          "hra": 144000,
+          "basic": 276000,
+          "hra": 110400,
           "medical": 15000,
           "transport": 19200,
-          "special": 361800,
-          "subtotal": 900000,
-          "pfEmployer": 43200,
-          "pfEmployee": 43200,
-          "total": 943200
+          "special": 269400,
+          "subtotal": 690000,
+          "pfEmployer": 33120,
+          "pfEmployee": 33120,
+          "total": 723120
         }
       }
     },
@@ -390,20 +390,20 @@
         }
       },
       "packageDetails": {
-        "salary": ""
+        "salary": 900000
       },
       "salaryForm": {
-        "annualSalary": 600000,
+        "annualSalary": 900000,
         "salaryStructure": {
-          "basic": 240000,
-          "hra": 96000,
+          "basic": 360000,
+          "hra": 144000,
           "medical": 15000,
           "transport": 19200,
-          "special": 229800,
-          "subtotal": 600000,
-          "pfEmployer": 28800,
-          "pfEmployee": 28800,
-          "total": 628800
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
         }
       }
     },

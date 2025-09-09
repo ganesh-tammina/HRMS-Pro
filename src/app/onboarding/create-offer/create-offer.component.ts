@@ -31,12 +31,16 @@ export class CreateOfferComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private candidateService: CandidateService
-  ) { }
+  ) {
 
-  ngOnInit() {
     const nav = this.router.getCurrentNavigation();
     this.candidate = nav?.extras.state?.['candidate'] || {};
     console.log('Candidate:', this.candidate);
+
+  }
+
+  ngOnInit() {
+
 
     if (!this.candidate.offerDetails) {
       this.candidate.offerDetails = { DOJ: '', offerValidity: '' };
