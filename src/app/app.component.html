@@ -37,7 +37,7 @@
             </ion-menu-toggle>
 
             <!-- Submenu Dropdown -->
-            <div class="dropdown-menu">
+            <div class="dropdown-menu" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'HR'">
               <ion-menu-toggle auto-hide="false">
                 <ion-item routerLink="/pre_onboarding" lines="none" detail="false">
                   <ion-label>Pre Onboarding</ion-label>
@@ -61,8 +61,7 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" [routerLink]="['/login']" lines="none" detail="false"
-              routerLinkActive="selected">
+            <ion-item routerDirection="root" (click)="logout()" lines="none" detail="false" routerLinkActive="selected">
               <div>
                 <ion-label>Log out</ion-label>
               </div>
