@@ -274,3 +274,36 @@ ion-avatar {
     margin-bottom: 30px;
   }
 }
+
+.balance-card {
+  ion-row {
+    ion-col {   
+      border-radius: 12px;
+      text-align: center;
+      display: block; 
+      box-shadow: -1px -1px 6px 0px #00000033;
+      padding: 12px 8px;
+      margin-right: 15px;
+      .text {
+        @include normal-text();
+        color: #1F90CF;
+      }
+
+    }
+  }  
+}
+
+.tabs-block{
+  height: 500px;
+  ion-tabs {
+    display: block;
+    position: relative;
+    height: fit-content;
+  ion-tab-bar {
+    border-bottom: 1px solid #C2C2C2;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+}

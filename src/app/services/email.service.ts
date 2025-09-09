@@ -21,7 +21,7 @@ export class EmailService {
       to: candidate.personalDetails.email,
       // this mail ⬆️
       subject: 'Welcome to our company!',
-      text: `Hi ${candidate.personalDetails.FirstName},\n\nWelcome to our company! We are excited to have you join our team. Please find your Login Crefentials Down below: \n\n Email: ${candidate.personalDetails.email}\n Password: ${candidate.employeeCredentials?.password} \n\nBest regards,\nYour Company Team`
+      text: `Hi ${candidate.personalDetails.FirstName},\n\nWelcome to our company! We are excited to have you join our team. Please find your Login Crefentials Down below: \n\n Email: ${candidate.employeeCredentials?.companyEmail}\n Password: ${candidate.employeeCredentials?.password} \n\nBest regards,\nYour Company Team`
     }
     return this.http.post<any>(`${this.beURL}`, data).pipe(
       tap((updated) => {

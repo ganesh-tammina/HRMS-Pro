@@ -57,3 +57,9 @@ $bg-color: #D9D9D9;
     @include body-text();
     @include font-bold();
 }
+
+@mixin normal-text {
+    font-size: 14px;
+    line-height: 19px;    
+    @include font-bold();
+}

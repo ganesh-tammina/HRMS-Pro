@@ -102,6 +102,32 @@
           </ion-list>
         </div>
 </div>
+
+<!-- Leave balance side block -->
+<div class="quick-access-card balance-card ">    
+  
+  <div class="row-space-between"><p class="section-title">Leave balance</p><a href="" class="pl-5 text-color">Request Leave</a> </div>
+  
+    <div class="p-8">
+        <ion-row lines="none" class="row-left">
+          <ion-col size="3">
+               <p class="card-main-header">19</p>
+               <p class="text">Total</p> 
+               <p class="card-title">24 Leaves</p> 
+          </ion-col>
+          <ion-col size="3">
+            <p class="card-main-header">19</p>
+            <p class="text">Total</p> 
+            <p class="card-title">24 Leaves</p> 
+       </ion-col>
+       <ion-col size="3">
+        <p class="card-main-header">19</p>
+        <p class="text">Total</p> 
+        <p class="card-title">24 Leaves</p> 
+   </ion-col>
+        </ion-row>
+      </div>
+</div>
 </ion-card-content>
 </ion-card>
 </ion-col>
@@ -186,8 +212,94 @@
                             <img  src="../../assets/undraw_letter_ombg 1.svg">
                           
                  </ion-card>
+
+
     </ion-col>
   </ion-row>
+  <!-- Tabs section -->
+  
+                
+  <ion-card class="tabs-block ion-padding">
+  <ion-row class="">
+    <ion-col size="12">         
+                      <ion-tabs>
+                          <ion-tab-bar slot="top">
+                              <ion-tab-button tab="birthday">
+                                <ion-icon name="play-circle"></ion-icon>
+                               0 Birthday
+                              </ion-tab-button>
+                              <ion-tab-button tab="Work">
+                                <ion-icon name="Work"></ion-icon>
+                               0 Work Anniversaries
+                              </ion-tab-button>
+                              <ion-tab-button tab="new-joiners">
+                                <ion-icon name="new-joiners"></ion-icon>
+                               0 New Joiners
+                              </ion-tab-button>
+                              <ion-tab-button tab="praise">
+                                <ion-icon name="praise"></ion-icon>
+                                0 Praise
+                              </ion-tab-button>
+                            </ion-tab-bar>
+
+                          <ion-tab tab="birthday">
+                            <div id="birthday-page">
+                              <ion-header>
+                                <ion-toolbar>
+                                  <ion-title>birthday</ion-title>
+                                </ion-toolbar>
+                              </ion-header>
+                              <ion-content>
+                                
+                               
+
+
+
+                              </ion-content>
+                            </div>
+                          </ion-tab>
+                          <ion-tab tab="Work">
+                            <div id="Work-page">
+                              <ion-header>
+                                <ion-toolbar>
+                                  <ion-title>Work Anniversaries</ion-title>
+                                </ion-toolbar>
+                              </ion-header>
+                              <ion-content>
+                                <div class="example-content">Work Anniversariest</div>
+                              </ion-content>
+                            </div>
+                          </ion-tab>
+                          <ion-tab tab="new-joiners">
+                            <div id="new-joiners-page">
+                              <ion-header>
+                                <ion-toolbar>
+                                  <ion-title>new-joiners</ion-title>
+                                </ion-toolbar>
+                              </ion-header>
+                              <ion-content>
+                                <div class="example-content">new-joinersy content</div>
+                              </ion-content>
+                            </div>
+                          </ion-tab>
+                          <ion-tab tab="praise">
+                            <div id="praise-page">
+                              <ion-header>
+                                <ion-toolbar>
+                                  <ion-title>praise</ion-title>
+                                </ion-toolbar>
+                              </ion-header>
+                              <ion-content>
+                                <div class="example-content">praise content</div>
+                              </ion-content>
+                            </div>
+                          </ion-tab>
+                        
+                          
+                        </ion-tabs>
+              </ion-col>
+  </ion-row>
+</ion-card>
 </ion-grid>
 </ion-content>
 
