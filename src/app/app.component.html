@@ -1,5 +1,5 @@
 <ion-app>
-  <app-header></app-header>
+  <app-header  *ngIf="!isLoginPage"></app-header>
 
     <ion-split-pane contentId="main-content">
       <ion-menu *ngIf="showMenu" contentId="main-content" type="overlay">
