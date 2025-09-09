@@ -7,18 +7,20 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Candidate, CandidateService } from './services/pre-onboarding.service';
 import { Observable } from 'rxjs/internal/Observable';
+import { HeaderComponent } from './shared/header/header.component';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  imports: [RouterLink, RouterLinkActive, CommonModule, IonicModule]
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, HeaderComponent, CommonModule, IonicModule]
 })
 export class AppComponent implements OnInit {
   showMenu = true;
   currentUser: Observable<Candidate | null>;
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router: Router, private candidateService: CandidateService) {
-      this.currentUser = this.candidateService.currentCandidate$;
+    this.currentUser = this.candidateService.currentCandidate$;
     addIcons({ mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp });
 
     this.router.events.subscribe(event => {
