@@ -20,26 +20,26 @@
         </div>
       </div>
       <!-- Timings -->
- <ion-card class="timings-card">
-  <ion-card-header>
-    <ion-card-title>Timings</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <div class="day-selector">
-      <ion-chip color="primary">M</ion-chip>
-      <ion-chip color="primary">T</ion-chip>
-      <ion-chip color="primary" outline>W</ion-chip>
-      <ion-chip color="primary" outline>T</ion-chip>
-      <ion-chip>S</ion-chip>
-    </div>
+      <ion-card class="timings-card">
+        <ion-card-header>
+          <ion-card-title>Timings</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="day-selector">
+            <ion-chip color="primary">M</ion-chip>
+            <ion-chip color="primary">T</ion-chip>
+            <ion-chip color="primary" outline>W</ion-chip>
+            <ion-chip color="primary" outline>T</ion-chip>
+            <ion-chip>S</ion-chip>
+          </div>
 
-    <p>Today (9:30 AM - 6:30 PM)</p>
+          <p>Today (9:30 AM - 6:30 PM)</p>
 
-    <ion-progress-bar value="0.85"></ion-progress-bar>
+          <ion-progress-bar value="0.85"></ion-progress-bar>
 
-    <small>Duration: 9h 0m | Break: 60m</small>
-  </ion-card-content>
-</ion-card>
+          <small>Duration: 9h 0m | Break: 60m</small>
+        </ion-card-content>
+      </ion-card>
 
       <!-- Actions -->
       <div class="card-pannel actions">
@@ -61,115 +61,168 @@
             <div class="info m-5 ion-text-center ion-margin-top">
               Since Last Login: {{ timeSinceLastLogin }}
             </div>
-
-            <div class="info">
+            <!-- <div class="info">
               Attendance History:
               <ion-list>
                 <ion-item *ngFor="let event of history">
                   {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
                 </ion-item>
               </ion-list>
-            </div>
-
+            </div> -->
           </div>
         </div>
       </div>
     </div>
   </ion-grid>
   <ion-card class="attendance-log-card">
-  <ion-card-header>
-    <ion-card-title>Logs & Requests</ion-card-title>
-  </ion-card-header>
+    <ion-card-header>
+      <ion-card-title>Logs & Requests</ion-card-title>
+    </ion-card-header>
 
-  <ion-card-content>
-    <!-- Tabs -->
-     <div class="tabs-container">
-    <button [class.active]="activeTab === 'log'" (click)="setTab('log')">Attendance Log</button>
-    <button [class.active]="activeTab === 'calendar'" (click)="setTab('calendar')">Calendar</button>
-    <button [class.active]="activeTab === 'requests'" (click)="setTab('requests')">Attendance Requests</button>
-  </div>
-   
-<div *ngIf="activeTab === 'log'">
-    <h2>Attendance Log</h2>
-    <!-- Filters -->
-    <div class="filters">
-      <ion-button size="small" fill="solid" color="primary">30 DAYS</ion-button>
-      <ion-button size="small" fill="outline">AUG</ion-button>
-      <ion-button size="small" fill="outline">JUL</ion-button>
-      <ion-button size="small" fill="outline">JUN</ion-button>
-      <ion-button size="small" fill="outline">MAY</ion-button>
-      <ion-button size="small" fill="outline">APR</ion-button>
-      <ion-button size="small" fill="outline">MAR</ion-button>
-
-      <ion-buttons slot="end">
-        <ion-button fill="clear">
-          <ion-icon name="list-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear">
-          <ion-icon name="calendar-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-
-    <!-- Table -->
-    <ion-grid class="attendance-table">
-      <ion-row class="table-header">
-        <ion-col size="2">Date</ion-col>
-        <ion-col size="3">Attendance Visual</ion-col>
-        <ion-col size="2">Effective Hours</ion-col>
-        <ion-col size="2">Gross Hours</ion-col>
-        <ion-col size="2">Arrival</ion-col>
-        <ion-col size="1">Log</ion-col>
-      </ion-row>
-
-      <ion-row *ngFor="let log of attendanceLogs" class="table-row">
-        <ion-col size="2">{{ log.date }}</ion-col>
-        <ion-col size="3">
-          <ion-progress-bar value="{{ log.progress }}"></ion-progress-bar>
-        </ion-col>
-        <ion-col size="2">{{ log.effective }}</ion-col>
-        <ion-col size="2">{{ log.gross }}</ion-col>
-        <ion-col size="2">
-          <ion-icon name="checkmark-circle" color="success"></ion-icon>
-          {{ log.arrival }}
-        </ion-col>
-        <ion-col size="1">
-          <ion-icon name="alert-circle-outline" color="warning"></ion-icon>
-        </ion-col>
-      </ion-row>
-
-      <!-- Weekly off row -->
-      <ion-row class="weekoff-row">
-        <ion-col size="12">Sun, 31 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
-      </ion-row>
-      <ion-row class="weekoff-row">
-        <ion-col size="12">Sat, 30 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-    <div *ngIf="activeTab === 'calendar'">
-    <div class="calendar-container">
-      <div class="calendar-header">
-        <button (click)="prevMonth()">&lt;</button>
-        <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
-        <button (click)="nextMonth()">&gt;</button>
+    <ion-card-content>
+      <!-- logs & request Tabs -->
+      <div class="tabs-container">
+        <button [class.active]="activeTab === 'log'" (click)="setTab('log')">Attendance Log</button>
+        <button [class.active]="activeTab === 'calendar'" (click)="setTab('calendar')">Calendar</button>
+        <button [class.active]="activeTab === 'requests'" (click)="setTab('requests')">Attendance Requests</button>
       </div>
 
-      <div class="calendar-grid">
-        <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
-        <div class="day-cell" *ngFor="let date of calendarDays">
-          <div class="date">{{ date.day }}</div>
-          <div class="timing" *ngIf="date.timing">{{ date.timing }}</div>
-          <div class="woff" *ngIf="date.isOff">W-OFF</div>
+      <div *ngIf="activeTab === 'log'">
+
+        <!-- Filters -->
+        <div class="filters">
+          <ion-button size="small" fill="solid" color="primary">30 DAYS</ion-button>
+          <ion-button size="small" fill="outline">AUG</ion-button>
+          <ion-button size="small" fill="outline">JUL</ion-button>
+          <ion-button size="small" fill="outline">JUN</ion-button>
+          <ion-button size="small" fill="outline">MAY</ion-button>
+          <ion-button size="small" fill="outline">APR</ion-button>
+          <ion-button size="small" fill="outline">MAR</ion-button>
+
+          <ion-buttons slot="end">
+            <ion-button fill="clear">
+              <ion-icon name="list-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+
+        <!-- Table -->
+        <ion-grid class="attendance-table">
+          <ion-row class="table-header">
+            <ion-col size="2">Date</ion-col>
+            <ion-col size="3">Attendance Visual</ion-col>
+            <ion-col size="2">Effective Hours</ion-col>
+            <ion-col size="2">Gross Hours</ion-col>
+            <ion-col size="2">Arrival</ion-col>
+            <ion-col size="1">Log</ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let log of attendanceLogs" class="table-row">
+            <ion-col size="2">{{ currentDate }}</ion-col>
+            <ion-col size="3">
+              <ion-progress-bar [value]="log.progress"></ion-progress-bar>
+            </ion-col>
+            <ion-col size="2">{{ effectiveHours }}</ion-col>
+            <ion-col size="2">
+              {{ grossHours }}
+            </ion-col>
+            <ion-col size="2">
+              <ion-icon name="checkmark-circle" color="success"></ion-icon>
+              {{ log.arrival }}
+            </ion-col>
+            <ion-col size="1">
+              <ion-icon name="alert-circle-outline" color="warning" (click)="openLogDetails(log)">
+              </ion-icon>
+            </ion-col>
+          </ion-row>
+
+
+          <!-- Weekly off row -->
+          <ion-row class="weekoff-row">
+            <ion-col size="12">Sun, 31 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
+          </ion-row>
+          <ion-row class="weekoff-row">
+            <ion-col size="12">Sat, 30 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <ion-modal *ngIf="showPopover" [isOpen]="showPopover" (didDismiss)="closePopover()">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Log Details</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="closePopover()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+
+          <ion-content class="popover-content">
+            <h3>Day Shift 1( {{ currentDate }})</h3>
+            <p>{{ selectedLog?.details?.shiftTime }}</p>
+            <p><strong>Location:</strong> {{ selectedLog?.details?.location }}</p>
+            <ion-item *ngFor="let event of history">
+              {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
+            </ion-item>
+
+            <!-- <div *ngIf="selectedLog?.details?.webClockIn">
+  <p>IN: {{ selectedLog?.details?.webClockIn?.in }}</p>
+  <p>OUT: {{ selectedLog?.details?.webClockIn?.out }}</p>
+</div> -->
+
+
+            <ion-button expand="block" color="primary">Apply Partial Day</ion-button>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      <div *ngIf="activeTab === 'calendar'">
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <button (click)="prevMonth()">&lt;</button>
+            <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
+            <button (click)="nextMonth()">&gt;</button>
+          </div>
+
+          <div class="calendar-grid">
+            <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
+            <div class="day-cell" *ngFor="let date of calendarDays">
+              <div class="date">{{ date.day }}</div>
+              <div class="timing" *ngIf="date.timing">{{ date.timing }}</div>
+              <div class="woff" *ngIf="date.isOff">W-OFF</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-    <div *ngIf="activeTab === 'requests'">
-    <h2>Attendance Requests</h2>
-    <!-- Your request content here -->
-  </div>
-  </ion-card-content>
-</ion-card>
+      <div *ngIf="activeTab === 'requests'">
+        <div *ngFor="let request of attendanceRequests" class="request-card">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ request.type }}</ion-card-title>
+              <ion-card-subtitle>{{ request.dateRange }}</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              <div *ngIf="request.items.length > 0; else noData">
+                <ion-list>
+                  <ion-item *ngFor="let item of request.items">
+                    <ion-label>{{ item }}</ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
+
+              <ng-template #noData>
+                <ion-item color="light">
+                  <ion-label>No {{ request.type }} Available.</ion-label>
+                </ion-item>
+              </ng-template>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

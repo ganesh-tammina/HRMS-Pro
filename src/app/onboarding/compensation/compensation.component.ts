@@ -8,6 +8,8 @@ import { CreateOfferHeaderComponent } from '../create-offer-header/create-offer-
 import { OnboardingMainheaderComponent } from '../onboarding-mainheader/onboarding-mainheader.component';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { EmailService } from 'src/app/services/email.service';
+import { salaryStaructureComponent } from '../../salary-staructure/salary-staructure.component';
+
 
 @Component({
   selector: 'app-compensation',
@@ -15,7 +17,7 @@ import { EmailService } from 'src/app/services/email.service';
   styleUrls: ['./compensation.component.scss'],
   standalone: true,
   imports: [CommonModule, IonicModule, HeaderComponent,
-    OnboardingMainheaderComponent,
+    OnboardingMainheaderComponent, salaryStaructureComponent,
     CreateOfferHeaderComponent, ReactiveFormsModule]
 })
 export class CompensationComponent implements OnInit {

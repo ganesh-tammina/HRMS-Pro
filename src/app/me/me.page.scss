@@ -7,8 +7,8 @@
     align-items: center;
     height: 100%;
     padding: 0 16px;
-  --background: #bb4b72;
-  display: grid;
+    --background: #bb4b72;
+    display: grid;
   }
 
   .navbar-left {
@@ -60,7 +60,8 @@
     }
   }
 }
-.sc-ion-searchbar-md{
+
+.sc-ion-searchbar-md {
   padding-inline-start: 2.375rem;
 }
 
@@ -148,7 +149,8 @@
 /* Actions */
 .actions {
   text-align: center;
-  .actions-card{
+
+  .actions-card {
     display: flex;
     justify-content: space-around;
   }
@@ -191,16 +193,18 @@
 
 
 .searchbar-input.sc-ion-searchbar-md {
-    padding-top: 0.175rem;
-    padding-bottom: 0.175rem;
+  padding-top: 0.175rem;
+  padding-bottom: 0.175rem;
 }
 
-.profile-tab{
+.profile-tab {
   position: static;
-  .button-native{
+
+  .button-native {
     height: 45px;
   }
-  ion-tab-bar{
+
+  ion-tab-bar {
     height: 45px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   }
@@ -233,6 +237,7 @@ small {
 .tabs-container {
   display: flex;
   border-bottom: 1px solid #ddd;
+
   button {
     flex: 1;
     padding: 10px;
@@ -241,10 +246,23 @@ small {
     font-weight: 500;
     cursor: pointer;
   }
+
   .active {
-    border-bottom: 2px solid #007bff;
     color: #007bff;
+    border-bottom: 3px solid #007bff;
+    font-weight: bold;
   }
+}
+
+
+
+.request-card {
+  margin: 12px 0;
+}
+
+ion-card {
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-container {
@@ -337,9 +355,40 @@ small {
     background: #f9f9f9;
     font-size: 14px;
     padding: 8px;
+
     ion-badge {
       margin-left: 8px;
     }
   }
 }
 
+.popover-content {
+  padding: 15px;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  h4 {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #007bff;
+  }
+
+  .in-time {
+    color: green;
+    font-weight: 500;
+  }
+
+  .out-time {
+    color: red;
+    font-weight: 500;
+  }
+}
+
+ion-modal {
+  --height: 70%;
+  --border-radius: 16px;
+}

@@ -16,55 +16,58 @@
   </ion-item>
 </ion-menu-toggle>
 
-<ion-menu-toggle auto-hide="false">
-  <ion-item routerDirection="root" [routerLink]="['/Me']" lines="none" detail="false" routerLinkActive="selected">
-    <div>
-      <ion-label>Me</ion-label>
-    </div>
-  </ion-item>
-</ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" [routerLink]="['/Me']" lines="none" detail="false"
+              routerLinkActive="selected">
+              <div>
+                <ion-label>Me</ion-label>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
 
-<div class="dropdown-wrapper">
-  <!-- Org Parent Item -->
-  <ion-menu-toggle auto-hide="false">
-    <ion-item class="dropdown-toggle" lines="none" detail="false">
-      <ion-label>Org</ion-label>
-    </ion-item>
-  </ion-menu-toggle>
+          <div class="dropdown-wrapper">
+            <!-- Org Parent Item -->
+            <ion-menu-toggle auto-hide="false">
+              <ion-item class="dropdown-toggle" lines="none" detail="false">
+                <ion-label>Org</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
 
-  <!-- Submenu Dropdown -->
-  <div class="dropdown-menu">
-    <ion-menu-toggle auto-hide="false">
-      <ion-item routerLink="/pre_onboarding" lines="none" detail="false">
-        <ion-label>Pre Onboarding</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-    <ion-menu-toggle auto-hide="false">
-      <ion-item routerLink="/post-onboarding" lines="none" detail="false">
-        <ion-label>Post Onboarding</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-  </div>
-</div>
+            <!-- Submenu Dropdown -->
+            <div class="dropdown-menu">
+              <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/pre_onboarding" lines="none" detail="false">
+                  <ion-label>Pre Onboarding</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/post-onboarding" lines="none" detail="false">
+                  <ion-label>Post Onboarding</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </div>
+          </div>
 
 
-<ion-menu-toggle auto-hide="false">
-  <ion-item routerDirection="root" [routerLink]="['/MyTeam']" lines="none" detail="false" routerLinkActive="selected">
-    <div>
-      <ion-label>My Team</ion-label>
-    </div>
-  </ion-item>
-</ion-menu-toggle>
-<ion-menu-toggle auto-hide="false">
-  <ion-item routerDirection="root" [routerLink]="['/login']" lines="none" detail="false" routerLinkActive="selected">
-    <div>
-      <ion-label>Log out</ion-label>
-    </div>
-  </ion-item>
-</ion-menu-toggle>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" [routerLink]="['/MyTeam']" lines="none" detail="false"
+              routerLinkActive="selected">
+              <div>
+                <ion-label>My Team</ion-label>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" [routerLink]="['/login']" lines="none" detail="false"
+              routerLinkActive="selected">
+              <div>
+                <ion-label>Log out</ion-label>
+              </div>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
