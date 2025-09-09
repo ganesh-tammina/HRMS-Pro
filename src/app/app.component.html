@@ -1,23 +1,20 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu *ngIf="showMenu" contentId="main-content" type="overlay">
-      <ion-content class="menu-content sidenav-content">
-        <ion-list class="side-menu-list">
-          <ion-list-header>
-            <div class="navbar-left">
-              <img style="margin-bottom: 20px;"
-                src="https://www.techtammina.com/wp-content/uploads/2022/04/techlogo.png" width="150px" class="logo"
-                alt="keka" />
-            </div>
-          </ion-list-header>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" [routerLink]="['/Home']" lines="none" detail="false"
-              routerLinkActive="selected">
-              <div>
-                <ion-label>Home</ion-label>
-              </div>
-            </ion-item>
-          </ion-menu-toggle>
+<ion-menu *ngIf="showMenu" contentId="main-content" type="overlay">
+  <ion-content class="menu-content sidenav-content">
+    <ion-list class="side-menu-list">
+            <!-- <ion-list-header>
+              <div class="navbar-left">
+              <img  style="margin-bottom: 20px;" src="https://www.techtammina.com/wp-content/uploads/2022/04/techlogo.png" width="150px" class="logo" alt="keka" />
+    </div>
+            </ion-list-header> -->
+  <ion-menu-toggle auto-hide="false">
+  <ion-item routerDirection="root" [routerLink]="['/Home']" lines="none" detail="false" routerLinkActive="selected">
+    <div>
+      <ion-label>Home</ion-label>
+    </div>
+  </ion-item>
+</ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="root" [routerLink]="['/Me']" lines="none" detail="false"

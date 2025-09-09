@@ -1,14 +1,13 @@
 .keka-navbar {
-  height: 56px;
-
+  height: fit-content;
   .navbar-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
     padding: 0 16px;
-  --background: #bb4b72;
-  display: grid;
+  display: grid;  
+  --background: #3498DB;
   }
 
   .navbar-left {

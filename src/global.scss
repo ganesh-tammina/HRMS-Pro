@@ -36,6 +36,7 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+@import 'theme/variables.scss';
 
 ion-split-pane{
     --side-min-width: 70px !important;
@@ -72,7 +73,7 @@ ion-list-header, ion-item{
  display: block !important;
 }
 
-.display-flex {
+.d-flex {
   display: flex;
 }
 
@@ -93,4 +94,51 @@ ion-list-header, ion-item{
 }
 .page-containerOn{
         --background: #f9fafc;
+}
+.row-left {
+   display: flex;
+   align-items: center;
+   justify-content: left;
+}
+.row-right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.row-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pl-5 {
+    padding-left: 5px;
+}
+.pl-15 {
+    padding-left: 15px;
+}
+.pl-30 {
+    padding-left: 30px;
+}
+.pr-5 {
+    padding-right: 5px;
+}
+.pr-15 {
+    padding-right: 15px;
+}
+.pr-30 {
+    padding-right: 30px;
+}
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+.p-8 {
+    padding: 8px;
+}
+.pb-8 {
+    padding-bottom: 8px;
 }
