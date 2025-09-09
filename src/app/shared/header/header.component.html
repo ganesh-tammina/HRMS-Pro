@@ -17,9 +17,12 @@
               showCancelButton="never">
             </ion-searchbar>
 
+            <!-- <ion-button *ngIf="searchResults.length > 0" (click)="openEmployeeListModal()">
+              Show {{ results.FirstName }} Employee(s)
+            </ion-button> -->
             <ion-button *ngIf="searchResults.length > 0" (click)="openEmployeeListModal()">
-              Show {{ searchResults.length }} Employee(s)
-            </ion-button>
+   {{ results.join(', ') }} 
+</ion-button>
           </div>
         </ion-col>
 
