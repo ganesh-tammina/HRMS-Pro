@@ -71,7 +71,7 @@ export class CreateOfferComponent implements OnInit {
           console.log('Candidate updated on server:', res);
           alert('DOJ saved successfully in DB!');
           // Pass candidate to Compensation component
-          this.router.navigate(['/Compensation', this.candidate.id, encodeURIComponent(this.candidate.personalDetails.FirstName)], { state: { candidate: this.candidate } });
+          this.router.navigate(['/salaryStaructure', this.candidate.id, encodeURIComponent(this.candidate.personalDetails.FirstName)], { state: { candidate: this.candidate } });
         },
         error: (err) => {
           console.error('Error updating candidate:', err);
