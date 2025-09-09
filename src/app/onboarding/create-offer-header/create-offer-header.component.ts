@@ -12,30 +12,37 @@ import { filter } from 'rxjs/operators';
 })
 export class CreateOfferHeaderComponent implements OnInit {
 
-  @Output() continueClick = new EventEmitter<void>(); // Event to notify parent
-  isActive: boolean = false;
-  isTasksTemplate: boolean = false;
+  @Output() continueClick = new EventEmitter<void>();
+
   activeTab = '';
+  candidateId: string | null = null;
+  firstName: string | null = null;
+
   constructor(private router: Router, private route: ActivatedRoute) {
+    // track active tab by URL
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        const url = event.urlAfterRedirects.split('/').pop();
-        this.activeTab = url; // match last part of the URL
+        const segments = event.urlAfterRedirects.split('/');
+        this.activeTab = segments[segments.length - 1];
       });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // get id & firstName from parent route
+    this.candidateId = this.route.snapshot.paramMap.get('id');
+    this.firstName = this.route.snapshot.paramMap.get('FirstName');
+  }
 
   onContinue() {
-    this.continueClick.emit(); // Emit event to parent
+    this.continueClick.emit();
   }
-
-
 
   navigate(tab: string) {
-    this.activeTab = tab;
-    this.router.navigate(['/' + tab]); // navigates to /settings or /profile
+    if (this.candidateId && this.firstName) {
+      this.router.navigate(['/', tab, this.candidateId, this.firstName]);
+    } else {
+      console.error('Missing route params: id or firstName');
+    }
   }
-
 }

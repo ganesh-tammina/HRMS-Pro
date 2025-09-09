@@ -36,11 +36,20 @@ export class CandidateService {
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
 
-  private currentCandidateSubject = new BehaviorSubject<Candidate | null>(null);
+  // ✅ initialize with stored candidate (so refresh works)
+  private currentCandidateSubject = new BehaviorSubject<Candidate | null>(this.getStoredCandidate());
   currentCandidate$ = this.currentCandidateSubject.asObservable();
 
   constructor(private http: HttpClient, private attendanceService: AttendanceService) {
     this.loadCandidates();
+  }
+
+  private getStoredCandidate(): Candidate | null {
+    const activeId = localStorage.getItem('activeUserId');
+    if (!activeId) return null;
+
+    const stored = localStorage.getItem(`loggedInCandidate_${activeId}`);
+    return stored ? JSON.parse(stored) : null;
   }
 
   loadCandidates(): void {
@@ -79,7 +88,7 @@ export class CandidateService {
     if (found) {
       this.currentCandidateSubject.next(found);
 
-      // store per user id
+      // ✅ persist user for refresh
       localStorage.setItem(`loggedInCandidate_${found.id}`, JSON.stringify(found));
       localStorage.setItem('activeUserId', found.id.toString());
 
@@ -91,11 +100,7 @@ export class CandidateService {
   }
 
   getCurrentCandidate(): Candidate | null {
-    const activeId = localStorage.getItem('activeUserId');
-    if (!activeId) return null;
-
-    const stored = localStorage.getItem(`loggedInCandidate_${activeId}`);
-    return stored ? JSON.parse(stored) : null;
+    return this.currentCandidateSubject.value;
   }
 
   logout() {

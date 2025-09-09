@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = () => {
   const candidateService = inject(CandidateService);
   const router = inject(Router);
 
-  return candidateService.currentCandidate$.pipe(   // ✅ no asObservable() needed if already Observable
+  return candidateService.currentCandidate$.pipe(
     map(user => {
       if (user?.jobDetailsForm?.Department === 'HR') {
         console.log('✅ Allowed: HR department');
