@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { HeaderComponent } from '../shared/header/header.component';
 import { CreateOfferHeaderComponent } from '../onboarding/create-offer-header/create-offer-header.component';
+import { CandidateService } from '../services/pre-onboarding.service';
 
 @Component({
   selector: 'app-salary-structure',
@@ -16,26 +18,52 @@ import { CreateOfferHeaderComponent } from '../onboarding/create-offer-header/cr
     IonicModule,
     HeaderComponent,
     CreateOfferHeaderComponent,
+    ReactiveFormsModule
   ],
 })
 export class salaryStaructureComponent implements OnInit {
-  annualSalary: number = 600000; // default
+  salaryForm!: FormGroup;
   salaryStructure: any = {};
+  candidate: any = {};
 
-  constructor() { }
-
-  ngOnInit() {
-    this.calculateSalary();
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private candidateService: CandidateService
+  ) {
+    const nav = this.router.getCurrentNavigation();
+    this.candidate = nav?.extras.state?.['candidate'] || {};
+    console.log('Candidate:', this.candidate);
   }
 
-  calculateSalary() {
-    const basic = this.annualSalary * 0.40; // 40%
-    const hra = this.annualSalary * 0.16; // 16%
+  ngOnInit() {
+    if (!this.candidate.packageDetails) {
+      this.candidate.packageDetails = { salary: '' };
+    }
+
+    this.salaryForm = this.fb.group({
+      salary: [this.candidate.packageDetails.salary || '', [Validators.required, Validators.min(1)]],
+    });
+
+    this.salaryForm.get('salary')?.valueChanges.subscribe((value) => {
+      if (value && value > 0) {
+        this.calculateSalary(+value);
+      }
+    });
+
+    if (this.candidate.packageDetails.salary) {
+      this.calculateSalary(+this.candidate.packageDetails.salary);
+    }
+  }
+
+  calculateSalary(annualSalary: number) {
+    const basic = annualSalary * 0.40;
+    const hra = annualSalary * 0.16;
     const medical = 15000;
     const transport = 19200;
-    const special = this.annualSalary - (basic + hra + medical + transport);
+    const special = annualSalary - (basic + hra + medical + transport);
 
-    const pfEmployer = basic * 0.12; // 12% of Basic
+    const pfEmployer = basic * 0.12;
     const pfEmployee = basic * 0.12;
 
     this.salaryStructure = {
@@ -52,6 +80,54 @@ export class salaryStaructureComponent implements OnInit {
   }
 
   onViewSalary() {
-    this.calculateSalary();
+    if (this.salaryForm.invalid) {
+      alert('Please enter a valid salary.');
+      return;
+    }
+    const annualSalary = this.salaryForm.value.salary;
+    this.calculateSalary(annualSalary);
   }
+
+  goToOfferDetails() {
+    if (this.salaryForm.invalid) {
+      alert('Please enter salary before continuing.');
+      return;
+    }
+
+    const annualSalary = this.salaryForm.value.salary;
+    this.candidate.packageDetails.salary = annualSalary;
+    this.candidate.salaryForm = {
+      annualSalary,
+      salaryStructure: this.salaryStructure,
+    };
+
+    console.log('Candidate with Salary Form:', this.candidate);
+
+    // Check if candidate has an ID before calling update
+    if (!this.candidate.id) {
+      alert('Candidate ID not found. Please go back and select a candidate.');
+      this.router.navigate(['/previous-page']); // replace with your previous page route
+      return;
+    }
+
+    // Safe update call
+    this.candidateService.updateCandidate(this.candidate).subscribe({
+      next: (res) => {
+        console.log('Candidate updated on server:', res);
+        this.router.navigate(
+          [
+            '/OfferDetailsComponent',
+            this.candidate.id,
+            encodeURIComponent(this.candidate.personalDetails.FirstName || ''),
+          ],
+          { state: { candidate: this.candidate } }
+        );
+      },
+      error: (err) => {
+        console.error('Error updating candidate:', err);
+        alert('Failed to update candidate. Please try again.');
+      },
+    });
+  }
+
 }

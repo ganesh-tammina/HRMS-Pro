@@ -36,6 +36,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  preonboard() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/pre_onboarding']);
+    });
+    window.location.href = '/pre_onboarding';
+  }
   logout() {
     this.candidateService.logout();
     this.router.navigate(['/login']);

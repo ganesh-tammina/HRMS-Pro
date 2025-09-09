@@ -100,6 +100,23 @@
       "employeeCredentials": {
         "companyEmail": "Rajesh@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -154,6 +171,23 @@
       "employeeCredentials": {
         "companyEmail": "SivaGanesh@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 690000
+      },
+      "salaryForm": {
+        "annualSalary": 690000,
+        "salaryStructure": {
+          "basic": 276000,
+          "hra": 110400,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 269400,
+          "subtotal": 690000,
+          "pfEmployer": 33120,
+          "pfEmployee": 33120,
+          "total": 723120
+        }
       }
     },
     {
@@ -208,6 +242,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 600000
+      },
+      "salaryForm": {
+        "annualSalary": 600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
       }
     },
     {
@@ -235,6 +286,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 60000
+      },
+      "salaryForm": {
+        "annualSalary": 60000,
+        "salaryStructure": {
+          "basic": 24000,
+          "hra": 9600,
+          "medical": 15000,
+          "transport": 19200,
+          "special": -7800,
+          "subtotal": 60000,
+          "pfEmployer": 2880,
+          "pfEmployee": 2880,
+          "total": 62880
+        }
       }
     },
     {
@@ -262,6 +330,23 @@
       "employeeCredentials": {
         "companyEmail": "Moulika@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -289,6 +374,37 @@
       "employeeCredentials": {
         "companyEmail": "moulika@tammina.com",
         "password": "123456"
+      },
+      "salary": {
+        "annualSalary": 600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -312,35 +428,92 @@
       "offerDetails": {
         "DOJ": "19/09/2025",
         "offerValidity": "7"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
-    "personalDetails": {
-      "FirstName": "leepakshi",
-      "MiddleName": "leepakshi",
-      "LastName": "Tammina",
-      "PhoneNumber": "9876543210",
-      "email": "leepakshi@gmail.com",
-      "gender": "male",
-      "initials": "LT"
+      "personalDetails": {
+        "FirstName": "leepakshi",
+        "MiddleName": "leepakshi",
+        "LastName": "Tammina",
+        "PhoneNumber": "9876543210",
+        "email": "leepakshi@gmail.com",
+        "gender": "male",
+        "initials": "LT"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "HR",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": "vQXP-hj",
+      "offerDetails": {
+        "DOJ": "26/09/2025",
+        "offerValidity": "7"
+      },
+      "employeeCredentials": {
+        "companyEmail": "leepakshi@tammina.com",
+        "password": "123456"
+      }
     },
-    "jobDetailsForm": {
-      "JobTitle": "UI Developer",
-      "Department": "HR",
-      "JobLocation": "Site 1 - Hyderabad - Night Shift",
-      "WorkType": "Perminent",
-      "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
-    },
-    "id": "vQXP-hj",
-    "offerDetails": {
-      "DOJ": "26/09/2025",
-      "offerValidity": "7"
-    },
-    "employeeCredentials": {
-      "companyEmail": "leepakshi@tammina.com",
-      "password": "123456"
+    {
+      "personalDetails": {
+        "FirstName": "Ganesh",
+        "MiddleName": "Gani",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "male",
+        "initials": "GM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam"
+      },
+      "id": "fihys45",
+      "offerDetails": {
+        "DOJ": "20/09/2025",
+        "offerValidity": "7"
+      },
+      "packageDetails": {
+        "salary": ""
+      },
+      "salaryForm": {
+        "annualSalary": 9600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
+      }
     }
-  }
   ],
   "attendanceLogs": []
 }

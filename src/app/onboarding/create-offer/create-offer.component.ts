@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule, IonPopover } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ import { CreateOfferHeaderComponent } from '../create-offer-header/create-offer-
   ]
 })
 export class CreateOfferComponent implements OnInit {
-  candidate: any = {};
+  @Input() candidate: any = {};
   offerForm!: FormGroup;
   selectedDate: string = '';
 
@@ -31,11 +31,16 @@ export class CreateOfferComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private candidateService: CandidateService
-  ) { }
+  ) {
 
-  ngOnInit() {
     const nav = this.router.getCurrentNavigation();
     this.candidate = nav?.extras.state?.['candidate'] || {};
+    console.log('Candidate:', this.candidate);
+
+  }
+
+  ngOnInit() {
+
 
     if (!this.candidate.offerDetails) {
       this.candidate.offerDetails = { DOJ: '', offerValidity: '' };
