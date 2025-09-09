@@ -222,7 +222,7 @@ ion-avatar {
       --background: #fff;
       --color: #B01712;
     }
-    ion-button.popover-button {
+    ion-button#popover-button {
       --border: 1px solid#fff;
       --background: #fff;
       --color: #2d2d2d;
@@ -295,6 +295,7 @@ ion-avatar {
 
 .tabs-block{
   height: 500px;
+  margin-top: 0;
   ion-tabs {
     display: block;
     position: relative;
@@ -304,6 +305,50 @@ ion-avatar {
     height: 60px;
     display: flex;
     justify-content: space-evenly;
+    ion-tab-button {
+      max-width: fit-content;
+      div {
+        p {
+          @include card-sub-title();
+        }
+      }
+    }
+  }
+  ion-tab{
+  ion-content {
+    height: 342px;
+    --background: #ffffff;
+    ion-row {
+      ion-col {
+        padding-left: 51px; 
+        .section-header {
+          @include text-style-normal();
+          margin-top: 30px;
+        }
+        .label-block {
+          margin-right: 24px;
+           ion-label {
+            @include body-text();
+           }
+           span {
+            @include body-text();
+            color: #1371BF;
+            &.gray {
+              color: #767676;
+            } 
+           }
+        }
+        ion-img {
+          width: fit-content;
+        }
+      }
+    }    
+   
   }
 }
+}
+}
+
+ion-col {
+  margin-inline-start: 0px !important; 
 }
