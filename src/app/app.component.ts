@@ -5,7 +5,8 @@ import { addIcons } from 'ionicons';
 import { mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp } from 'ionicons/icons';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { CandidateService } from './services/pre-onboarding.service';
+import { Candidate, CandidateService } from './services/pre-onboarding.service';
+import { Observable } from 'rxjs/internal/Observable';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,9 +15,10 @@ import { CandidateService } from './services/pre-onboarding.service';
 })
 export class AppComponent implements OnInit {
   showMenu = true;
-  currentUser: any
+  currentUser: Observable<Candidate | null>;
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router: Router, private candidateService: CandidateService) {
+      this.currentUser = this.candidateService.currentCandidate$;
     addIcons({ mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp });
 
     this.router.events.subscribe(event => {
@@ -29,6 +31,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentUser = this.candidateService.currentCandidate$.subscribe(user => this.currentUser = user);
+  }
+  logout() {
+    this.candidateService.logout();
+    this.router.navigate(['/login']);
   }
 }

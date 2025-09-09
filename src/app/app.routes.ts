@@ -45,7 +45,8 @@ export const routes: Routes = [
   },
   {
     path: 'post-onboarding',
-    loadComponent: () => import('./post-onboarding/post-onboarding.page').then(m => m.OnboardingPage)
+    loadComponent: () => import('./post-onboarding/post-onboarding.page').then(m => m.OnboardingPage),
+    canActivate: [authGuard]
   },
 
   {
