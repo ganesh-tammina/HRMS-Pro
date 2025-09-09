@@ -18,6 +18,7 @@ import { HeaderComponent } from './shared/header/header.component';
 export class AppComponent implements OnInit {
   showMenu = true;
   currentUser: Observable<Candidate | null>;
+  isLoginPage = false
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router: Router, private candidateService: CandidateService) {
     this.currentUser = this.candidateService.currentCandidate$;
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         // Hide menu on login page
         this.showMenu = !event.urlAfterRedirects.includes('/login');
+        this.isLoginPage = event.urlAfterRedirects.includes('/login');
       }
     });
 
