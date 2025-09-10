@@ -283,7 +283,7 @@ ion-avatar {
       display: block; 
       box-shadow: -1px -1px 6px 0px #00000033;
       padding: 12px 8px;
-      margin-right: 15px;
+      margin-inline-end: 15px !important;
       .text {
         @include normal-text();
         color: #1F90CF;
