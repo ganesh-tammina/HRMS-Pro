@@ -1,22 +1,19 @@
 <ion-header translucent="true">
   <app-header></app-header>
-  <app-create-offer-header (continueClick)="sendpreview()"></app-create-offer-header>
+  <app-create-offer-header (createOfferClick)="createOffer()"></app-create-offer-header>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-
   <div class="offer-container">
 
-    <!-- Left Side - Preview -->
+    <!-- Left: Preview -->
     <div class="template-preview card">
       <h2 class="company-logo">Tech Tammina</h2>
       <div class="template-text" [innerHTML]="previewText"></div>
     </div>
 
-    <!-- Right Side - Controls -->
+    <!-- Right: Options -->
     <div class="controls card">
-
-      <!-- Radio options -->
       <ion-list>
         <ion-radio-group [value]="selectedOption" (ionChange)="onOptionChange($event)">
           <ion-item>
@@ -30,7 +27,7 @@
         </ion-radio-group>
       </ion-list>
 
-      <!-- Dropdown shown only if template option selected -->
+      <!-- Template Dropdown -->
       <div *ngIf="selectedOption === 'template'" class="dropdown-section">
         <ion-label>Select offer letter template</ion-label>
         <ion-select [value]="selectedTemplate" (ionChange)="onTemplateChange($event)" interface="popover">
@@ -39,21 +36,19 @@
         </ion-select>
       </div>
 
-      <!-- File upload shown only if custom option selected -->
+      <!-- Upload -->
       <div *ngIf="selectedOption === 'custom'" class="upload-section">
         <ion-label>Upload Offer Letter</ion-label>
         <input type="file" (change)="onFileUpload($event)" />
         <p *ngIf="uploadedFileName">Uploaded: {{ uploadedFileName }}</p>
       </div>
 
-      <!-- Workflow info -->
+      <!-- Workflow -->
       <div class="workflow">
         <ion-label>Offer letter Workflow</ion-label>
         <p>Workflow is not required</p>
       </div>
-
     </div>
 
   </div>
-
 </ion-content>
