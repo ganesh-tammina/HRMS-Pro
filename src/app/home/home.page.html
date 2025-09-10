@@ -480,9 +480,17 @@
       <ion-col size="6" class="Create-post-block">
         <ion-card>
           <p class="post-title">Create Post</p>
-          <ion-content class="ion-padding">
+          <div class="post-content d-flex ion-align-items-start ion-padding">
 
-          </ion-content>
+            <ion-item>
+              <ion-textarea aria-label="Comments" value="Lorem Ipsum"></ion-textarea>
+              <div>
+                <ion-button>Cancel</ion-button>
+                <ion-button>Post</ion-button>
+              </div>
+            </ion-item>
+          </div>
+
         </ion-card>
       </ion-col>
     </ion-row>
