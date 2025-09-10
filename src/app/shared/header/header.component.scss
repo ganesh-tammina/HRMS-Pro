@@ -30,7 +30,18 @@
     // flex: 1;
     // display: flex;
     // justify-content: center;
+    ion-searchbar {
+    margin-left: 50px;
+    --border-radius: 24px;
+ 
+  }
 
+  ion-button {
+    width: 250px;
+    --background: #fff;
+    margin-left: 99px;
+    --color: #2d2d2d;
+  }
     .search-box {
       --border-radius: 9999px;
       --background: white;
@@ -39,6 +50,7 @@
       max-width: 480px;
       width: 100%;
       padding: 0 10px;
+      border-radius: 24px;
     }
   }
 

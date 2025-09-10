@@ -4,16 +4,12 @@
   <ion-split-pane contentId="main-content">
     <ion-menu *ngIf="showMenu" contentId="main-content" type="overlay">
       <ion-content class="menu-content sidenav-content">
-        <ion-list class="side-menu-list">
-          <!-- <ion-list-header>
-              <div class="navbar-left">
-              <img  style="margin-bottom: 20px;" src="https://www.techtammina.com/wp-content/uploads/2022/04/techlogo.png" width="150px" class="logo" alt="keka" />
-    </div>
-            </ion-list-header> -->
+        <ion-list class="side-menu-list">          
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="root" [routerLink]="['/Home']" lines="none" detail="false"
               routerLinkActive="selected">
-              <div>
+              <div class="text-center">
+                  <img src="assets/Icons/home-05.svg" width="24" height="24">
                 <ion-label>Home</ion-label>
               </div>
             </ion-item>
@@ -22,18 +18,22 @@
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="root" [routerLink]="['/Me']" lines="none" detail="false"
               routerLinkActive="selected">
-              <div>
+              <div class="text-center">
+                  <img src="assets/Icons/user-01.svg" width="24" height="24">
                 <ion-label>Me</ion-label>
               </div>
             </ion-item>
           </ion-menu-toggle>
 
           <div class="dropdown-wrapper">
-            <!-- Org Parent Item -->
-            <ion-menu-toggle auto-hide="false">
-              <ion-item class="dropdown-toggle" lines="none" detail="false">
-                <ion-label>Org</ion-label>
-              </ion-item>
+              <!-- Org Parent Item -->
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="dropdown-toggle" lines="none" detail="false">
+                  <div class="text-center">
+                    <img src="assets/Icons/building-07.svg" width="24" height="24">
+                  <ion-label>Org</ion-label>
+                </div>  
+                </ion-item>           
             </ion-menu-toggle>
 
             <!-- Submenu Dropdown -->
@@ -52,24 +52,26 @@
           </div>
 
 
-          <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" [routerLink]="['/MyTeam']" lines="none" detail="false"
-              routerLinkActive="selected">
-              <div>
-                <ion-label>My Team</ion-label>
-              </div>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" (click)="logout()" lines="none" detail="false" routerLinkActive="selected">
-              <div>
-                <ion-label>Log out</ion-label>
-              </div>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item routerDirection="root" [routerLink]="['/MyTeam']" lines="none" detail="false"
+                routerLinkActive="selected">
+                <div class="text-center">
+                    <img src="assets/Icons/Group 104.svg" width="24" height="24">
+                  <ion-label>My Team</ion-label>
+                </div>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item routerDirection="root" (click)="logout()" lines="none" detail="false"
+                routerLinkActive="selected">
+                <div class="text-center">
+                  <ion-label>Log out</ion-label>
+                </div>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>

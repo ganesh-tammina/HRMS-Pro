@@ -5,8 +5,11 @@ ion-menu {
   .sidenav-content {
     --background: #1870B9 !important;
     ion-item {
+      --min-height: 63px;
       --background: #1870B9 !important;
       --color: #CFCFCF !important;
+      text-align: center;
+      align-items: center;
       &.selected.ion-activatable {
         --background: #00568F !important; 
         --color: #ffffff !important;    
@@ -27,6 +30,10 @@ ion-menu {
     --transition: unset;
 
       }
+      .text-center {
+        text-align: center;
+        width: 100%;
+      }
     }
     ion-label {
     @include normal-text-unbold();
@@ -37,7 +44,10 @@ ion-menu {
 .dropdown-wrapper {
   &:hover {
     .dropdown-menu {
-    display: block
+    display: block;
+    ion-item {
+      --background: #00568F !important;
+    }
   }
   }
   .dropdown-menu {           

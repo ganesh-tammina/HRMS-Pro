@@ -40,7 +40,7 @@
 
 ion-split-pane{
     --side-min-width: 70px !important;
-    --side-max-width: 12% !important;
+    --side-max-width: 100px !important;
 }
 
 ion-list{
@@ -141,4 +141,7 @@ ion-list-header, ion-item{
 }
 .pb-8 {
     padding-bottom: 8px;
+}
+.m-auto {
+    margin: auto !important;
 }
