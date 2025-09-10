@@ -6,6 +6,7 @@ import moment from 'moment';
 // ✅ Import all Ionic components you are using
 
 import { IonicModule } from '@ionic/angular';
+import { CandidateService } from '../services/pre-onboarding.service';
 
 @Component({
   standalone: true,
@@ -15,29 +16,33 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     FormsModule,
-   HeaderComponent,
-   IonicModule
-   
+    HeaderComponent,
+    IonicModule
+
   ]
 })
 export class HomePage implements OnInit {
   days: { date: string, status: 'Complete' | 'Remaining' }[] = [];
-  
-  constructor() { }
+  currentCandidate: any
+  constructor(private candidateService: CandidateService) { }
   ngOnInit() {
+    this.candidateService.currentCandidate$.subscribe(user => {
+      this.currentCandidate = user;
+      console.log('Current Candidate:', this.currentCandidate);
+    });
     const today = moment();
     for (let i = 0; i < 7; i++) {
       const day = today.clone().add(i, 'days');
-      const status = day.isBefore(moment(), 'day') ? 'Complete' : 
-                     day.isSame(moment(), 'day') ? 'Complete' : 
-                     'Remaining';
+      const status = day.isBefore(moment(), 'day') ? 'Complete' :
+        day.isSame(moment(), 'day') ? 'Complete' :
+          'Remaining';
       this.days.push({
         date: day.format('ddd'),
         status
       });
     }
-   }
-  backgroundImageUrl: string = '../../assets/holidays-pics/holidays-img.svg';  
+  }
+  backgroundImageUrl: string = '../../assets/holidays-pics/holidays-img.svg';
 }
 
 

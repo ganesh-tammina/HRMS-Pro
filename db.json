@@ -100,6 +100,23 @@
       "employeeCredentials": {
         "companyEmail": "Rajesh@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -127,6 +144,23 @@
       "employeeCredentials": {
         "companyEmail": "ravi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 650000
+      },
+      "salaryForm": {
+        "annualSalary": 650000,
+        "salaryStructure": {
+          "basic": 260000,
+          "hra": 104000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 251800,
+          "subtotal": 650000,
+          "pfEmployer": 31200,
+          "pfEmployee": 31200,
+          "total": 681200
+        }
       }
     },
     {
@@ -154,6 +188,23 @@
       "employeeCredentials": {
         "companyEmail": "SivaGanesh@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 9000000
+      },
+      "salaryForm": {
+        "annualSalary": 9000000,
+        "salaryStructure": {
+          "basic": 3600000,
+          "hra": 1440000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 3925800,
+          "subtotal": 9000000,
+          "pfEmployer": 432000,
+          "pfEmployee": 432000,
+          "total": 9432000
+        }
       }
     },
     {
@@ -208,6 +259,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 600000
+      },
+      "salaryForm": {
+        "annualSalary": 600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
       }
     },
     {
@@ -235,6 +303,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 60000
+      },
+      "salaryForm": {
+        "annualSalary": 60000,
+        "salaryStructure": {
+          "basic": 24000,
+          "hra": 9600,
+          "medical": 15000,
+          "transport": 19200,
+          "special": -7800,
+          "subtotal": 60000,
+          "pfEmployer": 2880,
+          "pfEmployee": 2880,
+          "total": 62880
+        }
       }
     },
     {
@@ -262,6 +347,23 @@
       "employeeCredentials": {
         "companyEmail": "Moulika@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -289,6 +391,37 @@
       "employeeCredentials": {
         "companyEmail": "moulika@tammina.com",
         "password": "123456"
+      },
+      "salary": {
+        "annualSalary": 600000,
+        "salaryStructure": {
+          "basic": 240000,
+          "hra": 96000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
+        }
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -312,6 +445,23 @@
       "offerDetails": {
         "DOJ": "19/09/2025",
         "offerValidity": "7"
+      },
+      "packageDetails": {
+        "salary": 900000
+      },
+      "salaryForm": {
+        "annualSalary": 900000,
+        "salaryStructure": {
+          "basic": 360000,
+          "hra": 144000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 361800,
+          "subtotal": 900000,
+          "pfEmployer": 43200,
+          "pfEmployee": 43200,
+          "total": 943200
+        }
       }
     },
     {
@@ -339,6 +489,46 @@
       "employeeCredentials": {
         "companyEmail": "leepakshi@tammina.com",
         "password": "123456"
+      }
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Ganesh",
+        "MiddleName": "Gani",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "male",
+        "initials": "GM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "UI Developer",
+        "Department": "Finance",
+        "JobLocation": "Site 1 - Hyderabad - Night Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Tech Tammina Visakhapatnam"
+      },
+      "id": "fihys45",
+      "offerDetails": {
+        "DOJ": "20/09/2025",
+        "offerValidity": "7"
+      },
+      "packageDetails": {
+        "salary": 1000000
+      },
+      "salaryForm": {
+        "annualSalary": 1000000,
+        "salaryStructure": {
+          "basic": 400000,
+          "hra": 160000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 405800,
+          "subtotal": 1000000,
+          "pfEmployer": 48000,
+          "pfEmployee": 48000,
+          "total": 1048000
+        }
       }
     }
   ],

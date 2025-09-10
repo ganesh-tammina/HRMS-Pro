@@ -14,8 +14,6 @@ import { CandiateCreateComponent } from './onboarding/candiate-create/candiate-c
 import { StartOnboardingComponent } from './onboarding/start-onboarding/start-onboarding.component';
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
 import { LeavesComponent } from './me/leaves/leaves.component';
-import { salaryStaructureComponent } from './salary-staructure/salary-staructure.component';
-import { OfferDetailsComponent } from './onboarding/offer-details/offer-details.component';
 import { authGuard } from './authgurd.guard';
 
 export const routes: Routes = [
