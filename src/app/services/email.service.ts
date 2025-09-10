@@ -5,23 +5,23 @@ import { Observable, tap } from 'rxjs';
 
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 
 export class EmailService {
-  private beURL = 'http://localhost:3562/send-email'
+	private beURL = 'http://localhost:3562/send-email'
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-  sendEmail(candidate: any): Observable<any> {
-    console.log(candidate)
+	sendEmail(candidate: any): Observable<any> {
+		console.log(candidate)
 
-    const data = {
-      // change this mail as it is hard coded. ⬇️
-      to: candidate.personalDetails.email,
-      // this mail ⬆️
-      subject: 'Welcome to our Tech Tammina!',
-      text: `
+		const data = {
+			// change this mail as it is hard coded. ⬇️
+			to: candidate.personalDetails.email,
+			// this mail ⬆️
+			subject: 'Welcome to our Tech Tammina!',
+			text: `
       
 <!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
@@ -127,7 +127,7 @@ export class EmailService {
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-image: url('https://090b06a87e.imgdist.com/pub/bfra/ucqd117e/ox7/9ql/pcb/email-header-bg.svg'); background-repeat: no-repeat; border-radius: 0; color: #000000; width: 500px; margin: 0 auto;" width="500">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-image: url('https://www.techtammina.com/wp-content/uploads/2025/09/email-header-bg.svg'); background-repeat: no-repeat; border-radius: 0; color: #000000; background-color: #2090cf; padding-left:20px; width: 500px; margin: 0 auto;" width="500">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top;">
@@ -135,7 +135,7 @@ export class EmailService {
 														<tr>
 															<td class="pad">
 																<div class="alignment" align="left">
-																	<div style="max-width: 250px;"><img src="https://090b06a87e.imgdist.com/pub/bfra/ucqd117e/9an/rp1/f0s/tt_white_logo_200px_70px.svg" style="display: block; height: auto; border: 0; width: 100%;" width="250" alt title height="auto"></div>
+																	<div style="max-width: 250px;"><img src="https://www.techtammina.com/wp-content/uploads/2022/04/techlogo.png" style="display: block; height: auto; border: 0; width: 100%;" width="250" alt title height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -236,14 +236,14 @@ export class EmailService {
 </html>
       
       `
-    }
-    return this.http.post<any>(`${this.beURL}`, data).pipe(
-      tap((updated) => {
-        if (!updated.success) {
-          alert("Failed to send email. Please try again.");
-        }
-      })
-    );
-  }
+		}
+		return this.http.post<any>(`${this.beURL}`, data).pipe(
+			tap((updated) => {
+				if (!updated.success) {
+					alert("Failed to send email. Please try again.");
+				}
+			})
+		);
+	}
 
 }
