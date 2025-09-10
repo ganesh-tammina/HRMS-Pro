@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   // Search functionality
   searchQuery: string = '';
   searchResults: Candidate[] = [];
+  results:any
 
   constructor(
     private candidateService: CandidateService,
@@ -51,12 +52,20 @@ export class HeaderComponent implements OnInit {
 
   // Search employees by name
   onSearch() {
-    if (!this.searchQuery || this.searchQuery.trim() === '') {
-      this.searchResults = [];
-      return;
-    }
+     if (!this.searchQuery || this.searchQuery.trim().length < 3) {
+    this.searchResults = [];
+    this.results = [];
+    return;
+  }
 
     this.searchResults = this.candidateService.searchCandidates(this.searchQuery);
+    // this.results = JSON.stringify(this.searchResults)
+    // console.log(this.results)
+     this.results = this.searchResults.map(emp => `${emp.personalDetails.FirstName} ${emp.personalDetails.LastName}`);
+
+  console.log(this.results); 
+
+
   }
 
   // Open modal to show employee list
