@@ -23,8 +23,7 @@
         OFFER DETAILS
       </ion-button>
 
-      <ion-button fill="clear" (click)="navigate('salaryStaructure')"
-        [class.active-btn]="activeTab === 'salaryStaructure'">
+      <ion-button fill="clear" (click)="navigate('preview_send')" [class.active-btn]="activeTab === 'preview_send'">
         PREVIEW & SEND
       </ion-button>
     </ion-col>
@@ -35,13 +34,13 @@
         <ion-button expand="block" (click)="onContinue()" color="primary">
           Continue
         </ion-button>
-                <ion-button expand="block"  color="primary">
+        <ion-button expand="block" (click)="onCreateOfferemail()" color="primary">
           Create Offer
         </ion-button>
       </div>
     </ion-col>
-  
-     
+
+
 
     <!-- <ion-col size="2">
       <div class="button-container">

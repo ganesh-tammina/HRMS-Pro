@@ -74,7 +74,7 @@ export const routes: Routes = [
       ),
   },
 
-    {
+  {
     path: 'preview_send/:id/:FirstName',
     loadComponent: () =>
       import('./onboarding/preview-send/preview-send.component').then(

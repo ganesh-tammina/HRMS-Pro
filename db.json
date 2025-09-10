@@ -182,7 +182,7 @@
       },
       "id": "ZDS8seV",
       "offerDetails": {
-        "DOJ": "30/09/2025",
+        "DOJ": "23/09/2025",
         "offerValidity": "7"
       },
       "employeeCredentials": {
@@ -190,20 +190,20 @@
         "password": "123456"
       },
       "packageDetails": {
-        "salary": 9000000
+        "salary": 600000
       },
       "salaryForm": {
-        "annualSalary": 9000000,
+        "annualSalary": 600000,
         "salaryStructure": {
-          "basic": 3600000,
-          "hra": 1440000,
+          "basic": 240000,
+          "hra": 96000,
           "medical": 15000,
           "transport": 19200,
-          "special": 3925800,
-          "subtotal": 9000000,
-          "pfEmployer": 432000,
-          "pfEmployee": 432000,
-          "total": 9432000
+          "special": 229800,
+          "subtotal": 600000,
+          "pfEmployer": 28800,
+          "pfEmployee": 28800,
+          "total": 628800
         }
       }
     },
@@ -232,6 +232,23 @@
       "employeeCredentials": {
         "companyEmail": "manikanta@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 960000
+      },
+      "salaryForm": {
+        "annualSalary": 960000,
+        "salaryStructure": {
+          "basic": 384000,
+          "hra": 153600,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 388200,
+          "subtotal": 960000,
+          "pfEmployer": 46080,
+          "pfEmployee": 46080,
+          "total": 1006080
+        }
       }
     },
     {
@@ -261,20 +278,20 @@
         "password": "123456"
       },
       "packageDetails": {
-        "salary": 600000
+        "salary": 500000
       },
       "salaryForm": {
-        "annualSalary": 600000,
+        "annualSalary": 500000,
         "salaryStructure": {
-          "basic": 240000,
-          "hra": 96000,
+          "basic": 200000,
+          "hra": 80000,
           "medical": 15000,
           "transport": 19200,
-          "special": 229800,
-          "subtotal": 600000,
-          "pfEmployer": 28800,
-          "pfEmployee": 28800,
-          "total": 628800
+          "special": 185800,
+          "subtotal": 500000,
+          "pfEmployer": 24000,
+          "pfEmployee": 24000,
+          "total": 524000
         }
       }
     },
