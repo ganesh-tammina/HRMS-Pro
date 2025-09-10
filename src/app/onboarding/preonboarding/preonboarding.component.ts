@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { OnboardingMainheaderComponent } from '../onboarding-mainheader/onboarding-mainheader.component';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
@@ -25,6 +25,7 @@ export class PreonboardingComponent implements OnInit {
 
   // 👇 All candidates loaded from service
   candidates: any[] = [];
+    @Input() currentStage: number = 1;
 
   constructor(
     private router: Router,

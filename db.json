@@ -144,6 +144,23 @@
       "employeeCredentials": {
         "companyEmail": "ravi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 650000
+      },
+      "salaryForm": {
+        "annualSalary": 650000,
+        "salaryStructure": {
+          "basic": 260000,
+          "hra": 104000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": 251800,
+          "subtotal": 650000,
+          "pfEmployer": 31200,
+          "pfEmployee": 31200,
+          "total": 681200
+        }
       }
     },
     {
@@ -173,20 +190,20 @@
         "password": "123456"
       },
       "packageDetails": {
-        "salary": 690000
+        "salary": 9000000
       },
       "salaryForm": {
-        "annualSalary": 690000,
+        "annualSalary": 9000000,
         "salaryStructure": {
-          "basic": 276000,
-          "hra": 110400,
+          "basic": 3600000,
+          "hra": 1440000,
           "medical": 15000,
           "transport": 19200,
-          "special": 269400,
-          "subtotal": 690000,
-          "pfEmployer": 33120,
-          "pfEmployee": 33120,
-          "total": 723120
+          "special": 3925800,
+          "subtotal": 9000000,
+          "pfEmployer": 432000,
+          "pfEmployee": 432000,
+          "total": 9432000
         }
       }
     },
@@ -497,20 +514,20 @@
         "offerValidity": "7"
       },
       "packageDetails": {
-        "salary": ""
+        "salary": 1000000
       },
       "salaryForm": {
-        "annualSalary": 9600000,
+        "annualSalary": 1000000,
         "salaryStructure": {
-          "basic": 240000,
-          "hra": 96000,
+          "basic": 400000,
+          "hra": 160000,
           "medical": 15000,
           "transport": 19200,
-          "special": 229800,
-          "subtotal": 600000,
-          "pfEmployer": 28800,
-          "pfEmployee": 28800,
-          "total": 628800
+          "special": 405800,
+          "subtotal": 1000000,
+          "pfEmployer": 48000,
+          "pfEmployee": 48000,
+          "total": 1048000
         }
       }
     }
