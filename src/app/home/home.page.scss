@@ -383,6 +383,19 @@ ion-col {
 }
 .Create-post-block {
   ion-card {
+    .post-content {
+      padding-top: 0px;
+    ion-textarea {
+    border: 1px solid #80808066;
+    border-radius: 4px;
+    width: 100vw;
+   height: calc(100vh - 516px) !important;
    
+    textarea {
+      --max-height: calc(100vh - 447px) !important;
+      --min-height: calc(100vh - 447px) !important;
+    }
+   }
+  }
   }
 }
