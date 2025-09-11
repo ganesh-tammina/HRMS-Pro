@@ -1,6 +1,7 @@
+@import './../../theme/variables.scss';
 .keka-navbar {
   height: 56px;
-
+  
   .navbar-toolbar {
     display: flex;
     justify-content: space-between;
@@ -360,6 +361,13 @@ ion-card {
       margin-left: 8px;
     }
   }
+}
+p.divider {
+  border-bottom: 1px solid #9E9E9E;
+}
+.custom-link {
+  @include normal-text();
+  text-transform: capitalize;
 }
 
 .popover-content {

@@ -134,11 +134,30 @@
               {{ log.arrival }}
             </ion-col>
             <ion-col size="1">
-              <ion-icon name="alert-circle-outline" color="warning" (click)="openLogDetails(log)">
+              <ion-icon id="popover-button" name="alert-circle-outline" color="warning" (click)="openLogDetails(log)">
               </ion-icon>
             </ion-col>
           </ion-row>
-
+          <ion-popover *ngIf="showPopover" [isOpen]="showPopover" trigger="popover-button" [dismissOnSelect]="false">
+            <ng-template>
+              <ion-content class="popover-content ion-padding">               
+                <p class="card-title">Day Shift 1( {{ currentDate }})</p>
+                <p class="card-title">{{ selectedLog?.details?.shiftTime }}</p>
+                <p class="divider"></p>
+                <p><strong>Location:</strong></p>
+                <p class="card-title">{{ selectedLog?.details?.location }}</p>
+                <ion-item *ngFor="let event of history">
+                  {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
+                </ion-item>
+                            <!-- <div *ngIf="selectedLog?.details?.webClockIn">
+                  <p>IN: {{ selectedLog?.details?.webClockIn?.in }}</p>
+                  <p>OUT: {{ selectedLog?.details?.webClockIn?.out }}</p>
+                </div> -->
+                <ion-button fill="clear" class="ion-no-padding custom-link" size="small">Apply Partial Day</ion-button>
+                <!-- <ion-button expand="block" color="primary">Apply Partial Day</ion-button> -->
+              </ion-content>
+            </ng-template>
+          </ion-popover>
 
           <!-- Weekly off row -->
           <ion-row class="weekoff-row">
@@ -151,7 +170,7 @@
       </div>
 
       
-      <ion-modal *ngIf="showPopover" [isOpen]="showPopover" (didDismiss)="closePopover()">
+      <!-- <ion-modal *ngIf="showPopover" [isOpen]="showPopover" (didDismiss)="closePopover()">
         <ng-template>
           <ion-header>
             <ion-toolbar>
@@ -170,16 +189,19 @@
               {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
             </ion-item>
 
-            <!-- <div *ngIf="selectedLog?.details?.webClockIn">
+            <div *ngIf="selectedLog?.details?.webClockIn">
   <p>IN: {{ selectedLog?.details?.webClockIn?.in }}</p>
   <p>OUT: {{ selectedLog?.details?.webClockIn?.out }}</p>
-</div> -->
+</div> 
 
 
             <ion-button expand="block" color="primary">Apply Partial Day</ion-button>
           </ion-content>
         </ng-template>
-      </ion-modal>
+      </ion-modal>-->
+
+
+     
 
 
       <div *ngIf="activeTab === 'calendar'">
