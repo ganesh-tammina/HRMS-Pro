@@ -62,6 +62,8 @@ export class MePage implements OnInit {
   selectedLog: AttendanceLog | null = null;
   showPopover = false;
   attendanceLogs: AttendanceLog[] = [];
+  days: Date[] = [];
+  today: Date = new Date();
 
 
 
@@ -205,6 +207,27 @@ export class MePage implements OnInit {
         },
       },
     ];
+
+    this.generateDays();
+  }
+
+  generateDays() {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust for Sunday
+
+    const firstDayOfWeek = new Date(today.setDate(diff));
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(firstDayOfWeek);
+      date.setDate(firstDayOfWeek.getDate() + i);
+      this.days.push(date);
+    }
+  }
+
+  isToday(day: Date): boolean {
+    return day.getDate() === this.today.getDate() &&
+           day.getMonth() === this.today.getMonth() &&
+           day.getFullYear() === this.today.getFullYear();
   }
 
   //  attendanceLogs = [
