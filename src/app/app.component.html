@@ -1,7 +1,7 @@
 <ion-app>
   <app-header *ngIf="!isLoginPage"></app-header>
 
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane contentId="main-content" [ngClass]="!isLoginPage ? 'main-content-block' : ''">
     <ion-menu *ngIf="showMenu" contentId="main-content" type="overlay">
       <ion-content class="menu-content sidenav-content">
         <ion-list class="side-menu-list">          
@@ -65,6 +65,7 @@
               <ion-item routerDirection="root" (click)="logout()" lines="none" detail="false"
                 routerLinkActive="selected">
                 <div class="text-center">
+                    <img src="assets/Icons/logout_duoline 1.svg" width="24" height="24">
                   <ion-label>Log out</ion-label>
                 </div>
               </ion-item>

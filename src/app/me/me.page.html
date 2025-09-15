@@ -83,25 +83,38 @@
               <div class="info">{{ currentDate }}</div>
             </ion-col>
   
-            <ion-col size="8">
+            <ion-col size="6">
               <ion-button class="btn-clockout" (click)="clockOut()" *ngIf="record?.isClockedIn">
                 Clock Out
               </ion-button>
-  
-              <ion-button class="btn-clockin" (click)="clockIn()" *ngIf="!record?.isClockedIn">
-                Clock In
-              </ion-button>
-  
-              <div class="info m-5 ion-text-center">
+              <div class="info m-5 ion-text-center" *ngIf="record?.isClockedIn">
                 Since Last Login: {{ timeSinceLastLogin }}
               </div>
+              <!-- <ion-button class="btn-clockin" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+                Clock In
+              </ion-button> -->
+              <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+              <img src="../../assets/Icons/attendance-icons/Web clockin.svg" width="16" height="16">
+               Web Clock-In
+              </ion-button>
+              <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+                  <img src="../../assets/Icons/attendance-icons/remote.svg" width="16" height="16">
+                Remote Clock-In
+               </ion-button>
+               <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+                  <img src="../../assets/Icons/attendance-icons/wfh clockin.svg" width="16" height="16">
+                WFH Clock-In
+               </ion-button>            
               <ion-button fill="clear" class="clear">
+                  <img src="../../assets/Icons/attendance-icons/WFH.svg" width="16" height="16">
                   Work From Home
                 </ion-button>
                 <ion-button fill="clear" class="clear">
+                    <img src="../../assets/Icons/attendance-icons/partial day rq.svg" width="16" height="16">
                     Partial Day Request
                   </ion-button>
                 <ion-button fill="clear" class="clear">
+                    <img src="../../assets/Icons/attendance-icons/attendeance policy.svg" width="16" height="16">
                     Attendance Policy
                   </ion-button>
               <!-- <div class="info">
@@ -220,12 +233,17 @@
           </ion-popover>
 
           <!-- Weekly off row -->
-          <ion-row class="weekoff-row">
-            <ion-col size="12">Sun, 31 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
+          <ion-row class="table-row weekoff-row">
+            <ion-col size="2">Sun, 31 Aug</ion-col>
+            <ion-col size="10" class="text-center">Full day Weekly-off</ion-col>
+          
           </ion-row>
-          <ion-row class="weekoff-row">
-            <ion-col size="12">Sat, 30 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
+          <ion-row class="table-row weekoff-row">
+            <ion-col size="2">Sun, 31 Aug</ion-col>
+            <ion-col size="10" class="text-center">Full day Weekly-off</ion-col>
+           
           </ion-row>
+          
         </ion-grid>
       </div>
 

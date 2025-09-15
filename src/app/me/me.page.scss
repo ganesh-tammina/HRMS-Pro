@@ -120,13 +120,15 @@
   }
 }
 }
-ion-progress-bar{
-  .progress{
-    --progress-background: #3498DB;
-    --background: #3498DB;
+ ion-progress-bar {
+    height: 6px;
+    border-radius: 6px;
+    --background: #E4E4E4 !important;
+    --progress-background: #3498db !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
-}
 /* Individual cards */
 .card-pannel {
   background-color: white;
@@ -210,6 +212,7 @@ ion-progress-bar{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    
     .clock {
       font-size: 18px;
       font-weight: 400;
@@ -241,9 +244,14 @@ ion-progress-bar{
       --padding-start: 0;
       --padding-end: 0;
       display: block;
+      text-align: left;
       text-transform: capitalize;
+      justify-self: flex-start;
       &:hover {
         --background: transparent; 
+      }
+      img {
+        margin-right: 8px;
       }
     }
     .info {
@@ -266,16 +274,25 @@ ion-progress-bar{
 }
 // Custom tab
 .custom-tabs {
-  border: 0.5px solid #DEDEDE;
   width: fit-content;
   button {
+    &:first-child {
+      border-bottom-left-radius: 8px;
+      border-top-left-radius: 8px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 8px;
+      border-top-right-radius: 8px;
+    }
     padding: 12px 24px;
     background: #fff;
-    border-left: 0.5px solid #DEDEDE;
+    border: 0.5px solid #DEDEDE;
+    @include normal-text-unbold();
     &.active {
       background: #3498DB;
-      color: #fff;
+      color: #fff;      
     } 
+  
   }
 }
 
@@ -283,19 +300,28 @@ ion-progress-bar{
  .filters {
    display: flex;
   .filter-block {
-    border: 0.5px solid #DEDEDE;
     margin-right: 10px;
   .btn-secondry { 
     padding:12px 24px;
     background: #fff;
-    border-left: 0.5px solid #DEDEDE;
+    border: 0.5px solid #DEDEDE;
     color: #3498db;
     box-shadow: none;
     font-weight: 600;
-    margin: 0;
+    margin: 0;    
+    @include normal-text-unbold();
+    &:first-child {
+      border-bottom-left-radius: 8px;
+      border-top-left-radius: 8px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 8px;
+      border-top-right-radius: 8px;
+    }
     &.active {
       background: #3498DB;
       color: #fff;
+      font-weight: 600;
     } 
   } 
   }
@@ -304,11 +330,19 @@ ion-progress-bar{
     .btn-secondry {
     padding:12px 24px;
   background: #fff;
-  border-left: 0.5px solid #DEDEDE;
+  border: 0.5px solid #DEDEDE;
   color: #3498db;
   box-shadow: none;
   font-weight: 600;
   margin: 0;
+  &:first-child {
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+  &:last-child {
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+  }
   ion-icon {
     font-weight: 600;
   }
@@ -324,34 +358,45 @@ ion-progress-bar{
   gap: 20px;
   .attendance-table {
     background-color: #fff;
-    padding: 16px;
+    padding: 0;
     margin-top: 15px;
     border-radius: 6px;
   
     .table-header {
-      font-weight: bold;
-      border-bottom: 1px solid #ddd;
-      padding: 8px 0;
+      @include normal-text-unbold();
+      padding: 0 12px;
+      height: 52px;
+      display: flex;
+        align-items: center;
     }
   
     .table-row {
-      border-bottom: 1px solid #f1f1f1;
-      padding: 6px 0;
-      font-size: 14px;
-  
+      @include normal-text-unbold();
+      padding: 0 12px;
+      height: 52px;
+      ion-col {
+        padding-right: 24px;
+        display: flex;
+        align-items: center;
+        @include normal-text-unbold();
+      }
+      ion-icon {
+        font-size: 18px;
+        margin-right: 5px;
+      }
       ion-progress-bar {
         height: 6px;
         border-radius: 6px;
+        --background: #E4E4E4;
+        --progress-background: #3498db;
       }
-    }
-  
-    .weekoff-row {
-      background: #f9f9f9;
-      font-size: 14px;
-      padding: 8px;
-  
-      ion-badge {
-        margin-left: 8px;
+      &.weekoff-row {
+        padding: 0 12px;
+        background: #F2F1EC;    
+        .text-center {
+          display: flex;
+          justify-content: center;
+        }
       }
     }
   }
