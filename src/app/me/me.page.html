@@ -165,7 +165,7 @@
                 <button class="btn-secondry">MAR</button> 
                </div>
                 <div class="row-right outline-btns">
-                  <button class="btn-secondry">
+                  <button class="btn-secondry active">
                     <ion-icon name="list-outline"></ion-icon>
                   </button> 
                   <button class="btn-secondry">
@@ -197,7 +197,7 @@
               {{ grossHours }}
             </ion-col>
             <ion-col size="2">
-              <ion-icon name="checkmark-circle" color="success"></ion-icon>
+              <ion-icon name="checkmark-outline" color="success"></ion-icon>
               {{ log.arrival }}
             </ion-col>
             <ion-col size="1">
@@ -234,12 +234,12 @@
 
           <!-- Weekly off row -->
           <ion-row class="table-row weekoff-row">
-            <ion-col size="2">Sun, 31 Aug</ion-col>
+            <ion-col size="2">Sun, 31 Aug<label>W-OFF</label></ion-col>
             <ion-col size="10" class="text-center">Full day Weekly-off</ion-col>
           
           </ion-row>
           <ion-row class="table-row weekoff-row">
-            <ion-col size="2">Sun, 31 Aug</ion-col>
+            <ion-col size="2">Sun, 31 Aug<label>W-OFF</label></ion-col>
             <ion-col size="10" class="text-center">Full day Weekly-off</ion-col>
            
           </ion-row>
@@ -284,14 +284,30 @@
 
       <div *ngIf="activeTab === 'calendar'">
         <div class="calendar-container">
-          <div class="calendar-header">
-            <button (click)="prevMonth()">&lt;</button>
-            <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
-            <button (click)="nextMonth()">&gt;</button>
+          <div class="row-space-between"> 
+              <div class="calendar-header">
+                  <button (click)="prevMonth()"><ion-icon name="chevron-back-outline"></ion-icon></button>
+                  <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
+                  <button (click)="nextMonth()"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+                </div>
+                <div class="filters">
+                    <div class="filter-block">
+                      <button class="btn-secondry" *ngFor="let day of weekDays">{{ day }}</button> 
+                     </div>
+                      <div class="row-right outline-btns">
+                        <button class="btn-secondry">
+                          <ion-icon name="list-outline"></ion-icon>
+                        </button> 
+                        <button class="btn-secondry active">
+                          <ion-icon name="calendar-outline"></ion-icon>
+                        </button> 
+                      </div>
+                    </div>             
           </div>
+         
 
-          <div class="calendar-grid">
-            <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
+          <div class="calendar-grid">            
+
             <div class="day-cell" *ngFor="let date of calendarDays">
               <div class="date">{{ date.day }}</div>
               <div class="timing" *ngIf="date.timing">{{ date.timing }}</div>
