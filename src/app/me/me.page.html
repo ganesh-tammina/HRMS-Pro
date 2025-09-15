@@ -50,13 +50,14 @@
           </div>
 
           <div>
-            <button class="btn-clockin" (click)="clockIn()" [disabled]="record?.isClockedIn">
+            <app-clock-button></app-clock-button>
+            <!-- <button class="btn-clockin" (click)="clockIn()" [disabled]="record?.isClockedIn">
               Clock In
             </button>
 
             <button class="btn-clockout" (click)="clockOut()" [disabled]="!record?.isClockedIn">
               Clock Out
-            </button>
+            </button> -->
 
             <div class="info m-5 ion-text-center ion-margin-top">
               Since Last Login: {{ timeSinceLastLogin }}
@@ -150,7 +151,7 @@
         </ion-grid>
       </div>
 
-      
+
       <ion-modal *ngIf="showPopover" [isOpen]="showPopover" (didDismiss)="closePopover()">
         <ng-template>
           <ion-header>

@@ -5,6 +5,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { CandidateService, Candidate } from '../services/pre-onboarding.service';
 import { AttendanceService, AttendanceRecord, AttendanceEvent } from '../services/attendance.service';
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
+import { ClockButtonComponent } from '../services/clock-button/clock-button.component';
 interface AttendanceRequest {
   type: string;
   dateRange: string;
@@ -31,7 +32,7 @@ interface AttendanceLog {
   templateUrl: './me.page.html',
   styleUrls: ['./me.page.scss'],
   standalone: true,
-  imports: [IonicModule, HeaderComponent, EmployeeHeaderComponent, CommonModule]
+  imports: [IonicModule, ClockButtonComponent, HeaderComponent, EmployeeHeaderComponent, CommonModule]
 })
 export class MePage implements OnInit {
   employee?: Candidate;
@@ -229,19 +230,19 @@ export class MePage implements OnInit {
 
 
 
-  clockIn() {
-    if (!this.employee) return;
-    this.record = this.attendanceService.clockIn(this.employee.id);
-    this.updateTimes();
-    this.loadHistory();
-  }
+  // clockIn() {
+  //   if (!this.employee) return;
+  //   this.record = this.attendanceService.clockIn(this.employee.id);
+  //   this.updateTimes();
+  //   this.loadHistory();
+  // }
 
-  clockOut() {
-    if (!this.employee) return;
-    this.record = this.attendanceService.clockOut(this.employee.id);
-    this.updateTimes();
-    this.loadHistory();
-  }
+  // clockOut() {
+  //   if (!this.employee) return;
+  //   this.record = this.attendanceService.clockOut(this.employee.id);
+  //   this.updateTimes();
+  //   this.loadHistory();
+  // }
 
   updateTimes() {
     if (!this.record) return;
