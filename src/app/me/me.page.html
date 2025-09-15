@@ -1,87 +1,147 @@
 <ion-header [translucent]="true">
-  <app-header></app-header>
+  <!-- <app-header></app-header> -->
   <app-employee-header></app-employee-header>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <ion-grid class="ion-no-padding">
     <div class="dashboard">
+      <ion-row class="attendance-block">
+        <ion-col size="4">
+            <!-- Attendance Stats -->
+            <ion-card class="attendance-stats">
+                <ion-card-header>
+                    <ion-card-title>Attendance Stats</ion-card-title>
+                  </ion-card-header>
 
-      <!-- Attendance Stats -->
-      <div class="card-pannel attendance-stats">
-        <div class="header">Attendance Stats</div>
-        <div class="entry">
-          <div><span class="icon">👤</span> {{ employeeName }}</div>
-          <div>
-            Status: <strong>{{ status }}</strong><br>
-            Gross Hours: {{ grossHours }}<br>
-            Effective Hours: {{ effectiveHours }}
-          </div>
-        </div>
-      </div>
-      <!-- Timings -->
+              <ion-card-content>
+                  Status: <strong>{{ status }}</strong><br>
+                  <ion-grid class="days-grid ion-no-padding">
+                      <ion-row>
+                        <ion-col class="row-left">
+                         
+                            <img src="../../assets/user.svg" width="25">
+                            <p class="pl-5"> Me</p>
+                          
+                        </ion-col>
+                        <ion-col>
+                            <div>
+                                <p> Gross Hours:</p>
+                                <p> <strong>{{ grossHours }}</strong></p>
+                            </div>
+                          </ion-col>
+                        <ion-col>
+                            <div>
+                                <p> Effective Hours:</p>
+                                <p> <strong>{{ effectiveHours }}</strong></p>
+                            </div>
+                          </ion-col>
+                      </ion-row>
+                    </ion-grid>
+               
+              </ion-card-content>
+              </ion-card>
+        </ion-col>
+
+        <ion-col size="4">
+            <!-- Timings -->
       <ion-card class="timings-card">
-        <ion-card-header>
-          <ion-card-title>Timings</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div class="day-selector">
-            <ion-chip color="primary">M</ion-chip>
-            <ion-chip color="primary">T</ion-chip>
-            <ion-chip color="primary" outline>W</ion-chip>
-            <ion-chip color="primary" outline>T</ion-chip>
-            <ion-chip>S</ion-chip>
-          </div>
+          <ion-card-header>
+            <ion-card-title>Timings</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-grid class="days-grid ion-no-padding mb-30">
+                  <ion-row>
+                    <ion-col *ngFor="let day of days" class="ion-text-center">
+                      <div class="day-container" [ngClass]="{'highlight-today': isToday(day)}">
+                        <p class="day-of-week">{{ day | date:'E' }}</p>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>        
+  
+            <p>Today (9:30 AM - 6:30 PM)</p>
+  
+            <ion-progress-bar value="0.85"></ion-progress-bar>
+  
+            <small>Duration: 9h 0m | Break: 60m</small>
+          </ion-card-content>
+        </ion-card>
+          </ion-col>
 
-          <p>Today (9:30 AM - 6:30 PM)</p>
+          <ion-col size="4">
+         
+      <ion-card class="actions">
+          <ion-card-header>
+              <ion-card-title>Actions</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <!-- Actions -->
+          <ion-row class="actions-card">
+            <ion-col size="4">
+              <h5 class="clock">{{ currentTime }}</h5>
+              <div class="info">{{ currentDate }}</div>
+            </ion-col>
+  
+            <ion-col size="6">
+              <ion-button class="btn-clockout" (click)="clockOut()" *ngIf="record?.isClockedIn">
+                Clock Out
+              </ion-button>
+              <div class="info m-5 ion-text-center" *ngIf="record?.isClockedIn">
+                Since Last Login: {{ timeSinceLastLogin }}
+              </div>
+              <!-- <ion-button class="btn-clockin" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+                Clock In
+              </ion-button> -->
+              <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+              <img src="../../assets/Icons/attendance-icons/Web clockin.svg" width="16" height="16">
+               Web Clock-In
+              </ion-button>
+              <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+                  <img src="../../assets/Icons/attendance-icons/remote.svg" width="16" height="16">
+                Remote Clock-In
+               </ion-button>
+               <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+                  <img src="../../assets/Icons/attendance-icons/wfh clockin.svg" width="16" height="16">
+                WFH Clock-In
+               </ion-button>            
+              <ion-button fill="clear" class="clear">
+                  <img src="../../assets/Icons/attendance-icons/WFH.svg" width="16" height="16">
+                  Work From Home
+                </ion-button>
+                <ion-button fill="clear" class="clear">
+                    <img src="../../assets/Icons/attendance-icons/partial day rq.svg" width="16" height="16">
+                    Partial Day Request
+                  </ion-button>
+                <ion-button fill="clear" class="clear">
+                    <img src="../../assets/Icons/attendance-icons/attendeance policy.svg" width="16" height="16">
+                    Attendance Policy
+                  </ion-button>
+              <!-- <div class="info">
+                Attendance History:
+                <ion-list>
+                  <ion-item *ngFor="let event of history">
+                    {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
+                  </ion-item>
+                </ion-list>
+              </div> -->
+            </ion-col>
+          </ion-row>
+          </ion-card-content>
+        </ion-card>
+            </ion-col>
+      </ion-row>    
+      
+    
 
-          <ion-progress-bar value="0.85"></ion-progress-bar>
-
-          <small>Duration: 9h 0m | Break: 60m</small>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Actions -->
-      <div class="card-pannel actions">
-        <div class="actions-card">
-          <div>
-            <h5 class="clock">{{ currentTime }}</h5>
-            <div class="info">{{ currentDate }}</div>
-          </div>
-
-          <div>
-            <button class="btn-clockin" (click)="clockIn()" [disabled]="record?.isClockedIn">
-              Clock In
-            </button>
-
-            <button class="btn-clockout" (click)="clockOut()" [disabled]="!record?.isClockedIn">
-              Clock Out
-            </button>
-
-            <div class="info m-5 ion-text-center ion-margin-top">
-              Since Last Login: {{ timeSinceLastLogin }}
-            </div>
-            <!-- <div class="info">
-              Attendance History:
-              <ion-list>
-                <ion-item *ngFor="let event of history">
-                  {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
-                </ion-item>
-              </ion-list>
-            </div> -->
-          </div>
-        </div>
-      </div>
+    
     </div>
   </ion-grid>
-  <ion-card class="attendance-log-card">
-    <ion-card-header>
-      <ion-card-title>Logs & Requests</ion-card-title>
-    </ion-card-header>
 
-    <ion-card-content>
+  <div class="attendance-log-card">
+    <h2>Logs & Requests</h2>
       <!-- logs & request Tabs -->
-      <div class="tabs-container">
+      <div class="tabs-container custom-tabs">
         <button [class.active]="activeTab === 'log'" (click)="setTab('log')">Attendance Log</button>
         <button [class.active]="activeTab === 'calendar'" (click)="setTab('calendar')">Calendar</button>
         <button [class.active]="activeTab === 'requests'" (click)="setTab('requests')">Attendance Requests</button>
@@ -90,24 +150,31 @@
       <div *ngIf="activeTab === 'log'">
 
         <!-- Filters -->
-        <div class="filters">
-          <ion-button size="small" fill="solid" color="primary">30 DAYS</ion-button>
-          <ion-button size="small" fill="outline">AUG</ion-button>
-          <ion-button size="small" fill="outline">JUL</ion-button>
-          <ion-button size="small" fill="outline">JUN</ion-button>
-          <ion-button size="small" fill="outline">MAY</ion-button>
-          <ion-button size="small" fill="outline">APR</ion-button>
-          <ion-button size="small" fill="outline">MAR</ion-button>
-
-          <ion-buttons slot="end">
-            <ion-button fill="clear">
-              <ion-icon name="list-outline"></ion-icon>
-            </ion-button>
-            <ion-button fill="clear">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
+        <div class="row-space-between">
+          <div>
+            <p>Last 30 Days</p>
+          </div>
+            <div class="filters">
+              <div class="filter-block">
+                <button class="btn-secondry active">30 DAYS</button> 
+                <button class="btn-secondry">AUG</button> 
+                <button class="btn-secondry">JUL</button> 
+                <button class="btn-secondry">JUN</button> 
+                <button class="btn-secondry">MAY</button> 
+                <button class="btn-secondry">APR</button> 
+                <button class="btn-secondry">MAR</button> 
+               </div>
+                <div class="row-right outline-btns">
+                  <button class="btn-secondry">
+                    <ion-icon name="list-outline"></ion-icon>
+                  </button> 
+                  <button class="btn-secondry">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                  </button> 
+                </div>
+              </div>
         </div>
+        
 
         <!-- Table -->
         <ion-grid class="attendance-table">
@@ -134,24 +201,54 @@
               {{ log.arrival }}
             </ion-col>
             <ion-col size="1">
-              <ion-icon name="alert-circle-outline" color="warning" (click)="openLogDetails(log)">
+              <ion-icon id="popover-button" name="alert-circle-outline" color="warning" (click)="openLogDetails(log)">
               </ion-icon>
             </ion-col>
           </ion-row>
-
+          <ion-popover *ngIf="showPopover" [isOpen]="showPopover" trigger="popover-button" [dismissOnSelect]="false">
+            <ng-template>
+              <ion-content class="popover-content ion-padding">               
+                <p class="card-title">Day Shift 1( {{ currentDate }})</p>
+                <p class="card-title">{{ selectedLog?.details?.shiftTime }}</p>
+                <p class="divider"></p>
+                <p><strong>Location:</strong></p>
+                <p class="card-title">{{ selectedLog?.details?.location }}</p>
+                <ion-row class="ion-no-padding">
+                <ion-col *ngFor="let event of history" class="clock-logs" size="6">
+                  <div class="d-flex">
+                      <p *ngIf="event.type === 'CLOCK_IN'"><img src="../../assets/Icons/clock-in.svg" width="12"> {{ event.displayTime }}</p>
+                      <p *ngIf="event.type !== 'CLOCK_IN'"><img src="../../assets/Icons/clock-out.svg" width="12">{{ event.displayTime }}</p>
+                  
+                  </div>
+                    </ion-col>
+                </ion-row>
+                            <!-- <div *ngIf="selectedLog?.details?.webClockIn">
+                  <p>IN: {{ selectedLog?.details?.webClockIn?.in }}</p>
+                  <p>OUT: {{ selectedLog?.details?.webClockIn?.out }}</p>
+                </div> -->
+                <ion-button fill="clear" class="ion-no-padding custom-link" size="small">Apply Partial Day</ion-button>
+                <!-- <ion-button expand="block" color="primary">Apply Partial Day</ion-button> -->
+              </ion-content>
+            </ng-template>
+          </ion-popover>
 
           <!-- Weekly off row -->
-          <ion-row class="weekoff-row">
-            <ion-col size="12">Sun, 31 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
+          <ion-row class="table-row weekoff-row">
+            <ion-col size="2">Sun, 31 Aug</ion-col>
+            <ion-col size="10" class="text-center">Full day Weekly-off</ion-col>
+          
           </ion-row>
-          <ion-row class="weekoff-row">
-            <ion-col size="12">Sat, 30 Aug <ion-badge color="medium">W-OFF</ion-badge> Full day Weekly-off</ion-col>
+          <ion-row class="table-row weekoff-row">
+            <ion-col size="2">Sun, 31 Aug</ion-col>
+            <ion-col size="10" class="text-center">Full day Weekly-off</ion-col>
+           
           </ion-row>
+          
         </ion-grid>
       </div>
 
       
-      <ion-modal *ngIf="showPopover" [isOpen]="showPopover" (didDismiss)="closePopover()">
+      <!-- <ion-modal *ngIf="showPopover" [isOpen]="showPopover" (didDismiss)="closePopover()">
         <ng-template>
           <ion-header>
             <ion-toolbar>
@@ -170,16 +267,19 @@
               {{ event.type === 'CLOCK_IN' ? 'Clock In' : 'Clock Out' }} at {{ event.displayTime }}
             </ion-item>
 
-            <!-- <div *ngIf="selectedLog?.details?.webClockIn">
+            <div *ngIf="selectedLog?.details?.webClockIn">
   <p>IN: {{ selectedLog?.details?.webClockIn?.in }}</p>
   <p>OUT: {{ selectedLog?.details?.webClockIn?.out }}</p>
-</div> -->
+</div> 
 
 
             <ion-button expand="block" color="primary">Apply Partial Day</ion-button>
           </ion-content>
         </ng-template>
-      </ion-modal>
+      </ion-modal>-->
+
+
+     
 
 
       <div *ngIf="activeTab === 'calendar'">
@@ -226,7 +326,5 @@
           </ion-card>
         </div>
       </div>
-    </ion-card-content>
-  </ion-card>
-
+</div>
 </ion-content>
