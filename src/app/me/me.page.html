@@ -164,14 +164,14 @@
                 <button class="btn-secondry">APR</button> 
                 <button class="btn-secondry">MAR</button> 
                </div>
-                <div class="row-right outline-btns">
+                <!-- <div class="row-right outline-btns">
                   <button class="btn-secondry active">
                     <ion-icon name="list-outline"></ion-icon>
                   </button> 
                   <button class="btn-secondry">
                     <ion-icon name="calendar-outline"></ion-icon>
                   </button> 
-                </div>
+                </div> -->
               </div>
         </div>
         
@@ -292,26 +292,37 @@
                 </div>
                 <div class="filters">
                     <div class="filter-block">
-                      <button class="btn-secondry" *ngFor="let day of weekDays">{{ day }}</button> 
+                        <button class="btn-secondry active">SEP</button> 
+                        <button class="btn-secondry">OCT</button> 
+                        <button class="btn-secondry">NOV</button> 
+                        <button class="btn-secondry">DEC</button> 
+                        <button class="btn-secondry">JAN</button> 
+                        <button class="btn-secondry">FEB</button> 
+                        <button class="btn-secondry">MAR</button>  
                      </div>
-                      <div class="row-right outline-btns">
+                      <!-- <div class="row-right outline-btns">
                         <button class="btn-secondry">
                           <ion-icon name="list-outline"></ion-icon>
                         </button> 
                         <button class="btn-secondry active">
                           <ion-icon name="calendar-outline"></ion-icon>
                         </button> 
-                      </div>
+                      </div> -->
                     </div>             
           </div>
          
 
-          <div class="calendar-grid">            
+          <div class="calendar-grid">   
 
+            <div class="day-header">
+                <button class="day-header-cell" *ngFor="let day of weekDays">{{ day }}</button> 
+            </div>
+            <div class="day-cell-row">  
             <div class="day-cell" *ngFor="let date of calendarDays">
               <div class="date">{{ date.day }}</div>
               <div class="timing" *ngIf="date.timing">{{ date.timing }}</div>
-              <div class="woff" *ngIf="date.isOff">W-OFF</div>
+              <div class="timing" *ngIf="date.isOff">W-OFF</div>
+            </div>
             </div>
           </div>
         </div>

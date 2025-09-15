@@ -428,45 +428,28 @@ p.divider {
 
 .popover-content {
   padding: 15px;
-
-  h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
+  p{
+    @include body-text();
   }
-
-  h4 {
-    margin-top: 15px;
-    font-size: 16px;
-    color: #007bff;
+  .clock-logs {
+    display: flex;
+    width: 100%;
+    p{
+      @include body-text();
+      float: left;
+    }
+    img {
+      padding-right: 5px;
+    }
   }
-
-  .in-time {
-    color: green;
-    font-weight: 500;
-  }
-
-  .out-time {
-    color: red;
-    font-weight: 500;
-  }
+  
 }
 
 ion-modal {
   --height: 70%;
   --border-radius: 16px;
 }
-.clock-logs {
-  display: flex;
-  width: 100%;
-  p{
-    @include body-text();
-    float: left;
-  }
-  img {
-    padding-right: 5px;
-  }
-}
+
 
 //   tab style
 
@@ -474,6 +457,7 @@ ion-modal {
   padding: 16px;
   margin-top: 8px;
   .calendar-header {
+    background: #fff;
     border: 0.5px solid #DEDEDE;
     width: fit-content;
     height: 44px;
@@ -486,25 +470,46 @@ ion-modal {
       padding-right: 5px;
     }
   }
-  .day-header {
-    justify-content: right;
-    ion-col {
-      width: 250px;
-    }
-  }
+ 
   .calendar-grid {
     background: #fff;
-    margin-top: 8px;
+    margin-top: 15px;
   border-radius: 8px;
   border: 0.5px solid #DEDEDE;
-  display: flex;
+  .day-header {
+    height: 44px;
+    background: #9E9E9E;
+  .day-header-cell {
+    width: 14.28571%;
+    height: 44px;
+    border: 0.5px solid #DEDEDE;
+    padding: 16px;
+    @include body-text();
+    text-align: left;
+  }
+}
+  .day-cell-row {
+    display: flex;
     flex-wrap: wrap;
     .day-cell {
-      width: 14.28%;
+      width: 14.28571%;
       height: 170px;
       border: 0.5px solid #DEDEDE;
       padding: 16px;
+      // text-align: center;
+      position: relative;
+      .date {
+        @include card-header();
+        font-weight: 400;
+      }
+      .timing {
       @include body-text();
+      margin-top: 30px;
+      position: absolute;
+      bottom: 5px;
+      }
     }
+  }
+
   }
 }
