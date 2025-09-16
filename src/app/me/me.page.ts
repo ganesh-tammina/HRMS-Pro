@@ -126,16 +126,22 @@ export class MePage implements OnInit {
     this.employee = this.candidateService.getCurrentCandidate() || undefined;
     if (!this.employee) return;
 
-    this.record = this.attendanceService.getRecord(this.employee.id);
+    // subscribe to record changes
+    this.attendanceService.record$.subscribe(record => {
+      if (record && record.employeeId === this.employee?.id) {
+        this.record = record;
+        this.updateTimes();
+        this.loadHistory();
+      }
+    });
 
-    this.updateTimes();
-    this.loadHistory();
+    // initial fetch
+    this.attendanceService.getRecord(this.employee.id);
 
     setInterval(() => {
       this.updateTimes();
       this.loadHistory();
     }, 1000);
-
     // Requests Data
     this.attendanceRequests = [
       {
