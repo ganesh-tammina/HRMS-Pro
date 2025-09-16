@@ -84,27 +84,28 @@
             </ion-col>
   
             <ion-col size="6">
-              <ion-button class="btn-clockout" (click)="clockOut()" *ngIf="record?.isClockedIn">
+                <app-clock-button></app-clock-button>
+              <!-- <ion-button class="btn-clockout" (click)="clockOut()" *ngIf="record?.isClockedIn">
                 Clock Out
-              </ion-button>
+              </ion-button> -->
               <div class="info m-5 ion-text-center" *ngIf="record?.isClockedIn">
                 Since Last Login: {{ timeSinceLastLogin }}
               </div>
               <!-- <ion-button class="btn-clockin" (click)="clockIn()" *ngIf="!record?.isClockedIn">
                 Clock In
               </ion-button> -->
-              <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+              <!-- <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
               <img src="../../assets/Icons/attendance-icons/Web clockin.svg" width="16" height="16">
                Web Clock-In
-              </ion-button>
-              <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+              </ion-button>  -->
+              <ion-button fill="clear" class="clear"  *ngIf="!record?.isClockedIn">
                   <img src="../../assets/Icons/attendance-icons/remote.svg" width="16" height="16">
                 Remote Clock-In
                </ion-button>
-               <ion-button fill="clear" class="clear" (click)="clockIn()" *ngIf="!record?.isClockedIn">
+               <ion-button fill="clear" class="clear"  *ngIf="!record?.isClockedIn">
                   <img src="../../assets/Icons/attendance-icons/wfh clockin.svg" width="16" height="16">
                 WFH Clock-In
-               </ion-button>            
+               </ion-button>           
               <ion-button fill="clear" class="clear">
                   <img src="../../assets/Icons/attendance-icons/WFH.svg" width="16" height="16">
                   Work From Home
@@ -113,10 +114,10 @@
                     <img src="../../assets/Icons/attendance-icons/partial day rq.svg" width="16" height="16">
                     Partial Day Request
                   </ion-button>
-                <ion-button fill="clear" class="clear">
+                <!-- <ion-button fill="clear" class="clear">
                     <img src="../../assets/Icons/attendance-icons/attendeance policy.svg" width="16" height="16">
                     Attendance Policy
-                  </ion-button>
+                  </ion-button> -->
               <!-- <div class="info">
                 Attendance History:
                 <ion-list>

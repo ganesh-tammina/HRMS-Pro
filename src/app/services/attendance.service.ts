@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface AttendanceEvent {
   type: 'CLOCK_IN' | 'CLOCK_OUT';
-  time: string;             // ISO string
-  displayTime?: string;     // optional, for template display
+  time: string;
+  displayTime?: string;
 }
 
 export interface AttendanceRecord {
@@ -12,7 +13,7 @@ export interface AttendanceRecord {
   accumulatedMs: number;
   isClockedIn: boolean;
   history: AttendanceEvent[];
-  dailyAccumulatedMs?: { [date: string]: number }; // daily totals
+  dailyAccumulatedMs?: { [date: string]: number };
 }
 
 @Injectable({
@@ -21,34 +22,43 @@ export interface AttendanceRecord {
 export class AttendanceService {
   private prefix = 'attendance_';
 
+  // 🔑 make it reactive
+  private recordSubject = new BehaviorSubject<AttendanceRecord | null>(null);
+  record$ = this.recordSubject.asObservable();
+
   private getKey(employeeId: number): string {
     return `${this.prefix}${employeeId}`;
   }
 
   getRecord(employeeId: number): AttendanceRecord {
     const stored = localStorage.getItem(this.getKey(employeeId));
+    let record: AttendanceRecord;
+
     if (stored) {
-      const parsed: AttendanceRecord = JSON.parse(stored);
-      parsed.history ||= [];
-      parsed.accumulatedMs ||= 0;
-      parsed.isClockedIn ??= false;
-      parsed.dailyAccumulatedMs ||= {};
-      return parsed;
+      record = JSON.parse(stored);
+      record.history ||= [];
+      record.accumulatedMs ||= 0;
+      record.isClockedIn ??= false;
+      record.dailyAccumulatedMs ||= {};
+    } else {
+      record = {
+        employeeId,
+        accumulatedMs: 0,
+        isClockedIn: false,
+        history: [],
+        dailyAccumulatedMs: {}
+      };
+      this.saveRecord(record);
     }
 
-    const initial: AttendanceRecord = {
-      employeeId,
-      accumulatedMs: 0,
-      isClockedIn: false,
-      history: [],
-      dailyAccumulatedMs: {}
-    };
-    this.saveRecord(initial);
-    return initial;
+    // ✅ emit current state
+    this.recordSubject.next(record);
+    return record;
   }
 
   saveRecord(record: AttendanceRecord) {
     localStorage.setItem(this.getKey(record.employeeId), JSON.stringify(record));
+    this.recordSubject.next(record); // ✅ notify subscribers
   }
 
   clockIn(employeeId: number): AttendanceRecord {

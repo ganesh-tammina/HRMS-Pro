@@ -1,3 +1,4 @@
+@import '../../../global.scss';
 /* ===== Color tokens pulled from the screenshot ===== */
 :host {
   --bg: #fbfbfc;
@@ -223,4 +224,103 @@ ion-select.tiny, ion-input.tiny, ion-searchbar.tiny, .tiny { font-size: 11px !im
 @media (max-width: 1199px) {
   .split { grid-template-columns: 1fr; }
   .tbl .tr { grid-template-columns: 1fr 1fr; }
+}
+
+
+
+.leaves-block {
+  --background: #E6F1FF;
+  .request-btn {
+    ion-button {
+      --background: #122F44;
+      height: 42px;
+      border-radius: 6px;
+    }   
+    display: flex;
+    justify-content: end;
+    margin: 24px;
+  }
+  .card-tabs-block {
+    margin: 16px;
+    background: #fff; 
+    padding: 16px;
+    border-radius: 8px;
+    ion-row {
+      justify-content: space-between;
+    }
+    .card-header {
+      @include card-header();
+      color: #1C1C1C !important;
+      margin-bottom: 15px;
+      margin-top: 5px;
+    }
+    .card-block {
+      border: 1px solid #C9C9C9;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      .card-header {
+        @include card-sub-title();
+        color: #626262;
+      }
+      .number {
+        @include card-header();
+        color: #1870B9;
+        font-weight: 700;
+      }
+      .label {
+        @include text-style-normal();
+        color: #626262;
+      }
+      ion-img {
+        width: 90px;
+        margin: auto;
+      }
+    }
+    &.table-block {
+      .header-title {
+       @include text-style-bold();
+      }
+      ion-img {
+        width: 38px;
+        padding-right: 8px;
+      }
+      .table-cell {
+        padding: 0 24px; 
+        @include normal-text-unbold();
+        .pending, .approved, .rejected {
+            width: 90px;
+            text-align: center;
+            height: 24px;
+            border-radius: 4px;
+            padding: 4px 10px;
+            @include body-text();
+        }
+        .pending {
+           background: #FFE9D2;
+           border: 1px solid #C56305;
+           color: #C56305;
+        }
+        .approved {
+          background: #C7FFEA;
+          border: 1px solid #2E9D74;
+          color: #2E9D74;
+        }
+        .rejected {
+          background: #FFE0E0;
+          border: 1px solid #EF4444;
+          color: #EF4444;
+        }
+      }
+      .table-header {
+        padding: 0 24px; 
+        @include normal-text();
+      }
+      
+    }
+    &.additinal-block {
+        @include normal-text-unbold();
+        color: #626262;
+    }
+  }
 }

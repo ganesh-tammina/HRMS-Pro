@@ -221,20 +221,7 @@
       margin-top: 0;
       padding: 8px;
     }
-    .btn-clockout, .btn-clockin{      
-      color: white;
-      border: none;
-      padding-bottom: 6px;
-      border-radius: 6px;
-      cursor: pointer;
-      // margin: 10px 0;
-    }
-    .btn-clockout {
-      --background: #F95F5F;
-    }
-    .btn-clockin {
-      --background: #1870B9;
-    }
+    
     .clear {
       min-height: auto;
      @include body-text();
