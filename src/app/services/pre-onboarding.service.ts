@@ -31,7 +31,7 @@ export interface Candidate {
   providedIn: 'root'
 })
 export class CandidateService {
-  private apiUrl = 'http://localhost:3000/candidates';
+  private apiUrl = 'http://localhost:3562/candidates';
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
