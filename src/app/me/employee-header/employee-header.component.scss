@@ -33,3 +33,28 @@
     }
   }
 }
+ion-toolbar {
+.toolbar-background {
+  --background: #fff !important;
+} 
+}
+.top-nav {
+  border-bottom: 2px solid #ddd;
+  height: 46px;
+  box-shadow: 0px 2px 2px 0px #9D9D9D40;
+
+  .nav-links ion-button {
+    --color: #555;  
+    --padding-start: 10px;
+    --padding-end: 10px;
+    font-size: 14px;
+    text-transform: none;
+
+    &.active-btn {
+      font-weight: bold;
+      --color: #3b82f6;
+      border-bottom: 2px solid #3b82f6;
+      border-radius: 0;
+    }
+  }
+}

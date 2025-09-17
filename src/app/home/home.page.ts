@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import { IonicModule } from '@ionic/angular';
 import { CandidateService } from '../services/pre-onboarding.service';
+import { ClockButtonComponent } from '../services/clock-button/clock-button.component';
 
 @Component({
   standalone: true,
@@ -17,7 +18,8 @@ import { CandidateService } from '../services/pre-onboarding.service';
     CommonModule,
     FormsModule,
     HeaderComponent,
-    IonicModule
+    IonicModule,
+    ClockButtonComponent
 
   ]
 })

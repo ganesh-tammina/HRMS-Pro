@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LeavesComponent implements OnInit {
   currentCandidate: any;
+  IsOpenleavePopup = false;
   constructor(private candidateService: CandidateService) { }
   ngOnInit() {
     // Subscribe to the current logged-in candidate
@@ -29,5 +30,11 @@ export class LeavesComponent implements OnInit {
       }
     }
   }
+  openLeaveModal() {
+    this.IsOpenleavePopup = true;
+  }
 
+  closeleavePopup() {
+    this.IsOpenleavePopup = false;
+  }
 }
