@@ -3,11 +3,81 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const database_1 = require("../config/database");
 const router = (0, express_1.Router)();
-/* -------------------- CREATE candidate -------------------- */
-router.post("/", async (req, res) => {
+/* -------------------- CREATE candidate and JD -------------------- */
+router.post("/jd", async (req, res) => {
     const conn = await database_1.pool.getConnection();
     try {
-        const { personalDetails, jobDetailsForm, offerDetails, employeeCredentials } = req.body;
+        const { personalDetails, jobDetailsForm } = req.body;
+        await conn.beginTransaction();
+        const [candidateResult] = await conn.query("INSERT INTO candidates VALUES ()");
+        const candidateId = candidateResult.insertId;
+        await conn.query(`INSERT INTO personal_details
+       (candidate_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [
+            candidateId,
+            personalDetails.FirstName,
+            personalDetails.MiddleName,
+            personalDetails.LastName,
+            personalDetails.PhoneNumber,
+            personalDetails.email,
+            personalDetails.gender,
+            personalDetails.initials,
+        ]);
+        await conn.query(`INSERT INTO job_details
+       (candidate_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
+       VALUES (?, ?, ?, ?, ?, ?)`, [
+            candidateId,
+            jobDetailsForm.JobTitle,
+            jobDetailsForm.Department,
+            jobDetailsForm.JobLocation,
+            jobDetailsForm.WorkType,
+            jobDetailsForm.BussinessUnit,
+        ]);
+        await conn.commit();
+        res
+            .status(201)
+            .json({ message: "Candidate created successfully", candidateId });
+    }
+    catch (err) {
+        await conn.rollback();
+        res.status(500).json({ error: err.message });
+    }
+    finally {
+        conn.release();
+    }
+});
+/* -------------------- CREATE Offer Details -------------------- */
+router.post("/offer-details", async (req, res) => {
+    const conn = await database_1.pool.getConnection();
+    try {
+        const { candidateId, offerDetails } = req.body;
+        // Insert offer details
+        await conn.query(`INSERT INTO offer_details
+       (candidate_id, DOJ, offerValidity, JoiningDate)
+       VALUES (?, ?, ?, ?)`, [
+            candidateId,
+            offerDetails.DOJ,
+            offerDetails.offerValidity,
+            offerDetails.JoiningDate,
+        ]);
+        await conn.commit();
+        res
+            .status(201)
+            .json({ message: "Candidate created successfully", candidateId });
+    }
+    catch (err) {
+        await conn.rollback();
+        res.status(500).json({ error: err.message });
+    }
+    finally {
+        conn.release();
+    }
+});
+/* -------------------- CREATE candidate -------------------- */
+router.post("/uhhb", async (req, res) => {
+    const conn = await database_1.pool.getConnection();
+    try {
+        const { personalDetails, jobDetailsForm, offerDetails, employeeCredentials, } = req.body;
         await conn.beginTransaction();
         // Insert into candidates master table (auto id)
         const [candidateResult] = await conn.query("INSERT INTO candidates VALUES ()");
@@ -39,13 +109,24 @@ router.post("/", async (req, res) => {
         // Insert offer details
         await conn.query(`INSERT INTO offer_details
        (candidate_id, DOJ, offerValidity, JoiningDate)
-       VALUES (?, ?, ?, ?)`, [candidateId, offerDetails.DOJ, offerDetails.offerValidity, offerDetails.JoiningDate]);
+       VALUES (?, ?, ?, ?)`, [
+            candidateId,
+            offerDetails.DOJ,
+            offerDetails.offerValidity,
+            offerDetails.JoiningDate,
+        ]);
         // Insert employee credentials
         await conn.query(`INSERT INTO employee_credentials
        (candidate_id, companyEmail, password)
-       VALUES (?, ?, ?)`, [candidateId, employeeCredentials.companyEmail, employeeCredentials.password]);
+       VALUES (?, ?, ?)`, [
+            candidateId,
+            employeeCredentials.companyEmail,
+            employeeCredentials.password,
+        ]);
         await conn.commit();
-        res.status(201).json({ message: "Candidate created successfully", candidateId });
+        res
+            .status(201)
+            .json({ message: "Candidate created successfully", candidateId });
     }
     catch (err) {
         await conn.rollback();
@@ -162,11 +243,20 @@ router.get("/:id/credentials", async (req, res) => {
 /* -------------------- UPDATE parts separately -------------------- */
 router.put("/:id/personal", async (req, res) => {
     const { id } = req.params;
-    const { FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials } = req.body;
+    const { FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials, } = req.body;
     try {
         await database_1.pool.query(`UPDATE personal_details
        SET FirstName=?, MiddleName=?, LastName=?, PhoneNumber=?, email=?, gender=?, initials=?
-       WHERE candidate_id=?`, [FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials, id]);
+       WHERE candidate_id=?`, [
+            FirstName,
+            MiddleName,
+            LastName,
+            PhoneNumber,
+            email,
+            gender,
+            initials,
+            id,
+        ]);
         res.json({ message: "Personal details updated successfully" });
     }
     catch (err) {
@@ -214,7 +304,9 @@ router.put("/:id/credentials", async (req, res) => {
 });
 /* -------------------- DELETE candidate -------------------- */
 router.delete("/:id", async (req, res) => {
-    const [result] = await database_1.pool.query("DELETE FROM candidates WHERE id=?", [req.params.id]);
+    const [result] = await database_1.pool.query("DELETE FROM candidates WHERE id=?", [
+        req.params.id,
+    ]);
     if (result.affectedRows === 0)
         return res.status(404).send("Candidate not found");
     res.send("Candidate deleted successfully");
