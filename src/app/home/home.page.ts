@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import { IonicModule } from '@ionic/angular';
 import { CandidateService } from '../services/pre-onboarding.service';
+import { ClockButtonComponent } from '../services/clock-button/clock-button.component';
 
 @Component({
   standalone: true,
@@ -17,13 +18,15 @@ import { CandidateService } from '../services/pre-onboarding.service';
     CommonModule,
     FormsModule,
     HeaderComponent,
-    IonicModule
+    IonicModule,
+    ClockButtonComponent
 
   ]
 })
 export class HomePage implements OnInit {
   days: { date: string, status: 'Complete' | 'Remaining' }[] = [];
   currentCandidate: any
+  currentTime: string = '';
   constructor(private candidateService: CandidateService) { }
   ngOnInit() {
     this.candidateService.currentCandidate$.subscribe(user => {
@@ -41,7 +44,12 @@ export class HomePage implements OnInit {
         status
       });
     }
+    const now = new Date();
+    setInterval(() => {
+      this.currentTime = new Date().toLocaleTimeString('en-US', { hour12: true });
+    }, 1000);
   }
+
   backgroundImageUrl: string = '../../assets/holidays-pics/holidays-img.svg';
 }
 

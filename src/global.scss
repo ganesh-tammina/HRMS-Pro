@@ -145,3 +145,34 @@ ion-list-header, ion-item{
 .m-auto {
     margin: auto !important;
 }
+// Modal popup
+.custom-popup {
+    ion-header {
+        box-shadow: none;
+        ion-title {
+            @include card-header();
+        }
+    }
+  .form-block {
+      padding: 0px 24px;
+      ion-select {
+        border: 1px solid #C4C4C4;
+        height: 45px;
+        border-radius: 4px;
+        padding: 0px 12px !important;
+        margin: 11px 0px;
+      }
+      ion-input, ion-textarea {
+        border: 1px solid #C4C4C4;
+        height: 45px;
+        border-radius: 4px;
+        padding: 0px 12px !important;
+       margin: 11px 0px;
+      }
+      ion-button {
+        --background: #122F44;
+        height: 42px;
+        border-radius: 6px;
+      }      
+  }
+}

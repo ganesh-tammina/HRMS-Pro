@@ -5,6 +5,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { CandidateService, Candidate } from '../services/pre-onboarding.service';
 import { AttendanceService, AttendanceRecord, AttendanceEvent } from '../services/attendance.service';
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
+import { ClockButtonComponent } from '../services/clock-button/clock-button.component';
 interface AttendanceRequest {
   type: string;
   dateRange: string;
@@ -31,7 +32,7 @@ interface AttendanceLog {
   templateUrl: './me.page.html',
   styleUrls: ['./me.page.scss'],
   standalone: true,
-  imports: [IonicModule, HeaderComponent, EmployeeHeaderComponent, CommonModule]
+  imports: [IonicModule, ClockButtonComponent, HeaderComponent, EmployeeHeaderComponent, CommonModule]
 })
 export class MePage implements OnInit {
   employee?: Candidate;
@@ -62,6 +63,8 @@ export class MePage implements OnInit {
   selectedLog: AttendanceLog | null = null;
   showPopover = false;
   attendanceLogs: AttendanceLog[] = [];
+  days: Date[] = [];
+  today: Date = new Date();
 
 
 
@@ -125,10 +128,17 @@ export class MePage implements OnInit {
     this.employee = this.candidateService.getCurrentCandidate() || undefined;
     if (!this.employee) return;
 
-    this.record = this.attendanceService.getRecord(this.employee.id);
+    // subscribe to record changes
+    this.attendanceService.record$.subscribe(record => {
+      if (record && record.employeeId === this.employee?.id) {
+        this.record = record;
+        this.updateTimes();
+        this.loadHistory();
+      }
+    });
 
-    this.updateTimes();
-    this.loadHistory();
+    // initial fetch
+    this.attendanceService.getRecord(this.employee.id);
 
     setInterval(() => {
       this.updateTimes();
@@ -205,8 +215,29 @@ export class MePage implements OnInit {
         },
       },
     ];
+
+    this.generateDays();
   }
 
+  generateDays() {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust for Sunday
+
+    const firstDayOfWeek = new Date(today.setDate(diff));
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(firstDayOfWeek);
+      date.setDate(firstDayOfWeek.getDate() + i);
+      this.days.push(date);
+    }
+  }
+
+  isToday(day: Date): boolean {
+    return day.getDate() === this.today.getDate() &&
+           day.getMonth() === this.today.getMonth() &&
+           day.getFullYear() === this.today.getFullYear();
+  }
+  
   //  attendanceLogs = [
   //   { date: 'Thu, 04 Sept', progress: 0.0, effective: '0h 0m+', gross: '0h 0m+', arrival: 'On Time' },
   //   { date: 'Wed, 03 Sept', progress: 0.75, effective: '6h 38m+', gross: '8h 46m+', arrival: 'On Time' },
@@ -229,19 +260,19 @@ export class MePage implements OnInit {
 
 
 
-  clockIn() {
-    if (!this.employee) return;
-    this.record = this.attendanceService.clockIn(this.employee.id);
-    this.updateTimes();
-    this.loadHistory();
-  }
+  // clockIn() {
+  //   if (!this.employee) return;
+  //   this.record = this.attendanceService.clockIn(this.employee.id);
+  //   this.updateTimes();
+  //   this.loadHistory();
+  // }
 
-  clockOut() {
-    if (!this.employee) return;
-    this.record = this.attendanceService.clockOut(this.employee.id);
-    this.updateTimes();
-    this.loadHistory();
-  }
+  // clockOut() {
+  //   if (!this.employee) return;
+  //   this.record = this.attendanceService.clockOut(this.employee.id);
+  //   this.updateTimes();
+  //   this.loadHistory();
+  // }
 
   updateTimes() {
     if (!this.record) return;
