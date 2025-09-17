@@ -8,13 +8,15 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const employeeRoutes_1 = __importDefault(require("./routes/employeeRoutes"));
 const database_1 = require("./config/database");
 const mailer_1 = require("./routes/mailer");
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 class Server {
     app;
     port;
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = Number(process.env.PORT) || 3562;
+        this.app.use((0, cors_1.default)({ origin: "*" }));
+        this.port = Number(process.env.PORT);
         this.middlewares();
         this.routes();
     }
