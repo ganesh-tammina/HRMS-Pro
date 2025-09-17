@@ -25,6 +25,7 @@ export interface Candidate {
     companyEmail: string;
     password: string;
   };
+    isAvailable?: boolean;
 }
 
 @Injectable({
