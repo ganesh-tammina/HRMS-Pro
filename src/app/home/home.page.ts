@@ -26,6 +26,7 @@ import { ClockButtonComponent } from '../services/clock-button/clock-button.comp
 export class HomePage implements OnInit {
   days: { date: string, status: 'Complete' | 'Remaining' }[] = [];
   currentCandidate: any
+  currentTime: string = '';
   constructor(private candidateService: CandidateService) { }
   ngOnInit() {
     this.candidateService.currentCandidate$.subscribe(user => {
@@ -43,7 +44,12 @@ export class HomePage implements OnInit {
         status
       });
     }
+    const now = new Date();
+    setInterval(() => {
+      this.currentTime = new Date().toLocaleTimeString('en-US', { hour12: true });
+    }, 1000);
   }
+
   backgroundImageUrl: string = '../../assets/holidays-pics/holidays-img.svg';
 }
 
