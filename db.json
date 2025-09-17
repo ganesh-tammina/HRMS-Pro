@@ -44,6 +44,23 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
+      },
+      "packageDetails": {
+        "salary": 50000
+      },
+      "salaryForm": {
+        "annualSalary": 50000,
+        "salaryStructure": {
+          "basic": 20000,
+          "hra": 8000,
+          "medical": 15000,
+          "transport": 19200,
+          "special": -12200,
+          "subtotal": 50000,
+          "pfEmployer": 2400,
+          "pfEmployee": 2400,
+          "total": 52400
+        }
       }
     },
     {
@@ -483,8 +500,8 @@
     },
     {
       "personalDetails": {
-        "FirstName": "leepakshi",
-        "MiddleName": "leepakshi",
+        "FirstName": "HR",
+        "MiddleName": "HR",
         "LastName": "Tammina",
         "PhoneNumber": "9876543210",
         "email": "leepakshi@gmail.com",
