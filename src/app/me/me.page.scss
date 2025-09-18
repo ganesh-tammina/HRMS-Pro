@@ -497,6 +497,16 @@ ion-modal {
       }
     }
   }
+  .highlight-today .date {
+  background-color: #007bff; 
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
 
   }
 }
