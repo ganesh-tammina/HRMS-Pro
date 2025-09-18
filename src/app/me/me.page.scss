@@ -510,3 +510,42 @@ ion-modal {
 
   }
 }
+
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  .table-header {
+    font-weight: 600;
+    background: #f7f7f7;
+  }
+
+  .table-row {
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+  }
+
+  ion-col {
+    padding: 0.5rem;
+  }
+
+  .status {
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    &.approved {
+      background: #e6f9f0;
+      color: #0a8754;
+    }
+    &.pending {
+      background: #fff4e5;
+      color: #d48806;
+    }
+    &.rejected {
+      background: #fdecea;
+      color: #d93025;
+    }
+  }
+}
