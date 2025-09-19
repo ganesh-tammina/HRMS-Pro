@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AttendanceService } from './attendance.service';
+import { idCard } from 'ionicons/icons';
 
 export interface Candidate {
   id: number;
@@ -31,7 +32,13 @@ export interface Candidate {
   providedIn: 'root'
 })
 export class CandidateService {
-  private apiUrl = 'localhost:3562/candidates/jd';
+
+  private api = "http://localhost:3562/"
+  private apiUrl = `${this.api}candidates/jd`;
+
+  private offerUrl = `${this.api}candidates/offer-details`;
+
+  private getapiUrl = 'http://localhost:3562/candidates';
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
@@ -53,23 +60,40 @@ export class CandidateService {
   }
 
   loadCandidates(): void {
-    this.http.get<Candidate[]>(this.apiUrl).subscribe({
+    this.http.get<Candidate[]>(this.getapiUrl).subscribe({
       next: (data) => this.candidatesSubject.next(data),
       error: (err) => console.error('Error loading candidates:', err)
     });
   }
 
   createCandidate(candidateData: Candidate): Observable<Candidate> {
+    console.log('candidatedata-->', candidateData);
+    console.log('apiUrl-->', this.apiUrl);
     return this.http.post<Candidate>(this.apiUrl, candidateData).pipe(
       tap((newCandidate) => {
+        console.log('newCandidate', newCandidate)
         const current = this.candidatesSubject.value;
         this.candidatesSubject.next([...current, newCandidate]);
+        // alert('Candidate created successfully!')
+
       })
+
     );
   }
 
-  updateCandidate(candidate: Candidate): Observable<Candidate> {
-    return this.http.put<Candidate>(`${this.apiUrl}/${candidate.id}`, candidate).pipe(
+  updateCandidate(candidate: any): Observable<Candidate> {
+    const doj = candidate.offerDetails.DOJ; // "20/09/2025"
+    const [day, month, year] = doj.split("/");
+
+    const formattedDOJ = `${year}-${month}-${day}`;
+
+
+    const reqBOdy = {
+      id: candidate.id,
+      DOJ: formattedDOJ,
+      offerValidity: candidate.offerDetails.offerValidity
+    }
+    return this.http.put<Candidate>(`${this.api}candidates/update/offer`, reqBOdy).pipe(
       tap((updated) => {
         const current = this.candidatesSubject.value.map(c =>
           c.id === updated.id ? updated : c
