@@ -29,15 +29,13 @@ export class LoginPage implements OnInit {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
-      // Find candidate by company email and password
-      const employee: Candidate | undefined = this.candidateService.findEmployee(email, password);
-
-      if (employee) {
-        // Navigate to Home/Dashboard and pass candidate object
-        this.router.navigate(['/Home'], { state: { candidate: employee } });
-      } else {
-        this.loginError = 'Invalid email or password';
-      }
+      this.candidateService.findEmployee(email, password).subscribe(found => {
+        if (found) {
+          this.router.navigate(['/Home'], { state: { candidate: found } });
+        } else {
+          this.loginError = 'Invalid email or password';
+        }
+      });
     } else {
       this.loginError = 'Please fill all fields correctly';
     }

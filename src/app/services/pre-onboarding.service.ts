@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { AttendanceService } from './attendance.service';
-import { idCard } from 'ionicons/icons';
 
 export interface Candidate {
   id: number;
@@ -33,17 +32,14 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://localhost:3562/"
+  private api = "http://localhost:3562/";
   private apiUrl = `${this.api}candidates/jd`;
-
   private offerUrl = `${this.api}candidates/offer-details`;
-
   private getapiUrl = 'http://localhost:3562/candidates';
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
 
-  // ✅ initialize with stored candidate (so refresh works)
   private currentCandidateSubject = new BehaviorSubject<Candidate | null>(this.getStoredCandidate());
   currentCandidate$ = this.currentCandidateSubject.asObservable();
 
@@ -60,40 +56,43 @@ export class CandidateService {
   }
 
   loadCandidates(): void {
-    this.http.get<Candidate[]>(this.getapiUrl).subscribe({
-      next: (data) => this.candidatesSubject.next(data),
+    this.http.get<any>(this.getapiUrl).subscribe({
+      next: (data) => {
+        const candidates = this.normalizeCandidates(data);
+        this.candidatesSubject.next(candidates);
+      },
       error: (err) => console.error('Error loading candidates:', err)
     });
   }
 
+  private normalizeCandidates(data: any): Candidate[] {
+    if (Array.isArray(data)) return data;
+    if (data && data.candidates && Array.isArray(data.candidates)) return data.candidates;
+    if (data) return [data];
+    return [];
+  }
+
   createCandidate(candidateData: Candidate): Observable<Candidate> {
-    console.log('candidatedata-->', candidateData);
-    console.log('apiUrl-->', this.apiUrl);
     return this.http.post<Candidate>(this.apiUrl, candidateData).pipe(
       tap((newCandidate) => {
-        console.log('newCandidate', newCandidate)
         const current = this.candidatesSubject.value;
         this.candidatesSubject.next([...current, newCandidate]);
-        // alert('Candidate created successfully!')
-
       })
-
     );
   }
 
   updateCandidate(candidate: any): Observable<Candidate> {
     const doj = candidate.offerDetails.DOJ; // "20/09/2025"
     const [day, month, year] = doj.split("/");
-
     const formattedDOJ = `${year}-${month}-${day}`;
 
-
-    const reqBOdy = {
+    const reqBody = {
       id: candidate.id,
       DOJ: formattedDOJ,
       offerValidity: candidate.offerDetails.offerValidity
-    }
-    return this.http.put<Candidate>(`${this.api}candidates/update/offer`, reqBOdy).pipe(
+    };
+
+    return this.http.put<Candidate>(`${this.api}candidates/update/offer`, reqBody).pipe(
       tap((updated) => {
         const current = this.candidatesSubject.value.map(c =>
           c.id === updated.id ? updated : c
@@ -103,24 +102,25 @@ export class CandidateService {
     );
   }
 
-  findEmployee(email: string, password: string): Candidate | undefined {
-    const found = this.candidatesSubject.value.find(c =>
-      c.employeeCredentials?.companyEmail === email &&
-      c.employeeCredentials?.password === password
+  // 🔑 Login: normalize API response before searching
+  findEmployee(email: string, password: string): Observable<Candidate | undefined> {
+    return this.http.get<any>(this.getapiUrl).pipe(
+      map(data => {
+        const candidates = this.normalizeCandidates(data);
+        return candidates.find(c =>
+          c.employeeCredentials?.companyEmail === email &&
+          c.employeeCredentials?.password === password
+        );
+      }),
+      tap(found => {
+        if (found) {
+          this.currentCandidateSubject.next(found);
+          localStorage.setItem(`loggedInCandidate_${found.id}`, JSON.stringify(found));
+          localStorage.setItem('activeUserId', found.id.toString());
+          this.attendanceService.getRecord(found.id);
+        }
+      })
     );
-
-    if (found) {
-      this.currentCandidateSubject.next(found);
-
-      // ✅ persist user for refresh
-      localStorage.setItem(`loggedInCandidate_${found.id}`, JSON.stringify(found));
-      localStorage.setItem('activeUserId', found.id.toString());
-
-      // Initialize attendance record
-      this.attendanceService.getRecord(found.id);
-    }
-
-    return found;
   }
 
   getCurrentCandidate(): Candidate | null {
@@ -136,9 +136,6 @@ export class CandidateService {
     this.currentCandidateSubject.next(null);
   }
 
-  // -----------------------------
-  // Search method for header
-  // -----------------------------
   searchCandidates(query: string): Candidate[] {
     const lowerQuery = query.toLowerCase().trim();
     return this.candidatesSubject.value.filter(c =>
