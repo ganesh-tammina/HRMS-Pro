@@ -37,7 +37,7 @@
             </ion-menu-toggle>
 
             <!-- Submenu Dropdown -->
-            <div class="dropdown-menu" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === ''">
+            <div class="dropdown-menu" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'Finance'">
               <ion-menu-toggle auto-hide="false">
                 <ion-item routerLink="/pre_onboarding" (click)="preonboard()" lines="none" detail="false">
                   <ion-label>Pre Onboarding</ion-label>

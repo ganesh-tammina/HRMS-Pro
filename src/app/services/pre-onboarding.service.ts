@@ -34,7 +34,7 @@ export class CandidateService {
 
   private api = "http://localhost:3562/";
   private apiUrl = `${this.api}candidates/jd`;
-  private offerUrl = `${this.api}candidates/offer-details`;
+  private offerUrl = `${this.api}candidates/update/offer`;
   private getapiUrl = 'http://localhost:3562/candidates';
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -92,7 +92,7 @@ export class CandidateService {
       offerValidity: candidate.offerDetails.offerValidity
     };
 
-    return this.http.put<Candidate>(`${this.api}candidates/update/offer`, reqBody).pipe(
+    return this.http.put<Candidate>(this.offerUrl, reqBody).pipe(
       tap((updated) => {
         const current = this.candidatesSubject.value.map(c =>
           c.id === updated.id ? updated : c

@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = () => {
 
   return candidateService.currentCandidate$.pipe(
     map(user => {
-      if (user?.jobDetailsForm?.Department === '') {
+      if (user?.jobDetailsForm?.Department === 'Finance') {
         console.log('✅ Allowed: HR department');
         return true;
       } else {
