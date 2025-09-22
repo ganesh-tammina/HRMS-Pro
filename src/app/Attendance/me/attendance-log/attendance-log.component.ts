@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../shared/header/header.component';
-import { CandidateService, Candidate } from '../services/pre-onboarding.service';
-import { AttendanceService, AttendanceRecord, AttendanceEvent } from '../services/attendance.service';
-import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
-import { ClockButtonComponent } from '../services/clock-button/clock-button.component';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { CandidateService, Candidate } from 'src/app/services/pre-onboarding.service';
+import { AttendanceService, AttendanceRecord, AttendanceEvent  } from 'src/app/services/attendance.service';
 interface AttendanceRequest {
   type: string;
   dateRange: string;
@@ -44,13 +41,13 @@ interface CalendarDay {
   date?: Date;
 }
 @Component({
-  selector: 'app-me',
-  templateUrl: './me.page.html',
-  styleUrls: ['./me.page.scss'],
-  standalone: true,
-  imports: [IonicModule, ClockButtonComponent, HeaderComponent, EmployeeHeaderComponent, CommonModule]
+  selector: 'app-attendance-log',
+  templateUrl: './attendance-log.component.html',
+  styleUrls: ['./attendance-log.component.scss'],
+  standalone:true,
+  imports: [IonicModule, CommonModule]
 })
-export class MePage implements OnInit {
+export class AttendanceLogComponent  implements OnInit {
   employee?: Candidate;
   record?: AttendanceRecord;
 

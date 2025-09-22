@@ -1,4 +1,4 @@
-@import './../../theme/variables.scss';
+@import './../../../theme/variables.scss';
 // .keka-navbar {
 //   height: 56px;
   
@@ -284,65 +284,7 @@
 }
 
 
- .filters {
-   display: flex;
-  .filter-block {
-    margin-right: 10px;
-  .btn-secondry { 
-    padding:12px 24px;
-    background: #fff;
-    border: 0.5px solid #DEDEDE;
-    color: #3498db;
-    box-shadow: none;
-    font-weight: 600;
-    margin: 0;    
-    @include normal-text-unbold();
-    &:first-child {
-      border-bottom-left-radius: 8px;
-      border-top-left-radius: 8px;
-    }
-    &:last-child {
-      border-bottom-right-radius: 8px;
-      border-top-right-radius: 8px;
-    }
-    &.active {
-      background: #3498DB;
-      color: #fff;
-      font-weight: 600;
-    } 
-  } 
-  }
-
-  .outline-btns {
-    .btn-secondry {
-  height: 44px;
-  padding: 0 10px;
-  background: #fff;
-  border: 0.5px solid #DEDEDE;
-  color: #3498db;
-  box-shadow: none;
-  font-weight: 600;
-  margin: 0;
-  &:first-child {
-    border-bottom-left-radius: 8px;
-    border-top-left-radius: 8px;
-  }
-  &:last-child {
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-  ion-icon {
-    font-weight: 600;
-    font-size: 24px;
-  }
-  &.active {
-    background: #3498DB;
-    color: #fff;
-    font-weight: 600;
-  } 
-    }
-  }
- }
+ 
  
 
 // attendance-log
@@ -350,87 +292,8 @@
   background-color: #E6F1FF;
   padding: 20px;
   gap: 20px;
-  .attendance-table {
-    background-color: #fff;
-    padding: 0;
-    margin-top: 15px;
-    border-radius: 6px;
-  
-    .table-header {
-      @include normal-text-unbold();
-      padding: 0 12px;
-      height: 52px;
-      display: flex;
-        align-items: center;
-    }
-  
-    .table-row {
-      @include normal-text-unbold();
-      padding: 0 12px;
-      height: 52px;
-      ion-col {
-        padding-right: 24px;
-        display: flex;
-        align-items: center;
-        @include normal-text-unbold();
-      }
-      ion-icon {
-        font-size: 18px;
-        margin-right: 5px;
-      }
-      ion-progress-bar {
-        height: 10px;
-        width: 80%;
-        border-radius: 6px;
-        --background: #E4E4E4;
-        --progress-background: #3498db;
-      }
-      &.weekoff-row {
-        padding: 0 12px;
-        background: #F2F1EC;    
-        .text-center {
-          display: flex;
-          justify-content: center;
-        }
-        label {
-          background: #ABABAB;
-          color: #fff;
-          border-radius: 3px;
-          @include body-text();
-          padding: 2px 8px;
-          margin-left: 8px;
-        }
-      }
-    }
-  }
 }
 
-p.divider {
-  border-bottom: 1px solid #9E9E9E;
-}
-.custom-link {
-  @include normal-text();
-  text-transform: capitalize;
-}
-
-.popover-content {
-  padding: 15px;
-  p{
-    @include body-text();
-  }
-  .clock-logs {
-    display: flex;
-    width: 100%;
-    p{
-      @include body-text();
-      float: left;
-    }
-    img {
-      padding-right: 5px;
-    }
-  }
-  
-}
 
 ion-modal {
   --height: 70%;
@@ -440,76 +303,9 @@ ion-modal {
 
 //   tab style
 
-.calendar-container {
-  padding: 16px;
-  margin-top: 8px;
-  .calendar-header {
-    background: #fff;
-    border: 0.5px solid #DEDEDE;
-    width: fit-content;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    padding: 6px 8px;
-    button {
-      background: transparent;
-      font-size: 18px;      
-      padding-right: 5px;
-    }
-  }
+
  
-  .calendar-grid {
-    background: #fff;
-    margin-top: 15px;
-  border-radius: 8px;
-  border: 0.5px solid #DEDEDE;
-  .day-header {
-    height: 44px;
-    background: #9E9E9E;
-  .day-header-cell {
-    width: 14.28571%;
-    height: 44px;
-    border: 0.5px solid #DEDEDE;
-    padding: 16px;
-    @include body-text();
-    text-align: left;
-  }
-}
-  .day-cell-row {
-    display: flex;
-    flex-wrap: wrap;
-    .day-cell {
-      width: 14.28571%;
-      height: 170px;
-      border: 0.5px solid #DEDEDE;
-      padding: 16px;
-      // text-align: center;
-      position: relative;
-      .date {
-        @include card-header();
-        font-weight: 400;
-      }
-      .timing {
-      @include body-text();
-      margin-top: 30px;
-      position: absolute;
-      bottom: 5px;
-      }
-    }
-  }
-  .highlight-today .date {
-  background-color: #007bff; 
-  color: #fff;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-}
 
-
-  }
-}
 
 
 .requests-table {

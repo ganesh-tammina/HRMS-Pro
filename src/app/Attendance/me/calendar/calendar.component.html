@@ -1,0 +1,34 @@
+<div class="calendar-container">
+  <div class="row-space-between">
+    <div class="calendar-header">
+      <button (click)="prevMonth()"><ion-icon name="chevron-back-outline"></ion-icon></button>
+      <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
+      <button (click)="nextMonth()"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+    </div>
+    <div class="filters">
+      <div class="filter-block">
+        <button class="btn-secondry active">SEP</button>
+        <button class="btn-secondry">OCT</button>
+        <button class="btn-secondry">NOV</button>
+        <button class="btn-secondry">DEC</button>
+        <button class="btn-secondry">JAN</button>
+        <button class="btn-secondry">FEB</button>
+        <button class="btn-secondry">MAR</button>
+      </div>
+    </div>
+  </div>
+  <div class="calendar-grid">
+
+    <div class="day-header">
+      <button class="day-header-cell" *ngFor="let day of weekDays">{{ day }}</button>
+    </div>
+    <div class="day-cell-row">
+      <div class="day-cell" *ngFor="let date of calendarDays"
+        [ngClass]="{'highlight-today': isTodayCalendarDay(date)}">
+        <div class="date">{{ date.day }}</div>
+        <div class="timing" *ngIf="date.timing">{{ date.timing }}</div>
+        <div class="timing" *ngIf="date.isOff">W-OFF</div>
+      </div>
+    </div>
+  </div>
+</div>

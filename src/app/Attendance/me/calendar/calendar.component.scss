@@ -1,0 +1,131 @@
+@import '../../../../theme/variables.scss';
+// calender-css
+.filters {
+    display: flex;
+   .filter-block {
+     margin-right: 10px;
+   .btn-secondry { 
+     padding:12px 24px;
+     background: #fff;
+     border: 0.5px solid #DEDEDE;
+     color: #3498db;
+     box-shadow: none;
+     font-weight: 600;
+     margin: 0;    
+     @include normal-text-unbold();
+     &:first-child {
+       border-bottom-left-radius: 8px;
+       border-top-left-radius: 8px;
+     }
+     &:last-child {
+       border-bottom-right-radius: 8px;
+       border-top-right-radius: 8px;
+     }
+     &.active {
+       background: #3498DB;
+       color: #fff;
+       font-weight: 600;
+     } 
+   } 
+   }
+ 
+   .outline-btns {
+     .btn-secondry {
+   height: 44px;
+   padding: 0 10px;
+   background: #fff;
+   border: 0.5px solid #DEDEDE;
+   color: #3498db;
+   box-shadow: none;
+   font-weight: 600;
+   margin: 0;
+   &:first-child {
+     border-bottom-left-radius: 8px;
+     border-top-left-radius: 8px;
+   }
+   &:last-child {
+     border-bottom-right-radius: 8px;
+     border-top-right-radius: 8px;
+   }
+   ion-icon {
+     font-weight: 600;
+     font-size: 24px;
+   }
+   &.active {
+     background: #3498DB;
+     color: #fff;
+     font-weight: 600;
+   } 
+     }
+   }
+  }
+.calendar-container {
+    padding: 16px;
+    margin-top: 8px;
+    .calendar-header {
+      background: #fff;
+      border: 0.5px solid #DEDEDE;
+      width: fit-content;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      button {
+        background: transparent;
+        font-size: 18px;      
+        padding-right: 5px;
+      }
+    }
+.calendar-grid {
+    background: #fff;
+    margin-top: 15px;
+  border-radius: 8px;
+  border: 0.5px solid #DEDEDE;
+  .day-header {
+    height: 44px;
+    background: #9E9E9E;
+  .day-header-cell {
+    width: 14.28571%;
+    height: 44px;
+    border: 0.5px solid #DEDEDE;
+    padding: 16px;
+    @include body-text();
+    text-align: left;
+  }
+}
+  .day-cell-row {
+    display: flex;
+    flex-wrap: wrap;
+    .day-cell {
+      width: 14.28571%;
+      height: 170px;
+      border: 0.5px solid #DEDEDE;
+      padding: 16px;
+      // text-align: center;
+      position: relative;
+      .date {
+        @include card-header();
+        font-weight: 400;
+      }
+      .timing {
+      @include body-text();
+      margin-top: 30px;
+      position: absolute;
+      bottom: 5px;
+      }
+    }
+  }
+    
+  .highlight-today .date {
+    background-color: #007bff; 
+    color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+    }
+  }
