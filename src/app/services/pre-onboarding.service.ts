@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { tap, map, switchMap } from 'rxjs/operators';
 import { AttendanceService } from './attendance.service';
 
 export interface Candidate {
@@ -25,6 +25,11 @@ export interface Candidate {
     companyEmail: string;
     password: string;
   };
+  offerDetails?: {
+    DOJ?: string;
+    offerValidity?: number;
+    JoiningDate?: string;
+  };
 }
 
 @Injectable({
@@ -34,7 +39,7 @@ export class CandidateService {
 
   private api = "http://localhost:3562/";
   private apiUrl = `${this.api}candidates/jd`;
-  private offerUrl = `${this.api}candidates/update/offer`;
+  private offerUrl = `${this.api}candidates/offer-details`;
   private getapiUrl = 'http://localhost:3562/candidates';
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -82,27 +87,57 @@ export class CandidateService {
   }
 
   updateCandidate(candidate: any): Observable<Candidate> {
-    const doj = candidate.offerDetails.DOJ; // "20/09/2025"
-    const [day, month, year] = doj.split("/");
+    // ✅ Validate offerDetails
+    if (!candidate.offerDetails) {
+      return throwError(() => new Error('offerDetails is missing in candidate'));
+    }
+    if (!candidate.offerDetails.DOJ) {
+      return throwError(() => new Error('DOJ is missing in offerDetails'));
+    }
+
+    // Format DOJ
+    const [day, month, year] = candidate.offerDetails.DOJ.split("/");
     const formattedDOJ = `${year}-${month}-${day}`;
 
-    const reqBody = {
+    // POST body for creating offer details
+    const postBody = {
+      candidateId: candidate.id,
+      offerDetails: {
+        DOJ: formattedDOJ,
+        offerValidity: candidate.offerDetails.offerValidity,
+        JoiningDate: candidate.offerDetails.JoiningDate || null
+      }
+    };
+
+    // PUT body for updating candidate
+    const putBody = {
       id: candidate.id,
       DOJ: formattedDOJ,
       offerValidity: candidate.offerDetails.offerValidity
     };
 
-    return this.http.put<Candidate>(this.offerUrl, reqBody).pipe(
-      tap((updated) => {
-        const current = this.candidatesSubject.value.map(c =>
-          c.id === updated.id ? updated : c
-        );
-        this.candidatesSubject.next(current);
-      })
+    // First POST, then PUT
+    return this.http.post<any>(this.offerUrl, postBody).pipe(
+      switchMap(() =>
+        this.http.put<Candidate>(this.offerUrl, putBody).pipe(
+          tap((updated) => {
+            // Update candidates list in BehaviorSubject
+            const current = this.candidatesSubject.value.map(c =>
+              c.id === updated.id ? updated : c
+            );
+            this.candidatesSubject.next(current);
+
+            // Update current candidate if it's the one being updated
+            if (this.currentCandidateSubject.value?.id === updated.id) {
+              this.currentCandidateSubject.next(updated);
+              localStorage.setItem(`loggedInCandidate_${updated.id}`, JSON.stringify(updated));
+            }
+          })
+        )
+      )
     );
   }
 
-  // 🔑 Login: normalize API response before searching
   findEmployee(email: string, password: string): Observable<Candidate | undefined> {
     return this.http.get<any>(this.getapiUrl).pipe(
       map(data => {
