@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/header/header.component';
   imports: [RouterLink, RouterLinkActive, HeaderComponent, CommonModule, IonicModule]
 })
 export class AppComponent implements OnInit {
+  public showCategories = false;
   showMenu = true;
   currentUser: Observable<Candidate | null>;
   isLoginPage = false
@@ -33,7 +34,9 @@ export class AppComponent implements OnInit {
     });
 
   }
-
+  toggleDropdown() {
+    this.showCategories = !this.showCategories;
+  }
   ngOnInit(): void {
   }
   preonboard() {

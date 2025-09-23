@@ -22,6 +22,13 @@ export class CalendarComponent  implements OnInit {
   currentMonth: Date = new Date();
   constructor() { }
 
+
+  ngOnInit() {
+    const today = new Date();
+    this.generateCalendar(today);
+  }
+
+
   prevMonth() {
     this.currentMonth = new Date(this.currentMonth.setMonth(this.currentMonth.getMonth() - 1));
     this.generateCalendar(this.currentMonth);
@@ -56,11 +63,6 @@ export class CalendarComponent  implements OnInit {
         date: new Date(year, month, day)
       });
     }
-  }
-  ngOnInit() {
-    
-  
-
   }
   isTodayCalendarDay(cd: CalendarDay): boolean {
     if (!cd.date) return false;
