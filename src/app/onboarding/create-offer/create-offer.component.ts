@@ -69,15 +69,38 @@ export class CreateOfferComponent implements OnInit {
   submitOfferForm() {
     if (this.offerForm.valid) {
 
+      // Helper to parse DD/MM/YYYY → YYYY-MM-DD
+      const formatDate = (dateStr: string | undefined): string | null => {
+        if (!dateStr) return null;
+        if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+        const parts = dateStr.split('/');
+        if (parts.length !== 3) return null;
+        const [day, month, year] = parts;
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+      };
+
+      // Update candidate offerDetails from form
+      if (!this.candidate.offerDetails) this.candidate.offerDetails = {};
+
       this.candidate.offerDetails.DOJ = this.offerForm.value.DOJ;
       this.candidate.offerDetails.offerValidity = this.offerForm.value.offerValidity;
+
+      // Optional: if you have JoiningDate field in form, format it
+      if (this.candidate.offerDetails.JoiningDate) {
+        this.candidate.offerDetails.JoiningDate = formatDate(this.candidate.offerDetails.JoiningDate) || undefined;
+      }
+
+      // Format DOJ for service
+      this.candidate.offerDetails.DOJ = formatDate(this.candidate.offerDetails.DOJ) || '';
 
       this.candidateService.updateCandidate(this.candidate).subscribe({
         next: (res) => {
           console.log('Candidate updated on server:', res);
           alert('DOJ saved successfully in DB!');
-          // Pass candidate to Compensation component
-          this.router.navigate(['/salaryStaructure', this.candidate.id, encodeURIComponent(this.candidate.personalDetails.FirstName)], { state: { candidate: this.candidate } });
+          this.router.navigate(
+            ['/salaryStaructure', this.candidate.id, encodeURIComponent(this.candidate.personalDetails.FirstName)],
+            { state: { candidate: this.candidate } }
+          );
         },
         error: (err) => {
           console.error('Error updating candidate:', err);
@@ -88,4 +111,5 @@ export class CreateOfferComponent implements OnInit {
       alert('Please select a Date of Joining!');
     }
   }
+
 }

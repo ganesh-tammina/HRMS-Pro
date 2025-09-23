@@ -26,6 +26,7 @@ export interface Candidate {
     password: string;
   };
   offerDetails?: {
+    id?: number;
     DOJ?: string;
     offerValidity?: number;
     JoiningDate?: string;
@@ -99,7 +100,7 @@ export class CandidateService {
     );
   }
 
-  updateCandidate(candidate: any): Observable<Candidate> {
+  updateCandidate(candidate: Candidate): Observable<Candidate> {
     if (!candidate.offerDetails) {
       return throwError(() => new Error('offerDetails is missing in candidate'));
     }
@@ -107,41 +108,68 @@ export class CandidateService {
       return throwError(() => new Error('DOJ is missing in offerDetails'));
     }
 
-    const [day, month, year] = candidate.offerDetails.DOJ.split("/");
-    const formattedDOJ = `${year}-${month}-${day}`;
+    // Helper to parse DD/MM/YYYY → YYYY-MM-DD for MySQL DATE
+    const formatDate = (dateStr: string | undefined): string | null => {
+      if (!dateStr) return null;
 
-    const postBody = {
-      candidateId: candidate.id,
-      offerDetails: {
-        DOJ: formattedDOJ,
-        offerValidity: candidate.offerDetails.offerValidity,
-        JoiningDate: candidate.offerDetails.JoiningDate || null
-      }
+      // If already in YYYY-MM-DD, return as is
+      if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+
+      // Parse DD/MM/YYYY
+      const parts = dateStr.split('/');
+      if (parts.length !== 3) return null;
+
+      const [day, month, year] = parts;
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     };
 
+    const formattedDOJ = formatDate(candidate.offerDetails.DOJ)!;
+    const formattedJoiningDate = formatDate(candidate.offerDetails.JoiningDate);
+
+    const offerPayload = {
+      DOJ: formattedDOJ,
+      offerValidity: candidate.offerDetails.offerValidity,
+      JoiningDate: formattedJoiningDate
+    };
+
+    // 🔹 FIRST TIME (no offerDetails.id) → POST
+    if (!candidate.offerDetails.id) {
+      const postBody = {
+        candidateId: candidate.id,
+        offerDetails: offerPayload
+      };
+
+      return this.http.post<Candidate>(this.offerUrl, postBody).pipe(
+        tap((created) => {
+          // Ensure offerDetails exists
+          if (!candidate.offerDetails) candidate.offerDetails = {};
+          // Store backend id for future PUT
+          if (created.offerDetails?.id) candidate.offerDetails.id = created.offerDetails.id;
+
+          this.updateLocalCache(created);
+        })
+      );
+    }
+
+    // 🔹 NEXT TIME (already has id) → PUT
     const putBody = {
       id: candidate.id,
-      DOJ: formattedDOJ,
-      offerValidity: candidate.offerDetails.offerValidity
+      ...offerPayload
     };
 
-    return this.http.post<any>(this.offerUrl, postBody).pipe(
-      switchMap(() =>
-        this.http.put<Candidate>(this.offerUrl, putBody).pipe(
-          tap((updated) => {
-            const current = this.candidatesSubject.value.map(c =>
-              c.id === updated.id ? updated : c
-            );
-            this.candidatesSubject.next(current);
-
-            if (this.currentCandidateSubject.value?.id === updated.id) {
-              this.currentCandidateSubject.next(updated);
-              localStorage.setItem(`loggedInCandidate_${updated.id}`, JSON.stringify(updated));
-            }
-          })
-        )
-      )
+    return this.http.put<Candidate>(`${this.offerUrl}/${candidate.id}`, putBody).pipe(
+      tap((updated) => this.updateLocalCache(updated))
     );
+  }
+
+  private updateLocalCache(candidate: Candidate) {
+    const updatedList = this.candidatesSubject.value.map(c => c.id === candidate.id ? candidate : c);
+    this.candidatesSubject.next(updatedList);
+
+    if (this.currentCandidateSubject.value?.id === candidate.id) {
+      this.currentCandidateSubject.next(candidate);
+      localStorage.setItem(`loggedInCandidate_${candidate.id}`, JSON.stringify(candidate));
+    }
   }
 
   // ✅ New method for saving package details
