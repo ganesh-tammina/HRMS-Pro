@@ -68,6 +68,7 @@ export class CreateOfferComponent implements OnInit {
 
   submitOfferForm() {
     if (this.offerForm.valid) {
+
       this.candidate.offerDetails.DOJ = this.offerForm.value.DOJ;
       this.candidate.offerDetails.offerValidity = this.offerForm.value.offerValidity;
 

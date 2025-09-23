@@ -30,6 +30,18 @@ export interface Candidate {
     offerValidity?: number;
     JoiningDate?: string;
   };
+  packageDetails?: {
+    annualSalary: number;
+    basic?: number;
+    hra?: number;
+    medical?: number;
+    transport?: number;
+    special?: number;
+    subtotal?: number;
+    pfEmployer?: number;
+    pfEmployee?: number;
+    total?: number;
+  };
 }
 
 @Injectable({
@@ -40,6 +52,7 @@ export class CandidateService {
   private api = "http://localhost:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private offerUrl = `${this.api}candidates/offer-details`;
+  private packageUrl = `${this.api}candidates/package-details`;   // ✅ for package details
   private getapiUrl = 'http://localhost:3562/candidates';
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -87,7 +100,6 @@ export class CandidateService {
   }
 
   updateCandidate(candidate: any): Observable<Candidate> {
-    // ✅ Validate offerDetails
     if (!candidate.offerDetails) {
       return throwError(() => new Error('offerDetails is missing in candidate'));
     }
@@ -95,11 +107,9 @@ export class CandidateService {
       return throwError(() => new Error('DOJ is missing in offerDetails'));
     }
 
-    // Format DOJ
     const [day, month, year] = candidate.offerDetails.DOJ.split("/");
     const formattedDOJ = `${year}-${month}-${day}`;
 
-    // POST body for creating offer details
     const postBody = {
       candidateId: candidate.id,
       offerDetails: {
@@ -109,25 +119,21 @@ export class CandidateService {
       }
     };
 
-    // PUT body for updating candidate
     const putBody = {
       id: candidate.id,
       DOJ: formattedDOJ,
       offerValidity: candidate.offerDetails.offerValidity
     };
 
-    // First POST, then PUT
     return this.http.post<any>(this.offerUrl, postBody).pipe(
       switchMap(() =>
         this.http.put<Candidate>(this.offerUrl, putBody).pipe(
           tap((updated) => {
-            // Update candidates list in BehaviorSubject
             const current = this.candidatesSubject.value.map(c =>
               c.id === updated.id ? updated : c
             );
             this.candidatesSubject.next(current);
 
-            // Update current candidate if it's the one being updated
             if (this.currentCandidateSubject.value?.id === updated.id) {
               this.currentCandidateSubject.next(updated);
               localStorage.setItem(`loggedInCandidate_${updated.id}`, JSON.stringify(updated));
@@ -135,6 +141,27 @@ export class CandidateService {
           })
         )
       )
+    );
+  }
+
+  // ✅ New method for saving package details
+  addPackageDetails(candidate: any): Observable<any> {
+    if (!candidate.id) {
+      return throwError(() => new Error('Candidate ID is required'));
+    }
+    if (!candidate.packageDetails || !candidate.packageDetails.annualSalary) {
+      return throwError(() => new Error('packageDetails with annualSalary is required'));
+    }
+
+    const postBody = {
+      candidateId: candidate.id,
+      packageDetails: { ...candidate.packageDetails }
+    };
+
+    return this.http.post<any>(this.packageUrl, postBody).pipe(
+      tap((res) => {
+        console.log('Package details saved:', res);
+      })
     );
   }
 
