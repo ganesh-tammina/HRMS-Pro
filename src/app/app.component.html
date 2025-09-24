@@ -25,19 +25,37 @@
             </ion-item>
           </ion-menu-toggle>
 
-          <div class="dropdown-wrapper">
-            <!-- Org Parent Item -->
-            <ion-menu-toggle auto-hide="false">
-              <ion-item class="dropdown-toggle" lines="none" detail="false">
-                <div class="text-center">
-                  <img src="assets/Icons/building-07.svg" width="24" height="24">
+          <!-- <div class="dropdown-wrapper"> -->
+              <!-- Org Parent Item -->
+              <ion-menu-toggle auto-hide="false" id="menu-button">
+                <ion-item lines="none" detail="false">
+                  <div class="text-center">
+                    <img src="assets/Icons/building-07.svg" width="24" height="24">
                   <ion-label>Org</ion-label>
                 </div>
               </ion-item>
             </ion-menu-toggle>
-
+          
+          <ion-popover trigger="menu-button" [dismissOnSelect]="true"  triggerAction="hover" class="menu-dropdown">
+            <ng-template>
+              <ion-content>
+               
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item routerLink="/pre_onboarding" (click)="preonboard()" lines="none" detail="false">
+                          <ion-label>Pre Onboarding</ion-label>
+                        </ion-item>
+                      </ion-menu-toggle>
+                      <ion-menu-toggle auto-hide="false">
+                          <ion-item routerLink="/post-onboarding" lines="none" detail="false">
+                            <ion-label>Post Onboarding</ion-label>
+                          </ion-item>
+                        </ion-menu-toggle>
+               
+              </ion-content>
+            </ng-template>
+          </ion-popover>
             <!-- Submenu Dropdown -->
-            <div class="dropdown-menu" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'IT'">
+            <!-- <div class="dropdown-menu" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'HR'">
               <ion-menu-toggle auto-hide="false">
                 <ion-item routerLink="/pre_onboarding" (click)="preonboard()" lines="none" detail="false">
                   <ion-label>Pre Onboarding</ion-label>
@@ -48,8 +66,8 @@
                   <ion-label>Post Onboarding</ion-label>
                 </ion-item>
               </ion-menu-toggle>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
 
 
           <ion-menu-toggle auto-hide="false">

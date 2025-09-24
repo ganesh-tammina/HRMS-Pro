@@ -6,14 +6,14 @@
   <ion-grid class="ion-margin ion-margin-horizontal">
     <ion-row>
       <ion-col size="12" class="welcome-block ion-no-padding row-space-between">
-        <div class="row-left"><img src="../../assets/bg-welcome.svg" />
+        <div class="row-left"><img class="bg1" src="../../assets/bg-welcome.svg" />
           <p>Welcome {{currentCandidate.personalDetails.FirstName}}</p>
         </div>
-        <img src="../../assets/bg-welcome1.svg" />
+        <img  class="bg2"  src="../../assets/bg-welcome1.svg" />
       </ion-col>
     </ion-row>
     <ion-row class="main-block">
-      <ion-col size="4" class="main-left-block">
+      <ion-col size="12" size-sm="12" size-md="12" size-lg="4" size-xl="4" class="main-left-block">
         <ion-card>
           <ion-card-content>
             <p class="card-main-header ion-padding-bottom">Overview</p>
@@ -23,7 +23,7 @@
                 <div class="avatar-section">
                   <p class="section-title">On Leave Today</p>
                   <ion-row class="row-space-between">
-                    <ion-col lines="none" size="8" class="d-flex">
+                    <ion-col lines="none" size="12" size-sm="12" size-md="12" size-lg="8" size-xl="8" class="d-flex">
 
                       <div class="pr-5 label-block">
                         <img alt="Silhouette of a person's head" src="https://randomuser.me/api/portraits/men/32.jpg" />
@@ -38,7 +38,7 @@
                       </div>
 
                     </ion-col>
-                    <ion-col lines="none" size="4" class="on-leave-user">
+                    <ion-col lines="none" size="12" size-sm="12" size-md="12" size-lg="4" size-xl="4" class="on-leave-user">
                       <ion-img src="../../assets/onleave-img.svg" alt="On Leave"></ion-img>
                     </ion-col>
                   </ion-row>
@@ -135,24 +135,17 @@
         </ion-card>
       </ion-col>
       <!-- Right side block -->
-      <ion-col size="8" class="main-right-block">
+      <ion-col size="12" size-sm="12" size-md="12" size-lg="8" size-xl="8" class="main-right-block">
         <ion-card class="time-actions ion-padding">
           <div class="card-pannel">
-            <div class="actions-card row-space-between">
-              <div>
+            <ion-row class="actions-card row-space-between">
+              <ion-col size="12" size-sm="6" size-md="6" size-lg="6" size-xl="6" >
                 <p class="clock mb-30">Time Today </p>
                 <p class="time">{{currentTime }}</p>
-              </div>
+              </ion-col>
 
-              <div class="row-right">
-                <app-clock-button></app-clock-button>
-                <!-- <ion-button class="btn-clockin">
-                  Clock In
-                </ion-button>
-
-                <ion-button class="btn-clockout">
-                  Clock Out
-                </ion-button> -->
+              <ion-col size="12" size-sm="6" size-md="6" size-lg="6" size-xl="6" class="row-right">
+                <app-clock-button></app-clock-button>              
 
                 <ion-button id="popover-button">Others<img src="../../assets/Icons/chevron-down-outline.svg"
                     width="20"></ion-button>
@@ -169,14 +162,14 @@
                 </ion-popover>
 
 
-              </div>
-            </div>
+              </ion-col>
+            </ion-row>
           </div>
         </ion-card>
         <!-- reporting section -->
         <ion-card class="reporting-block ion-padding">
           <ion-row>
-            <ion-col size="6" class="left-block">
+            <ion-col size="12" size-sm="6" size-md="6" size-lg="6" size-xl="6" class="left-block">
               <p class="card-main-header mb-30">Reporting manager </p>
               <div class="row-left">
                 <img alt="Silhouette of a person's head" src="../../assets/user.svg" width="46" />
@@ -187,7 +180,7 @@
                 </ion-label>
               </div>
             </ion-col>
-            <ion-col size="6" class="right-block">
+            <ion-col size="12" size-sm="6" size-md="6" size-lg="6" size-xl="6" class="right-block">
               <p class="card-main-header mb-30">Your Clients </p>
               <div class="row-space-between">
                 <div>
@@ -203,14 +196,14 @@
         <!-- Performance section -->
         <ion-card class="week-card ion-padding">
           <ion-row>
-            <ion-col size="5" class="left-block">
+            <ion-col size="12" size-sm="12" size-md="5" size-lg="5" size-xl="5" class="left-block">
               <p class="card-main-header pb-8">Performance</p>
               <div class="row-left">
                 <h2 class="page-title">88%</h2>
                 <p class="pl-5 text-color">+3% vs Last Quarter</p>
               </div>
             </ion-col>
-            <ion-col size="7" class="left-block">
+            <ion-col size="12" size-sm="12" size-md="7" size-lg="7" size-xl="7" class="left-block">
               <img src="../../assets/chart-graphic.svg">
             </ion-col>
           </ion-row>

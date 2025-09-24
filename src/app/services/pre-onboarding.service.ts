@@ -43,6 +43,7 @@ export interface Candidate {
     pfEmployee?: number;
     total?: number;
   };
+    isAvailable?: boolean;
 }
 
 @Injectable({
