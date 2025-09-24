@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
-import { MePage } from './me/me.page';
+import { MePage } from '../app/Attendance/me/me.page';
 import { MyTeamPage } from './my-team/my-team.page';
 import { logIn } from 'ionicons/icons';
 import { LoginPage } from './login/login.page';
@@ -13,7 +13,7 @@ import { OnboardingTasksComponent } from './onboarding/onboarding-tasks/onboardi
 import { CandiateCreateComponent } from './onboarding/candiate-create/candiate-create.component';
 import { StartOnboardingComponent } from './onboarding/start-onboarding/start-onboarding.component';
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
-import { LeavesComponent } from './me/leaves/leaves.component';
+import { LeavesComponent } from '../app/Attendance/me/leaves/leaves.component';
 import { authGuard } from './authgurd.guard';
 
 export const routes: Routes = [
@@ -23,7 +23,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'Home', component: HomePage },
-  { path: 'Me', component: MePage },
+  // { path: 'Me', component: MePage },
   { path: 'MyTeam', component: MyTeamPage },
   { path: 'login', component: LoginPage },
   { path: 'settings', component: PostPage },
@@ -51,6 +51,9 @@ export const routes: Routes = [
 
   {
     path: 'Task_Template', loadComponent: () => import('./onboarding/task-templates/task-templates.component').then(m => m.TaskTemplatesComponent)
+  },
+  {
+    path: 'Me', loadComponent: () => import('../app/Attendance/me/me.page').then(m => m.MePage)
   },
   {
     path: 'setup', loadComponent: () => import('./onboarding/setup/setup.component').then(m => m.SetupComponent)

@@ -230,13 +230,19 @@ ion-avatar {
 }
 
 .welcome-block {
-  background: #00568F;
-  color: #DADEE4;
-  @include page-header();
-  font-weight: 700; 
+  background: #00568F;  
+  p{
+    color: #DADEE4;
+    @include page-header();
+    font-weight: 700; 
+    padding-left: 24px;
+  }
   img {
     height: 100px;
     padding-top: 5px;
+    @media screen and (max-width: 767px) {
+       display: none;
+    }
   }
 }
 

@@ -43,6 +43,7 @@ export interface Candidate {
     pfEmployee?: number;
     total?: number;
   };
+    isAvailable?: boolean;
 }
 
 @Injectable({
@@ -76,11 +77,11 @@ export class CandidateService {
 
   loadCandidates(): void {
     this.http.get<any>(this.getapiUrl).subscribe({
-      next: (data) => {
+      next: (data:any) => {
         const candidates = this.normalizeCandidates(data);
         this.candidatesSubject.next(candidates);
       },
-      error: (err) => console.error('Error loading candidates:', err)
+      error: (err:any) => console.error('Error loading candidates:', err)
     });
   }
 

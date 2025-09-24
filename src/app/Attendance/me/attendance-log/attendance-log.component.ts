@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../shared/header/header.component';
-import { CandidateService, Candidate } from '../services/pre-onboarding.service';
-import { AttendanceService, AttendanceRecord, AttendanceEvent } from '../services/attendance.service';
-import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
-import { ClockButtonComponent } from '../services/clock-button/clock-button.component';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { CandidateService, Candidate } from 'src/app/services/pre-onboarding.service';
+import { AttendanceService, AttendanceRecord, AttendanceEvent  } from 'src/app/services/attendance.service';
 interface AttendanceRequest {
   type: string;
   dateRange: string;
   items: string[];
+}
+interface AttendanceRequestHistory {
+  date: string;
+  request: string;
+  requestedOn: string;
+  note: string;
+  reason?: string;
+  status: string;
+  lastAction: string;
+  nextApprover?: string;
 }
 
 interface AttendanceLog {
@@ -27,14 +34,20 @@ interface AttendanceLog {
   };
 }
 
+interface CalendarDay {
+  day: number | '';
+  timing: string;
+  isOff: boolean;
+  date?: Date;
+}
 @Component({
-  selector: 'app-me',
-  templateUrl: './me.page.html',
-  styleUrls: ['./me.page.scss'],
-  standalone: true,
-  imports: [IonicModule, ClockButtonComponent, HeaderComponent, EmployeeHeaderComponent, CommonModule]
+  selector: 'app-attendance-log',
+  templateUrl: './attendance-log.component.html',
+  styleUrls: ['./attendance-log.component.scss'],
+  standalone:true,
+  imports: [IonicModule, CommonModule]
 })
-export class MePage implements OnInit {
+export class AttendanceLogComponent  implements OnInit {
   employee?: Candidate;
   record?: AttendanceRecord;
 
@@ -48,27 +61,24 @@ export class MePage implements OnInit {
   currentDate: string = '';
   history: AttendanceEvent[] = [];
   selectedRange: 'TODAY' | 'WEEK' | 'MONTH' | 'ALL' = 'TODAY';
-  progressValue: number = 0.85; // 85% completed for the day
+  progressValue: number = 0.85;
 
-  activeTab: string = 'log'; // default tab
+  activeTab: string = 'log';
   currentMonth: Date = new Date();
   weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-  calendarDays: any[] = [];
-  // activeTab: string = 'log';
-
+  // calendarDays: any[] = []; 
+  calendarDays: CalendarDay[] = [];
   attendanceRequests: AttendanceRequest[] = [];
-  //  activeTab: string = 'log';
-
-  // attendanceLogss: AttendanceLog[] = [];
   selectedLog: AttendanceLog | null = null;
   showPopover = false;
   attendanceLogs: AttendanceLog[] = [];
   days: Date[] = [];
   today: Date = new Date();
-
-
-
-
+  attendanceRequestsHistory: {
+    type: string;
+    dateRange: string;
+    records: AttendanceRequestHistory[];
+  }[] = [];
   constructor(
     private candidateService: CandidateService,
     private attendanceService: AttendanceService
@@ -95,40 +105,27 @@ export class MePage implements OnInit {
 
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
-
-    // Fill blank days before first day
     for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
       this.calendarDays.push({ day: '', timing: '', isOff: false });
     }
-
-    // Fill actual days
     for (let day = 1; day <= lastDate; day++) {
       let timing = '9:30 AM - 6:30 PM';
       let isOff = false;
-
-      // Example: Sat & Sun off
       const d = new Date(year, month, day).getDay();
       if (d === 0 || d === 6) {
         timing = '';
         isOff = true;
       }
 
-      this.calendarDays.push({ day, timing, isOff });
+      this.calendarDays.push({
+        day, timing, isOff,
+        date: new Date(year, month, day)
+      });
     }
   }
-
-
-  // segmentChanged(event: any) {
-  //   console.log('Segment changed:', event.detail.value);
-  // }
-
-
-
   ngOnInit() {
     this.employee = this.candidateService.getCurrentCandidate() || undefined;
     if (!this.employee) return;
-
-    // subscribe to record changes
     this.attendanceService.record$.subscribe(record => {
       if (record && record.employeeId === this.employee?.id) {
         this.record = record;
@@ -136,15 +133,61 @@ export class MePage implements OnInit {
         this.loadHistory();
       }
     });
-
-    // initial fetch
     this.attendanceService.getRecord(this.employee.id);
 
     setInterval(() => {
       this.updateTimes();
       this.loadHistory();
     }, 1000);
-
+ this.attendanceRequestsHistory = [
+      {
+        type: 'Work From Home / On Duty Requests',
+        dateRange: '19 Aug 2025 - 02 Oct 2025',
+        records: [
+          {
+            date: '26 Aug 2025',
+            request: 'Work From Home - 1 Day',
+            requestedOn: '26 Aug 2025 12:30 PM by XYZ',
+            note: 'working from home on this day.',
+            reason: 'Personal',
+            status: 'Approved',
+            lastAction: 'ABC on 26 Aug',
+          }
+        ]
+      },
+      {
+        type: 'Regularization Requests',
+        dateRange: '19 Aug 2025 - 02 Oct 2025',
+        records: [] // none
+      },
+      {
+        type: 'Remote Clock In Requests',
+        dateRange: '19 Aug 2025 - 02 Oct 2025',
+        records: [
+          {
+            date: '19 Aug 2025',
+            request: 'Remote Clock In',
+            requestedOn: '19 Aug 2025 by Employee',
+            note: 'I am working on some high-priority tasks.',
+            status: 'Approved',
+            lastAction: 'ABC on 19 Aug',
+          },
+          {
+            date: '22 Aug 2025',
+            request: 'Remote Clock In',
+            requestedOn: '22 Aug 2025 by Employee',
+            note: 'Working on some issues.',
+            status: 'Approved',
+            lastAction: 'ABC on 22 Aug',
+          }
+        ]
+      },
+      {
+        type: 'Partial Day Requests',
+        dateRange: '19 Aug 2025 - 02 Oct 2025',
+        records: []
+      }
+    ];
     // Requests Data
     this.attendanceRequests = [
       {
@@ -223,7 +266,6 @@ export class MePage implements OnInit {
     const today = new Date();
     const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
     const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust for Sunday
-
     const firstDayOfWeek = new Date(today.setDate(diff));
     for (let i = 0; i < 7; i++) {
       const date = new Date(firstDayOfWeek);
@@ -232,18 +274,23 @@ export class MePage implements OnInit {
     }
   }
 
-  isToday(day: Date): boolean {
-    return day.getDate() === this.today.getDate() &&
-           day.getMonth() === this.today.getMonth() &&
-           day.getFullYear() === this.today.getFullYear();
+  isTodayCalendarDay(cd: CalendarDay): boolean {
+    if (!cd.date) return false;
+    return (cd.date.getDate() === this.today.getDate() &&
+      cd.date.getMonth() === this.today.getMonth() &&
+      cd.date.getFullYear() === this.today.getFullYear()
+    );
   }
-  
-  //  attendanceLogs = [
-  //   { date: 'Thu, 04 Sept', progress: 0.0, effective: '0h 0m+', gross: '0h 0m+', arrival: 'On Time' },
-  //   { date: 'Wed, 03 Sept', progress: 0.75, effective: '6h 38m+', gross: '8h 46m+', arrival: 'On Time' },
-  //   { date: 'Tue, 02 Sept', progress: 0.45, effective: '3h 56m+', gross: '4h 9m+', arrival: 'On Time' },
-  //   { date: 'Mon, 01 Sept', progress: 0.70, effective: '6h 44m+', gross: '8h 42m+', arrival: 'On Time' },
-  // ];
+
+  isToday(day: Date): boolean {
+    return (
+      day.getDate() === this.today.getDate() &&
+      day.getMonth() === this.today.getMonth() &&
+      day.getFullYear() === this.today.getFullYear()
+    );
+  }
+
+
   get employeeName(): string {
     return this.employee?.personalDetails?.FirstName || '';
   }
@@ -257,23 +304,6 @@ export class MePage implements OnInit {
     this.showPopover = false;
     this.selectedLog = null;
   }
-
-
-
-  // clockIn() {
-  //   if (!this.employee) return;
-  //   this.record = this.attendanceService.clockIn(this.employee.id);
-  //   this.updateTimes();
-  //   this.loadHistory();
-  // }
-
-  // clockOut() {
-  //   if (!this.employee) return;
-  //   this.record = this.attendanceService.clockOut(this.employee.id);
-  //   this.updateTimes();
-  //   this.loadHistory();
-  // }
-
   updateTimes() {
     if (!this.record) return;
     const now = new Date();
