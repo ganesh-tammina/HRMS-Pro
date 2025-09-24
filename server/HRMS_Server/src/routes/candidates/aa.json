@@ -1,0 +1,52 @@
+{
+  "candidates": [
+    {
+      "personalDetails": {
+        "FirstName": "Siva",
+        "MiddleName": "Devi",
+        "LastName": "Ganesh",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "male"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Visakhapatnam",
+        "WorkType": "Perminate",
+        "BussinessUnit": "Tech Tammina"
+      },
+      "id": "1"
+    },
+    {
+      "personalDetails": {
+        "FirstName": "Devi ",
+        "MiddleName": "Ganesh",
+        "LastName": "Meesala",
+        "PhoneNumber": "9876543210",
+        "email": "ganesh@gmail.com",
+        "gender": "male",
+        "initials": "DM"
+      },
+      "jobDetailsForm": {
+        "JobTitle": "Software Engineer",
+        "Department": "IT Development",
+        "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+        "WorkType": "Perminent",
+        "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+      },
+      "id": "2",
+      "offerDetails": {
+        "DOJ": "06/09/2025",
+        "offerValidity": "2",
+        "JoiningDate": "07/11/2025"
+      },
+      "employeeCredentials": {
+        "companyEmail": "Devi@tammina.com",
+        "password": "123456"
+      }
+    }
+  
+  ],
+  "attendanceLogs": []
+}
