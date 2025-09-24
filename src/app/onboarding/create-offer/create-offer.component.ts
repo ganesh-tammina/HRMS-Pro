@@ -90,6 +90,7 @@ export class CreateOfferComponent implements OnInit {
         this.candidate.offerDetails.JoiningDate = formatDate(this.candidate.offerDetails.JoiningDate) || undefined;
       }
 
+
       // Format DOJ for service
       this.candidate.offerDetails.DOJ = formatDate(this.candidate.offerDetails.DOJ) || '';
 
