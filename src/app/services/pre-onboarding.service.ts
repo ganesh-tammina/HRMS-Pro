@@ -50,11 +50,11 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://localhost:3562/";
+  private api = "http://0.0.0.0:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private offerUrl = `${this.api}candidates/offer-details`;
   private packageUrl = `${this.api}candidates/package-details`;   // ✅ for package details
-  private getapiUrl = 'http://localhost:3562/candidates';
+  private getapiUrl = `${this.api}candidates`;
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
