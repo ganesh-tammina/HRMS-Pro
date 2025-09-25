@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../shared/header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { CandidateService } from '../services/pre-onboarding.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-candidate-status',
@@ -12,22 +13,27 @@ import { CandidateService } from '../services/pre-onboarding.service';
   imports: [HeaderComponent, CommonModule, IonicModule]
 })
 
-export class CandidateStatusComponent  implements OnInit {
+export class CandidateStatusComponent implements OnInit {
   currentCandidate: any
   activePage: string = 'openPage';
-  hideOffer : boolean = false
+  hideOffer: boolean = false
+  candidate: any;
 
-  constructor(private candidateService: CandidateService) { }
+  constructor(private candidateService: CandidateService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.candidateService.currentCandidate$.subscribe((user:any) => {
-      this.currentCandidate = user;
-      console.log('Current Candidate:', this.currentCandidate);
-    });
+
+    const id = this.route.snapshot.queryParamMap.get('id');
+    if (id) {
+      this.candidateService.getCandidateById(id).subscribe((data: any) => {
+        this.candidate = data;
+        console.log('Fetched Candidate by ID:', this.candidate);
+      });
+    }
   }
 
   setDiv() {
-   this.hideOffer = true
+    this.hideOffer = true
   }
 
 }

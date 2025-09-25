@@ -85,6 +85,10 @@ export class CandidateService {
     });
   }
 
+    getCandidateById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
   private normalizeCandidates(data: any): Candidate[] {
     if (Array.isArray(data)) return data;
     if (data && data.candidates && Array.isArray(data.candidates)) return data.candidates;
