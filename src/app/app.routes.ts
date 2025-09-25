@@ -83,6 +83,13 @@ export const routes: Routes = [
       import('./onboarding/preview-send/preview-send.component').then(
         m => m.PreviewSendComponent
       ),
+  },
+  {
+    path: 'candidate_status',
+    loadComponent: () =>
+      import('./candidate-status/candidate-status.component').then(
+        m => m.CandidateStatusComponent
+      ),
   }
 
 
