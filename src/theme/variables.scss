@@ -72,3 +72,28 @@ $bg-color: #D9D9D9;
 body{
     color: #2d2d2d;
 }
+
+@mixin scroll-style {
+    /* width */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar {
+      width: 8px !important;
+      height: 8px !important;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #fff;
+      border-radius: 0px;
+    }
+  
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #ABABAB;
+      border-radius: 31px;
+    }
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+  }

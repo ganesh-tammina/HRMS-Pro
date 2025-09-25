@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   showMenu = true;
   currentUser: Observable<Candidate | null>;
   isLoginPage = false
+  iscandiateofferPage = false
+
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router: Router, private candidateService: CandidateService) {
     this.currentUser = this.candidateService.currentCandidate$;
@@ -30,6 +32,8 @@ export class AppComponent implements OnInit {
         // Hide menu on login page
         this.showMenu = !event.urlAfterRedirects.includes('/login');
         this.isLoginPage = event.urlAfterRedirects.includes('/login');
+        this.iscandiateofferPage = event.urlAfterRedirects.includes('/candidate_status');
+
       }
     });
 
