@@ -3,8 +3,10 @@ import express, { Application } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { pool } from "./config/database";
-import candidateRoutes from "./routes/candidates"; // our new index.ts
+import candidateRoutes from "./routes/candidates";
+import attendenceGetRouter from "./routes/candidates/attendance/attandanceGetRoutes";
 import { sendMail } from "./routes/mailer";
+import attendancePostRouter from "./routes/candidates/attendance/attandancePostRoutes";
 
 dotenv.config();
 
@@ -21,15 +23,22 @@ class Server {
   }
 
   private middlewares(): void {
-    this.app.use(express.json());
+    this.app.use(express.json()); // ✅ parses req.body
   }
 
   private routes(): void {
     this.app.use("/candidates", candidateRoutes);
+    this.app.use("/attendance", attendancePostRouter); // Ensure attendance routes are used
+    this.app.use("/attendance", attendenceGetRouter); // Ensure attendance routes are used
+
+    // send mail route
     this.app.post("/send-email", async (req, res) => {
       const { to, subject, text } = req.body;
       if (!to || !subject || !text) {
-        return res.status(400).json({ success: false, error: "Missing required fields (to, subject, text)" });
+        return res.status(400).json({
+          success: false,
+          error: "Missing required fields (to, subject, text)",
+        });
       }
       try {
         const result = await sendMail(to, subject, text, `<p>${text}</p>`);
