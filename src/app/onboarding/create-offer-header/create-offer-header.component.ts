@@ -79,16 +79,7 @@ export class CreateOfferHeaderComponent implements OnInit {
     this.email.sendEmail(this.candidate).subscribe({
       next: (res) => {
         if (res.success) {
-          this.candidateService.updateCandidate(this.candidate).subscribe({
-            next: (res) => {
-              console.log('Candidate updated with credentials:', res);
-              alert('Employee credentials saved and mail sent successfully!');
-            },
-            error: (err) => {
-              console.error('Error saving credentials:', err);
-              alert('Failed to save employee credentials.');
-            }
-          });
+          alert('Email sent successfully!');
         } else {
         }
       }
