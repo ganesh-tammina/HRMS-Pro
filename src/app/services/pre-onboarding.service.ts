@@ -51,7 +51,7 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://localhost:3562/";
+  private api = "http://30.0.0.78:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private offerUrl = `${this.api}candidates/offer-details`;
   private packageUrl = `${this.api}candidates/package-details`;   // ✅ for package details
