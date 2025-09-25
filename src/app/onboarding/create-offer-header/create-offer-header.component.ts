@@ -77,10 +77,10 @@ export class CreateOfferHeaderComponent implements OnInit {
 
     // Call service to update candidate
     this.email.sendEmail(this.candidate).subscribe({
-      next: (res) => {
+      next: (res : any) => {
         if (res.success) {
           alert('Email sent successfully!');
-        } else {
+            } else {
         }
       }
     });
