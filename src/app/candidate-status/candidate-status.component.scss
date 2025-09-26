@@ -63,6 +63,9 @@ $blue-background: #007bff; // A nice, modern blue
     border: 1px solid #888 !important;
     padding: 0 8px !important;
   }
+  .primary-btn {
+    width: 100%;
+ }
 }
 
   
@@ -77,11 +80,7 @@ $blue-background: #007bff; // A nice, modern blue
   }
 
 
-.primry-button {
-   --background: #007bff;
-   color: #fff;
-   width: 100%;
-}
+
 // Media query for smaller screens
 @media (max-width: 768px) {
   .sign-in-container {

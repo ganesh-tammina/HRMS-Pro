@@ -180,12 +180,11 @@ ion-list-header, ion-item{
 //buttons styles
 ion-button {      
         border-radius: 8px;
-        padding: 8px 16px;
         @include normal-text-unbold();
         --padding-top: 0;
         --padding-bottom: 0;
-        --padding-start: 0;
-        --padding-end: 0;
+        --padding-start: 16px;
+        --padding-end: 16px;
         --box-shadow: none !important;
 }
 .danger-outline-btn.button-solid {
