@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 })
 
 export class EmailService {
-	private beURL = 'http://localhost:3562/send-email'
+	private beURL = 'http://30.0.0.78:3562/send-email'
 
 	constructor(private http: HttpClient) { }
 
