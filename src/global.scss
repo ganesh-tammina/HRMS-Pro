@@ -176,3 +176,25 @@ ion-list-header, ion-item{
       }      
   }
 }
+
+//buttons styles
+ion-button {      
+        border-radius: 8px;
+        padding: 8px 16px;
+        @include normal-text-unbold();
+        --padding-top: 0;
+        --padding-bottom: 0;
+        --padding-start: 0;
+        --padding-end: 0;
+        --box-shadow: none !important;
+}
+.danger-outline-btn.button-solid {
+    color: #E45353;
+    border: 1px solid #E45353;
+    --background: transparent;  
+}
+.primary-btn.button-solid {
+    color: #fff;
+    background: #2986CE !important;
+    --background: #2986CE !important;
+}

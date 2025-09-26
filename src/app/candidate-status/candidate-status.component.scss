@@ -113,12 +113,13 @@ $blue-background: #007bff; // A nice, modern blue
   @include scroll-style();
    .logo-header {
     border-bottom: 1px solid #00000066;
-    padding: 16px;
+    padding: 8px 24px;
     position: fixed;
     width: 100%;
     background: #fff;
     z-index: 2;
-    top: 0;
+    top: 0;   
+    height: 90px; 
   }
   .offerletter-continer {    
     width: 60%;
@@ -146,6 +147,7 @@ $blue-background: #007bff; // A nice, modern blue
      .offer-header {
       border-bottom: 1px solid #00000066;
       padding: 16px;
+      @include card-sub-title();
      }
     .offer-block {
       margin: 16px;     
@@ -167,13 +169,33 @@ $blue-background: #007bff; // A nice, modern blue
    }
    .action-block {
      ion-button {
-       margin-right: 12px;
-       margin-top: 12px;
+      margin: 12px;
+      margin-right: 8px;
      }
    }
    .footer-block {
     border: 1px solid #2D2D2D66;
-    padding: 16px 8px;
+    .footer-text {
+      border-bottom: 1px solid #2D2D2D66;
+      @include card-sub-title();
+      color: #2d2d2d;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      height: 60px;
+      margin-top: 0;
+      padding: 16px;
+    }
+    .row-space-between {
+      padding: 16px;    
+      p {
+        margin-left: 8px !important;
+          }
+          ion-icon {
+            font-size: 24px;
+          }
+          }
+         
    }
   }
 }
