@@ -85,12 +85,12 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'candidate_status',
+    path: 'candidate_status/:id',
     loadComponent: () =>
       import('./candidate-status/candidate-status.component').then(
         m => m.CandidateStatusComponent
       ),
-  }
+  },
 
 
 

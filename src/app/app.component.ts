@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
     });
     window.location.href = '/pre_onboarding';
   }
+
   logout() {
     this.candidateService.logout();
     this.router.navigate(['/login']);

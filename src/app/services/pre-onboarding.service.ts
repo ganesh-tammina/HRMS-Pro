@@ -43,7 +43,7 @@ export interface Candidate {
     pfEmployee?: number;
     total?: number;
   };
-    isAvailable?: boolean;
+  isAvailable?: boolean;
 }
 
 @Injectable({
@@ -77,12 +77,16 @@ export class CandidateService {
 
   loadCandidates(): void {
     this.http.get<any>(this.getapiUrl).subscribe({
-      next: (data:any) => {
+      next: (data: any) => {
         const candidates = this.normalizeCandidates(data);
         this.candidatesSubject.next(candidates);
       },
-      error: (err:any) => console.error('Error loading candidates:', err)
+      error: (err: any) => console.error('Error loading candidates:', err)
     });
+  }
+
+  getCandidateById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.getapiUrl}/${id}`);
   }
 
   private normalizeCandidates(data: any): Candidate[] {

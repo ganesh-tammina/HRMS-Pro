@@ -1,20 +1,21 @@
 <!-- <ion-header [translucent]="true"> -->
-  <!-- <app-header></app-header> -->
-  <!-- <app-employee-header></app-employee-header> -->
+<!-- <app-header></app-header> -->
+<!-- <app-employee-header></app-employee-header> -->
 <!-- </ion-header> -->
 
 <ion-content [fullscreen]="true" *ngIf="!hideOffer">
   <ion-grid class="ion-no-padding">
-<div class="sign-in-container">
-  <div class="sign-in-left">
-    <div class="logo-container">
-      <img src="./../../assets/techlogo.png" alt="Tech Tammina Logo" class="logo" />
-    </div>
-    <div class="welcome-message">
-      <h2>Welcome! {{currentCandidate.personalDetails.FirstName}}</h2>
-      <p>You need to verify your account to continue</p>
-    </div>
-  </div>
+    <div class="sign-in-container">
+      <div class="sign-in-left">
+        <div class="logo-container">
+          <img src="./../../assets/techlogo.png" alt="Tech Tammina Logo" class="logo" />
+        </div>
+        <div class="welcome-message" *ngIf="candidate">
+          <h3>Welcome! {{candidate.FirstName}}</h3>
+          <p>You need to verify your account to continue</p>
+        </div>
+      </div>
+   
 
   <div class="sign-in-right">
     <h3>Sign in continue to your email</h3>
@@ -23,87 +24,83 @@
       <ion-input class="form-control" placeholder="Enter your email ID"></ion-input>
       <ion-button class="primary-btn" (click)="setDiv()">Next</ion-button>
     </div>
-  
-    <div class="footer-text">
-      <p>Sree Tammina Software Solutions Pvt. Ltd.</p>
-      <p>uses Keka to manage employee onboarding experience</p>
     </div>
   </div>
-</div>
-</ion-grid>
+  </ion-grid>
 </ion-content>
 
 <div class="offerletter-block" *ngIf="hideOffer">
-    <div class="logo-header row-space-between">
-        <ion-img src="../../assets/tammina-blue-logo.svg" alt="On Leave"></ion-img>
-        <div class="row-right">
-            <ion-icon name="person-circle"></ion-icon>
-            {{currentCandidate.personalDetails.FirstName}}
-        </div>
+  <div class="logo-header row-space-between">
+    <ion-img src="../../assets/tammina-blue-logo.svg" alt="On Leave"></ion-img>
+    <div>
+      <ion-icon name="person-circle"></ion-icon>
+      {{currentCandidate.personalDetails.FirstName}}
     </div>
-<div class="offerletter-continer">
+  </div>
+  <div class="offerletter-continer">
     <div class="header-block">
       <p class="text-bold">
-          Welcome {{currentCandidate.personalDetails.FirstName}}
+        Welcome {{currentCandidate.personalDetails.FirstName}}
       </p>
       <p class="text-dec">
-          It was great interacting with you as part of our interview process. 
-          We are quite excited about the possibilities of working together. 
-          Just a few steps remain to get you onboard
+        It was great interacting with you as part of our interview process.
+        We are quite excited about the possibilities of working together.
+        Just a few steps remain to get you onboard
       </p>
     </div>
 
     <div class="offer-letter">
-        <div class="offer-header row-space-between">
-            <p>Offer Letter</p>
-            <ion-img src="../../assets/download-02.svg"></ion-img>         
-        </div>
+      <div class="offer-header row-space-between">
+        <p>Offer Letter</p>
+        <ion-img src="../../assets/download-02.svg"></ion-img>
+      </div>
 
-        <div class="offer-block">
-            <ion-card>         
-                <ion-img src="../../assets/tammina-blue-logo.svg" alt="logo"></ion-img>
-                <div>
-                <p>Dear {{currentCandidate.personalDetails.FirstName}},</p>
-                <p>Welcome Tech Tammina !!!</p>
-                <p>
-                    It was a pleasure interacting with you during our hiring process and we believe that 
-                    you would make a great asset to Sree Tammina Software Solutions Pvt. Ltd. hence we are 
-                    pleased to release this offer for the role of UI/UX Designer. While the hiring process 
-                    allowed us to get a brief glimpse of your capabilities, we believe we have an environment
-                     that can get the best of you. We are looking forward to working with you at the earliest. 
-                     You are required to join us on or before 01-09-2025 and the offer stands withdrawn there 
-                     after unless the date is extended by us and communicated to youin writing.
-                </p>
-               <ol type="I">
-                 <li>
-                    You will be working in our office located in #49-24-64, Sri Venkata Sai Towers,
-                    Madhuranagar, Visakhapatnam, Andhra Pradesh, India-530016. But wil
-                    l work for the company or any of its subsidiaries or associated companies in any location
-                    within or outside India. You will be governed automatically by the rules and regulations and terms and conditions applicable to the new assignment.
-                 </li>
-                 <li>
-                    Your annual gross salary will be INR 2,40,000.00 calculated as Cost to Company
-                        and the break-up of the salary is attached herewith in Annexure A. (This includes
-                        Basic, Allowances, Statutory contributions and other benefits as per the policy of
-                        Government regulatory bodies. You will be responsible for the payment of the
-                        income tax, and other applicable taxes.)
-                  </li>
-                  <li>
-                      Your offer is contingent upon successful background verification and a positive
-                        reference check.
-                    </li>
-                    <li>
-                         You shall be eligible for promotions and increments based on your performance
-                        and contributions to the Company as per the review and appraisal policies of the
-                        company.
-                      </li>
-                      <li>
-                           You will be entitled to leaves and holidays as per the Policy of the company.
-                      </li>
-                    </ol>
-                </div>
-              </ion-card>
-        </div>        
+      <div class="offer-block">
+        <ion-card>
+          <ion-img src="../../assets/tammina-blue-logo.svg" alt="logo"></ion-img>
+          <div>
+            <p>Dear {{currentCandidate.personalDetails.FirstName}},</p>
+            <p>Welcome Tech Tammina !!!</p>
+            <p>
+              It was a pleasure interacting with you during our hiring process and we believe that
+              you would make a great asset to Sree Tammina Software Solutions Pvt. Ltd. hence we are
+              pleased to release this offer for the role of UI/UX Designer. While the hiring process
+              allowed us to get a brief glimpse of your capabilities, we believe we have an environment
+              that can get the best of you. We are looking forward to working with you at the earliest.
+              You are required to join us on or before 01-09-2025 and the offer stands withdrawn there
+              after unless the date is extended by us and communicated to youin writing.
+            </p>
+            <ol type="I">
+              <li>
+                You will be working in our office located in #49-24-64, Sri Venkata Sai Towers,
+                Madhuranagar, Visakhapatnam, Andhra Pradesh, India-530016. But wil
+                l work for the company or any of its subsidiaries or associated companies in any location
+                within or outside India. You will be governed automatically by the rules and regulations and terms and
+                conditions applicable to the new assignment.
+              </li>
+              <li>
+                Your annual gross salary will be INR 2,40,000.00 calculated as Cost to Company
+                and the break-up of the salary is attached herewith in Annexure A. (This includes
+                Basic, Allowances, Statutory contributions and other benefits as per the policy of
+                Government regulatory bodies. You will be responsible for the payment of the
+                income tax, and other applicable taxes.)
+              </li>
+              <li>
+                Your offer is contingent upon successful background verification and a positive
+                reference check.
+              </li>
+              <li>
+                You shall be eligible for promotions and increments based on your performance
+                and contributions to the Company as per the review and appraisal policies of the
+                company.
+              </li>
+              <li>
+                You will be entitled to leaves and holidays as per the Policy of the company.
+              </li>
+            </ol>
+          </div>
+        </ion-card>
+      </div>
     </div>
     <div class="action-block row-right">
         <ion-button class="danger-outline-btn">Reject</ion-button><ion-button  class="primary-btn">Accept</ion-button>
@@ -125,4 +122,4 @@
               </div>
       </div>
     </div>
-</div>
+  </div>
