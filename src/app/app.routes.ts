@@ -90,7 +90,7 @@ export const routes: Routes = [
       import('./candidate-status/candidate-status.component').then(
         m => m.CandidateStatusComponent
       ),
-  }
+  },
 
 
 

@@ -18,18 +18,26 @@ export class CandidateStatusComponent implements OnInit {
   activePage: string = 'openPage';
   hideOffer: boolean = false
   candidate: any;
+  ids: string = ''
 
   constructor(private candidateService: CandidateService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-    const id = this.route.snapshot.queryParamMap.get('id');
-    if (id) {
-      this.candidateService.getCandidateById(id).subscribe((data: any) => {
-        this.candidate = data;
-        console.log('Fetched Candidate by ID:', this.candidate);
-      });
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      console.log('Route param id:', id);
+
+
+      if (id) {
+        this.candidateService.getCandidateById(id).subscribe((data: any) => {
+          this.candidate = data;
+          console.log('Fetched Candidate by ID:', this.candidate);
+        });
+      }
+    });
+
+
   }
 
   setDiv() {
