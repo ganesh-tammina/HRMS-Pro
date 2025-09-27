@@ -28,12 +28,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     // Initialize login form
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required,]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
     this.candidateService.getAdminById('1').subscribe(data => {
       this.adminData = data;
-      console.log('Admin Data:', this.adminData);
     });
   }
 
@@ -41,7 +40,7 @@ export class LoginPage implements OnInit {
     const { email, password } = this.loginForm.value;
 
     // ✅ Optional fallback hardcoded admin
-    if (this.loginForm.value.email == 'admin' && this.loginForm.value.password == 'admin') {
+    if (this.loginForm.value.email == this.adminData.username && this.loginForm.value.password == this.adminData.password) {
       const user: LoggedUser = { type: 'admin', data: { UserName: 'admin' } };
       this.authService.setUser(user);
       console.log('Employee logged in:', user);
