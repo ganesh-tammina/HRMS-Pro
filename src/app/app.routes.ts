@@ -92,6 +92,14 @@ export const routes: Routes = [
       ),
   },
 
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./Administration/admin/admin.component').then(
+        m => m.AdminComponent
+      ),
+  }
+
 
 
 ];
