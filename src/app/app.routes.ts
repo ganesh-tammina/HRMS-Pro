@@ -15,6 +15,7 @@ import { StartOnboardingComponent } from './onboarding/start-onboarding/start-on
 import { CreateOfferComponent } from './onboarding/create-offer/create-offer.component';
 import { LeavesComponent } from '../app/Attendance/me/leaves/leaves.component';
 import { authGuard } from './authgurd.guard';
+import { AuthGuard } from './Administration/services/auth-guard.guard';
 
 export const routes: Routes = [
   {
@@ -22,7 +23,7 @@ export const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  { path: 'Home', component: HomePage },
+  { path: 'Home', component: HomePage, canActivate: [AuthGuard], data: { role: 'employee' } },
   // { path: 'Me', component: MePage },
   { path: 'MyTeam', component: MyTeamPage },
   { path: 'login', component: LoginPage },
@@ -98,6 +99,8 @@ export const routes: Routes = [
       import('./Administration/admin/admin.component').then(
         m => m.AdminComponent
       ),
+    canActivate: [AuthGuard],  // <-- corrected
+    data: { role: 'admin' }
   }
 
 
