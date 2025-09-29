@@ -10,6 +10,8 @@ import attendancePostRouter from "./routes/candidates/attendance/attandancePostR
 import postAdminRouter from "./routes/Admin/adminMainPost";
 import getAdminRouter from "./routes/Admin/adminMainGet";
 import postHolidaysRouter from "./routes/Holidays/holidaysPost";
+import employeeRouter from "./routes/Employees/employeeRoutes";
+
 
 dotenv.config();
 
@@ -37,6 +39,7 @@ class Server {
     this.app.use("/", postAdminRouter);
     this.app.use("/", getAdminRouter);
     this.app.use("/holidays", postHolidaysRouter)
+    this.app.use("/employees", employeeRouter);
     // send mail route
     this.app.post("/send-email", async (req, res) => {
       const { to, subject, text } = req.body;
@@ -54,6 +57,7 @@ class Server {
       }
     });
   }
+
 
   public start(): void {
     this.app.listen(this.port, async () => {

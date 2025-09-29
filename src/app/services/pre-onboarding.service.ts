@@ -201,7 +201,13 @@ export class CandidateService {
       })
     );
   }
-
+ createEmployee(Emp: any): Observable<any> {
+    return this.http.post<any>(this.api+"employees", Emp).pipe(
+      tap((newCandidate) => {
+        console.log(newCandidate)
+      })
+    );
+  }
   findEmployee(email: string, password: string): Observable<Candidate | undefined> {
     return this.http.get<any>(this.getapiUrl).pipe(
       map(data => {
@@ -244,3 +250,4 @@ export class CandidateService {
     );
   }
 }
+
