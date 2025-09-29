@@ -1,17 +1,7 @@
 <!-- <input type="file" (change)="onFileSelected($event)" />
 <button (click)="uploadFile()">Upload Holidays</button> -->
 <ion-content [fullscreen]="true" class="admin-dashboard">
-  <div class="upload-container">
-
-
-    <!-- Browse Button -->
-
-
-    <!-- Show selected file name -->
-
-    <!-- Upload Button -->
-    <button (click)="Upload()" [disabled]="!selectedFile">Upload</button>
-  </div>
+ 
   <ion-grid>
     <div>
       <ion-row>
@@ -51,11 +41,27 @@
             <ion-card-header class="row-space-between">
               <ion-card-title>Holidays</ion-card-title>
               <ion-card-subtitle>
-                <div class="tooltip-container" (click)="fileInput.click()">
-                  <ion-icon name="add-circle-outline"></ion-icon>
+                  <div class="tooltip-container" >    
+                  <ion-icon id="add-file" name="add-circle-outline"></ion-icon>                               
                   <span class="tooltip-text">Add holidays</span>
-                  <input type="file" #fileInput (change)="onFileSelected($event)" accept=".xlsx,.xls" hidden />
                 </div>
+                  <ion-popover trigger="add-file">
+                      <ng-template>
+                        <ion-content>
+                          <div class="p-8 upload-file">
+                          <p>Upload File</p>
+                          <div  (click)="fileInput.click()">
+                              <input type="file" #fileInput (change)="onFileSelected($event)" accept=".xlsx,.xls" />                              
+                          </div>                               
+                            <div class="upload-container">                                
+                                <!-- Upload Button -->
+                                <ion-button class="primary-btn" (click)="Upload()" [disabled]="!selectedFile">Upload</ion-button>
+                              </div>  
+                            </div>
+                        </ion-content>                       
+                      </ng-template>
+                    </ion-popover>
+               
 
               </ion-card-subtitle>
             </ion-card-header>

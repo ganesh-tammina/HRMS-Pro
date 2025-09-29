@@ -69,3 +69,27 @@ button:disabled {
   }
   
   
+  input {
+    margin-top: 1rem;
+  }
+  
+  input::file-selector-button {
+    font-weight: bold;
+    color: #fff;
+    background: #122E44;
+    padding: 0.5em;
+    border: thin solid #122E44;
+    border-radius: 3px;
+  }
+  .upload-file {
+    margin: auto;
+    padding: 24px;
+    p{
+      text-align: center;
+      color: #122E44;
+      @include normal-text();
+    }
+    ion-button {
+      width: 100%;
+    }
+  }
