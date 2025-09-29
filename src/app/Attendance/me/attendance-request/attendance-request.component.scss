@@ -1,0 +1,6 @@
+@import '../../../../global.scss';
+
+.No-responce {
+    @include normal-text-unbold();
+    text-align: center;
+}

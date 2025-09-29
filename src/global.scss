@@ -114,6 +114,7 @@ ion-list-header, ion-item{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row;
 }
 .pl-5 {
     padding-left: 5px;
