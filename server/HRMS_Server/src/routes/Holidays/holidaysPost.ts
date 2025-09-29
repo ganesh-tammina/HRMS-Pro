@@ -1,51 +1,35 @@
 import express from "express";
 import { Router, Request, Response } from "express";
 import multer from "multer";
-import xlsx from "xlsx";
+import xlsx, { WorkBook, WorkSheet } from "xlsx";
 import { pool } from "../../config/database";
 
 const postHolidaysRouter = Router();
 const upload = multer({ dest: "uploads/" });
 
-postHolidaysRouter.post("/upload-holidays", upload.single("file"), async (req: Request, res: Response) => {
+postHolidaysRouter.post("/public_holidays", upload.single("file"), async (req: Request, res: Response) => {
     try {
-        if (!req.file) {
-            return res.status(400).json({ error: "No file uploaded" });
-        }
-
-        // Read Excel file
-        const workbook = xlsx.readFile(req.file.path);
-        const sheetName = workbook.SheetNames[0];
-
-        // Convert sheet to JSON (array of arrays)
-        const sheetData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-
-        if (sheetData.length < 2) {
-            return res.status(400).json({ error: "Excel sheet is empty or missing data" });
-        }
-
-        // Extract headers and trim spaces
-        const headers: string[] = sheetData[0].map((h: string) => h.toString().trim());
-        const rows = sheetData.slice(1).map((row: any[]) => {
-            const obj: any = {};
-            headers.forEach((h, i) => (obj[h] = row[i]));
-            return obj;
-        });
-
-        // Insert into MySQL
-        for (const row of rows) {
+        if (!req.file) return res.status(400).send("No file uploaded");
+        const workbook: WorkBook = xlsx.readFile(req.file.path);
+        const worksheet: WorkSheet = workbook.Sheets;
+        const sheetData = xlsx.utils.sheet_to_json(worksheet.Sheet1);
+        for (const row of sheetData as any[]) {
+            const { ID, Date, HolidayName, Day, Description } = row;
+            console.log(ID, Date, HolidayName, Day, Description);
             await pool.query(
-                "INSERT INTO public_holidays (id, holiday_date, name, day, description) VALUES (?, ?, ?, ?, ?)",
-                [row.ID, row.Date, row["Holiday Name"], row.Day, row.Description || ""]
+                "INSERT INTO public_holidays (ID, Date, HolidayName, Day, Description) VALUES (?, ?, ?, ?, ?)",
+                [ID, Date, HolidayName, Day, Description]
             );
         }
+        // console.log(sheetData);
 
-        res.json({ message: "Holidays uploaded successfully!" });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Upload failed" });
+        res.json({ message: sheetData });
+    } catch (error) {
+        console.error("Error uploading holidays:", error);
+        res.status(500).send("Server error");
     }
 });
+
 
 export default postHolidaysRouter;
 

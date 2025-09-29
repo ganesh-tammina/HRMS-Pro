@@ -6,21 +6,32 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent  implements OnInit {
+export class AdminComponent implements OnInit {
   selectedFile: File | null = null;
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-    uploadFile() {
+
+  Upload() {
     if (!this.selectedFile) return;
 
     const formData = new FormData();
     formData.append("file", this.selectedFile);
 
-    this.http.post("http://localhost:3562/upload-holidays", formData)
-      .subscribe(res => console.log(res), err => console.error(err));
+    this.http.post("http://localhost:3562/holidays/public_holidays", formData).subscribe({
+      next: (res) => {
+        console.log(res);
+        alert("Upload successful!");
+
+      },
+      error: (err) => {
+        console.error(err);
+        alert("Upload failed!");
+      }
+    });
   }
+
 }

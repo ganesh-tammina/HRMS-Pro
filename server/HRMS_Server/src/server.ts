@@ -9,6 +9,7 @@ import { sendMail } from "./routes/mailer";
 import attendancePostRouter from "./routes/candidates/attendance/attandancePostRoutes";
 import postAdminRouter from "./routes/Admin/adminMainPost";
 import getAdminRouter from "./routes/Admin/adminMainGet";
+import postHolidaysRouter from "./routes/Holidays/holidaysPost";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ class Server {
     this.app.use("/attendance", attendenceGetRouter); // Ensure attendance routes are used
     this.app.use("/", postAdminRouter);
     this.app.use("/", getAdminRouter);
+    this.app.use("/holidays", postHolidaysRouter)
     // send mail route
     this.app.post("/send-email", async (req, res) => {
       const { to, subject, text } = req.body;

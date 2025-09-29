@@ -1,2 +1,11 @@
-<input type="file" (change)="onFileSelected($event)" />
-<button (click)="uploadFile()">Upload Holidays</button>
+<div class="upload-container">
+  <input type="file" #fileInput (change)="onFileSelected($event)" accept=".xlsx,.xls" hidden />
+
+  <!-- Browse Button -->
+  <button (click)="fileInput.click()">Choose File</button>
+
+  <!-- Show selected file name -->
+
+  <!-- Upload Button -->
+  <button (click)="Upload()" [disabled]="!selectedFile">Upload</button>
+</div>
