@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -6,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent  implements OnInit {
-
-  constructor() { }
+  selectedFile: File | null = null;
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {}
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+    uploadFile() {
+    if (!this.selectedFile) return;
 
+    const formData = new FormData();
+    formData.append("file", this.selectedFile);
+
+    this.http.post("http://localhost:3562/upload-holidays", formData)
+      .subscribe(res => console.log(res), err => console.error(err));
+  }
 }
