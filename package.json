@@ -5,11 +5,12 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"npm start --prefix ./NodeMailer_FinalBuild\"",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "test_the_frontend":"concurrently \"ng serve\" \"npm start --prefix ./HRMS_Server\""
   },
   "private": true,
   "dependencies": {

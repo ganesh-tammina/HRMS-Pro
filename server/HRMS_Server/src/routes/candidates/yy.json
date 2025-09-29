@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "personalDetails": {
+      "FirstName": "Ram",
+      "MiddleName": "Rahim",
+      "LastName": "Rabot",
+      "PhoneNumber": "9876543210",
+      "email": "Ramgopal@gmail.com",
+      "gender": "male",
+      "initials": "RR"
+    },
+    "jobDetailsForm": {
+      "JobTitle": "Software Engineer",
+      "Department": "Finance",
+      "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+      "WorkType": "Perminent",
+      "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+    },
+    "offerDetails": {
+      "DOJ": "2025-09-25T18:30:00.000Z",
+      "offerValidity": 7,
+      "JoiningDate": "2025-07-09T18:30:00.000Z"
+    },
+    "employeeCredentials": {
+      "companyEmail": "abc@gmail.com",
+      "password": "1234567"
+    }
+  },
+  {
+    "id": 2,
+    "personalDetails": {
+      "FirstName": "Siva",
+      "MiddleName": "Ganesh",
+      "LastName": "Meesala",
+      "PhoneNumber": "987654321",
+      "email": "meesalag85@gmail.com",
+      "gender": "male",
+      "initials": "SM"
+    },
+    "jobDetailsForm": {
+      "JobTitle": "UI Developer",
+      "Department": "IT Development",
+      "JobLocation": "Site 1 - Hyderabad - Night Shift",
+      "WorkType": "Perminent",
+      "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+    },
+    "offerDetails": {
+      "DOJ": "2025-06-08T18:30:00.000Z",
+      "offerValidity": 1,
+      "JoiningDate": "2025-07-10T18:30:00.000Z"
+    },
+    "employeeCredentials": {
+      "companyEmail": "cccc@gmail.com",
+      "password": "ccc"
+    }
+  },
+  {
+    "id": 4,
+    "personalDetails": {
+      "FirstName": "Ram",
+      "MiddleName": "Rahim",
+      "LastName": "Rabot",
+      "PhoneNumber": "9876543210",
+      "email": "Ramigopal@gmail.com",
+      "gender": "male",
+      "initials": "RR"
+    },
+    "jobDetailsForm": {
+      "JobTitle": "Software Engineer",
+      "Department": "Finance",
+      "JobLocation": "Site 3 - Visakhapatnam - Day Shift",
+      "WorkType": "Perminent",
+      "BussinessUnit": "Sri Tech Tammina Visakhapatnam"
+    },
+    "offerDetails": {
+      "DOJ": null,
+      "offerValidity": null,
+      "JoiningDate": null
+    },
+    "employeeCredentials": {
+      "companyEmail": null,
+      "password": null
+    }
+  }
+]

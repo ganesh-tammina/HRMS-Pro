@@ -117,23 +117,6 @@
       "employeeCredentials": {
         "companyEmail": "Rajesh@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 900000
-      },
-      "salaryForm": {
-        "annualSalary": 900000,
-        "salaryStructure": {
-          "basic": 360000,
-          "hra": 144000,
-          "medical": 15000,
-          "transport": 19200,
-          "special": 361800,
-          "subtotal": 900000,
-          "pfEmployer": 43200,
-          "pfEmployee": 43200,
-          "total": 943200
-        }
       }
     },
     {
@@ -161,23 +144,6 @@
       "employeeCredentials": {
         "companyEmail": "ravi@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 650000
-      },
-      "salaryForm": {
-        "annualSalary": 650000,
-        "salaryStructure": {
-          "basic": 260000,
-          "hra": 104000,
-          "medical": 15000,
-          "transport": 19200,
-          "special": 251800,
-          "subtotal": 650000,
-          "pfEmployer": 31200,
-          "pfEmployee": 31200,
-          "total": 681200
-        }
       }
     },
     {
@@ -199,29 +165,12 @@
       },
       "id": "ZDS8seV",
       "offerDetails": {
-        "DOJ": "23/09/2025",
+        "DOJ": "30/09/2025",
         "offerValidity": "7"
       },
       "employeeCredentials": {
         "companyEmail": "SivaGanesh@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 600000
-      },
-      "salaryForm": {
-        "annualSalary": 600000,
-        "salaryStructure": {
-          "basic": 240000,
-          "hra": 96000,
-          "medical": 15000,
-          "transport": 19200,
-          "special": 229800,
-          "subtotal": 600000,
-          "pfEmployer": 28800,
-          "pfEmployee": 28800,
-          "total": 628800
-        }
       }
     },
     {
@@ -249,23 +198,6 @@
       "employeeCredentials": {
         "companyEmail": "manikanta@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 960000
-      },
-      "salaryForm": {
-        "annualSalary": 960000,
-        "salaryStructure": {
-          "basic": 384000,
-          "hra": 153600,
-          "medical": 15000,
-          "transport": 19200,
-          "special": 388200,
-          "subtotal": 960000,
-          "pfEmployer": 46080,
-          "pfEmployee": 46080,
-          "total": 1006080
-        }
       }
     },
     {
@@ -293,23 +225,6 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 500000
-      },
-      "salaryForm": {
-        "annualSalary": 500000,
-        "salaryStructure": {
-          "basic": 200000,
-          "hra": 80000,
-          "medical": 15000,
-          "transport": 19200,
-          "special": 185800,
-          "subtotal": 500000,
-          "pfEmployer": 24000,
-          "pfEmployee": 24000,
-          "total": 524000
-        }
       }
     },
     {
@@ -337,23 +252,6 @@
       "employeeCredentials": {
         "companyEmail": "Devi@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 60000
-      },
-      "salaryForm": {
-        "annualSalary": 60000,
-        "salaryStructure": {
-          "basic": 24000,
-          "hra": 9600,
-          "medical": 15000,
-          "transport": 19200,
-          "special": -7800,
-          "subtotal": 60000,
-          "pfEmployer": 2880,
-          "pfEmployee": 2880,
-          "total": 62880
-        }
       }
     },
     {
@@ -381,23 +279,6 @@
       "employeeCredentials": {
         "companyEmail": "Moulika@tammina.com",
         "password": "123456"
-      },
-      "packageDetails": {
-        "salary": 900000
-      },
-      "salaryForm": {
-        "annualSalary": 900000,
-        "salaryStructure": {
-          "basic": 360000,
-          "hra": 144000,
-          "medical": 15000,
-          "transport": 19200,
-          "special": 361800,
-          "subtotal": 900000,
-          "pfEmployer": 43200,
-          "pfEmployee": 43200,
-          "total": 943200
-        }
       }
     },
     {
@@ -568,3 +449,4 @@
   ],
   "attendanceLogs": []
 }
+ 

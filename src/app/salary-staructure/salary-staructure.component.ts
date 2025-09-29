@@ -38,11 +38,11 @@ export class salaryStaructureComponent implements OnInit {
 
   ngOnInit() {
     if (!this.candidate.packageDetails) {
-      this.candidate.packageDetails = { salary: '' };
+      this.candidate.packageDetails = { annualSalary: '' };
     }
 
     this.salaryForm = this.fb.group({
-      salary: [this.candidate.packageDetails.salary || '', [Validators.required, Validators.min(1)]],
+      salary: [this.candidate.packageDetails.annualSalary || '', [Validators.required, Validators.min(1)]],
     });
 
     this.salaryForm.get('salary')?.valueChanges.subscribe((value) => {
@@ -51,8 +51,8 @@ export class salaryStaructureComponent implements OnInit {
       }
     });
 
-    if (this.candidate.packageDetails.salary) {
-      this.calculateSalary(+this.candidate.packageDetails.salary);
+    if (this.candidate.packageDetails.annualSalary) {
+      this.calculateSalary(+this.candidate.packageDetails.annualSalary);
     }
   }
 
@@ -95,25 +95,25 @@ export class salaryStaructureComponent implements OnInit {
     }
 
     const annualSalary = this.salaryForm.value.salary;
-    this.candidate.packageDetails.salary = annualSalary;
-    this.candidate.salaryForm = {
+
+    // ✅ Build package details
+    this.candidate.packageDetails = {
       annualSalary,
-      salaryStructure: this.salaryStructure,
+      ...this.salaryStructure,
     };
 
-    console.log('Candidate with Salary Form:', this.candidate);
+    console.log('Candidate with Package Details:', this.candidate);
 
-    // Check if candidate has an ID before calling update
     if (!this.candidate.id) {
       alert('Candidate ID not found. Please go back and select a candidate.');
-      this.router.navigate(['/previous-page']); // replace with your previous page route
+      this.router.navigate(['/previous-page']);
       return;
     }
 
-    // Safe update call
-    this.candidateService.updateCandidate(this.candidate).subscribe({
+    // ✅ Call new service method
+    this.candidateService.addPackageDetails(this.candidate).subscribe({
       next: (res) => {
-        console.log('Candidate updated on server:', res);
+        console.log('Package details saved:', res);
         this.router.navigate(
           [
             '/OfferDetailsComponent',
@@ -124,10 +124,9 @@ export class salaryStaructureComponent implements OnInit {
         );
       },
       error: (err) => {
-        console.error('Error updating candidate:', err);
-        alert('Failed to update candidate. Please try again.');
+        console.error('Error saving package details:', err);
+        alert('Failed to save package details. Please try again.');
       },
     });
   }
-
 }

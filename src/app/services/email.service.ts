@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 })
 
 export class EmailService {
-	private beURL = 'http://localhost:3562/send-email'
+	private beURL = 'http://30.0.0.78:3562/send-email'
 
 	constructor(private http: HttpClient) { }
 
@@ -186,13 +186,13 @@ export class EmailService {
 													<table class="button_block block-4" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
 															<td class="pad">
-																<div class="alignment" align="left"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"   style="height:42px;width:114px;v-text-anchor:middle;" arcsize="10%" fillcolor="#2090cf">
-<v:stroke dashstyle="Solid" weight="0px" color="#2090cf"/>
-<w:anchorlock/>
-<v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#ffffff;font-family:Arial, sans-serif;font-size:16px">
-<![endif]--><span class="button" style="background-color: #2090cf; border-bottom: 0px solid transparent; border-left: 0px solid transparent; border-radius: 4px; border-right: 0px solid transparent; border-top: 0px solid transparent; color: #ffffff; display: inline-block; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; font-weight: 400; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; padding-left: 20px; padding-right: 20px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">View Offer</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></div>
+															<div class="alignment" align="center"><a href="http://30.0.0.78:4200/candidate_status/${candidate.id}" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
+															<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href=""http://30.0.0.78:4200/candidate_status/${candidate.id}""  style="height:48px;width:142px;v-text-anchor:middle;" arcsize="17%" fillcolor="#3498db">
+															<v:stroke dashstyle="Solid" weight="0px" color="#3498db"/>
+															<w:anchorlock/>
+															<v:textbox inset="0px,0px,0px,0px">
+															<center dir="false" style="color:#ffffff;font-family:sans-serif;font-size:16px">
+															<![endif]--><span class="button" style="background-color: #3498db; border-bottom: 0px solid transparent; border-left: 0px solid transparent; border-radius: 8px; border-right: 0px solid transparent; border-top: 0px solid transparent; color: #ffffff; display: inline-block; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; mso-border-alt: none; padding-bottom: 8px; padding-top: 8px; padding-left: 16px; padding-right: 16px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">View offer</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div>
 															</td>
 														</tr>
 													</table>

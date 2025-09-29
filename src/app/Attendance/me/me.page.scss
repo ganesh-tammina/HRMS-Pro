@@ -139,26 +139,26 @@
 }
 
 /* Attendance Stats */
-.attendance-stats .header {
+.attendance-status .header {
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.attendance-stats .entry {
+.attendance-status .entry {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
 }
 
-.attendance-stats .entry .icon {
+.attendance-status .entry .icon {
   background-color: #fcd462;
   border-radius: 50%;
   padding: 8px;
   color: #fff;
 }
 
-.attendance-stats .entry .icon.team {
+.attendance-status .entry .icon.team {
   background-color: #5daee0;
 }
 
