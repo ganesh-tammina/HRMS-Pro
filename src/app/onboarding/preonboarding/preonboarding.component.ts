@@ -25,7 +25,7 @@ export class PreonboardingComponent implements OnInit {
 
   // 👇 All candidates loaded from service
   candidates: any[] = [];
-    @Input() currentStage: number = 1;
+  @Input() currentStage: number = 1;
 
   constructor(
     private router: Router,
@@ -76,4 +76,25 @@ export class PreonboardingComponent implements OnInit {
     }
   }
 
+  employee(candidate: any) {
+
+   
+    const settingData = {
+      "id": candidate.id,
+      "firstName": candidate.personalDetails.FirstName,
+      "lastName": candidate.personalDetails.LastName,
+      "email": candidate.personalDetails.email,
+      "MiddleName": candidate.personalDetails.gender,
+      "PhoneNumber": candidate.personalDetails.PhoneNumber,
+      "gender": candidate.personalDetails.gender,
+      "initials": candidate.personalDetails.initials,
+      "JobTitle": candidate.jobDetailsForm.JobTitle,
+      "Department": candidate.jobDetailsForm.Department,
+      "JobLocation": candidate.jobDetailsForm.JobLocation,
+      "WorkType": candidate.jobDetailsForm.WorkType,
+      "BusinessUnit": candidate.jobDetailsForm.BussinessUnit
+    }
+    this.candidateService.createEmployee(settingData).subscribe()
+  }
 }
+

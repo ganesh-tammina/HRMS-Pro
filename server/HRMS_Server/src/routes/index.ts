@@ -6,7 +6,7 @@ import putRouter from "./candidates/EmployeePutRoutes";
 import deleteRouter from "./candidates/EmployeeDeleteRoutes";
 import attendancePostRouter from "./candidates/attendance/attandancePostRoutes";
 import attendanceGetRouter from "./candidates/attendance/attandanceGetRoutes";
-
+import employeeRouter from "./Employees/employeeRoutes"; // 👈 import
 const router = Router();
 
 router.use(postRouter);
@@ -15,7 +15,11 @@ router.use(putRouter);
 router.use(deleteRouter);
 router.use(attendancePostRouter); // ✅ now mounted under /candidates
 router.use(attendanceGetRouter);
+router.use(employeeRouter);
+
 
 
 
 export default router;
+
+
