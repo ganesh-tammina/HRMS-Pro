@@ -208,6 +208,13 @@ export class CandidateService {
       })
     );
   }
+  createRejectedEmployee(Emp: any): Observable<any> {
+    return this.http.post<any>("http://localhost:3562/employees/rejectedemployees", Emp).pipe(
+      tap((newCandidate) => {
+        console.log(newCandidate)
+      })
+    );
+  }
   findEmployee(email: string, password: string): Observable<Candidate | undefined> {
     return this.http.get<any>(this.getapiUrl).pipe(
       map(data => {

@@ -53,6 +53,54 @@ employeeRouter.post("/", async (req: Request, res: Response) => {
   }
 });
 
+employeeRouter.post("/rejectedemployees", async (req: Request, res: Response) => {
+  const {id,
+    firstName,
+    lastName,
+    email,
+    MiddleName,
+    PhoneNumber,
+    gender,
+    initials,
+    JobTitle,
+    Department,
+    JobLocation,
+    WorkType,
+    BusinessUnit,
+  } = req.body;
+
+  try {
+    await pool.query(
+      `INSERT INTO rejectedemployees
+        (employee_id, firstName, lastName, email, MiddleName, PhoneNumber, gender, initials,
+         JobTitle, Department, JobLocation, WorkType, BusinessUnit)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        id,
+        firstName,
+        lastName,
+        email,
+        MiddleName,
+        PhoneNumber,
+        gender,
+        initials,
+        JobTitle,
+        Department,
+        JobLocation,
+        WorkType,
+        BusinessUnit,
+      ]
+    );
+
+    res.status(201).json({
+      message: "Employee inserted successfully",
+      employee_id: id,
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // GET all employees
 employeeRouter.get("/", async (req: Request, res: Response) => {
   try {
