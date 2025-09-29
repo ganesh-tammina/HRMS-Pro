@@ -99,21 +99,25 @@ ion-list-header, ion-item{
    display: flex;
    align-items: center;
    justify-content: left;
+   flex-direction: row;
 }
 .row-right {
     display: flex;
     align-items: center;
     justify-content: right;
+    flex-direction: row;
 }
 .row-center {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
 }
 .row-space-between {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row;
 }
 .pl-5 {
     padding-left: 5px;
