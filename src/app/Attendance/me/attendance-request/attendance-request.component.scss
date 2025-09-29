@@ -1,0 +1,21 @@
+@import '../../../../global.scss';
+.request-card {
+    ion-card-header {
+        flex-direction: row;
+    }
+    .requests-table {
+        .table-header {
+            height: 40px;
+            ion-col {
+                height: 40px;
+                @include body-text();
+            }
+        }
+        .table-row {
+            ion-col {
+                height: 40px;
+                @include normal-text-unbold();
+            }
+        }
+    }
+}
