@@ -11,6 +11,7 @@ import postAdminRouter from "./routes/Admin/adminMainPost";
 import getAdminRouter from "./routes/Admin/adminMainGet";
 import postHolidaysRouter from "./routes/Holidays/holidaysPost";
 import employeeRouter from "./routes/Employees/employeeRoutes";
+import otpRoutes from "./routes/OTP/otpRoutes";
 
 
 dotenv.config();
@@ -40,6 +41,7 @@ class Server {
     this.app.use("/", getAdminRouter);
     this.app.use("/holidays", postHolidaysRouter)
     this.app.use("/employees", employeeRouter);
+    this.app.use("/", otpRoutes);
     // send mail route
     this.app.post("/send-email", async (req, res) => {
       const { to, subject, text } = req.body;
