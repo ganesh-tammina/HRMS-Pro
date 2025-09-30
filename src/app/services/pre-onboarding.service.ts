@@ -61,6 +61,7 @@ export class CandidateService {
   private forgotpwd = `${this.api}forgot-pwd`;
   private newpassword = `${this.api}add-pwd`;
 
+
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
 
@@ -220,7 +221,7 @@ export class CandidateService {
     );
   }
   findEmployee(email: string, password: string): Observable<Candidate | undefined> {
-    return this.http.get<any>(this.getapiUrl).pipe(
+    return this.http.get<any>(this.getEmployees).pipe(
       map(data => {
         const candidates = this.normalizeCandidates(data);
         return candidates.find(c =>

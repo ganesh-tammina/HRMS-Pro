@@ -95,4 +95,29 @@ putRouter.put("/test", async (req: Request, res: Response) => {
 
 })
 
+// putRouter.get("/credentials/:id", async (req: Request, res: Response) => {
+//   const { id } = req.params;
+
+//   try {
+//     const [rows]: any = await pool.query(
+//       `SELECT e.employee_id, e.firstName, e.lastName, e.email, 
+//               ec.companyEmail, ec.password
+//        FROM employees e
+//        JOIN employee_credentials ec 
+//          ON e.employee_id = ec.employee_id
+//        WHERE e.employee_id = ?`,
+//       [id]
+//     );
+
+//     if (!rows.length) {
+//       return res.status(404).json({ message: "Employee not found" });
+//     }
+
+//     res.json(rows[0]);
+//   } catch (err: any) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
+
 export default putRouter;

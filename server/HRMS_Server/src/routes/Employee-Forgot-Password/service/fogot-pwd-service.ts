@@ -75,7 +75,9 @@ export class ForGotService {
         value.email,
         'Password Reset OTP',
         `Your OTP is ${otp}`,
-        `<p>Your OTP for password reset is <b>${otp}</b>. It will expire in 5 minutes.</p>`
+        `<p>Your OTP for password reset is <b>${otp}</b>. It will expire in 5 minutes.</p>
+         <a href="http://30.0.0.221:4200/login">Click here to reset your password</a>
+        `
       );
 
       return res.json({ success: true, message: 'OTP sent successfully' });
@@ -194,7 +196,8 @@ export class ForGotService {
         value.email,
         'Password Reset OTP',
         `Your OTP is ${otp}`,
-        `<p>Your OTP for password reset is <b>${otp}</b>. It will expire in 5 minutes.</p>`
+        `<p>Your OTP for password reset is <b>${otp}</b>. It will expire in 5 minutes.</p>
+        `
       );
 
       return res.json({ success: true, message: 'OTP sent successfully' });
