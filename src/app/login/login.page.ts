@@ -18,6 +18,13 @@ export class LoginPage implements OnInit {
   loginError: string = '';
   adminData: any | null = null;
 
+
+  forgotForm!: FormGroup;
+  showForgotModal = false;
+  sending = false;
+  forgotSuccess = '';
+  forgotError = '';
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -33,6 +40,11 @@ export class LoginPage implements OnInit {
     });
     this.candidateService.getAdminById('1').subscribe(data => {
       this.adminData = data;
+    });
+
+
+    this.forgotForm = this.fb.group({
+      forgotEmail: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -65,5 +77,53 @@ export class LoginPage implements OnInit {
       );
     }
 
+  }
+
+  openForgotModal() {
+    this.forgotSuccess = '';
+    this.forgotError = '';
+    this.sending = false;
+    this.forgotForm.reset();
+    this.showForgotModal = true;
+  }
+
+  closeForgotModal() {
+    this.showForgotModal = false;
+    this.forgotSuccess = '';
+    this.forgotError = '';
+    this.sending = false;
+  }
+  submitForgot() {
+    if (this.forgotForm.invalid) {
+      this.forgotForm.markAllAsTouched();
+      return;
+    }
+    const email = this.forgotForm.value.forgotEmail;
+    this.sending = true;
+    this.forgotError = '';
+    this.forgotSuccess = '';
+
+    this.candidateService.getotp(email).subscribe({
+      next: (response) => {
+        console.log('OTP Response:', response);
+        this.sending = false;
+        this.forgotSuccess = `Password reset email sent to ${email}.`;
+
+        // Close modal after success
+        setTimeout(() => this.closeForgotModal(), 2500);
+      },
+      error: (error) => {
+        console.error('Error sending OTP:', error);
+        this.sending = false;
+        this.forgotError = 'Failed to send OTP. Please try again.';
+      },
+    });
+    // If you need to handle the result, ensure getotp returns an Observable and use .subscribe()
+    // Otherwise, if getotp returns a Subscription, you can use it as is or refactor getotp to return an Observable if needed.
+    setTimeout(() => {
+      this.sending = false;
+      this.forgotSuccess = `Password reset email sent to ${email}.`;
+      setTimeout(() => this.closeForgotModal(), 2500);
+    }, 1000);
   }
 }

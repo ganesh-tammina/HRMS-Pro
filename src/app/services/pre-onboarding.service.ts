@@ -57,6 +57,8 @@ export class CandidateService {
   private offerUrl = `${this.api}candidates/offer-details`;
   private packageUrl = `${this.api}candidates/package-details`;   // ✅ for package details
   private getapiUrl = `${this.api}candidates`;
+  private getEmployees = `${this.api}employees`;
+  private forgotpwd = `${this.api}forgot-pwd`;
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
@@ -87,7 +89,7 @@ export class CandidateService {
   }
 
   getCandidateById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.getapiUrl}/${id}`);
+    return this.http.get<any>(`${this.getEmployees}/${id}`);
   }
 
   getAdminById(id: string): Observable<any> {
@@ -107,6 +109,10 @@ export class CandidateService {
         this.candidatesSubject.next([...current, newCandidate]);
       })
     );
+  }
+
+  getotp(email: string): Observable<any> {
+    return this.http.post(this.forgotpwd, { email });
   }
 
   updateCandidate(candidate: Candidate): Observable<Candidate> {
@@ -249,5 +255,8 @@ export class CandidateService {
       c.personalDetails.LastName.toLowerCase().includes(lowerQuery)
     );
   }
+
+
+
 }
 
