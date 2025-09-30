@@ -199,3 +199,10 @@ ion-content {
   ion-item {
         color: #000 !important;
 }
+.dots-button {
+  --color: #EAB308;
+  font-size: 16px;
+}
+ion-item.ion-no-border {
+  --border-color: transparent;
+}
