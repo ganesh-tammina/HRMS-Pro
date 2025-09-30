@@ -44,7 +44,7 @@ class Server {
     this.app.use('/employees', AddEmployeeRoutes);
     this.app.use('/leave', leaveRouter);
     this.app.use('/', FgtRouter);
-    this.app.use('/employees', getEmployyeeCredentialsRouter)
+    this.app.use('/employee', getEmployyeeCredentialsRouter)
 
     // send mail route
     this.app.post('/send-email', async (req, res) => {
