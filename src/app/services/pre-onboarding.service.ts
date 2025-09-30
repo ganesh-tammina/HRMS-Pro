@@ -51,7 +51,7 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://30.0.0.78:3562/";
+  private api = "http://30.0.0.221:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private adminUrl = "http://30.0.0.221:3562/1/admin";
   private offerUrl = `${this.api}candidates/offer-details`;
@@ -59,6 +59,7 @@ export class CandidateService {
   private getapiUrl = `${this.api}candidates`;
   private getEmployees = `${this.api}employees`;
   private forgotpwd = `${this.api}forgot-pwd`;
+  private newpassword = `${this.api}add-pwd`;
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
@@ -113,6 +114,10 @@ export class CandidateService {
 
   getotp(email: string): Observable<any> {
     return this.http.post(this.forgotpwd, { email });
+  }
+
+  newpasswordCreation(email: string): Observable<any> {
+    return this.http.post(this.newpassword, { email });
   }
 
   updateCandidate(candidate: Candidate): Observable<Candidate> {

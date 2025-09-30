@@ -103,21 +103,15 @@ export class LoginPage implements OnInit {
     this.forgotError = '';
     this.forgotSuccess = '';
 
-    this.candidateService.getotp(email).subscribe({
-      next: (response) => {
-        console.log('OTP Response:', response);
-        this.sending = false;
-        this.forgotSuccess = `Password reset email sent to ${email}.`;
-
-        // Close modal after success
-        setTimeout(() => this.closeForgotModal(), 2500);
+    this.candidateService.newpasswordCreation(email).subscribe({
+      next: (res) => {
+        console.log('✅ OTP sent:', res);
       },
-      error: (error) => {
-        console.error('Error sending OTP:', error);
-        this.sending = false;
-        this.forgotError = 'Failed to send OTP. Please try again.';
-      },
+      error: (err) => {
+        console.error('❌ OTP sending failed:', err);
+      }
     });
+
     // If you need to handle the result, ensure getotp returns an Observable and use .subscribe()
     // Otherwise, if getotp returns a Subscription, you can use it as is or refactor getotp to return an Observable if needed.
     setTimeout(() => {
