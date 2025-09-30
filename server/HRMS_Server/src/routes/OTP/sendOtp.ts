@@ -10,7 +10,7 @@ export const sendOtp = async (mobileNumber: string, otp: number) => {
         const message = await client.messages.create({
             body: `Hi your OTP is ${otp} for HRMS login. Do not share it with anyone.`,
             from: process.env.TWILIO_PHONE!,
-            to: '+919676161393',
+            to: '+91 9676161393',
         });
         console.log("✅ OTP sent:", message.sid);
         return true;

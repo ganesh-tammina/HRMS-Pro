@@ -52,6 +52,9 @@ export class CandidateStatusComponent implements OnInit {
     if (this.onboardingForms.value.PhoneNumber == this.candidate.PhoneNumber) {
       this.hideOffer = true
     }
+    else {
+      alert("Please enter valid PhoneNumber")
+    }
 
   }
 
