@@ -9,7 +9,8 @@
     </div>
     <h3>Employee Logins</h3>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <!-- LOGIN FORM -->
+    <form *ngIf="showLoginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="input-group">
         <input type="email" formControlName="email" placeholder="Email address">
       </div>
@@ -23,14 +24,26 @@
       </h6>
 
       <div *ngIf="loginError" class="error">{{ loginError }}</div>
-
       <button class="btn" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+    </form>
+
+    <!-- PASSWORD UPDATE FORM -->
+    <form *ngIf="showPasswordUpdateForm" [formGroup]="passwordUpdateForm" (ngSubmit)="onPasswordUpdate()">
+      <div class="input-group">
+        <input type="email" formControlName="email" placeholder="Email address">
+      </div>
+      <div class="input-group">
+        <input type="text" formControlName="otp" placeholder="OTP">
+      </div>
+      <div class="input-group">
+        <input type="password" formControlName="newPassword" placeholder="New Password">
+      </div>
+      <button class="btn" type="submit" [disabled]="passwordUpdateForm.invalid">Update Password</button>
     </form>
   </div>
 </div>
 
-
-
+<!-- FORGOT PASSWORD MODAL -->
 <div class="modal-backdrop" *ngIf="showForgotModal" (click)="closeForgotModal()">
   <div class="modal" (click)="$event.stopPropagation()">
     <div class="modal-header">
@@ -40,11 +53,12 @@
 
     <form [formGroup]="forgotForm" (ngSubmit)="submitForgot()">
       <div class="modal-body">
-        <p>Enter your account email and we'll send a password reset link.</p>
+        <p>Enter your account email and we'll send a password reset OTP.</p>
 
         <div class="input-group">
           <input type="email" formControlName="forgotEmail" placeholder="Email address">
-          <div class="field-error" *ngIf="forgotForm.controls['forgotEmail'].touched && forgotForm.controls['forgotEmail'].invalid">
+          <div class="field-error"
+            *ngIf="forgotForm.controls['forgotEmail'].touched && forgotForm.controls['forgotEmail'].invalid">
             <small *ngIf="forgotForm.controls['forgotEmail'].errors?.['required']">Email is required.</small>
             <small *ngIf="forgotForm.controls['forgotEmail'].errors?.['email']">Please enter a valid email.</small>
           </div>
@@ -56,7 +70,9 @@
 
       <div class="modal-footer">
         <button type="button" class="btn-secondary" (click)="closeForgotModal()">Cancel</button>
-        <button type="submit" class="btn" [disabled]="forgotForm.invalid || sending">{{ sending ? 'Sending...' : 'Send reset link' }}</button>
+        <button type="submit" class="btn" [disabled]="forgotForm.invalid || sending">
+          {{ sending ? 'Sending...' : 'Send OTP' }}
+        </button>
       </div>
     </form>
   </div>

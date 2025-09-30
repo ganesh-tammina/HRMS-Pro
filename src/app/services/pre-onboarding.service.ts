@@ -60,6 +60,7 @@ export class CandidateService {
   private getEmployees = `${this.api}employees`;
   private forgotpwd = `${this.api}forgot-pwd`;
   private newpassword = `${this.api}add-pwd`;
+  private updatepassword = `${this.api}change-new-pwd`;
 
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -238,6 +239,11 @@ export class CandidateService {
         }
       })
     );
+  }
+
+  verifyAndResetPassword(email: string, otp: string, newPassword: string): Observable<any> {
+    const body = { email, otp, newPassword };
+    return this.http.post(this.updatepassword, body);
   }
 
   getCurrentCandidate(): Candidate | null {
