@@ -318,6 +318,9 @@ ion-avatar {
           @include card-sub-title();
         }
       }
+      &.tab-selected {
+        border-bottom: 2px solid #0054e9;
+      }
     }
   }
   ion-tab{
