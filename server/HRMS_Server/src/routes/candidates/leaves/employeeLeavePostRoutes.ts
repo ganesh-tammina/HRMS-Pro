@@ -15,7 +15,7 @@ postRouter.post("/sickleaves", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (candidate_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
+       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
@@ -31,7 +31,7 @@ postRouter.post("/sickleaves", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO job_details
-       (candidate_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
+       (employee_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
        VALUES (?, ?, ?, ?, ?, ?)`,
       [
         candidateId,

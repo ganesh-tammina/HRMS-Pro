@@ -51,7 +51,7 @@ postRouter.post("/employee-attendance", async (req: Request, res: Response) => {
     // Insert attendance record
     await conn.query(
       `INSERT INTO attendance
-       (attendance_id, candidate_id, attendance_date, check_in, check_out, status, remarks)
+       (attendance_id, employee_id, attendance_date, check_in, check_out, status, remarks)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         attendanceId,

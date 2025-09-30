@@ -51,12 +51,17 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://30.0.0.78:3562/";
+  private api = "http://30.0.0.221:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private adminUrl = "http://30.0.0.78:3562/1/admin";
   private offerUrl = `${this.api}candidates/offer-details`;
   private packageUrl = `${this.api}candidates/package-details`;   // ✅ for package details
   private getapiUrl = `${this.api}candidates`;
+  private getEmployees = `${this.api}employees`;
+  private forgotpwd = `${this.api}forgot-pwd`;
+  private newpassword = `${this.api}add-pwd`;
+  private updatepassword = `${this.api}change-new-pwd`;
+
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
@@ -87,7 +92,7 @@ export class CandidateService {
   }
 
   getCandidateById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.getapiUrl}/${id}`);
+    return this.http.get<any>(`${this.getEmployees}/${id}`);
   }
 
   getAdminById(id: string): Observable<any> {
@@ -107,6 +112,14 @@ export class CandidateService {
         this.candidatesSubject.next([...current, newCandidate]);
       })
     );
+  }
+
+  getotp(email: string): Observable<any> {
+    return this.http.post(this.forgotpwd, { email });
+  }
+
+  newpasswordCreation(email: string): Observable<any> {
+    return this.http.post(this.newpassword, { email });
   }
 
   updateCandidate(candidate: Candidate): Observable<Candidate> {
@@ -209,7 +222,7 @@ export class CandidateService {
     );
   }
   findEmployee(email: string, password: string): Observable<Candidate | undefined> {
-    return this.http.get<any>(this.getapiUrl).pipe(
+    return this.http.get<any>(this.getEmployees).pipe(
       map(data => {
         const candidates = this.normalizeCandidates(data);
         return candidates.find(c =>
@@ -226,6 +239,11 @@ export class CandidateService {
         }
       })
     );
+  }
+
+  verifyAndResetPassword(email: string, otp: string, newPassword: string): Observable<any> {
+    const body = { email, otp, newPassword };
+    return this.http.post(this.updatepassword, body);
   }
 
   getCurrentCandidate(): Candidate | null {
@@ -249,5 +267,8 @@ export class CandidateService {
       c.personalDetails.LastName.toLowerCase().includes(lowerQuery)
     );
   }
+
+
+
 }
 
