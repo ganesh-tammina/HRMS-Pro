@@ -17,11 +17,14 @@
       </div>
 
       <div class="sign-in-right">
-        <h3>Sign in continue to your email</h3>
+        <h3>Sign in continue to your passwordss</h3>
         <div class="sign-in-block">
           <ion-icon name="person-circle"></ion-icon>
-          <ion-input class="form-control" placeholder="Enter your email ID"></ion-input>
-          <ion-button class="primry-button" (click)="setDiv()">Next</ion-button>
+          <form [formGroup]="onboardingForms" (ngSubmit)="submitOnboarding()">
+            <ion-input formControlName="PhoneNumber" class="form-control" placeholder="Enter your email ID"></ion-input>
+            <ion-button type="submit" class="primry-button">Next</ion-button>
+          </form>
+
         </div>
 
         <div class="footer-text">
