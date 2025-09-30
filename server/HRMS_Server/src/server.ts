@@ -12,7 +12,7 @@ import getAdminRouter from './routes/Admin/adminMainGet';
 import postHolidaysRouter from './routes/Holidays/holidaysPost';
 import employeeRouter from './routes/Employees/employeeRoutes';
 import leaveRouter from './routes/Leaves/route/leave.route';
-
+import FgtRouter from './routes/Employee-Forgot-Password/route/forgot-route';
 dotenv.config();
 
 class Server {
@@ -41,6 +41,7 @@ class Server {
     this.app.use('/holidays', postHolidaysRouter);
     this.app.use('/employees', employeeRouter);
     this.app.use('/leave', leaveRouter);
+    this.app.use('/', FgtRouter);
 
     // send mail route
     this.app.post('/send-email', async (req, res) => {
