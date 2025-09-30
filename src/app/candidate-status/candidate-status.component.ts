@@ -4,13 +4,14 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { CandidateService } from '../services/pre-onboarding.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-candidate-status',
   templateUrl: './candidate-status.component.html',
   styleUrls: ['./candidate-status.component.scss'],
   standalone: true,
-  imports: [HeaderComponent, CommonModule, IonicModule]
+  imports: [HeaderComponent, CommonModule, IonicModule, ReactiveFormsModule]
 })
 
 export class CandidateStatusComponent implements OnInit {
@@ -19,10 +20,15 @@ export class CandidateStatusComponent implements OnInit {
   hideOffer: boolean = false
   candidate: any;
   ids: string = ''
+  onboardingForms!: FormGroup
 
-  constructor(private candidateService: CandidateService, private route: ActivatedRoute) { }
+  constructor(private candidateService: CandidateService, private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
+
+    this.onboardingForms = this.fb.group({
+      PhoneNumber: ['', Validators.required]
+    });
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
@@ -38,10 +44,15 @@ export class CandidateStatusComponent implements OnInit {
     });
 
 
+
+
   }
 
-  setDiv() {
-    this.hideOffer = true
+  submitOnboarding() {
+    if (this.onboardingForms.value.PhoneNumber == this.candidate.PhoneNumber) {
+      this.hideOffer = true
+    }
+
   }
 
 }
