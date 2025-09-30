@@ -57,8 +57,6 @@ export class CandidateService {
   private offerUrl = `${this.api}candidates/offer-details`;
   private packageUrl = `${this.api}candidates/package-details`;   // ✅ for package details
   private getapiUrl = `${this.api}candidates`;
-  private newapi = "http://30.0.0.221:3562/";
-  private otpUrl = `${this.newapi}sendotp`;
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
   candidates$ = this.candidatesSubject.asObservable();
