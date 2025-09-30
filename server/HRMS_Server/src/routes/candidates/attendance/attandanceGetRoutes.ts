@@ -18,7 +18,7 @@ getRouter.get("/employee-attendance", async (req: Request, res: Response) => {
          a.status,
          a.remarks
        FROM candidates c
-       LEFT JOIN attendance a ON a.candidate_id = c.id
+       LEFT JOIN attendance a ON a.employee_id = c.id
        ORDER BY c.id, a.attendance_date`
     );
 
@@ -66,7 +66,7 @@ getRouter.get("/employee-attendance", async (req: Request, res: Response) => {
 
 
 getRouter.get("/:id/offer-details", async (req: Request, res: Response) => {
-    const [rows]: any = await pool.query("SELECT * FROM offer_details WHERE candidate_id = ?", [req.params.id]);
+    const [rows]: any = await pool.query("SELECT * FROM offer_details WHERE employee_id = ?", [req.params.id]);
     res.json({ candidateId: req.params.id, offerDetails: rows[0] || {} });
 });
 

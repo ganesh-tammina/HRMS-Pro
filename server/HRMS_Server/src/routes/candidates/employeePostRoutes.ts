@@ -16,7 +16,7 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (candidate_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
+       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
@@ -32,7 +32,7 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO job_details
-       (candidate_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
+       (employee_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
        VALUES (?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
@@ -88,7 +88,7 @@ postRouter.post("/offer-details", async (req: Request, res: Response) => {
     // Insert offer details
     await conn.query(
       `INSERT INTO offer_details
-       (candidate_id, DOJ, offerValidity, JoiningDate)
+       (employee_id, DOJ, offerValidity, JoiningDate)
        VALUES (?, ?, ?, ?)`,
       [
         candidateId,
@@ -150,7 +150,7 @@ postRouter.post("/package-details", async (req: Request, res: Response) => {
     // Insert offer details
     await conn.query(
       `INSERT INTO packagedetails
-       (candidate_id, annualSalary,basic,hra,medical,transport,special,subtotal,pfEmployer,pfEmployee,total)
+       (employee_id, annualSalary,basic,hra,medical,transport,special,subtotal,pfEmployer,pfEmployee,total)
        VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)`,
       [
         candidateId,
@@ -198,7 +198,7 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (candidate_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
+       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
@@ -214,7 +214,7 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO job_details
-       (candidate_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
+       (employee_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
        VALUES (?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
@@ -228,7 +228,7 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO offer_details
-       (candidate_id, DOJ, offerValidity, JoiningDate)
+       (employee_id, DOJ, offerValidity, JoiningDate)
        VALUES (?, ?, ?, ?)`,
       [
         candidateId,
@@ -240,7 +240,7 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO employee_credentials
-       (candidate_id, companyEmail, password)
+       (employee_id, companyEmail, password)
        VALUES (?, ?, ?)`,
       [
         candidateId,
