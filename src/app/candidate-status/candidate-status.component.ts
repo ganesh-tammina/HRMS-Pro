@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CandidateService } from '../services/pre-onboarding.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-candidate-status',
@@ -22,7 +23,7 @@ export class CandidateStatusComponent implements OnInit {
   ids: string = ''
   onboardingForms!: FormGroup
 
-  constructor(private candidateService: CandidateService, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private candidateService: CandidateService, private alertController: AlertController, private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
 
@@ -56,6 +57,18 @@ export class CandidateStatusComponent implements OnInit {
       alert("Please enter valid PhoneNumber")
     }
 
+  }
+
+
+
+  async candidateapprove(action: any) {
+    const alert = await this.alertController.create({
+      header: 'Action Selected',
+      message: `You clicked on <b>${action.toUpperCase()}</b>`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
