@@ -110,7 +110,8 @@
       </div>
     </div>
     <div class="action-block row-right">
-      <ion-button class="danger-outline-btn">Reject</ion-button><ion-button class="primary-btn">Accept</ion-button>
+      <ion-button (click)="candidateapprove('reject')" class="danger-outline-btn">Reject</ion-button>
+      <ion-button (click)="candidateapprove('accept')" class="primary-btn">Accept</ion-button>
     </div>
     <div class="footer-block">
       <p>Any questions? Reach out to us</p>
