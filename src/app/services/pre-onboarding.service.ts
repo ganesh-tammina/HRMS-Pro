@@ -51,7 +51,7 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://30.0.0.221:3562/";
+  private api = "http://30.0.0.78:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private adminUrl = "http://30.0.0.78:3562/1/admin";
   private offerUrl = `${this.api}candidates/offer-details`;
