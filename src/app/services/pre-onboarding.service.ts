@@ -61,6 +61,7 @@ export class CandidateService {
   private forgotpwd = `${this.api}forgot-pwd`;
   private newpassword = `${this.api}add-pwd`;
   private updatepassword = `${this.api}change-new-pwd`;
+  private changeoldEmpwd = `${this.api}change-pwd`;
 
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -121,6 +122,18 @@ export class CandidateService {
   newpasswordCreation(email: string): Observable<any> {
     return this.http.post(this.newpassword, { email });
   }
+
+
+  changeoldEmpPassword(email: string, otp: string, newPassword: string): Observable<any> {
+    const body = {
+      email: email,
+      otp: otp,
+      newPassword: newPassword
+    };
+    console.log(body);
+    return this.http.post(this.changeoldEmpwd, body);
+  }
+
 
   updateCandidate(candidate: Candidate): Observable<Candidate> {
     if (!candidate.offerDetails) {
