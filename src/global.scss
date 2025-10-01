@@ -180,3 +180,37 @@ ion-list-header, ion-item{
       }      
   }
 }
+.text-center {
+    text-align: center;
+}
+.custom-button {
+    padding: 3px 10px;
+    border-radius: 8px;
+    height: 42px;
+    --box-shadow: none;
+    --background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+}
+.primary-btn {
+    --color: #fff;
+    --background: #2986CE;
+    background: #2986CE;
+    @extend .custom-button ;
+}
+.primary-outline-btn {
+    --background: #fff;
+    --color: #2986CE;
+    --border: 1.5px solid #2986CE;
+    @extend .custom-button ;
+}
+.danger-outline-btn {
+    border: 1.5px solid #E45353;
+    color: #E45353;
+    @extend .custom-button ;
+}
+.danger-btn {
+    --color: #fff;
+    --background: #E45353;
+    @extend .custom-button ;
+}

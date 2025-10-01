@@ -160,11 +160,18 @@
         <ion-button size="small" fill="outline" color="primary">Revise</ion-button>
         <ion-button size="small" fill="outline" color="primary" (click)="startpreonboarding(candidate)">Start
           Pre-Onboarding</ion-button>
- 
-        <ion-button fill="clear" class="dots" (click)="employee(candidate)">
-          accept
-          <ion-icon name="ellipsis-vertical">ghgh</ion-icon>
-        </ion-button>
+          <ion-button fill="clear" class="dots-button" [attr.id]="'accept-button' + candidate.id"> <ion-icon name="ellipsis-vertical-circle-outline"></ion-icon></ion-button>
+        <ion-popover [attr.trigger]="'accept-button' + candidate.id" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content class="ion-padding">
+                <ion-list class="row-left">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    <ion-item class="ion-no-border" [button]="true" [detail]="false" (click)="employee(candidate)">Add as employee</ion-item>
+                  </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+        
       </div>
     </div>
 

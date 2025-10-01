@@ -10,9 +10,11 @@ import attendancePostRouter from './routes/candidates/attendance/attandancePostR
 import postAdminRouter from './routes/Admin/adminMainPost';
 import getAdminRouter from './routes/Admin/adminMainGet';
 import postHolidaysRouter from './routes/Holidays/holidaysPost';
-import employeeRouter from './routes/Employees/employeeRoutes';
+// import employeeRouter from './routes/Employees/employeeRoutes';
+import AddEmployeeRoutes from './routes/Employees/Added_Employees_Route';
 import leaveRouter from './routes/Leaves/route/leave.route';
 import FgtRouter from './routes/Employee-Forgot-Password/route/forgot-route';
+import getEmployyeeCredentialsRouter from './routes/Employees/Employee_Credentials';
 dotenv.config();
 
 class Server {
@@ -39,9 +41,10 @@ class Server {
     this.app.use('/', postAdminRouter);
     this.app.use('/', getAdminRouter);
     this.app.use('/holidays', postHolidaysRouter);
-    this.app.use('/employees', employeeRouter);
+    this.app.use('/employees', AddEmployeeRoutes);
     this.app.use('/leave', leaveRouter);
     this.app.use('/', FgtRouter);
+    // this.app.use('/employee', getEmployyeeCredentialsRouter)
 
     // send mail route
     this.app.post('/send-email', async (req, res) => {
