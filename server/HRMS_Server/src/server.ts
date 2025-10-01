@@ -15,6 +15,7 @@ import AddEmployeeRoutes from './routes/Employees/Added_Employees_Route';
 import leaveRouter from './routes/Leaves/route/leave.route';
 import FgtRouter from './routes/Employee-Forgot-Password/route/forgot-route';
 import getEmployyeeCredentialsRouter from './routes/Employees/Employee_Credentials';
+import existingEmployeesRouter from './routes/ExistingEmployees/ExistingEmployees';
 dotenv.config();
 
 class Server {
@@ -44,6 +45,7 @@ class Server {
     this.app.use('/employees', AddEmployeeRoutes);
     this.app.use('/leave', leaveRouter);
     this.app.use('/', FgtRouter);
+    this.app.use('/', existingEmployeesRouter)
     // this.app.use('/employee', getEmployyeeCredentialsRouter)
 
     // send mail route
