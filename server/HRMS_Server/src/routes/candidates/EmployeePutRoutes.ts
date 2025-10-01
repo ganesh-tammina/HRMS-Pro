@@ -12,7 +12,7 @@ putRouter.put("/:id/personal", async (req: Request, res: Response) => {
     await pool.query(
       `UPDATE personal_details
        SET FirstName=?, MiddleName=?, LastName=?, PhoneNumber=?, email=?, gender=?, initials=?
-       WHERE candidate_id=?`,
+       WHERE employee_id=?`,
       [FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials, id]
     );
     res.json({ message: "Personal details updated successfully" });
@@ -29,7 +29,7 @@ putRouter.put("/:id/job", async (req: Request, res: Response) => {
     await pool.query(
       `UPDATE job_details
        SET JobTitle=?, Department=?, JobLocation=?, WorkType=?, BussinessUnit=?
-       WHERE candidate_id=?`,
+       WHERE employee_id=?`,
       [JobTitle, Department, JobLocation, WorkType, BussinessUnit, id]
     );
     res.json({ message: "Job details updated successfully" });
@@ -45,7 +45,7 @@ putRouter.put("/offer-details", async (req: Request, res: Response) => {
     await pool.query(
       `UPDATE offer_details
        SET DOJ=?, offerValidity=?, JoiningDate=?
-       WHERE candidate_id=?`,
+       WHERE employee_id=?`,
       [DOJ, offerValidity, JoiningDate, id]
     );
     res.json({ message: "Offer details updated successfully" });
@@ -61,7 +61,7 @@ putRouter.put("/package-details", async (req: Request, res: Response) => {
     await pool.query(
       `UPDATE packagedetails
        SET annualSalary=?, basic=?, hra=?, medical=?, transport=?, special=?, subtotal=?, pfEmployer=?, pfEmployee=?, total=?
-       WHERE candidate_id=?`,
+       WHERE employee_id=?`,
       [annualSalary, basic, hra, medical, transport, special, subtotal, pfEmployer, pfEmployee, total, id]
     );
     res.json({ message: "package details updated successfully" });
@@ -80,7 +80,7 @@ putRouter.put("/:id/credentials", async (req: Request, res: Response) => {
     await pool.query(
       `UPDATE employee_credentials
        SET companyEmail=?, password=?
-       WHERE candidate_id=?`,
+       WHERE employee_id=?`,
       [companyEmail, password, id]
     );
     res.json({ message: "Employee credentials updated successfully" });
@@ -94,5 +94,30 @@ putRouter.put("/test", async (req: Request, res: Response) => {
   console.log("test");
 
 })
+
+// putRouter.get("/credentials/:id", async (req: Request, res: Response) => {
+//   const { id } = req.params;
+
+//   try {
+//     const [rows]: any = await pool.query(
+//       `SELECT e.employee_id, e.firstName, e.lastName, e.email, 
+//               ec.companyEmail, ec.password
+//        FROM employees e
+//        JOIN employee_credentials ec 
+//          ON e.employee_id = ec.employee_id
+//        WHERE e.employee_id = ?`,
+//       [id]
+//     );
+
+//     if (!rows.length) {
+//       return res.status(404).json({ message: "Employee not found" });
+//     }
+
+//     res.json(rows[0]);
+//   } catch (err: any) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 
 export default putRouter;
