@@ -24,20 +24,20 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                 Company_email,
                 PhoneNumber,
                 gender,
+                initials, 
                 JobTitle,
                 Department,
                 JobLocation,
                 WorkType,
                 BusinessUnit,
-                personalEmail, // map Excel column correctly
+                personalEmail, 
                 Address
             } = row;
             console.log(employeeId);
-
                 await pool.query(
-                    `INSERT INTO existingemployees 
-                    (employee_id, firstName, middleName, lastName, companyEmail, phoneNumber, gender, jobTitle, Department, jobLocation, WorkType, BusinessUnit, personalEmail, address) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                    `INSERT INTO employees 
+                    (employee_id, firstName, middleName, lastName, email, phoneNumber, gender,initials, jobTitle, Department, jobLocation, WorkType, BusinessUnit, personalEmail, address) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
                     [
                         employeeId,
                         firstName,
@@ -46,6 +46,7 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                         Company_email,
                         PhoneNumber,
                         gender,
+                        initials,
                         JobTitle,
                         Department,
                         JobLocation,
@@ -54,7 +55,7 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                         personalEmail,
                         Address
                     ]
-                );
+                ); 
         }
 
         res.json(sheetData);
