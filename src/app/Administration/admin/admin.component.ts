@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit {
     if (!this.EmployeeselectedFile) return;
     const formData = new FormData();
     formData.append("file", this.EmployeeselectedFile);
-    this.http.post("http://30.0.0.221:3562/existingemployees", formData).subscribe({
+    this.http.post("http://30.0.0.78:3562/existingemployees", formData).subscribe({
       next: (res) => {
         console.log(res);
         alert("Upload successful!");
