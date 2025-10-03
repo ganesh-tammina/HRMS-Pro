@@ -96,5 +96,27 @@ export class PreonboardingComponent implements OnInit {
     }
     this.candidateService.createEmployee(settingData).subscribe()
   }
+   Rejectedemployee(candidate: any) {
+
+   
+    const settingData = {
+      "id": candidate.id,
+      "firstName": candidate.personalDetails.FirstName,
+      "lastName": candidate.personalDetails.LastName,
+      "email": candidate.personalDetails.email,
+      "MiddleName": candidate.personalDetails.gender,
+      "PhoneNumber": candidate.personalDetails.PhoneNumber,
+      "gender": candidate.personalDetails.gender,
+      "initials": candidate.personalDetails.initials,
+      "JobTitle": candidate.jobDetailsForm.JobTitle,
+      "Department": candidate.jobDetailsForm.Department,
+      "JobLocation": candidate.jobDetailsForm.JobLocation,
+      "WorkType": candidate.jobDetailsForm.WorkType,
+      "BusinessUnit": candidate.jobDetailsForm.BussinessUnit
+    }
+    this.candidateService.createRejectedEmployee(settingData).subscribe()
+  }
+  
 }
+
 

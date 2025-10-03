@@ -22,9 +22,10 @@
             <ion-card-header class="row-space-between">
               <ion-card-title>Total Employees</ion-card-title>
               <ion-card-subtitle>
-                <div class="tooltip-container">
+                <div class="tooltip-container" (click)="EmployeeInput.click()">
                   <ion-icon name="add-circle-outline"></ion-icon>
-                  <span class="tooltip-text">Add Candidate</span>
+                  <input type="file" #EmployeeInput (change)="EmployeeSelected($event)" accept=".xlsx,.xls" hidden />
+                  <button (click)="EmployeesUpload()" [disabled]="!EmployeeselectedFile">Upload</button>
                 </div>
 
               </ion-card-subtitle>
