@@ -7,9 +7,10 @@ const existingEmployeesRouter = Router();
 const upload = multer({ dest: "uploads/" });
 
 existingEmployeesRouter.post("/existingemployees", upload.single("file"), async (req: Request, res: Response) => {
+    console.log("askjhkj");
+    
     try {
         if (!req.file) return res.status(400).send("No file uploaded");
-
         // Read the uploaded Excel file
         const workbook: WorkBook = xlsx.readFile(req.file.path);
         const worksheet: WorkSheet = workbook.Sheets;
@@ -24,38 +25,38 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                 Company_email,
                 PhoneNumber,
                 gender,
-                initials, 
+                initials,
                 JobTitle,
                 Department,
                 JobLocation,
                 WorkType,
                 BusinessUnit,
-                personalEmail, 
+                personalEmail,
                 Address
             } = row;
             console.log(employeeId);
-                await pool.query(
-                    `INSERT INTO employees 
+            await pool.query(
+                `INSERT INTO employees 
                     (employee_id, firstName, middleName, lastName, email, phoneNumber, gender,initials, jobTitle, Department, jobLocation, WorkType, BusinessUnit, personalEmail, address) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
-                    [
-                        employeeId,
-                        firstName,
-                        MiddleName,
-                        lastName,
-                        Company_email,
-                        PhoneNumber,
-                        gender,
-                        initials,
-                        JobTitle,
-                        Department,
-                        JobLocation,
-                        WorkType,
-                        BusinessUnit,
-                        personalEmail,
-                        Address
-                    ]
-                ); 
+                [
+                    employeeId,
+                    firstName,
+                    MiddleName,
+                    lastName,
+                    Company_email,
+                    PhoneNumber,
+                    gender,
+                    initials,
+                    JobTitle,
+                    Department,
+                    JobLocation,
+                    WorkType,
+                    BusinessUnit,
+                    personalEmail,
+                    Address
+                ]
+            );
         }
 
         res.json(sheetData);
