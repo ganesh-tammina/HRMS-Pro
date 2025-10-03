@@ -64,11 +64,13 @@ export class CandidateStatusComponent implements OnInit {
   async candidateapprove(action: any) {
     const alert = await this.alertController.create({
       header: 'Action Selected',
-      message: `You clicked on <b>${action.toUpperCase()}</b>`,
-      buttons: ['OK']
+      message: `You clicked on ${action.toUpperCase()}`,
+      buttons: ['OK'],
     });
+    console.log(action),
 
-    await alert.present();
+
+      await alert.present();
   }
 
 }
