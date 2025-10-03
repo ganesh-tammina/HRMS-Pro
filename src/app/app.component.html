@@ -41,17 +41,17 @@
               <ng-template>
                 <ion-content>
 
-                  <ion-menu-toggle auto-hide="false" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'IT'">
+                  <ion-menu-toggle auto-hide="false">
                     <ion-item routerLink="/pre_onboarding" (click)="preonboard()" lines="none" detail="false">
                       <ion-label>Pre Onboarding</ion-label>
                     </ion-item>
                   </ion-menu-toggle>
-                  <ion-menu-toggle auto-hide="false" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'HR'">
+                  <ion-menu-toggle auto-hide="false">
                     <ion-item routerLink="/post-onboarding" lines="none" detail="false">
                       <ion-label>Post Onboarding</ion-label>
                     </ion-item>
                   </ion-menu-toggle>
-                  <ion-menu-toggle auto-hide="false" *ngIf="(currentUser | async)?.jobDetailsForm?.Department === 'HR'">
+                  <ion-menu-toggle auto-hide="false">
                     <ion-item lines="none" detail="false">
                       <ion-label>Candidate Status</ion-label>
                     </ion-item>

@@ -47,7 +47,7 @@ class Server {
     this.app.use('/leave', leaveRouter);
     this.app.use('/', FgtRouter);
     this.app.use('/', existingEmployeesRouter)
-    this.app.use('/offer',StatusPutRouter)
+    this.app.use('/offerstatus', StatusPutRouter)
     // this.app.use('/employee', getEmployyeeCredentialsRouter)
 
     // send mail route
