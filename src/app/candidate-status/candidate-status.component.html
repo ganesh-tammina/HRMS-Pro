@@ -121,9 +121,9 @@
     <div class="footer-block">
       <p>Any questions? Reach out to us</p>
       <div class="row-space-between">
-        <div class="row-left">
+        <div class="row-left" *ngIf="currentCandidate">
           <ion-icon name="person-circle"></ion-icon>
-          <p>Lepakshi Jeeru</p>
+          <p>{{currentCandidate.employeeCredentials?.companyEmail}}</p>
         </div>
         <div class="row-left">
           <ion-icon name="person-circle"></ion-icon>
@@ -131,7 +131,7 @@
         </div>
         <div class="row-left">
           <ion-icon name="person-circle"></ion-icon>
-          <p>+91 9502089215</p>
+          <p>{{currentCandidate.personalDetails?.PhoneNumber}}</p>
         </div>
       </div>
     </div>

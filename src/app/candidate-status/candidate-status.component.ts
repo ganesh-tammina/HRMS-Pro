@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../shared/header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { CandidateService } from '../services/pre-onboarding.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-candidate-status',
@@ -24,11 +25,17 @@ export class CandidateStatusComponent implements OnInit {
   ids: string = ''
   acceptDisabled = false;
   rejectDisabled = false;
+  currentCandidate$!: Observable<any>;
   onboardingForms!: FormGroup
 
-  constructor(private candidateService: CandidateService, private http: HttpClient, private alertController: AlertController, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private candidateService: CandidateService, private router: Router, private http: HttpClient, private alertController: AlertController, private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
+
+
+    const nav = this.router.getCurrentNavigation();
+    this.candidate = nav?.extras.state?.['candidate'] || {};
+    console.log('Candidate:', this.candidate);
 
     this.onboardingForms = this.fb.group({
       PhoneNumber: ['', Validators.required]
@@ -45,6 +52,10 @@ export class CandidateStatusComponent implements OnInit {
           console.log('Fetched Candidate by ID:', this.candidate);
         });
       }
+      this.candidateService.currentCandidate$.subscribe(user => {
+        this.currentCandidate = user;
+        console.log('Current Candidate from Service:', user);
+      });
     });
 
 
