@@ -83,6 +83,11 @@ export class LoginPage implements OnInit {
     );
   }
 
+  /*************  ✨ Windsurf Command ⭐  *************/
+  /**
+   * Open the forgot password modal and reset the form fields and error messages.
+   */
+  /*******  b8cacb47-3b03-4280-91f6-2088464364fc  *******/
   openForgotModal() {
     this.showForgotModal = true;
     this.forgotForm.reset();
@@ -105,26 +110,45 @@ export class LoginPage implements OnInit {
     this.forgotError = '';
     this.forgotSuccess = '';
 
-    this.candidateService.newpasswordCreation(email).subscribe({
+    // ✅ First check if email already exists (old user)
+    this.candidateService.getotp(email).subscribe({
       next: (res) => {
-        console.log('✅ OTP sent:', res);
+        console.log('✅ Old email OTP sent:', res);
         this.forgotSuccess = `OTP sent to ${email}.`;
-        setTimeout(() => {
-          this.sending = false;
-          this.closeForgotModal();
-          // 🔥 Switch to password update form
-          this.showLoginForm = false;
-          this.showPasswordUpdateForm = true;
-          this.passwordUpdateForm.patchValue({ email });
-        }, 2000);
+        this.handleOtpSuccess(email);
       },
       error: (err) => {
-        console.error('❌ OTP sending failed:', err);
-        this.sending = false;
-        this.forgotError = 'Failed to send OTP. Try again later.';
+        console.warn('⚠️ getotp failed, trying newpasswordCreation...', err);
+
+        // If getotp fails → assume new email → call newpasswordCreation
+        this.candidateService.newpasswordCreation(email).subscribe({
+          next: (res) => {
+            console.log('✅ New email OTP sent:', res);
+            this.forgotSuccess = `OTP sent to ${email}.`;
+            this.handleOtpSuccess(email);
+          },
+          error: (err2) => {
+            console.error('❌ Both OTP methods failed:', err2);
+            this.sending = false;
+            this.forgotError = 'Failed to send OTP. Try again later.';
+          }
+        });
       }
     });
   }
+
+  private handleOtpSuccess(email: string) {
+    setTimeout(() => {
+      this.sending = false;
+      this.closeForgotModal();
+      // 🔥 Switch to password update form
+      this.showLoginForm = false;
+      this.showPasswordUpdateForm = true;
+      this.passwordUpdateForm.patchValue({ email });
+    }, 2000);
+  }
+
+
 
   onPasswordUpdate() {
     if (this.passwordUpdateForm.invalid) {
@@ -134,17 +158,36 @@ export class LoginPage implements OnInit {
 
     const { email, otp, newPassword } = this.passwordUpdateForm.value;
 
+    // ✅ First try new-user flow
     this.candidateService.verifyAndResetPassword(email, otp, newPassword).subscribe({
       next: () => {
-        alert('Password updated successfully!');
-        this.showPasswordUpdateForm = false;
-        this.showLoginForm = true;
-        this.passwordUpdateForm.reset();
+        this.handlePasswordSuccess();
       },
       error: (err) => {
-        console.error(err);
-        alert('Failed to update password. Check OTP and try again.');
+        console.warn("⚠️ verifyAndResetPassword failed, trying changeoldEmpPassword...", err);
+
+        // 🔄 fallback → old user flow
+        this.candidateService.changeoldEmpPassword(email, otp, newPassword).subscribe({
+          next: () => {
+            this.handlePasswordSuccess();
+          },
+          error: (err2) => {
+            console.error("❌ Both password update methods failed:", err2);
+            alert("Failed to update password. Check OTP and try again.");
+          }
+        });
       }
     });
   }
+
+  private handlePasswordSuccess() {
+    alert("Password updated successfully!");
+    this.showPasswordUpdateForm = false;
+    this.showLoginForm = true;
+    this.passwordUpdateForm.reset();
+  }
+
+
+
+
 }
