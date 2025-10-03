@@ -22,6 +22,8 @@ export class CandidateStatusComponent implements OnInit {
   hideOffer: boolean = false
   candidate: any;
   ids: string = ''
+  acceptDisabled = false;
+  rejectDisabled = false;
   onboardingForms!: FormGroup
 
   constructor(private candidateService: CandidateService, private http: HttpClient, private alertController: AlertController, private route: ActivatedRoute, private fb: FormBuilder) { }
@@ -61,6 +63,7 @@ export class CandidateStatusComponent implements OnInit {
   }
 
   async acceptCandidate(candidateId: number) {
+    this.rejectDisabled = true;
     const alert = await this.alertController.create({
       header: 'Accept Candidate',
       message: `You accepted candidate with ID: ${candidateId}`,
@@ -79,6 +82,7 @@ export class CandidateStatusComponent implements OnInit {
   }
 
   async rejectCandidate(candidateId: number) {
+    this.acceptDisabled = true;
     const alert = await this.alertController.create({
       header: 'Reject Candidate',
       message: `You rejected candidate with ID: ${candidateId}`,

@@ -110,11 +110,11 @@
       </div>
     </div>
     <div class="action-block row-right">
-      <ion-button (click)="rejectCandidate(candidate.id)" class="danger-outline-btn">
+      <ion-button (click)="rejectCandidate(candidate.id)" [disabled]="rejectDisabled" class="danger-outline-btn">
         Reject
       </ion-button>
 
-      <ion-button (click)="acceptCandidate(candidate.id)" class="primary-btn">
+      <ion-button (click)="acceptCandidate(candidate.id)" [disabled]="acceptDisabled" class="primary-btn">
         Accept
       </ion-button>
     </div>
