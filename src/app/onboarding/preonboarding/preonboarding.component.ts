@@ -78,7 +78,7 @@ export class PreonboardingComponent implements OnInit {
 
   employee(candidate: any) {
 
-   
+
     const settingData = {
       "id": candidate.id,
       "firstName": candidate.personalDetails.FirstName,
@@ -96,9 +96,9 @@ export class PreonboardingComponent implements OnInit {
     }
     this.candidateService.createEmployee(settingData).subscribe()
   }
-   Rejectedemployee(candidate: any) {
+  Rejectedemployee(candidate: any) {
 
-   
+
     const settingData = {
       "id": candidate.id,
       "firstName": candidate.personalDetails.FirstName,
@@ -116,7 +116,9 @@ export class PreonboardingComponent implements OnInit {
     }
     this.candidateService.createRejectedEmployee(settingData).subscribe()
   }
-  
+  employeehire(candidate: any) {
+    console.log(candidate)
+  }
 }
 
 

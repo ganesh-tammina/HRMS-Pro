@@ -51,7 +51,7 @@ export interface Candidate {
 })
 export class CandidateService {
 
-  private api = "http://30.0.0.78:3562/";
+  private api = "http://30.0.0.221:3562/";
   private apiUrl = `${this.api}candidates/jd`;
   private adminUrl = "http://30.0.0.78:3562/1/admin";
   private offerUrl = `${this.api}candidates/offer-details`;
@@ -62,6 +62,7 @@ export class CandidateService {
   private newpassword = `${this.api}add-pwd`;
   private updatepassword = `${this.api}change-new-pwd`;
   private changeoldEmpwd = `${this.api}change-pwd`;
+  private offerStatusapi = "http://30.0.0.221:3562/offerstatus/status"
 
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -99,6 +100,11 @@ export class CandidateService {
   getAdminById(id: string): Observable<any> {
     return this.http.get<any>(`${this.adminUrl}`);
   }
+
+  getofferStatus(): Observable<any> {
+    return this.http.get<any>(this.offerStatusapi);
+  }
+
   private normalizeCandidates(data: any): Candidate[] {
     if (Array.isArray(data)) return data;
     if (data && data.candidates && Array.isArray(data.candidates)) return data.candidates;
