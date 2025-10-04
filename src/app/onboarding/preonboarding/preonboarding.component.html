@@ -121,7 +121,8 @@
     </div>
 
     <!-- Row 1 -->
-    <ng-container class="table-row" *ngFor="let candidate of candidates">
+    <ng-container class="table-row" *ngFor="let candidate of candidates"
+      [class.hidden]="hiddenCandidates.includes(candidate.id)">
       <ng-container *ngIf="candidate.status === 'accepted' || candidate.status === 'pending'">
         <ion-grid>
           <ion-row>

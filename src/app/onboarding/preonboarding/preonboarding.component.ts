@@ -8,6 +8,7 @@ import { CandidateService } from 'src/app/services/pre-onboarding.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { StartOnboardingComponent } from '../start-onboarding/start-onboarding.component';
+import { HireEmployeesService } from 'src/app/services/hire-employees.service';
 
 @Component({
   selector: 'app-preonboarding',
@@ -25,13 +26,15 @@ export class PreonboardingComponent implements OnInit {
 
   // 👇 All candidates loaded from service
   candidates: any[] = [];
+  hiddenCandidates: number[] = [];
   @Input() currentStage: number = 1;
 
   constructor(
     private router: Router,
     private http: HttpClient,
     private modalCtrl: ModalController,
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private hireEmployeeService: HireEmployeesService
   ) { }
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class PreonboardingComponent implements OnInit {
       this.candidates = data;
       console.log('Candidates:', this.candidates);
     });
+    this.hiddenCandidates = JSON.parse(sessionStorage.getItem('hiddenCandidates') || '[]');
   }
 
   // Navigate to candidate create (non-modal)
@@ -117,7 +121,8 @@ export class PreonboardingComponent implements OnInit {
     this.candidateService.createRejectedEmployee(settingData).subscribe()
   }
   employeehire(candidate: any) {
-    console.log(candidate)
+    this.hireEmployeeService.setCandidate(candidate);
+    this.candidates = this.candidates.filter(c => c.id !== candidate.id);
   }
 }
 
