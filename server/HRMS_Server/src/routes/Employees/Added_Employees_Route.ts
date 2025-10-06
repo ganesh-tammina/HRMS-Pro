@@ -20,7 +20,7 @@ getRouter.get("/", async (req: Request, res: Response) => {
      LEFT JOIN packagedetails m ON c.employee_id = m.employee_id`
     );
     const formatted = rows.map((row: any) => ({
-        id: parseInt(row.employee_id),
+        id: (row.employee_id),
         personalDetails: {
             FirstName: row.FirstName,
             MiddleName: row.MiddleName,
