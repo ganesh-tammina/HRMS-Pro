@@ -121,53 +121,72 @@
     </div>
 
     <!-- Row 1 -->
-    <div class="table-row" *ngFor="let candidate of candidates">
-      <div class="cell cell-check">
-        <ion-checkbox aria-label="Select row"></ion-checkbox>
-      </div>
+    <ng-container class="table-row" *ngFor="let candidate of candidates"
+      [class.hidden]="hiddenCandidates.includes(candidate.id)">
+      <ng-container *ngIf="candidate.status === 'accepted' || candidate.status === 'pending'">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="cell cell-check">
+                <ion-checkbox aria-label="Select row"></ion-checkbox>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="cell cell-name">
+                <div class="avatar">{{candidate.personalDetails.initials}}</div>
+                <div class="name-stack">
+                  <a class="name-link">{{candidate.personalDetails.FirstName}}</a>
+                  <div class="sub">{{candidate.jobDetailsForm.JobTitle}}</div>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="cell cell-offer">
+                <div class="stage-bars">
+                  <span class="bar done" [class.done]="currentStage >= 1"></span>
+                  <span class="bar done" *ngIf="currentStage >= 2" class="bar" [class.done]="currentStage >= 2"></span>
+                  <span class="bar done" *ngIf="currentStage >= 3" class="bar" [class.done]="currentStage >= 3"></span>
+                </div>
+                <div class="status">
+                  <h5 class="status-title">Offer {{candidate.status}}</h5>
+                  <div class="status-sub" *ngIf="candidate.status === 'pending'">Last touch 5d ago</div>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="cell cell-dept">
+                <div class="dept-title">{{candidate.jobDetailsForm.Department}}</div>
+                <div class="dept-sub">{{candidate.jobDetailsForm.JobLocation}}</div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="cell cell-actions">
+                <ion-button size="small" fill="outline" color="primary">Revise</ion-button>
+                <ion-button size="small" fill="outline" color="primary" (click)="startpreonboarding(candidate)">Start
+                  Pre-Onboarding</ion-button>
 
-      <div class="cell cell-name">
-        <div class="avatar">{{candidate.personalDetails.initials}}</div>
-        <div class="name-stack">
-          <a class="name-link">{{candidate.personalDetails.FirstName}}</a>
-          <div class="sub">{{candidate.jobDetailsForm.JobTitle}}</div>
-        </div>
-      </div>
+                <ion-button *ngIf="candidate.status === 'accepted'" fill="clear" class="dots"
+                  (click)="employeehire(candidate)">
+                  Hire as employee
+                  <ion-icon name="ellipsis-vertical">ghgh</ion-icon>
+                </ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
-      <div class="cell cell-offer">
-        <div class="stage-bars">
-          <span class="bar done" [class.done]="currentStage >= 1"></span>
-          <span class="bar done" *ngIf="currentStage >= 2" class="bar" [class.done]="currentStage >= 2"></span>
-          <span class="bar done" *ngIf="currentStage >= 3" class="bar" [class.done]="currentStage >= 3"></span>
-        </div>
-        <div class="status">
-          <div class="status-title">Offer Accepted</div>
-          <div class="status-sub">Last touch 5d ago</div>
-        </div>
-      </div>
 
-      <div class="cell cell-dept">
-        <div class="dept-title">{{candidate.jobDetailsForm.Department}}</div>
-        <div class="dept-sub">{{candidate.jobDetailsForm.JobLocation}}</div>
-      </div>
 
-      <div class="cell cell-date">
-        <div class="date-title">{{candidate.jobDetailsForm.DOJ}}</div>
-        <div class="date-sub">Due today</div>
-      </div>
 
-      <div class="cell cell-actions">
-        <ion-button size="small" fill="outline" color="primary">Revise</ion-button>
-        <ion-button size="small" fill="outline" color="primary" (click)="startpreonboarding(candidate)">Start
-          Pre-Onboarding</ion-button>
- 
-        <ion-button fill="clear" class="dots" (click)="employee(candidate)">
-          accept
-          <ion-icon name="ellipsis-vertical">ghgh</ion-icon>
-        </ion-button>
-      </div>
-       
-    </div>
+
+
+
+
+
+
+
+      </ng-container>
+    </ng-container>
 
     <!-- Row 2 -->
 

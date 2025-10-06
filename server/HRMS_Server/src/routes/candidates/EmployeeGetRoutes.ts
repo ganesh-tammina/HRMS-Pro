@@ -8,6 +8,7 @@ const getRouter = Router();
 getRouter.get("/", async (req: Request, res: Response) => {
   const [rows]: any = await pool.query(
     `SELECT c.id,
+            c.status,
             p.FirstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender, p.initials,
             j.JobTitle, j.Department, j.JobLocation, j.WorkType, j.BussinessUnit,
             o.DOJ, o.offerValidity, o.JoiningDate,
@@ -21,6 +22,7 @@ getRouter.get("/", async (req: Request, res: Response) => {
   );
   const formatted = rows.map((row: any) => ({
     id: row.id,
+    status: row.status,
     personalDetails: {
       FirstName: row.FirstName,
       MiddleName: row.MiddleName,

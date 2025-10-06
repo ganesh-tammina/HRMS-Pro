@@ -110,15 +110,20 @@
       </div>
     </div>
     <div class="action-block row-right">
-      <ion-button (click)="candidateapprove('reject')" class="danger-outline-btn">Reject</ion-button>
-      <ion-button (click)="candidateapprove('accept')" class="primary-btn">Accept</ion-button>
+      <ion-button (click)="rejectCandidate(candidate.id)" [disabled]="rejectDisabled" class="danger-outline-btn">
+        Reject
+      </ion-button>
+
+      <ion-button (click)="acceptCandidate(candidate.id)" [disabled]="acceptDisabled" class="primary-btn">
+        Accept
+      </ion-button>
     </div>
     <div class="footer-block">
       <p>Any questions? Reach out to us</p>
       <div class="row-space-between">
-        <div class="row-left">
+        <div class="row-left" *ngIf="currentCandidate">
           <ion-icon name="person-circle"></ion-icon>
-          <p>Lepakshi Jeeru</p>
+          <p>{{currentCandidate.employeeCredentials?.companyEmail}}</p>
         </div>
         <div class="row-left">
           <ion-icon name="person-circle"></ion-icon>
@@ -126,7 +131,7 @@
         </div>
         <div class="row-left">
           <ion-icon name="person-circle"></ion-icon>
-          <p>+91 9502089215</p>
+          <p>{{currentCandidate.personalDetails?.PhoneNumber}}</p>
         </div>
       </div>
     </div>

@@ -1,15 +1,15 @@
 <ion-header>
-    <!-- <app-header></app-header> -->
+  <!-- <app-header></app-header> -->
   <app-onboarding-mainheader></app-onboarding-mainheader>
 </ion-header>
-  <ion-toolbar>
-    <ion-title>New Joiners</ion-title>
-  </ion-toolbar>
-  <ion-toolbar class="subheader">
-    <ion-text color="medium" class="subtitle">
-      Candidates who are marked as hired and not yet added as employees.
-    </ion-text>
-  </ion-toolbar>
+<ion-toolbar>
+  <ion-title>New Joiners</ion-title>
+</ion-toolbar>
+<ion-toolbar class="subheader">
+  <ion-text color="medium" class="subtitle">
+    Candidates who are marked as hired and not yet added as employees.
+  </ion-text>
+</ion-toolbar>
 
 <ion-content fullscreen>
   <!-- Filters -->
@@ -64,8 +64,15 @@
       <div class="cell">ACTIONS</div>
     </div>
 
-    <div class="empty">
-      <p>No records found</p>
+    <div class="empty" *ngFor="let items of candidateList">
+      <p *ngIf="candidateList.length === 0">No records found</p>
+      <div>{{items.personalDetails.FirstName}} {{items.personalDetails.MiddleName}}</div>
+      <div>{{items.jobDetailsForm.JobTitle}}</div>
+      <div>{{items.jobDetailsForm.Department}} && {{items.jobDetailsForm.JobLocation}}</div>
+      <div>{{items.offerDetails.DOJ}}</div>
+      <div>{{items.personalDetails.PhoneNumber}}</div>
+
+
     </div>
   </div>
 </ion-content>
