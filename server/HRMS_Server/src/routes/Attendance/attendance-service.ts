@@ -1,7 +1,31 @@
+import { PassThrough } from 'stream';
 import { pool } from '../../config/database';
 import { TO, TT } from './attendance-interface';
 
 export default class AttendanceService {
+  public static async countLogin(data: TT) {
+    let [myworkistogetdata]: any = [];
+    const count = {
+      number: 0,
+      status: true,
+    };
+    try {
+      [myworkistogetdata] = await pool.query(
+        'Select count(*) as counter from attendance where employee_id = ? and attendance_date = curdate()',
+        [data.employee_id]
+      );
+      if (myworkistogetdata[0].counter > 0) {
+        throw new Error;
+      } else {
+        return count;
+      }
+    } catch (e) {
+      count.number = myworkistogetdata[0].counter;
+      count.status = false;
+      console.log(count);
+      return count;
+    }
+  }
   public static async clockIn(data: TT) {
     try {
       const query = `
@@ -50,7 +74,7 @@ export default class AttendanceService {
     const inCandidateIds = new Set(
       in_candidates.map((c: any) => c.employee_id)
     );
-    
+
     const notCheckedIn = all_Candidates.filter(
       (candidate: any) => !inCandidateIds.has(candidate.id)
     );

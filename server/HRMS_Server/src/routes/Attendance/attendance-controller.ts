@@ -11,15 +11,23 @@ export default class AttendanceController {
     if (typeof employee_id != 'number') {
       return res.status(400).json({ message: 'Not Valid Employee Number' });
     }
-    try {
-      const result = await AttendanceService.clockIn({
-        employee_id,
-        check_in,
-      });
-      res.json({ message: 'Clock-in successful', data: result });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
+    const response = await AttendanceService.countLogin({
+      employee_id,
+      check_in,
+    });
+    if (response.number == 0) {
+      try {
+        const result = await AttendanceService.clockIn({
+          employee_id,
+          check_in,
+        });
+        res.json({ message: 'Clock-in successful', data: result });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    } else {
+      res.status(400).json({ message: 'Already Logged In.' });
     }
   }
   public static async handleClockOut(req: Request, res: Response) {
