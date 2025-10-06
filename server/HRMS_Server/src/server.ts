@@ -10,6 +10,9 @@ import postHolidaysRouter from './routes/Holidays/holidaysPost';
 import AddEmployeeRoutes from './routes/Employees/Added_Employees_Route';
 import leaveRouter from './routes/Leaves/route/leave.route';
 import FgtRouter from './routes/Employee-Forgot-Password/route/forgot-route';
+import getEmployyeeCredentialsRouter from './routes/Employees/Employee_Credentials';
+import existingEmployeesRouter from './routes/ExistingEmployees/ExistingEmployees';
+import StatusPutRouter from './routes/OfferStatus/OfferStatus';
 import AtRouter from './routes/Attendance/attendance-route';
 dotenv.config();
 
@@ -38,6 +41,9 @@ class Server {
     this.app.use('/employees', AddEmployeeRoutes);
     this.app.use('/leave', leaveRouter);
     this.app.use('/', FgtRouter);
+    this.app.use('/', existingEmployeesRouter)
+    this.app.use('/offerstatus', StatusPutRouter)
+    // this.app.use('/employee', getEmployyeeCredentialsRouter)
     this.app.use('/', AtRouter);
 
     this.app.post('/send-email', async (req, res) => {

@@ -42,7 +42,6 @@ export const routes: Routes = [
   {
     path: 'pre_onboarding',
     loadComponent: () => import('./onboarding/pre.page').then(m => m.PostPage),
-    canActivate: [authGuard]
   },
   {
     path: 'post-onboarding',

@@ -61,6 +61,8 @@ export class CandidateService {
   private forgotpwd = `${this.api}forgot-pwd`;
   private newpassword = `${this.api}add-pwd`;
   private updatepassword = `${this.api}change-new-pwd`;
+  private changeoldEmpwd = `${this.api}change-pwd`;
+  private offerStatusapi = "http://30.0.0.78:3562/offerstatus/status"
 
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -92,12 +94,17 @@ export class CandidateService {
   }
 
   getCandidateById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.getEmployees}/${id}`);
+    return this.http.get<any>(`${this.getapiUrl}/${id}`);
   }
 
   getAdminById(id: string): Observable<any> {
     return this.http.get<any>(`${this.adminUrl}`);
   }
+
+  getofferStatus(): Observable<any> {
+    return this.http.get<any>(this.offerStatusapi);
+  }
+
   private normalizeCandidates(data: any): Candidate[] {
     if (Array.isArray(data)) return data;
     if (data && data.candidates && Array.isArray(data.candidates)) return data.candidates;
@@ -121,6 +128,18 @@ export class CandidateService {
   newpasswordCreation(email: string): Observable<any> {
     return this.http.post(this.newpassword, { email });
   }
+
+
+  changeoldEmpPassword(email: string, otp: string, newPassword: string): Observable<any> {
+    const body = {
+      email: email,
+      otp: otp,
+      newPassword: newPassword
+    };
+    console.log(body);
+    return this.http.post(this.changeoldEmpwd, body);
+  }
+
 
   updateCandidate(candidate: Candidate): Observable<Candidate> {
     if (!candidate.offerDetails) {
@@ -216,6 +235,13 @@ export class CandidateService {
   }
   createEmployee(Emp: any): Observable<any> {
     return this.http.post<any>(this.api + "employees", Emp).pipe(
+      tap((newCandidate) => {
+        console.log(newCandidate)
+      })
+    );
+  }
+  createRejectedEmployee(Emp: any): Observable<any> {
+    return this.http.post<any>("http://localhost:3562/employees/rejectedemployees", Emp).pipe(
       tap((newCandidate) => {
         console.log(newCandidate)
       })

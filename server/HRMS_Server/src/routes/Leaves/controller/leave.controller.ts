@@ -20,6 +20,8 @@ export const createLeaveRequest = async (req: Request, res: Response) => {
 };
 
 export const getLeaveBalances = async (_req: Request, res: Response) => {
+  console.log("getLeaveBalances called");
+  
   try {
     const result = await leaveService.getLeaveBalances();
     res.json(result);
