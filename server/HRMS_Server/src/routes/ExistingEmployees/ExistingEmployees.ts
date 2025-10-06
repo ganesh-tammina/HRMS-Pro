@@ -8,7 +8,7 @@ const upload = multer({ dest: "uploads/" });
 
 existingEmployeesRouter.post("/existingemployees", upload.single("file"), async (req: Request, res: Response) => {
     console.log("askjhkj");
-    
+
     try {
         if (!req.file) return res.status(400).send("No file uploaded");
         // Read the uploaded Excel file
@@ -37,8 +37,8 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
             console.log(employeeId);
             await pool.query(
                 `INSERT INTO employees 
-                    (employee_id, firstName, middleName, lastName, email, phoneNumber, gender,initials, jobTitle, Department, jobLocation, WorkType, BusinessUnit, personalEmail, address) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
+                    (employee_id, firstName, middleName, lastName, email, phoneNumber, gender, jobTitle, Department, jobLocation, WorkType, BusinessUnit, personalEmail, address) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
                 [
                     employeeId,
                     firstName,
@@ -47,7 +47,6 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                     Company_email,
                     PhoneNumber,
                     gender,
-                    initials,
                     JobTitle,
                     Department,
                     JobLocation,
