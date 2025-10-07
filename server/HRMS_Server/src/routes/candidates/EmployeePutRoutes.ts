@@ -7,13 +7,13 @@ const putRouter = Router();
 /* UPDATE personal */
 putRouter.put("/:id/personal", async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials } = req.body;
+  const { FirstName, MiddleName, LastName, PhoneNumber, email, gender } = req.body;
   try {
     await pool.query(
       `UPDATE personal_details
-       SET FirstName=?, MiddleName=?, LastName=?, PhoneNumber=?, email=?, gender=?, initials=?
+       SET FirstName=?, MiddleName=?, LastName=?, PhoneNumber=?, email=?, gender=?
        WHERE employee_id=?`,
-      [FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials, id]
+      [FirstName, MiddleName, LastName, PhoneNumber, email, gender, id]
     );
     res.json({ message: "Personal details updated successfully" });
   } catch (err: any) {

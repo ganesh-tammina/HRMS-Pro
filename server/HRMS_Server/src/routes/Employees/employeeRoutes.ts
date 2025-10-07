@@ -6,14 +6,13 @@ const employeeRouter = Router();
 
 // POST /employees/:id
 employeeRouter.post("/", async (req: Request, res: Response) => {
-  const {id,
+  const { id,
     firstName,
     lastName,
     email,
     MiddleName,
     PhoneNumber,
     gender,
-    initials,
     JobTitle,
     Department,
     JobLocation,
@@ -24,9 +23,9 @@ employeeRouter.post("/", async (req: Request, res: Response) => {
   try {
     await pool.query(
       `INSERT INTO employees
-        (employee_id, firstName, lastName, email, MiddleName, PhoneNumber, gender, initials,
+        (employee_id, firstName, lastName, email, MiddleName, PhoneNumber, gender,
          JobTitle, Department, JobLocation, WorkType, BusinessUnit)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         id,
         firstName,
@@ -35,7 +34,6 @@ employeeRouter.post("/", async (req: Request, res: Response) => {
         MiddleName,
         PhoneNumber,
         gender,
-        initials,
         JobTitle,
         Department,
         JobLocation,
@@ -54,14 +52,13 @@ employeeRouter.post("/", async (req: Request, res: Response) => {
 });
 
 employeeRouter.post("/rejectedemployees", async (req: Request, res: Response) => {
-  const {id,
+  const { id,
     firstName,
     lastName,
     email,
     MiddleName,
     PhoneNumber,
     gender,
-    initials,
     JobTitle,
     Department,
     JobLocation,
@@ -72,7 +69,7 @@ employeeRouter.post("/rejectedemployees", async (req: Request, res: Response) =>
   try {
     await pool.query(
       `INSERT INTO rejectedemployees
-        (employee_id, firstName, lastName, email, MiddleName, PhoneNumber, gender, initials,
+        (employee_id, firstName, lastName, email, MiddleName, PhoneNumber, gender,
          JobTitle, Department, JobLocation, WorkType, BusinessUnit)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -83,7 +80,6 @@ employeeRouter.post("/rejectedemployees", async (req: Request, res: Response) =>
         MiddleName,
         PhoneNumber,
         gender,
-        initials,
         JobTitle,
         Department,
         JobLocation,

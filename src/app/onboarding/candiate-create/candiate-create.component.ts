@@ -48,7 +48,6 @@ export class CandiateCreateComponent implements OnInit {
     personal?.valueChanges.subscribe((values) => {
       const first = values.FirstName?.charAt(0)?.toUpperCase() || '';
       const last = values.LastName?.charAt(0)?.toUpperCase() || '';
-      personal.get('initials')?.setValue(first + last, { emitEvent: false });
     });
   }
 

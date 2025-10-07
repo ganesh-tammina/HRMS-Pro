@@ -16,8 +16,8 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
         personalDetails.FirstName,
@@ -26,7 +26,6 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
         personalDetails.PhoneNumber,
         personalDetails.email,
         personalDetails.gender,
-        personalDetails.initials,
       ]
     );
 
@@ -198,8 +197,8 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
         personalDetails.FirstName,
@@ -208,7 +207,6 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
         personalDetails.PhoneNumber,
         personalDetails.email,
         personalDetails.gender,
-        personalDetails.initials,
       ]
     );
 

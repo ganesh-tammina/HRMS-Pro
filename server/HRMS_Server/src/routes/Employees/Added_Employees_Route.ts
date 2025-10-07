@@ -8,7 +8,7 @@ const getRouter = Router();
 getRouter.get("/", async (req: Request, res: Response) => {
     const [rows]: any = await pool.query(
         `SELECT c.employee_id,
-            p.FirstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender, p.initials,
+            p.FirstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender, 
             j.JobTitle, j.Department, j.JobLocation, j.WorkType, j.BussinessUnit,
             o.DOJ, o.offerValidity, o.JoiningDate,
             e.companyEmail, e.password,m.annualSalary,m.basic,m.hra,m.medical,m.transport,m.special,m.subtotal,m.pfEmployer,m.pfEmployee,m.total
@@ -28,7 +28,6 @@ getRouter.get("/", async (req: Request, res: Response) => {
             PhoneNumber: row.PhoneNumber,
             email: row.email,
             gender: row.gender,
-            initials: row.initials,
         },
         jobDetailsForm: {
             JobTitle: row.JobTitle,
@@ -66,7 +65,7 @@ getRouter.get("/", async (req: Request, res: Response) => {
 getRouter.get("/:id", async (req: Request, res: Response) => {
     const [rows]: any = await pool.query(
         `SELECT c.employee_id,
-            p.FirstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender, p.initials,
+            p.FirstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender,
             j.JobTitle, j.Department, j.JobLocation, j.WorkType, j.BussinessUnit,
             o.DOJ, o.offerValidity, o.JoiningDate,
             e.companyEmail, e.password
