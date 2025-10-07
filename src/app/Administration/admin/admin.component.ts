@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { LeaveModalComponent } from './leave-modal/leave-modal.component';
 import { FormsModule } from '@angular/forms';
+import { CandidateService } from 'src/app/services/pre-onboarding.service';
 
 @Component({
   selector: 'app-admin',
@@ -17,13 +18,18 @@ export class AdminComponent implements OnInit {
   showModal = false;
   leaveData: any = null;
   EmployeeselectedFile: File | null = null;
-  constructor(private http: HttpClient) { }
+  holidays: any;
+  constructor(private http: HttpClient, private candidateService: CandidateService) { }
 
   ngOnInit() {
     const savedData = localStorage.getItem('leaveData');
     if (savedData) {
       this.leaveData = JSON.parse(savedData);
     }
+    this.candidateService.getHolidaysList('id').subscribe((res: any) => {
+      this.holidays = res.data;
+      console.log(res);
+    });
   }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];

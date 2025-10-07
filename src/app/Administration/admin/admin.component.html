@@ -62,12 +62,12 @@
               </ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
-              <ion-list>
+              <ion-list *ngFor="let holiday of holidays">
                 <ion-item>
                   <ion-thumbnail slot="start">
                     <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
                   </ion-thumbnail>
-                  <ion-label>Holiday name</ion-label>
+                  <ion-label>{{holiday.HolidayName}}</ion-label>
                   <ion-label>holiday date</ion-label>
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-item>
