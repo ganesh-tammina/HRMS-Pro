@@ -16,7 +16,7 @@ getEmployeesRouter.get("/", async (req: Request, res: Response) => {
                 pd.gender,
 
                 jd.JobTitle,
-                jd.Department,
+                e.Department,
                 jd.JobLocation,
                 jd.WorkType,
                 e.Companyemail,
