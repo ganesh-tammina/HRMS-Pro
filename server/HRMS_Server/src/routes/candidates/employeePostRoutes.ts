@@ -16,13 +16,13 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender)
+       (employee_id, firstName, MiddleName, lastName, PhoneNumber, email, gender)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
-        personalDetails.FirstName,
+        personalDetails.firstName,
         personalDetails.MiddleName,
-        personalDetails.LastName,
+        personalDetails.lastName,
         personalDetails.PhoneNumber,
         personalDetails.email,
         personalDetails.gender,
