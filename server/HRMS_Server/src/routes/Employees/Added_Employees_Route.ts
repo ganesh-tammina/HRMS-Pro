@@ -19,6 +19,7 @@ getEmployeesRouter.get("/", async (req: Request, res: Response) => {
                 jd.Department,
                 jd.JobLocation,
                 jd.WorkType,
+                e.Companyemail,
 
                 od.DOJ,
                 od.offerValidity,
@@ -62,6 +63,7 @@ getEmployeesRouter.get("/", async (req: Request, res: Response) => {
             Department: row.Department,
             JobLocation: row.JobLocation,
             WorkType: row.WorkType,
+            companyEmail: row.Companyemail
         },
         offerDetails: {
             DOJ: row.DOJ,
