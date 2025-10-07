@@ -25,26 +25,25 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                 Company_email,
                 PhoneNumber,
                 gender,
-                initials,
                 JobTitle,
                 Department,
                 JobLocation,
                 WorkType,
                 BusinessUnit,
-                personalEmail,
                 Address
             } = row;
-            console.log(employeeId);
+
+            // Insert into employees table
             await pool.query(
                 `INSERT INTO employees 
-                    (employee_id, firstName, middleName, lastName, email, phoneNumber, gender, jobTitle, Department, jobLocation, WorkType, BusinessUnit, personalEmail, address) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
+(employee_id, firstName, MiddleName, lastName, companyEmail, PhoneNumber, gender, JobTitle, Department, JobLocation, WorkType, BusinessUnit, address)                   
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     employeeId,
                     firstName,
                     MiddleName,
                     lastName,
-                    Company_email,
+                    Company_email, // Correct mapping for companyEmail
                     PhoneNumber,
                     gender,
                     JobTitle,
@@ -52,13 +51,12 @@ existingEmployeesRouter.post("/existingemployees", upload.single("file"), async 
                     JobLocation,
                     WorkType,
                     BusinessUnit,
-                    personalEmail,
                     Address
                 ]
             );
         }
 
-        res.json(sheetData);
+        res.json({ message: "Employees uploaded successfully", data: sheetData });
     } catch (error) {
         console.error("Error uploading employees:", error);
         res.status(500).send("Server error");
