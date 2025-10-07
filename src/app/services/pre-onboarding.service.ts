@@ -63,7 +63,7 @@ export class CandidateService {
   private updatepassword = `${this.api}change-new-pwd`;
   private changeoldEmpwd = `${this.api}change-pwd`;
   private offerStatusapi = "http://30.0.0.78:3562/offerstatus/status";
-  private holidaysUrl = "http://localhost:3562/holidays/public_holidays";
+  private holidaysUrl = `${this.api}holidays/public_holidays`;
 
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
