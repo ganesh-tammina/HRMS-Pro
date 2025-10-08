@@ -231,15 +231,17 @@ ion-avatar {
 
 .welcome-block {
   background: #00568F;  
+  border-radius: 8px;
   p{
     color: #DADEE4;
-    @include page-header();
+    @include card-header();
     font-weight: 700; 
     padding-left: 24px;
   }
   img {
-    height: 100px;
+    height: 72px;
     padding-top: 5px;
+    padding-right: 15px;
     @media screen and (max-width: 767px) {
        display: none;
     }
