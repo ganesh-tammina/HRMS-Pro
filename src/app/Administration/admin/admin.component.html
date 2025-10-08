@@ -1,17 +1,6 @@
 <!-- <input type="file" (change)="onFileSelected($event)" />
 <button (click)="uploadFile()">Upload Holidays</button> -->
 <ion-content [fullscreen]="true" class="admin-dashboard">
-  <div class="upload-container">
-
-
-    <!-- Browse Button -->
-
-
-    <!-- Show selected file name -->
-
-    <!-- Upload Button -->
-
-  </div>
   <ion-grid>
     <div>
       <ion-row>
@@ -39,7 +28,7 @@
                       </ion-thumbnail>
                       <ion-label>{{candidate.id}}</ion-label>
                       <ion-label>{{candidate.personalDetails.FirstName}}</ion-label>
-                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-button fill="popover-editemp" id='popover-editform'><ion-icon name="create-outline"></ion-icon></ion-button>
                     </ion-item>
                   </ion-list>
 
@@ -94,7 +83,41 @@
                   <ion-label>{{holiday.HolidayName}}</ion-label>
                   <ion-label>{{holiday.Date}}</ion-label>
                   <ion-label>{{holiday.Day}}</ion-label>
-                  <ion-icon name="create-outline"></ion-icon>
+                  <ion-button fill="popover-editform" id='popover-editform'><ion-icon name="create-outline"></ion-icon></ion-button>
+                  <ion-content trigger='' class="ion-padding">
+                      <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
+                        <ion-list lines="full" class="ion-no-margin">
+                    
+                          <ion-item>
+                            <ion-input label="Holiday Name" labelPlacement="stacked" formControlName="HolidayName" placeholder="e.g., Christmas"></ion-input>
+                          </ion-item>
+                          <div *ngIf="holidayForm.get('HolidayName')?.invalid && holidayForm.get('HolidayName')?.touched" class="error-message">
+                            Holiday Name is required.
+                          </div>
+                    
+                          <ion-item>
+                            <ion-input label="Date (YYYY-MM-DD)" labelPlacement="stacked" formControlName="Date" placeholder="e.g., 2025-12-25" type="date"></ion-input>
+                          </ion-item>
+                          
+                          <ion-item>
+                            <ion-input label="Day" labelPlacement="stacked" formControlName="Day" placeholder="e.g., Wednesday"></ion-input>
+                          </ion-item>
+                    
+                          <ion-item>
+                            <ion-label position="stacked">Upload Image</ion-label>
+                            <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                          </ion-item>
+                          <ion-label *ngIf="selectedFile" class="ion-padding-start">
+                            Selected: {{ selectedFile.name }}
+                          </ion-label>
+                    
+                        </ion-list>
+                    
+                        <ion-button expand="full" type="submit" [disabled]="!holidayForm.valid" class="ion-margin-top">
+                          Save Changes
+                        </ion-button>
+                      </form>
+                    </ion-content>
                 </ion-item>
               </ion-list>
             </ion-card-content>

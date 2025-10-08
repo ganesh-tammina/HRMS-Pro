@@ -1,3 +1,4 @@
+@import '../../../global.scss';
 .upload-container {
   margin: 20px;
   display: flex;
@@ -18,7 +19,6 @@ button:disabled {
   background-color: gray;
   cursor: not-allowed;
 }
-@import '../../../global.scss';
 .admin-dashboard {
     --background: #E6F1FF;
     padding: 20px;
