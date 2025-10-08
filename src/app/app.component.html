@@ -7,8 +7,8 @@
         <ion-content class="menu-content sidenav-content">
           <ion-list class="side-menu-list">
             <ion-menu-toggle auto-hide="false">
-              <ion-item routerDirection="root" [routerLink]="['/Home']" lines="none" detail="false"
-                routerLinkActive="selected">
+              <ion-item *ngIf="userType !== 'admin'" routerDirection="root" [routerLink]="['/Home']" lines="none"
+                detail="false" routerLinkActive="selected">
                 <div class="text-center">
                   <img src="assets/Icons/home-05.svg" width="24" height="24">
                   <ion-label>Home</ion-label>
