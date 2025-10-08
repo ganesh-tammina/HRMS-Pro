@@ -9,7 +9,7 @@ getRouter.get("/", async (req: Request, res: Response) => {
   const [rows]: any = await pool.query(
     `SELECT c.id,
             c.status,
-            p.FirstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender,
+            p.firstName, p.MiddleName, p.LastName, p.PhoneNumber, p.email, p.gender,
             j.JobTitle, j.Department, j.JobLocation, j.WorkType, j.BussinessUnit,
             o.DOJ, o.offerValidity, o.JoiningDate,
             e.companyEmail, e.password,m.annualSalary,m.basic,m.hra,m.medical,m.transport,m.special,m.subtotal,m.pfEmployer,m.pfEmployee,m.total
@@ -21,10 +21,10 @@ getRouter.get("/", async (req: Request, res: Response) => {
      LEFT JOIN packagedetails m ON c.id = m.employee_id`
   );
   const formatted = rows.map((row: any) => ({
-    id: parseInt(row.id),
+    id: row.id,
     status: row.status,
     personalDetails: {
-      FirstName: row.FirstName,
+      FirstName: row.firstName,
       MiddleName: row.MiddleName,
       LastName: row.LastName,
       PhoneNumber: row.PhoneNumber,

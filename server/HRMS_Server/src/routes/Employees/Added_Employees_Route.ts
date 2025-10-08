@@ -11,7 +11,7 @@ getEmployeesRouter.get("/", async (req: Request, res: Response) => {
                 e.employee_id AS id,
                 pd.FirstName,
                 pd.MiddleName,
-                pd.lastName,
+                pd.LastName,
                 pd.PhoneNumber,
                 pd.gender,
 
@@ -52,9 +52,9 @@ getEmployeesRouter.get("/", async (req: Request, res: Response) => {
     const formatted = rows.map((row: any) => ({
         id: row.id,
         personalDetails: {
-            firstName: row.firstName,
+            FirstName: row.FirstName,
             MiddleName: row.MiddleName,
-            lastName: row.lastName,
+            LastName: row.LastName,
             PhoneNumber: row.PhoneNumber,
             gender: row.gender,
         },
