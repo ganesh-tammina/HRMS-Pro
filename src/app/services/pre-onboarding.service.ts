@@ -93,9 +93,13 @@ export class CandidateService {
       error: (err: any) => console.error('Error loading candidates:', err)
     });
   }
-
+  
   getCandidateById(id: string): Observable<any> {
     return this.http.get<any>(`${this.getapiUrl}/${id}`);
+  }
+
+  getEmployeeById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.getEmployees}/${id}`);
   }
 
   getAdminById(id: string): Observable<any> {

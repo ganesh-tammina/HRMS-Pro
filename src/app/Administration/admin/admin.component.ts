@@ -11,7 +11,7 @@ import { CandidateService } from 'src/app/services/pre-onboarding.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, LeaveModalComponent]
+  imports: [CommonModule, IonicModule, FormsModule, LeaveModalComponent ]
 })
 export class AdminComponent implements OnInit {
   selectedFile: File | null = null;
@@ -19,6 +19,13 @@ export class AdminComponent implements OnInit {
   leaveData: any = null;
   EmployeeselectedFile: File | null = null;
   holidays: any;
+  candidatelist: any;
+  candidates: any;
+  public allCandidates: any[] = []; 
+  public pagedCandidates: any[] = []; 
+  public pageSize: number = 10;
+  public currentPage: number = 1;
+  public totalPages: number = 1;
   constructor(private http: HttpClient, private candidateService: CandidateService) { }
 
   ngOnInit() {
@@ -30,7 +37,52 @@ export class AdminComponent implements OnInit {
       this.holidays = res.data;
       console.log(res);
     });
+
+    
+    this.candidateService.getEmployeeById('').subscribe((data: any) => {
+      // Assuming data.candidates is the full array of candidates
+      this.allCandidates = data.candidates || []; 
+      this.calculatePagination();
+      this.updatePagedCandidates();
+      console.log('Candidates:', this.allCandidates);
+  });
   }
+
+  //pagination for employees list
+  calculatePagination() {
+    this.totalPages = Math.ceil(this.allCandidates.length / this.pageSize);
+    // Ensure currentPage doesn't exceed totalPages after data is loaded
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+        this.currentPage = this.totalPages;
+    } else if (this.totalPages === 0) {
+        this.currentPage = 1;
+    }
+}
+
+updatePagedCandidates() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    // Slice the full array to get only the items for the current page
+    this.pagedCandidates = this.allCandidates.slice(startIndex, endIndex);
+}
+
+changePage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+        this.updatePagedCandidates();
+    }
+}
+// Helper methods for easy navigation
+nextPage() {
+  this.changePage(this.currentPage + 1);
+}
+
+prevPage() {
+  this.changePage(this.currentPage - 1);
+}
+
+
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
