@@ -10,27 +10,27 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-candidate-status',
-  templateUrl: './candidate-status.component.html',
-  styleUrls: ['./candidate-status.component.scss'],
+  selector: 'app-candidate-offer-letter',
+  templateUrl: './candidate-offer-letter.component.html',
+  styleUrls: ['./candidate-offer-letter.component.scss'],
   standalone: true,
   imports: [HeaderComponent, CommonModule, IonicModule, ReactiveFormsModule]
 })
-
-export class CandidateStatusComponent implements OnInit {
+export class CandidateOfferLetterComponent  implements OnInit {
   currentCandidate: any
   activePage: string = 'openPage';
   hideOffer: boolean = false
   candidate: any;
-  ids: string = ''  
+  ids: string = ''
+  acceptDisabled = false;
+  rejectDisabled = false;
   currentCandidate$!: Observable<any>;
   onboardingForms!: FormGroup
+
 
   constructor(private candidateService: CandidateService, private router: Router, private http: HttpClient, private alertController: AlertController, private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
-
-
     const nav = this.router.getCurrentNavigation();
     this.candidate = nav?.extras.state?.['candidate'] || {};
     console.log('Candidate:', this.candidate);
@@ -57,14 +57,11 @@ export class CandidateStatusComponent implements OnInit {
     });
 
 
-
-
   }
 
   submitOnboarding() {
     if (this.onboardingForms.value.PhoneNumber == this.candidate.PhoneNumber) {
       this.hideOffer = true
-      this.router.navigate(['../candidate-status']);
     }
     else {
       alert("Please enter valid PhoneNumber")
@@ -72,9 +69,47 @@ export class CandidateStatusComponent implements OnInit {
 
   }
 
- 
+  async acceptCandidate(candidateId: number) {
+    this.rejectDisabled = true;
+    const alert = await this.alertController.create({
+      header: 'Accept Candidate',
+      message: `You accepted candidate with ID: ${candidateId}`,
+      buttons: ['OK'],
+    });
+
+    try {
+      const url = `http://30.0.0.221:3562/offerstatus/accept`;
+      const response = await this.http.put(url, { id: candidateId }).toPromise();
+      console.log('Accept response:', response);
+    } catch (error) {
+      console.error('Error accepting candidate:', error);
+    }
+
+    await alert.present();
+  }
+
+  async rejectCandidate(candidateId: number) {
+    this.acceptDisabled = true;
+    const alert = await this.alertController.create({
+      header: 'Reject Candidate',
+      message: `You rejected candidate with ID: ${candidateId}`,
+      buttons: ['OK'],
+    });
+
+    try {
+      const url = `http://30.0.0.221:3562/offerstatus/reject`;
+      const response = await this.http.put(url, { id: candidateId }).toPromise();
+      console.log('Reject response:', response);
+    } catch (error) {
+      console.error('Error rejecting candidate:', error);
+    }
+
+    await alert.present();
+  }
+
 
 
 
 
 }
+

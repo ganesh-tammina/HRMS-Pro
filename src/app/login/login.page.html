@@ -41,19 +41,21 @@
               <input type="email" formControlName="email" placeholder="Email address">
             </div>
             <div class="input-group">
+                <label>Enter valid OTP</label>
+                <!-- <ion-input-otp formControlName="otp"></ion-input-otp> -->
               <input type="text" formControlName="otp" placeholder="OTP">
             </div>
             <div class="input-group">
+                <label>New Password</label>
               <input type="password" formControlName="newPassword" placeholder="New Password">
             </div>
-            <button class="btn" type="submit" [disabled]="passwordUpdateForm.invalid">Update Password</button>
+            <button class="primary-btn" type="submit" [disabled]="passwordUpdateForm.invalid">Update Password</button>
           </form>
  <!-- FORGOT PASSWORD MODAL -->
           <div *ngIf="showForgotModal" (click)="closeForgotModal()">
               <div (click)="$event.stopPropagation()">
                 <!-- <div class="modal-header"> -->
-                    <button class="close-btn row-left" (click)="closeForgotModal()"><ion-icon name="chevron-back-outline"></ion-icon>Back</button>
-                  <h3>Forgot Password</h3>
+                   <h3>Forgot Password</h3>
                   
                 <!-- </div> -->
             
