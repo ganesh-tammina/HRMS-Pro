@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
   currentUser: Observable<Candidate | null>;
   isLoginPage = false
   iscandiateofferPage = false
+  CurrentuserType: string = ''
+  userType: string | null = null;
+
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router: Router, private candidateService: CandidateService) {
@@ -34,14 +37,30 @@ export class AppComponent implements OnInit {
         this.isLoginPage = event.urlAfterRedirects.includes('/login');
         this.iscandiateofferPage = event.urlAfterRedirects.includes('/candidate_status');
 
+        const userData = localStorage.getItem('loggedInUser');
+        if (userData) {
+          const parsedData = JSON.parse(userData);
+          this.userType = parsedData.type;
+          console.log('User type:', this.userType);
+        } else {
+          this.userType = null;
+        }
+
       }
     });
 
   }
+
   toggleDropdown() {
     this.showCategories = !this.showCategories;
   }
   ngOnInit(): void {
+    const userData = localStorage.getItem('loggedInUser');
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      this.userType = parsedData.type; // "admin"
+      console.log('User type:', this.userType);
+    }
   }
   preonboard() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

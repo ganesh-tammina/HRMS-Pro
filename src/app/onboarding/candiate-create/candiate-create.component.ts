@@ -25,9 +25,9 @@ export class CandiateCreateComponent implements OnInit {
   ngOnInit() {
     this.candidateForm = this.fb.group({
       personalDetails: this.fb.group({
-        FirstName: ['', Validators.required],
+        firstName: ['', Validators.required],
         MiddleName: ['', Validators.required],
-        LastName: ['', Validators.required],
+        lastName: ['', Validators.required],
         PhoneNumber: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         gender: ['', Validators.required],
