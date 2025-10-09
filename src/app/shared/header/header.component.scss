@@ -1,3 +1,4 @@
+@import '../../../global.scss';
 .keka-navbar {
   height: fit-content;
   .navbar-toolbar {
@@ -11,8 +12,11 @@
     ion-searchbar {
       margin-left: 50px;
       --border-radius: 24px;
-      width: 350px; 
-      
+      width: 560px;
+      height: 45px; 
+      input {
+        height: 45px;
+      }
   }
   ion-menu-button {
     --color: #fff;
@@ -24,6 +28,7 @@
     }
     img.logo {
       width: 150px;
+      height: 56px;
     }
   }
   @media screen and (max-width: 480px) {
@@ -36,12 +41,7 @@
     }
   }
 
-  ion-button {
-    width: 250px;
-    --background: #fff;
-    margin-left: 99px;
-    --color: #2d2d2d;
-  }
+
     .search-box {
       --border-radius: 9999px;
       --background: white;
@@ -72,4 +72,16 @@
 .candidate-name{
   color: #fff;
   font-weight: 500;
+}
+
+.profile-dropdown {
+  --width: 210px;
+  ion-list {
+    ion-item {
+      @include normal-text-unbold();
+      ion-icon {
+        margin-right: 5px;
+      }
+    }
+  }
 }

@@ -18,9 +18,11 @@
                   <ion-popover trigger="popover-editform"  class="upload-file" [dismissOnSelect]="false">
                       <ng-template>
                         <ion-content class="ion-padding">                  
-                         
-                              <input type="file" #EmployeeInput  (click)="EmployeeInput.click()" (change)="EmployeeSelected($event)" accept=".xlsx,.xls" />
-                         
+                         <div>
+                           <p  (click)="EmployeeInput.click()">upload candidate file</p>
+                            <input type="file" #EmployeeInput   (change)="EmployeeSelected($event)" accept=".xlsx,.xls" hidden/>                         
+                         </div>
+                              
                           <div class="row-center">                  
                             <button (click)="EmployeesUpload()" [disabled]="!EmployeeselectedFile">Upload</button>
                           </div>  
@@ -85,7 +87,10 @@
                   <ion-popover trigger="holiday-popup" class="upload-file" [dismissOnSelect]="false">
                       <ng-template>
                         <ion-content class="ion-padding">  
-                  <input type="file" #fileInput (click)="fileInput.click()" (change)="onFileSelected($event)" accept=".xlsx,.xls"/>
+                            <div>
+                                <p  (click)="fileInput.click()">upload holidays file</p>
+                  <input type="file" #fileInput (change)="onFileSelected($event)" accept=".xlsx,.xls" hidden/>
+                            </div>
                   <div class="row-center">
                   <button (click)="Upload()" [disabled]="!selectedFile">Upload</button>
                   </div>

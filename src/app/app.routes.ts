@@ -99,6 +99,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'profile-page',
+    loadComponent: () =>
+      import('./profile-page/profile-page.component').then(
+        m => m.ProfilePageComponent
+      ),
+  },
+  {
     path: 'admin',
     loadComponent: () =>
       import('./Administration/admin/admin.component').then(

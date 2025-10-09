@@ -1,0 +1,19 @@
+@import '../../global.scss';
+.welcome-block {
+    background: #00568F;  
+    border-radius: 8px;
+    p{
+      color: #DADEE4;
+      @include card-header();
+      font-weight: 700; 
+      padding-left: 24px;
+    }
+    img {
+      height: 72px;
+      padding-top: 5px;
+      padding-right: 15px;
+      @media screen and (max-width: 767px) {
+         display: none;
+      }
+    }
+  }
