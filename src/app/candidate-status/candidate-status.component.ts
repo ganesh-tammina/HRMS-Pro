@@ -63,8 +63,11 @@ export class CandidateStatusComponent implements OnInit {
 
   submitOnboarding() {
     if (this.onboardingForms.value.PhoneNumber == this.candidate.PhoneNumber) {
-      this.hideOffer = true
-      this.router.navigate(['../candidate-status']);
+      // this.hideOffer = true
+      this.router.navigate(
+        ['/candidate-offer-letter', this.candidate.id],
+        { state: { candidate: this.candidate } }
+      );
     }
     else {
       alert("Please enter valid PhoneNumber")

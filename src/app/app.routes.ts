@@ -91,7 +91,13 @@ export const routes: Routes = [
         m => m.CandidateStatusComponent
       ),
   },
-
+  {
+    path: 'candidate-offer-letter/:id',
+    loadComponent: () =>
+      import('./candidate-offer-letter/candidate-offer-letter.component').then(
+        m => m.CandidateOfferLetterComponent
+      ),
+  },
   {
     path: 'admin',
     loadComponent: () =>

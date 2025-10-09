@@ -8,7 +8,7 @@ import { addIcons } from 'ionicons';
 import { checkmarkCircle, alertCircleOutline, calendarOutline, listOutline,
          checkmarkOutline, chevronBackOutline,  chevronForwardOutline, 
          closeOutline, notificationsOutline, location, mail, personCircle, addCircleOutline,
-        createOutline, ellipsisVerticalCircleOutline, personAddOutline} from 'ionicons/icons';
+        createOutline, ellipsisVerticalCircleOutline, personAddOutline, phonePortrait} from 'ionicons/icons';
 
 addIcons({
   'checkmark-outline': checkmarkOutline,
@@ -26,7 +26,8 @@ addIcons({
    'add-circle-outline': addCircleOutline,
    'create-outline': createOutline,
    'ellipsis-vertical-circle-outline': ellipsisVerticalCircleOutline,
-   'person-add-outline': personAddOutline
+   'person-add-outline': personAddOutline,
+   'phone-portrait' : phonePortrait
 });
 
 bootstrapApplication(AppComponent, {

@@ -1,4 +1,4 @@
-<div class="offerletter-block" *ngIf="hideOffer">
+<div class="offerletter-block">
     <div class="logo-header row-space-between">
       <ion-img src="../../assets/tammina-blue-logo.svg" alt="On Leave"></ion-img>
       <div>
@@ -81,18 +81,18 @@
         </ion-button>
       </div>
       <div class="footer-block">
-        <p>Any questions? Reach out to us</p>
+        <p class="mail-text">Any questions? Reach out to us</p>
         <div class="row-space-between">
           <div class="row-left" *ngIf="currentCandidate">
-            <ion-icon name="person-circle"></ion-icon>
+            <ion-icon name="mail"></ion-icon>
             <p>{{currentCandidate.employeeCredentials?.companyEmail}}</p>
           </div>
           <div class="row-left">
-            <ion-icon name="person-circle"></ion-icon>
+            <ion-icon name="mail"></ion-icon>
             <p>hr@tammina.com</p>
           </div>
           <div class="row-left">
-            <ion-icon name="person-circle"></ion-icon>
+            <ion-icon name="phone-portrait"></ion-icon>
             <p>{{currentCandidate.personalDetails?.PhoneNumber}}</p>
           </div>
         </div>

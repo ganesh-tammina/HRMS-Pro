@@ -19,7 +19,6 @@ import { Observable } from 'rxjs';
 export class CandidateOfferLetterComponent  implements OnInit {
   currentCandidate: any
   activePage: string = 'openPage';
-  hideOffer: boolean = false
   candidate: any;
   ids: string = ''
   acceptDisabled = false;
@@ -59,15 +58,7 @@ export class CandidateOfferLetterComponent  implements OnInit {
 
   }
 
-  submitOnboarding() {
-    if (this.onboardingForms.value.PhoneNumber == this.candidate.PhoneNumber) {
-      this.hideOffer = true
-    }
-    else {
-      alert("Please enter valid PhoneNumber")
-    }
 
-  }
 
   async acceptCandidate(candidateId: number) {
     this.rejectDisabled = true;
@@ -78,7 +69,7 @@ export class CandidateOfferLetterComponent  implements OnInit {
     });
 
     try {
-      const url = `http://30.0.0.221:3562/offerstatus/accept`;
+      const url = `http://30.0.0.78:3562/offerstatus/accept`;
       const response = await this.http.put(url, { id: candidateId }).toPromise();
       console.log('Accept response:', response);
     } catch (error) {
@@ -97,7 +88,7 @@ export class CandidateOfferLetterComponent  implements OnInit {
     });
 
     try {
-      const url = `http://30.0.0.221:3562/offerstatus/reject`;
+      const url = `http://30.0.0.78:3562/offerstatus/reject`;
       const response = await this.http.put(url, { id: candidateId }).toPromise();
       console.log('Reject response:', response);
     } catch (error) {
