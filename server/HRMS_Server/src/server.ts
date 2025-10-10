@@ -14,6 +14,8 @@ import getEmployyeeCredentialsRouter from './routes/Employees/Employee_Credentia
 import existingEmployeesRouter from './routes/ExistingEmployees/ExistingEmployees';
 import StatusPutRouter from './routes/OfferStatus/OfferStatus';
 import AtRouter from './routes/Attendance/attendance-route';
+import HolidaysPutRouter from './routes/Holidays/holidaysPut';
+
 dotenv.config();
 
 class Server {
@@ -45,6 +47,7 @@ class Server {
     this.app.use('/offerstatus', StatusPutRouter)
     // this.app.use('/employee', getEmployyeeCredentialsRouter)
     this.app.use('/', AtRouter);
+    this.app.use('/',HolidaysPutRouter)
 
     this.app.post('/send-email', async (req, res) => {
       const { to, subject, text } = req.body;
