@@ -21,7 +21,7 @@ postOrgInfoRouter.post('/uploads', upload.single('file'), (req, res) => {
     if (!req.file) return res.status(400).send('No file uploaded');
 
     // Return URL of uploaded image
-    const imageUrl = `http://localhost:3562/uploads/${req.file.filename}`;
+    const imageUrl = `http://30.0.0.78:3562/uploads/${req.file.filename}`;
     res.json({ imageUrl });
 });
 
@@ -34,7 +34,7 @@ postOrgInfoRouter.get("/uploads", (req: Request, res: Response) => {
             return res.status(500).json({ success: false, message: "Unable to scan uploads folder" });
         }
 
-        const imageUrls = files.map((file) => `http://localhost:3562/uploads/${file}`);
+        const imageUrls = files.map((file) => `http://30.0.0.78:3562/uploads/${file}`);
         res.json({ success: true, images: imageUrls });
     });
 });
