@@ -6,8 +6,13 @@
     <ion-grid class="ion-margin ion-margin-horizontal">
       <ion-row>
         <ion-col size="6" class="welcome-block ion-no-padding row-space-between">
-          <div class="row-left">
-            <p>Welcome {{currentCandidate.personalDetails.FirstName}}</p>
+          <div class="d-flex ion-align-items-start">
+              <img class="pl-5" [attr.alt]="currentCandidate.personalDetails.FirstName" src="../../assets/user.svg" width="100" />
+            <div class="pl-5">
+                <p class="name">{{currentCandidate.personalDetails.FirstName}} <span>WFH</span></p>
+                <p class="des">Sr. Software Engineer</p>
+            </div>            
+            
           </div>
           <img  class="bg2"  src="../../assets/bg-welcome1.svg" />
         </ion-col>

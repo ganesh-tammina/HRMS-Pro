@@ -2,11 +2,23 @@
 .welcome-block {
     background: #00568F;  
     border-radius: 8px;
-    p{
+    p.name{
       color: #DADEE4;
       @include card-header();
       font-weight: 700; 
-      padding-left: 24px;
+      padding-left: 8px;
+      margin-bottom: 0;
+      span {
+        @include text-bold();
+        background: #6e9bfa;
+        padding: 5px 10px;
+        border-radius: 20px;
+      }
+    }
+    p.des {
+      color: #DADEE4;
+      @include body-text();
+      padding-left: 8px;
     }
     img {
       height: 72px;
