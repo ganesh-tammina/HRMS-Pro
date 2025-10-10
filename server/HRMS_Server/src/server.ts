@@ -14,6 +14,8 @@ import getEmployyeeCredentialsRouter from './routes/Employees/Employee_Credentia
 import existingEmployeesRouter from './routes/ExistingEmployees/ExistingEmployees';
 import StatusPutRouter from './routes/OfferStatus/OfferStatus';
 import AtRouter from './routes/Attendance/attendance-route';
+import path from 'path';
+import postOrgInfoRouter from './routes/Org_Info/Org_imgs';
 dotenv.config();
 
 class Server {
@@ -31,6 +33,8 @@ class Server {
 
   private middlewares(): void {
     this.app.use(express.json());
+    this.app.use(cors({ origin: '*' }));
+    this.app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
   }
 
   private routes(): void {
@@ -45,7 +49,8 @@ class Server {
     this.app.use('/offerstatus', StatusPutRouter)
     // this.app.use('/employee', getEmployyeeCredentialsRouter)
     this.app.use('/', AtRouter);
-
+    this.app.use('/', postOrgInfoRouter);
+    this.app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
     this.app.post('/send-email', async (req, res) => {
       const { to, subject, text } = req.body;
       if (!to || !subject || !text) {
