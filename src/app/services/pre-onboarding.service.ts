@@ -64,6 +64,7 @@ export class CandidateService {
   private changeoldEmpwd = `${this.api}change-pwd`;
   private offerStatusapi = "http://30.0.0.78:3562/offerstatus/status";
   private holidaysUrl = `${this.api}holidays/public_holidays`;
+  private imagesUrl = `${this.api}uploads`;
 
 
   private candidatesSubject = new BehaviorSubject<Candidate[]>([]);
@@ -93,7 +94,13 @@ export class CandidateService {
       error: (err: any) => console.error('Error loading candidates:', err)
     });
   }
-  
+  uploadImage(file: File): Observable<{ imageUrl: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // POST to /upload route
+    return this.http.post<{ imageUrl: string }>(`${this.imagesUrl}`, formData);
+  }
   getCandidateById(id: string): Observable<any> {
     return this.http.get<any>(`${this.getapiUrl}/${id}`);
   }
@@ -111,6 +118,9 @@ export class CandidateService {
   }
   getofferStatus(): Observable<any> {
     return this.http.get<any>(this.offerStatusapi);
+  }
+  getImages(): Observable<any> {
+    return this.http.get<any>(this.imagesUrl);
   }
 
   private normalizeCandidates(data: any): Candidate[] {

@@ -50,7 +50,7 @@ class Server {
     // this.app.use('/employee', getEmployyeeCredentialsRouter)
     this.app.use('/', AtRouter);
     this.app.use('/', postOrgInfoRouter);
-    this.app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+    this.app.use("/uploads", express.static(path.join(__dirname, "../image_org")));
     this.app.post('/send-email', async (req, res) => {
       const { to, subject, text } = req.body;
       if (!to || !subject || !text) {
