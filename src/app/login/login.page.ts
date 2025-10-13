@@ -5,14 +5,13 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CandidateService } from 'src/app/services/pre-onboarding.service';
 import { AuthService, LoggedUser } from '../Administration/services/auth-service.service';
-import { IonInputOtp } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, IonInputOtp]
+  imports: [CommonModule, IonicModule, ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
