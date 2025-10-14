@@ -34,7 +34,7 @@
         <!-- Right: Notifications + Candidate Info -->
         <ion-col size="2" class="ion-text-end">
           <div class="row-right" *ngIf="currentCandidate">
-
+            <p class="name-style pr-15">{{ currentCandidate.personalDetails.FirstName }}</p>
             <ion-icon name="notifications-outline" class="nav-icon"></ion-icon>
             <ion-button id="popover-dropdown" fill="clear"> <img class="pl-5" [attr.alt]="currentCandidate.personalDetails.FirstName" src="../../assets/user.svg" width="46" />
              </ion-button>

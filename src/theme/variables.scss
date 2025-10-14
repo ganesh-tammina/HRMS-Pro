@@ -3,10 +3,13 @@
 $primary-color: #07488D;
 $secondry-color: #3498DB;
 $black-color: #000000;
-$text-color: #2d2d2d;
+$text-color: #333333;
 $border-color: #ABABAB;
+$Subtle-Text: #707070;
+$white-color: #FFFFFF;
+$success-color: #28A745;
 
-$bg-color: #D9D9D9;
+$bg-color: #f4f5f8;
 
 
 
@@ -24,12 +27,24 @@ $bg-color: #D9D9D9;
     line-height: 26px;
     @include font-bold();
 }
+@mixin page-header-title {
+    font-size: 28px;
+    line-height: 24px;
+    @include font-bold();
+}
 
 @mixin card-header {
     font-size: 24px;
     line-height: 22px;
     @include font-bold();
 }
+
+@mixin card-header-title {
+    font-size: 20px;
+    line-height: 20px;
+    @include font-bold();
+}
+
 
 @mixin card-sub-title {
     font-size: 18px;
@@ -49,8 +64,7 @@ $bg-color: #D9D9D9;
 @mixin body-text {
     font-size: 12px;
     line-height: 16px;    
-    @include font-bold();
-    font-weight: 400;
+    @include font-normal();
 }
 
 @mixin text-bold {
@@ -70,7 +84,7 @@ $bg-color: #D9D9D9;
 }
 
 body{
-    color: #2d2d2d;
+  color: #333333;
 }
 
 @mixin scroll-style {
