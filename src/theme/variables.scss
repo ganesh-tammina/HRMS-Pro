@@ -8,8 +8,20 @@ $border-color: #ABABAB;
 $Subtle-Text: #707070;
 $white-color: #FFFFFF;
 $success-color: #28A745;
-
 $bg-color: #f4f5f8;
+
+:root {
+  --ion-color-primary: #07488D;
+  --ion-color-secondary: #3498DB;
+  --ion-color-success: #28A745;
+  --ion-color-warning: #ffc409;
+  --ion-color-danger: #bb4b72;
+  --ion-bg-color: #f4f5f8;
+  --ion-text-color: #333333;
+  --ion-border-color: #ABABAB;
+  --ion-subtle-text: #707070;
+  --ion-white-color: #FFFFFF;
+}
 
 
 

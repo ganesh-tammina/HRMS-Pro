@@ -1,6 +1,6 @@
 @import './../../global.scss';
 ion-content {
- --background: $bg-color ;
+ --background: var(--ion-bg-color) !important;
 }
 p {
   @include body-text();
@@ -23,8 +23,8 @@ p {
     align-items: center;
     height: 100%;
     padding: 0 16px;
-  --background: #bb4b72;
-  display: grid;
+  --background: var(--ion-color-danger);
+    display: grid;
   }
 
   .navbar-left {
@@ -44,9 +44,9 @@ p {
 
     .search-box {
       --border-radius: 9999px;
-      --background: white;
-      --color: #444;
-      --icon-color: #666;
+      --background: var(--ion-white-color);
+      --color: var(--ion-text-color);
+      --icon-color: var(--ion-text-color);
       max-width: 480px;
       width: 100%;
       padding: 0 10px;
@@ -236,14 +236,14 @@ ion-avatar {
       --background: #B01712;
     }
     ion-button.btn-clockout {
-      --border: 1px solid$white-color;
-      --background: $white-color;
+      --border: 1px solid var(--ion-white-color);;
+      --background: var(--ion-white-color);
       --color: #B01712;
     }
     ion-button#popover-button {
-      --border: 1px solid $white-color;
-      --background: $white-color;
-      --color: $text-color;
+      --border: 1px solid var(--ion-white-color);
+      --background: var(--ion-white-color) !important;
+      --color: var(--ion-text-color) !important;
     }
 }
 
@@ -274,7 +274,7 @@ ion-avatar {
     }
     .name {
       @include text-style-bold();
-      color: #3498DB;
+      color: $secondry-color;
     }
     .designation {
       @include normal-text();
@@ -285,7 +285,7 @@ ion-avatar {
    padding-left: 12px;
    .name {
     @include text-style-bold();
-    color: #3498DB;
+    color: $secondry-color;
     margin: 0;
   }
   }
@@ -313,7 +313,7 @@ ion-avatar {
       margin-inline-end: 15px !important;
       .text {
         @include normal-text();
-        color: #1F90CF;
+        color: $secondry-color;
       }
 
     }
@@ -340,7 +340,7 @@ ion-avatar {
         }
       }
       &.tab-selected {
-        border-bottom: 2px solid #0054e9;
+        border-bottom: 2px solid $secondry-color;
       }
     }
   }
@@ -362,7 +362,7 @@ ion-avatar {
            }
            span {
             @include body-text();
-            color: #1371BF;
+            color: $secondry-color;
             &.gray {
               color: #767676;
             } 

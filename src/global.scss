@@ -99,8 +99,11 @@ ion-list-header, ion-item{
 .searchbar-input.sc-ion-searchbar-md {
     -webkit-padding-end: 1.4375rem  !important;
     padding-inline-end: 1.4375rem !important;
-        padding-top: 0.2rem !important;
-    padding-bottom: 0.2rem !important;
+        padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+.searchbar-search-icon.sc-ion-searchbar-md {
+    top: 13px !important;
 }
 .page-containerOn{
         --background: #f9fafc;

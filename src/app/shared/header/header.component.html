@@ -7,7 +7,7 @@
         <ion-col size="10" class="row-left">
             <img src="./../assets/techlogo.png" alt="Tech Tammina" class="logo" height="56"/>
             <ion-searchbar placeholder="Search employee by name" [(ngModel)]="searchQuery" (ionInput)="onSearch()"
-              showCancelButton="never">
+              showCancelButton="never" style="height: 50px;">
             </ion-searchbar>
             <ion-button *ngIf="(searchResults.length > 0)" (click)="openEmployeeListModal()">
                 {{ results.join(', ') }}
