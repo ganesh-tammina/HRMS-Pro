@@ -21,7 +21,7 @@ export const config: Config = {
   DB_HOST: process.env.DB_HOST || "",
   EMAIL_USER: process.env.EMAIL_USER || "",
   EMAIL_PASS: process.env.EMAIL_PASS || "",
-  DB_PORT: Number(process.env.DB_PORT),
+  DB_PORT: Number(process.env.DB_PORT) || 3306,
 };
 
 
