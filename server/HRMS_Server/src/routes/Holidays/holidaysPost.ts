@@ -31,6 +31,20 @@ postHolidaysRouter.post("/public_holidays", upload.single("file"), async (req: R
 });
 
 
+postHolidaysRouter.get("/public_holidays", async (req: Request, res: Response) => {
+    try {
+        const [rows]: any = await pool.query("SELECT * FROM public_holidays ORDER BY Date ASC");
+        res.json({
+            success: true,
+            count: rows.length,
+            data: rows,
+        });
+    } catch (error) {
+        console.error("Error fetching holidays:", error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
 export default postHolidaysRouter;
 
 

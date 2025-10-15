@@ -171,7 +171,7 @@ export class ForGotService {
           .json({ success: false, message: error.details[0]?.message });
 
       const [existing]: any = await pool.query(
-        `SELECT email FROM employees WHERE email = ?`,
+        `SELECT companyEmail FROM employees WHERE companyEmail = ?`,
         [value.email]
       );
 
@@ -261,7 +261,7 @@ export class ForGotService {
 
       try {
         const [employee_id]: any = await pool.query(
-          `SELECT employee_id FROM employees WHERE email = ?`,
+          `SELECT employee_id FROM employees WHERE companyEmail = ?`,
           [email]
         );
 

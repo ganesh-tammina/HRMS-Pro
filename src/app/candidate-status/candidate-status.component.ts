@@ -22,9 +22,7 @@ export class CandidateStatusComponent implements OnInit {
   activePage: string = 'openPage';
   hideOffer: boolean = false
   candidate: any;
-  ids: string = ''
-  acceptDisabled = false;
-  rejectDisabled = false;
+  ids: string = ''  
   currentCandidate$!: Observable<any>;
   onboardingForms!: FormGroup
 
@@ -65,7 +63,11 @@ export class CandidateStatusComponent implements OnInit {
 
   submitOnboarding() {
     if (this.onboardingForms.value.PhoneNumber == this.candidate.PhoneNumber) {
-      this.hideOffer = true
+      // this.hideOffer = true
+      this.router.navigate(
+        ['/candidate-offer-letter', this.candidate.id],
+        { state: { candidate: this.candidate } }
+      );
     }
     else {
       alert("Please enter valid PhoneNumber")
@@ -73,44 +75,7 @@ export class CandidateStatusComponent implements OnInit {
 
   }
 
-  async acceptCandidate(candidateId: number) {
-    this.rejectDisabled = true;
-    const alert = await this.alertController.create({
-      header: 'Accept Candidate',
-      message: `You accepted candidate with ID: ${candidateId}`,
-      buttons: ['OK'],
-    });
-
-    try {
-      const url = `http://30.0.0.221:3562/offerstatus/accept`;
-      const response = await this.http.put(url, { id: candidateId }).toPromise();
-      console.log('Accept response:', response);
-    } catch (error) {
-      console.error('Error accepting candidate:', error);
-    }
-
-    await alert.present();
-  }
-
-  async rejectCandidate(candidateId: number) {
-    this.acceptDisabled = true;
-    const alert = await this.alertController.create({
-      header: 'Reject Candidate',
-      message: `You rejected candidate with ID: ${candidateId}`,
-      buttons: ['OK'],
-    });
-
-    try {
-      const url = `http://30.0.0.221:3562/offerstatus/reject`;
-      const response = await this.http.put(url, { id: candidateId }).toPromise();
-      console.log('Reject response:', response);
-    } catch (error) {
-      console.error('Error rejecting candidate:', error);
-    }
-
-    await alert.present();
-  }
-
+ 
 
 
 

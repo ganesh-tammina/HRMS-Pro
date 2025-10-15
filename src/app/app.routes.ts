@@ -16,8 +16,11 @@ import { CreateOfferComponent } from './onboarding/create-offer/create-offer.com
 import { LeavesComponent } from '../app/Attendance/me/leaves/leaves.component';
 import { authGuard } from './authgurd.guard';
 import { AuthGuard } from './Administration/services/auth-guard.guard';
+import { adminRoutes } from './Administration/admin.routes';
 
 export const routes: Routes = [
+  ...adminRoutes,
+
   {
     path: '',
     redirectTo: 'login',
@@ -91,16 +94,14 @@ export const routes: Routes = [
         m => m.CandidateStatusComponent
       ),
   },
-
   {
-    path: 'admin',
+    path: 'candidate-offer-letter/:id',
     loadComponent: () =>
-      import('./Administration/admin/admin.component').then(
-        m => m.AdminComponent
+      import('./candidate-offer-letter/candidate-offer-letter.component').then(
+        m => m.CandidateOfferLetterComponent
       ),
-    canActivate: [AuthGuard],  // <-- corrected
-    data: { role: 'admin' }
-  }
+  },
+
 
 
 

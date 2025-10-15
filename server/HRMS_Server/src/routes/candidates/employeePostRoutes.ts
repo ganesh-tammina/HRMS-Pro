@@ -10,29 +10,33 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
   const conn = await pool.getConnection();
   try {
     const { personalDetails, jobDetailsForm } = req.body;
+
     await conn.beginTransaction();
-    const [candidateResult]: any = await conn.query("INSERT INTO candidates VALUES ()");
+
+    const [candidateResult]: any = await conn.query(
+      "INSERT INTO candidates VALUES ()"
+    );
     const candidateId = candidateResult.insertId;
 
+    // ✅ Match case-sensitive field names from frontend
     await conn.query(
-      `INSERT INTO personal_details
-       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO personal_details 
+        (employee_id, firstName, MiddleName, lastName, PhoneNumber, email, gender)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
-        personalDetails.FirstName,
+        personalDetails.firstName,   // was FirstName
         personalDetails.MiddleName,
-        personalDetails.LastName,
+        personalDetails.lastName,    // was LastName
         personalDetails.PhoneNumber,
         personalDetails.email,
         personalDetails.gender,
-        personalDetails.initials,
       ]
     );
 
     await conn.query(
-      `INSERT INTO job_details
-       (employee_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
+      `INSERT INTO job_details 
+        (employee_id, JobTitle, Department, JobLocation, WorkType, BussinessUnit)
        VALUES (?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
@@ -53,6 +57,7 @@ postRouter.post("/jd", async (req: Request, res: Response) => {
     conn.release();
   }
 });
+
 
 /* CREATE Offer Details */
 postRouter.post("/offer-details", async (req: Request, res: Response) => {
@@ -198,8 +203,8 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
 
     await conn.query(
       `INSERT INTO personal_details
-       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender, initials)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+       (employee_id, FirstName, MiddleName, LastName, PhoneNumber, email, gender)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         candidateId,
         personalDetails.FirstName,
@@ -208,7 +213,6 @@ postRouter.post("/udd", async (req: Request, res: Response) => {
         personalDetails.PhoneNumber,
         personalDetails.email,
         personalDetails.gender,
-        personalDetails.initials,
       ]
     );
 

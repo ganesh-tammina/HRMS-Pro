@@ -1,3 +1,4 @@
+@import "../../../global.scss";
 :host {
   --bg: #f7f8fb;
   --card: #ffffff;
@@ -85,31 +86,25 @@ ion-content {
 
 /* Table */
 .table {
-  margin: 16px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+.table-header {
+  --background: #f7f8fb;
+  ion-col {
+    @include normal-text();
+    height: 40px;
+    padding: 0 16px;
+    color: #2d2d2d;
+  }
 }
 .table-row {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  align-items: center;
-  padding: 14px 16px;
-  border-top: 1px solid var(--line);
-  &:first-child { border-top: none; }
+  ion-col {
+      @include normal-text-unbold();
+      height: 52px;
+      padding: 0 16px;
+      color: #2d2d2d;
+  }
 }
-.table-head {
-  background: #fafafa;
-  font-size: 12px;
-  font-weight: 700;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
 }
-.cell {
-  font-size: 14px;
-}
+
 .empty {
   text-align: center;
   padding: 40px 20px;

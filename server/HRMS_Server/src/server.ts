@@ -16,6 +16,8 @@ import StatusPutRouter from './routes/OfferStatus/OfferStatus';
 import AtRouter from './routes/Attendance/attendance-route';
 import EmpStatusRouter from './routes/OfferStatus/EmployeeStatus';
 import excel from './routes/ExcelData/ExcelRoute'
+import path from 'path';
+import postOrgInfoRouter from './routes/Org_Info/Org_imgs';
 dotenv.config();
 
 class Server {
@@ -33,6 +35,8 @@ class Server {
 
   private middlewares(): void {
     this.app.use(express.json());
+    this.app.use(cors({ origin: '*' }));
+    this.app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
   }
 
   private routes(): void {
@@ -49,7 +53,8 @@ class Server {
     this.app.use('/', AtRouter);
     this.app.use('/', EmpStatusRouter);
     this.app.use('/', excel)
-
+    this.app.use('/', postOrgInfoRouter);
+    this.app.use("/uploads", express.static(path.join(__dirname, "../image_org")));
     this.app.post('/send-email', async (req, res) => {
       const { to, subject, text } = req.body;
       if (!to || !subject || !text) {
