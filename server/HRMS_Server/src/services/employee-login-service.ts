@@ -60,7 +60,7 @@ export default class LoginService {
       if (employeeRows.length === 0) {
         return res.status(400).json({
           success: false,
-          message: "Email not found in records.",
+          message: "Email not found.",
         });
       }
 

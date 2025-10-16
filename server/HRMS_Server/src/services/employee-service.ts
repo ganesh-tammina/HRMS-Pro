@@ -1,10 +1,9 @@
-import { pool } from "../config/database";
-import { Request, Response } from "express";
-import { EmployeesInterface, promised } from "../interface/employee-interface";
-import { PoolConnection, ResultSetHeader } from "mysql2/promise";
+import { pool } from '../config/database';
+import { Request, Response } from 'express';
+import { EmployeesInterface, promised } from '../interface/employee-interface';
+import { PoolConnection, ResultSetHeader } from 'mysql2/promise';
 
 export default class Employeeservices implements EmployeesInterface {
-
   async addEmployees(
     req: Request,
     res: Response,
@@ -32,8 +31,8 @@ export default class Employeeservices implements EmployeesInterface {
           success: false,
           statusCode: 400,
           message:
-            "Missing required fields: EmployeeNumber and WorkEmail are mandatory.",
-          error: "Validation Error",
+            'Missing required fields: EmployeeNumber and WorkEmail are mandatory.',
+          error: 'Validation Error',
         };
       }
 
@@ -75,7 +74,7 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: true,
           statusCode: 201,
-          message: "Employee inserted successfully.",
+          message: 'Employee inserted successfully.',
           data: { employee_id: result.insertId },
         };
       }
@@ -83,11 +82,11 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Database connection unavailable.",
-        error: "Connection Error",
+        message: 'Database connection unavailable.',
+        error: 'Connection Error',
       };
     } catch (error: any) {
-      console.error("Error inserting employee:", error);
+      console.error('Error inserting employee:', error);
 
       if (standalone && connection) {
         await connection.rollback();
@@ -96,7 +95,7 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Internal server error.",
+        message: 'Internal server error.',
         error: error.message,
       };
     } finally {
@@ -109,7 +108,7 @@ export default class Employeeservices implements EmployeesInterface {
   async addAddress(
     req: Request,
     res: Response,
-    addType: "Current" | "Permanent",
+    addType: 'Current' | 'Permanent',
     standalone?: boolean
   ): Promise<promised> {
     let connection: PoolConnection | null = null;
@@ -121,8 +120,8 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: false,
           statusCode: 400,
-          message: "Missing required field: employee_id.",
-          error: "Validation Error",
+          message: 'Missing required field: employee_id.',
+          error: 'Validation Error',
         };
       }
 
@@ -133,7 +132,7 @@ export default class Employeeservices implements EmployeesInterface {
 
       const queryConnection = standalone ? connection : pool;
 
-      const prefix = addType === "Current" ? "Current" : "Permanent";
+      const prefix = addType === 'Current' ? 'Current' : 'Permanent';
       const AddressLine1 = req.body[`${prefix}AddressLine1`] || null;
       const AddressLine2 = req.body[`${prefix}AddressLine2`] || null;
       const AddressCity = req.body[`${prefix}AddressCity`] || null;
@@ -172,11 +171,11 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Database connection unavailable.",
-        error: "Connection Error",
+        message: 'Database connection unavailable.',
+        error: 'Connection Error',
       };
     } catch (error: any) {
-      console.error("Error inserting address:", error);
+      console.error('Error inserting address:', error);
 
       if (standalone && connection) {
         await connection.rollback();
@@ -185,7 +184,7 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Internal server error.",
+        message: 'Internal server error.',
         error: error.message,
       };
     } finally {
@@ -238,7 +237,7 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: false,
           statusCode: 400,
-          message: "Missing required field: employee_id.",
+          message: 'Missing required field: employee_id.',
         };
       }
 
@@ -291,7 +290,7 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: true,
           statusCode: 201,
-          message: "Employment details inserted successfully.",
+          message: 'Employment details inserted successfully.',
           data: { employment_id: result.insertId },
         };
       }
@@ -299,11 +298,11 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Database connection unavailable.",
-        error: "Connection Error",
+        message: 'Database connection unavailable.',
+        error: 'Connection Error',
       };
     } catch (error: any) {
-      console.error("Error inserting employment details:", error);
+      console.error('Error inserting employment details:', error);
 
       if (standalone && connection) {
         await connection.rollback();
@@ -312,7 +311,7 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Internal server error.",
+        message: 'Internal server error.',
         error: error.message,
       };
     } finally {
@@ -345,7 +344,7 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: false,
           statusCode: 400,
-          message: "Missing required field: employee_id.",
+          message: 'Missing required field: employee_id.',
         };
       }
 
@@ -378,7 +377,7 @@ export default class Employeeservices implements EmployeesInterface {
 
         return {
           success: true,
-          message: "Exit details added successfully",
+          message: 'Exit details added successfully',
           data: { exit_id: result.insertId },
           statusCode: 200,
         };
@@ -387,11 +386,11 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Database connection unavailable.",
-        error: "Connection Error",
+        message: 'Database connection unavailable.',
+        error: 'Connection Error',
       };
     } catch (error: any) {
-      console.error("Error inserting exit details:", error);
+      console.error('Error inserting exit details:', error);
 
       if (standalone && connection) {
         await connection.rollback();
@@ -400,7 +399,7 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Internal server error.",
+        message: 'Internal server error.',
         error: error.message,
       };
     } finally {
@@ -425,8 +424,8 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: false,
           statusCode: 400,
-          message: "Missing required field: employee_id.",
-          error: "Validation Error",
+          message: 'Missing required field: employee_id.',
+          error: 'Validation Error',
         };
       }
 
@@ -457,7 +456,7 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: true,
           statusCode: 201,
-          message: "Employee Family Details inserted successfully.",
+          message: 'Employee Family Details inserted successfully.',
           data: { employee_id, family_id: result.insertId },
         };
       }
@@ -465,11 +464,11 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Database connection unavailable.",
-        error: "Connection Error",
+        message: 'Database connection unavailable.',
+        error: 'Connection Error',
       };
     } catch (error: any) {
-      console.error("Error inserting family info:", error);
+      console.error('Error inserting family info:', error);
 
       if (standalone && connection) {
         await connection.rollback();
@@ -478,7 +477,7 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Internal server error.",
+        message: 'Internal server error.',
         error: error.message,
       };
     } finally {
@@ -503,8 +502,8 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: false,
           statusCode: 400,
-          message: "Missing required field: employee_id.",
-          error: "Validation Error",
+          message: 'Missing required field: employee_id.',
+          error: 'Validation Error',
         };
       }
 
@@ -535,7 +534,7 @@ export default class Employeeservices implements EmployeesInterface {
         return {
           success: true,
           statusCode: 201,
-          message: "Employee Statutory info inserted successfully.",
+          message: 'Employee Statutory info inserted successfully.',
           data: { employee_id, statutory_id: result.insertId },
         };
       }
@@ -543,11 +542,11 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Database connection unavailable.",
-        error: "Connection Error",
+        message: 'Database connection unavailable.',
+        error: 'Connection Error',
       };
     } catch (error: any) {
-      console.error("Error inserting statutory info:", error);
+      console.error('Error inserting statutory info:', error);
 
       if (standalone && connection) {
         await connection.rollback();
@@ -556,7 +555,7 @@ export default class Employeeservices implements EmployeesInterface {
       return {
         success: false,
         statusCode: 500,
-        message: "Internal server error.",
+        message: 'Internal server error.',
         error: error.message,
       };
     } finally {
@@ -568,9 +567,9 @@ export default class Employeeservices implements EmployeesInterface {
 
   private hasAddressData(
     data: any,
-    addressType: "Current" | "Permanent"
+    addressType: 'Current' | 'Permanent'
   ): boolean {
-    const prefix = addressType === "Current" ? "Current" : "Permanent";
+    const prefix = addressType === 'Current' ? 'Current' : 'Permanent';
     return !!(
       data[`${prefix}AddressLine1`] ||
       data[`${prefix}AddressLine2`] ||
@@ -617,8 +616,8 @@ export default class Employeeservices implements EmployeesInterface {
       data.TerminationReason ||
       data.ResignationNote ||
       (data.EmploymentStatus &&
-        data.EmploymentStatus.toLowerCase() !== "working" &&
-        data.EmploymentStatus.toLowerCase() !== "active")
+        data.EmploymentStatus.toLowerCase() !== 'working' &&
+        data.EmploymentStatus.toLowerCase() !== 'active')
     );
   }
 
@@ -626,15 +625,13 @@ export default class Employeeservices implements EmployeesInterface {
     req: Request,
     res: Response
   ): Promise<any> {
-    
-    
     const employees = req.body;
     const employeeservice = new Employeeservices();
 
     if (!Array.isArray(employees) || employees.length === 0) {
       return {
         success: false,
-        message: "Request body must be a non-empty array.",
+        message: 'Request body must be a non-empty array.',
         statusCode: 400,
       };
     }
@@ -643,13 +640,13 @@ export default class Employeeservices implements EmployeesInterface {
     const failedInserts: any[] = [];
 
     for (let i = 0; i < employees.length; i++) {
-      console.log("bulk-",i)
+      console.log('bulk-', i);
       const emp = employees[i];
       const employeeReport: any = {
         index: i,
-        employeeNumber: emp.EmployeeNumber || "N/A",
-        workEmail: emp.WorkEmail || "N/A",
-        status: "processing",
+        employeeNumber: emp.EmployeeNumber || 'N/A',
+        workEmail: emp.WorkEmail || 'N/A',
+        status: 'processing',
         inserted: {},
         skipped: {},
         errors: [],
@@ -663,7 +660,7 @@ export default class Employeeservices implements EmployeesInterface {
 
         if (!emp.EmployeeNumber || !emp.WorkEmail) {
           throw new Error(
-            "Missing required fields: EmployeeNumber and WorkEmail"
+            'Missing required fields: EmployeeNumber and WorkEmail'
           );
         }
 
@@ -692,7 +689,7 @@ export default class Employeeservices implements EmployeesInterface {
         employeeReport.employee_id = employee_id;
         employeeReport.inserted.employee = true;
 
-        if (employeeservice.hasAddressData(emp, "Current")) {
+        if (employeeservice.hasAddressData(emp, 'Current')) {
           try {
             await connection.query(
               `INSERT INTO addresses 
@@ -700,7 +697,7 @@ export default class Employeeservices implements EmployeesInterface {
               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
               [
                 employee_id,
-                "Current",
+                'Current',
                 emp.CurrentAddressLine1 || null,
                 emp.CurrentAddressLine2 || null,
                 emp.CurrentAddressCity || null,
@@ -714,10 +711,10 @@ export default class Employeeservices implements EmployeesInterface {
             employeeReport.errors.push(`Current address: ${addrError.message}`);
           }
         } else {
-          employeeReport.skipped.currentAddress = "No data provided";
+          employeeReport.skipped.currentAddress = 'No data provided';
         }
 
-        if (employeeservice.hasAddressData(emp, "Permanent")) {
+        if (employeeservice.hasAddressData(emp, 'Permanent')) {
           try {
             await connection.query(
               `INSERT INTO addresses 
@@ -725,7 +722,7 @@ export default class Employeeservices implements EmployeesInterface {
               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
               [
                 employee_id,
-                "Permanent",
+                'Permanent',
                 emp.PermanentAddressLine1 || null,
                 emp.PermanentAddressLine2 || null,
                 emp.PermanentAddressCity || null,
@@ -741,7 +738,7 @@ export default class Employeeservices implements EmployeesInterface {
             );
           }
         } else {
-          employeeReport.skipped.permanentAddress = "No data provided";
+          employeeReport.skipped.permanentAddress = 'No data provided';
         }
 
         if (employeeservice.hasEmploymentData(emp)) {
@@ -787,7 +784,7 @@ export default class Employeeservices implements EmployeesInterface {
             );
           }
         } else {
-          employeeReport.skipped.employmentDetails = "No data provided";
+          employeeReport.skipped.employmentDetails = 'No data provided';
         }
 
         if (employeeservice.hasFamilyData(emp)) {
@@ -809,7 +806,7 @@ export default class Employeeservices implements EmployeesInterface {
             employeeReport.errors.push(`Family info: ${famError.message}`);
           }
         } else {
-          employeeReport.skipped.familyInfo = "No data provided";
+          employeeReport.skipped.familyInfo = 'No data provided';
         }
 
         if (employeeservice.hasStatutoryData(emp)) {
@@ -831,7 +828,7 @@ export default class Employeeservices implements EmployeesInterface {
             employeeReport.errors.push(`Statutory info: ${statError.message}`);
           }
         } else {
-          employeeReport.skipped.statutoryInfo = "No data provided";
+          employeeReport.skipped.statutoryInfo = 'No data provided';
         }
 
         if (employeeservice.hasExitData(emp)) {
@@ -856,18 +853,18 @@ export default class Employeeservices implements EmployeesInterface {
             employeeReport.errors.push(`Exit details: ${exitError.message}`);
           }
         } else {
-          employeeReport.skipped.exitDetails = "No exit data";
+          employeeReport.skipped.exitDetails = 'No exit data';
         }
 
         await connection.commit();
-        employeeReport.status = "success";
+        employeeReport.status = 'success';
         successfulInserts.push(employeeReport);
       } catch (error: any) {
         if (connection) {
           await connection.rollback();
         }
 
-        employeeReport.status = "failed";
+        employeeReport.status = 'failed';
         employeeReport.errors.push(`Employee: ${error.message}`);
         failedInserts.push(employeeReport);
       } finally {
@@ -902,74 +899,178 @@ export default class Employeeservices implements EmployeesInterface {
   }
 
   editEmployees(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   deleteEmployees(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   viewEmployees(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   editAddress(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   deleteAddress(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   viewAddress(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   editEmployement_details(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   deleteEmployement_details(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
-  viewEmployement_details(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+  public async viewEmployement_details(
+    req: Request,
+    res: Response
+  ): Promise<promised> {
+    const [result]: any = await pool.query(`SELECT 
+    e.employee_id,
+    e.employee_number,
+    e.first_name,
+    e.middle_name,
+    e.last_name,
+    e.full_name,
+    e.work_email,
+    e.gender,
+    e.marital_status,
+    e.blood_group,
+    e.physically_handicapped,
+    e.nationality,
+    e.created_at,
+    e.updated_at,
+
+    -- Employment Details
+    ed.attendance_number,
+    ed.location,
+    ed.location_country,
+    ed.legal_entity,
+    ed.business_unit,
+    ed.department,
+    ed.sub_department,
+    ed.job_title,
+    ed.secondary_job_title,
+    ed.reporting_to,
+    ed.reporting_manager_employee_number,
+    ed.dotted_line_manager,
+    ed.date_joined,
+    ed.leave_plan,
+    ed.band,
+    ed.pay_grade,
+    ed.time_type,
+    ed.worker_type,
+    ed.shift_policy_name,
+    ed.weekly_off_policy_name,
+    ed.attendance_time_tracking_policy,
+    ed.attendance_capture_scheme,
+    ed.holiday_list_name,
+    ed.expense_policy_name,
+    ed.notice_period,
+    ed.cost_center,
+
+    -- Current Address
+    ca.address_line1 AS current_address_line1,
+    ca.address_line2 AS current_address_line2,
+    ca.city AS current_city,
+    ca.state AS current_state,
+    ca.zip AS current_zip,
+    ca.country AS current_country,
+
+    -- Permanent Address
+    pa.address_line1 AS permanent_address_line1,
+    pa.address_line2 AS permanent_address_line2,
+    pa.city AS permanent_city,
+    pa.state AS permanent_state,
+    pa.zip AS permanent_zip,
+    pa.country AS permanent_country,
+
+    -- Family Info
+    f.father_name,
+    f.mother_name,
+    f.spouse_name,
+    f.children_names,
+
+    -- Statutory Info
+    s.pan_number,
+    s.aadhaar_number,
+    s.pf_number,
+    s.uan_number,
+
+    -- Exit Details
+    ex.employment_status,
+    ex.exit_date,
+    ex.comments,
+    ex.exit_status,
+    ex.termination_type,
+    ex.termination_reason,
+    ex.resignation_note
+
+FROM employees e
+LEFT JOIN employment_details ed ON e.employee_id = ed.employee_id
+LEFT JOIN family_info f ON e.employee_id = f.employee_id
+LEFT JOIN statutory_info s ON e.employee_id = s.employee_id
+LEFT JOIN exit_details ex ON e.employee_id = ex.employee_id
+
+-- Pivot addresses
+LEFT JOIN addresses ca 
+       ON e.employee_id = ca.employee_id 
+      AND ca.address_type = 'Current'
+LEFT JOIN addresses pa 
+       ON e.employee_id = pa.employee_id 
+      AND pa.address_type = 'Permanent';
+`);
+
+    return {
+      success: true,
+      statusCode: 201,
+      message: `'All employees details.' ${result.length}`,
+      data: { result },
+    };
   }
 
   viewExitdetails(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   deleteExitdetails(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   editExitdetails(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   viewFamilyInfo(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   deleteFamilyInfo(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   editFamilyInfo(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   viewStatutoryInfo(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   deleteStatutoryInfo(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   editStatutoryInfo(req: Request, res: Response): Promise<any> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }

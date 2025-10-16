@@ -26,6 +26,7 @@ router.post("/v1/addExitDetails", EmployeeController.insertExitDetails);
 router.post("/v1/current-address", EmployeeController.insertEmployeeCurrentAddress);
 router.post("/v1/permanent-address", EmployeeController.insertEmployeePermanentAddress);
 router.post("/v1/bulk-data-entry", EmployeeController.insertBulkEmployees);
+router.get("/v1/employee", EmployeeController.viewAllEmployeesEverything)
 
 // test apis here 🤡
 router.get("/test", async (req, res) => {
