@@ -1,15 +1,15 @@
-import mysql from "mysql2/promise";
-import dotenv from "dotenv";
+import mysql, { PoolOptions } from "mysql2/promise";
+import { config } from "./env";
 
-dotenv.config();
-
-export const pool = mysql.createPool({
-  host: process.env.DB_HOST || "30.0.0.78",
-  user: process.env.DB_USE3R || "user",
-  password: process.env.DB_PASSWORD || "user",
-  database: process.env.DB_NAME || "hrms_db",
+const poolOptions: PoolOptions = {
+  host: config.DB_HOST || "localhost",
+  user: config.DB_USER || "root",
+  password: config.DB_PASSWORD || "root",
+  database: config.DB_NAME || "hrms_db",
+  port: config.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  
-});
+};
+
+export const pool = mysql.createPool(poolOptions);

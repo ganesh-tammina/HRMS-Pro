@@ -1,21 +1,14 @@
 import express, { Application } from 'express';
+import { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { pool } from './config/database';
-import candidateRoutes from './routes';
-import { sendMail } from './routes/mailer';
-import postAdminRouter from './routes/Admin/adminMainPost';
-import getAdminRouter from './routes/Admin/adminMainGet';
-import postHolidaysRouter from './routes/Holidays/holidaysPost';
-import AddEmployeeRoutes from './routes/Employees/Added_Employees_Route';
-import leaveRouter from './routes/Leaves/route/leave.route';
-import FgtRouter from './routes/Employee-Forgot-Password/route/forgot-route';
-import getEmployyeeCredentialsRouter from './routes/Employees/Employee_Credentials';
-import existingEmployeesRouter from './routes/ExistingEmployees/ExistingEmployees';
-import StatusPutRouter from './routes/OfferStatus/OfferStatus';
-import AtRouter from './routes/Attendance/attendance-route';
-import path from 'path';
-import postOrgInfoRouter from './routes/Org_Info/Org_imgs';
+import { config } from './config/env';
+import index from './routes/index';
+import { notFound } from './middlewares/notFound.middleware';
+import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
+
 dotenv.config();
 
 class Server {
@@ -24,54 +17,48 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.app.use(express.json());
-    this.app.use(cors({ origin: '*' }));
-    this.port = Number(process.env.PORT);
+    var corsOptions = {
+      origin: /[^.*:4200$]/,
+      optionsSuccessStatus: 200,
+      credentials: true,
+    };
+    this.app.use(cors(corsOptions));
+    this.port = config.PORT;
     this.middlewares();
     this.routes();
   }
 
   private middlewares(): void {
-    this.app.use(express.json());
-    this.app.use(cors({ origin: '*' }));
-    this.app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+    this.app.use(express.json({ limit: '10mb' }));
+    this.app.use(cookieParser());
+    this.app.use(
+      '/api/v1/login',
+      rateLimit({
+        windowMs: 15 * 60 * 1000,
+        max: 5,
+        message: 'Too many sign-in attempts, please try again later',
+      })
+    );
   }
 
   private routes(): void {
-    this.app.use('/candidates', candidateRoutes);
-    this.app.use('/', postAdminRouter);
-    this.app.use('/', getAdminRouter);
-    this.app.use('/holidays', postHolidaysRouter);
-    this.app.use('/employees', AddEmployeeRoutes);
-    this.app.use('/leave', leaveRouter);
-    this.app.use('/', FgtRouter);
-    this.app.use('/', existingEmployeesRouter)
-    this.app.use('/offerstatus', StatusPutRouter)
-    // this.app.use('/employee', getEmployyeeCredentialsRouter)
-    this.app.use('/', AtRouter);
-    this.app.use('/', postOrgInfoRouter);
-    this.app.use("/uploads", express.static(path.join(__dirname, "../image_org")));
-    this.app.post('/send-email', async (req, res) => {
-      const { to, subject, text } = req.body;
-      if (!to || !subject || !text) {
-        return res.status(400).json({
-          success: false,
-          error: 'Missing required fields (to, subject, text)',
-        });
-      }
-      try {
-        const result = await sendMail(to, subject, text, `<p>${text}</p>`);
-        res.json({ success: true, messageId: result.messageId });
-      } catch (error) {
-        res.status(500).json({ success: false, error: 'Failed to send email' });
-      }
+    this.app.use('/api', index);
+    this.app.get('/api', async (req, res) => {
+      res.json('Server is running');
     });
+    this.app.use(notFound);
   }
 
   public start(): void {
     this.app.listen(this.port, async () => {
-      await pool.getConnection();
-      console.log(`✅ Server running on port ${this.port}`);
+      await pool.getConnection().then((res) => {
+        if (res) {
+          console.log(
+            'Connected to database on https://' + res.connection.config.host
+          );
+        }
+      });
+      console.log(`Server running on port http://localhost:${this.port}/api`);
     });
   }
 }
